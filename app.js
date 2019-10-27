@@ -1,3 +1,5 @@
+// require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const engine = require('ejs-mate');
@@ -16,8 +18,8 @@ const User = require('./models/users');
 const app = express();
 
 //connect to the database
-mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
-// mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
@@ -33,8 +35,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
