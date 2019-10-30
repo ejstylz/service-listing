@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatble" content="ie=edge" />
+    <title>Become a Seller</title>
+    <link href="../images/favicon.png" rel="icon" />
+    <link href="../images/favicon.ico" rel="shortcut icon" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../fonts/fonts.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
+    <link href="../css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header class="main_header">
+        <nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
+            <form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
+                <select class="form-control form-control-sm">
+                    <option>English</option>
+                    <option>Spanish</option>
+                </select>
+            </form>
+            <div class="main_logo_for_mobile ml-auto">
+                <a href="/"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+            </div>
+            <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
+                <li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
+            </ul>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light middlebar">
+            <a class="navbar-brand main_logo_for_desktop text-dark" href="/" target="_self">
+                <img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
+                <img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
+            </a>
+        </nav>
+    </header>
+
+    <% include ../partials/flash-messages %>
+    <%- body -%>
+
+    <footer class="main_footer">
+        <div class="container">
+            <p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="js/classie.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+    <script src="js/category.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        })
+
+
+        $(function () {
+            $('input[name=fencing_service_type]').on('click init-post-format', function () {
+                $('#fencingRepairBottom').toggle($('#fencingRepair').prop('checked'));
+            }).trigger('init-post-format');
+        });
+
+        $(function () {
+            $('input[name=fencing_service_type]').on('click init-post-format', function () {
+                $('#fencingInstallationBottom').toggle($('#fencingInstallation').prop('checked'));
+            }).trigger('init-post-format');
+        });
+
+        $(function () {
+            $('input[name=fencing_service_type]').on('click init-post-format', function () {
+                $('#fencingMaterialBottom').toggle($('#fencingMaterial').prop('checked'));
+            }).trigger('init-post-format');
+        });
+
+
+        $(document).ready(function () {
+            $('.add_new__skills_button').on('click', function () {
+                $('.add_new_skills_row').addClass('active');
+            });
+
+            $('.cancel_to_skill_row').on('click', function () {
+                $('.add_new_skills_row').removeClass('active');
+            });
+
+            $('.add_new__education_button').on('click', function () {
+                $('.add_new_education_row').addClass('active');
+            });
+
+            $('.cancel_to_education_row').on('click', function () {
+                $('.add_new_education_row').removeClass('active');
+            });
+
+
+            $('.add_new__certificate_button').on('click', function () {
+                $('.add_new_certificate_row').addClass('active');
+            });
+
+            $('.cancel_to_certificate_row').on('click', function () {
+                $('.add_new_certificate_row').removeClass('active');
+            });
+
+            $('.update_email_button').click(function () {
+                $('.billing_email').addClass('active');
+            })
+            $('.update_email_button_cancel').click(function () {
+                $('.billing_email').removeClass('active');
+            });
+        });	
+    </script>
+</body>
+
+</html>

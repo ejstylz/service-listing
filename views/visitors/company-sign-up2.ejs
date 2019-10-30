@@ -1,167 +1,126 @@
-<!DOCTYPE html>
-<html>
+<% layout('layouts/companySignUpBoilerplate') -%>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatble" content="ie=edge" />
-	<title>Become a Seller</title>
-	<link href="../images/favicon.png" rel="icon" />
-	<link href="../images/favicon.ico" rel="shortcut icon" />
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-	<link href="../fonts/fonts.css" rel="stylesheet" />
-	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../css/style.css" rel="stylesheet" type="text/css" />
-	<link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
-	<link href="../css/responsive.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-	<header class="main_header">
-		<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
-			<form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
-				<select class="form-control form-control-sm">
-					<option>English</option>
-					<option>Spanish</option>
-				</select>
-			</form>
-			<div class="main_logo_for_mobile ml-auto">
-				<a href="../index.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+<section class="become_seller_steps_bar">
+	<div class="container_gbz">
+		<div class="row">
+			<div class="col-md-9">
+				<ul>
+					<li class="completed"><a href="become-a-seller-personal-info.html">Personal Info</a></li>
+					<li class="active"><a href="javascript:void(0)">Company Info</a></li>
+					<li><a href="javascript:void(0)">Linked Accounts</a></li>
+					<li><a href="javascript:void(0)">Account Security</a></li>
+					<li><a href="javascript:void(0)">Payment Method</a></li>
+				</ul>
 			</div>
-			<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
-				<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
-			</ul>
-		</nav>
-		<nav class="navbar navbar-expand-lg navbar-light middlebar">
-			<a class="navbar-brand main_logo_for_desktop text-dark" href="../index.html" target="_self">
-				<img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
-				<img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
-			</a>
-		</nav>
-	</header>
+			<div class="col-md-3">
+				<div class="completion_progressbar">
+					<h6>Completion Rate:</h6>
+					<div class="progressbar profession_info_progress">
+						<div class="progress_fill">
 
-
-	<section class="become_seller_steps_bar">
-		<div class="container_gbz">
-			<div class="row">
-				<div class="col-md-9">
-					<ul>
-						<li class="completed"><a href="become-a-seller-personal-info.html">Personal Info</a></li>
-						<li class="active"><a href="javascript:void(0)">Company Info</a></li>
-						<li><a href="javascript:void(0)">Linked Accounts</a></li>
-						<li><a href="javascript:void(0)">Account Security</a></li>
-						<li><a href="javascript:void(0)">Payment Method</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3">
-					<div class="completion_progressbar">
-						<h6>Completion Rate:</h6>
-						<div class="progressbar profession_info_progress">
-							<div class="progress_fill">
-
-							</div>
-							<span>80%</span>
 						</div>
+						<span>80%</span>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<section class="become_a_seller_form">
-		<div class="container">
-			<div class="upper_text">
-				<h3>Company Info</h3>
-				<h6>* Mandatory fields</h6>
-			</div>
-			<hr />
-			<form action="/company-sign-up2" method="POST" enctype="multipart/form-data">
-				<div class="form">
-					<div class="form_single_part">
-						<div class="row">
-							<div class="col-md-3">
-								<div class="left_heading">
-									<h4 for="">Company Logo<b>*</b></h4>
-									<h6>Add your company logo to show everyone you’re in the Service business.</h6>
+<section class="become_a_seller_form">
+	<div class="container">
+		<div class="upper_text">
+			<h3>Company Info</h3>
+			<h6>* Mandatory fields</h6>
+		</div>
+		<hr />
+		<form action="/company-sign-up2" method="POST" enctype="multipart/form-data">
+			<div class="form">
+				<div class="form_single_part">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="left_heading">
+								<h4 for="">Company Logo<b>*</b></h4>
+								<h6>Add your company logo to show everyone you’re in the Service business.</h6>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<div class="upload_profile_pic">
+									<a href="javascript:void(0)"><img id="blah" src="../images/man.png"
+											class="img-fluid" alt="" /></a>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<div class="upload_profile_pic">
-										<a href="javascript:void(0)"><img src="../images/man.png" class="img-fluid"
-												alt="" /></a>
-									</div>
+						</div>
+						<div class="col-md-4">
+							<div class="single_upload">
+								<div class="upload_header">
+									<h5>Upload Company Logo</h5>
 								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="single_upload">
-									<div class="upload_header">
-										<h5>Upload Company Logo</h5>
-									</div>
-									<div class="upload_area">
-										<div class="form-group">
-											<input type="file" name="logo" id="file-1" class="inputfile inputfile-1"
-												data-multiple-caption="{count} files selected" multiple />
-											<label for="file-1">
-												<div class="upload_fils">
-													<div class="icon">
-														<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-													</div>
-													<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+								<div class="upload_area">
+									<div class="form-group">
+										<input type="file" name="logo" id="file-1" class="inputfile inputfile-1"
+											data-multiple-caption="{count} files selected" multiple />
+										<label for="file-1">
+											<div class="upload_fils">
+												<div class="icon">
+													<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 												</div>
-											</label>
-										</div>
+												<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+											</div>
+										</label>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="form_single_part">
-						<div class="row">
-							<div class="col-md-3">
-								<div class="left_heading">
-									<h4>About Company <b>*</b></h4>
-								</div>
+				<div class="form_single_part">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="left_heading">
+								<h4>About Company <b>*</b></h4>
 							</div>
-							<div class="col-md-9">
-								<div class="form-group">
-									<!-- <input type="text" name="about" class="about"
+						</div>
+						<div class="col-md-9">
+							<div class="form-group">
+								<!-- <input type="text" name="about" class="about"
 										placeholder="Write a Short Description About Your Company" class="form-control"> -->
-									<textarea name="about" id=""
-										placeholder="Write a Short Description About Your Company..." cols="30" rows="4"
-										class="form-control"></textarea>
-									<div class="text-right">
-										<small>0/600</small>
-									</div>
+								<textarea name="about" id=""
+									placeholder="Write a Short Description About Your Company..." cols="30" rows="4"
+									class="form-control"></textarea>
+								<div class="text-right">
+									<small>0/600</small>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="form_single_part">
-						<div class="row">
-							<div class="col-md-3">
-								<h4>Your Company Skills<b>*</b></h4>
-							</div>
-							<div class="col-md-9">
-								<div class="form-row">
-									<div class="form-group col-md-6">
-										<select name="service" id="service" class="form-control">
-											<option>--Select Service--</option>
-											<option>Outdoor Work</option>
-											<option>Indoor Work</option>
-											<option>Vehicle Services</option>
-											<option>Other Services</option>
-										</select>
-									</div>
-									<div class="form-group col-md-6">
-										<select name="serviceCategory" id="category" class="form-control">
-											<option value="">--Select Service Category--</option>
-										</select>
-									</div>
+				</div>
+				<div class="form_single_part">
+					<div class="row">
+						<div class="col-md-3">
+							<h4>Your Company Skills<b>*</b></h4>
+						</div>
+						<div class="col-md-9">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<select name="service" id="service" class="form-control">
+										<option>--Select Service--</option>
+										<option>Outdoor Work</option>
+										<option>Indoor Work</option>
+										<option>Vehicle Services</option>
+										<option>Other Services</option>
+									</select>
 								</div>
+								<div class="form-group col-md-6">
+									<select name="serviceCategory" id="category" class="form-control">
+										<option value="">--Select Service Category--</option>
+									</select>
+								</div>
+							</div>
 
-								<!-- <div class="select_subcategory">
+							<!-- <div class="select_subcategory">
 									<h5>Choose the Filters you can work with:</h5>
 
 									<div class="filter_areas my-3">
@@ -286,211 +245,155 @@
 										</div>
 									</div>
 								</div> -->
-							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="form_single_part">
-						<div class="row">
-							<div class="col-md-3">
-								<h4 for="">Skills<b>*</b> <span class="private">private</span></h4>
-								<h6>These are the Services within the filters you can work with.</h6>
-							</div>
-							<div class="col-md-9">
-								<div class="add_new_skills_row add_new_row_in_form">
-									<div class="form">
-										<div class="form-row">
-											<div class="form-group mb-0 col-md-4">
-												<input type="text" placeholder="Add Skill" class="form-control" />
-											</div>
-											<div class="form-group mb-0 col-md-4">
-												<select name="" id="" class="form-control">
-													<option value="">Beginner</option>
-													<option value="">Intermediate</option>
-													<option value="">Expert</option>
-												</select>
-											</div>
-											<div class="form-group mb-0 col-md-4">
-												<ul>
-													<li><a class="cancel_to_skill_row btn btn-outline-gbz-success"
-															href="javascript:void(0)">Cancel</a></li>
-													<li><a class="btn btn-gbz-success" href="javascript:void(0)">Add</a>
-													</li>
-												</ul>
-											</div>
+				<div class="form_single_part">
+					<div class="row">
+						<div class="col-md-3">
+							<h4 for="">Skills<b>*</b> <span class="private">private</span></h4>
+							<h6>These are the Services within the filters you can work with.</h6>
+						</div>
+						<div class="col-md-9">
+							<div class="add_new_skills_row add_new_row_in_form">
+								<div class="form">
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<input type="text" placeholder="Add Skill" class="form-control" />
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="" id="" class="form-control">
+												<option value="">Beginner</option>
+												<option value="">Intermediate</option>
+												<option value="">Expert</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<ul>
+												<li><a class="cancel_to_skill_row btn btn-outline-gbz-success"
+														href="javascript:void(0)">Cancel</a></li>
+												<li><a class="btn btn-gbz-success" href="javascript:void(0)">Add</a>
+												</li>
+											</ul>
 										</div>
 									</div>
 								</div>
-								<div class="table-responsive">
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th>Services Name</th>
-												<th>Chosen Filters</th>
-												<th>Level</th>
-												<th class="text-right"><a class="add_new__skills_button"
-														href="javascript:void(0)">Add New</a></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Lorem</td>
-												<td>Lorem</td>
-												<td>Expert</td>
-												<td class="text-right action_buttons">
-													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-															data-toggle="tooltip" class="fa fa-pencil-square-o"
-															aria-hidden="true"></i></a>
-													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-															class="fa fa-trash-o" aria-hidden="true"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>Lorem</td>
-												<td>Lorem</td>
-												<td>Beginner</td>
-												<td class="text-right action_buttons">
-													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-															data-toggle="tooltip" class="fa fa-pencil-square-o"
-															aria-hidden="true"></i></a>
-													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-															class="fa fa-trash-o" aria-hidden="true"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>Lorem</td>
-												<td>Lorem</td>
-												<td>Expert</td>
-												<td class="text-right action_buttons">
-													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-															data-toggle="tooltip" class="fa fa-pencil-square-o"
-															aria-hidden="true"></i></a>
-													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-															class="fa fa-trash-o" aria-hidden="true"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>Lorem</td>
-												<td>Lorem</td>
-												<td>Intermediate</td>
-												<td class="text-right action_buttons">
-													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-															data-toggle="tooltip" class="fa fa-pencil-square-o"
-															aria-hidden="true"></i></a>
-													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-															class="fa fa-trash-o" aria-hidden="true"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td>Lorem</td>
-												<td>Lorem</td>
-												<td>Expert</td>
-												<td class="text-right action_buttons">
-													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-															data-toggle="tooltip" class="fa fa-pencil-square-o"
-															aria-hidden="true"></i></a>
-													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-															class="fa fa-trash-o" aria-hidden="true"></i></a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Services Name</th>
+											<th>Chosen Filters</th>
+											<th>Level</th>
+											<th class="text-right"><a class="add_new__skills_button"
+													href="javascript:void(0)">Add New</a></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Lorem</td>
+											<td>Lorem</td>
+											<td>Expert</td>
+											<td class="text-right action_buttons">
+												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+														data-toggle="tooltip" class="fa fa-pencil-square-o"
+														aria-hidden="true"></i></a>
+												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+														class="fa fa-trash-o" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td>Lorem</td>
+											<td>Lorem</td>
+											<td>Beginner</td>
+											<td class="text-right action_buttons">
+												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+														data-toggle="tooltip" class="fa fa-pencil-square-o"
+														aria-hidden="true"></i></a>
+												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+														class="fa fa-trash-o" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td>Lorem</td>
+											<td>Lorem</td>
+											<td>Expert</td>
+											<td class="text-right action_buttons">
+												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+														data-toggle="tooltip" class="fa fa-pencil-square-o"
+														aria-hidden="true"></i></a>
+												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+														class="fa fa-trash-o" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td>Lorem</td>
+											<td>Lorem</td>
+											<td>Intermediate</td>
+											<td class="text-right action_buttons">
+												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+														data-toggle="tooltip" class="fa fa-pencil-square-o"
+														aria-hidden="true"></i></a>
+												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+														class="fa fa-trash-o" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+										<tr>
+											<td>Lorem</td>
+											<td>Lorem</td>
+											<td>Expert</td>
+											<td class="text-right action_buttons">
+												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+														data-toggle="tooltip" class="fa fa-pencil-square-o"
+														aria-hidden="true"></i></a>
+												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+														class="fa fa-trash-o" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
-
-					<div class="form_continue_button">
-						<button type="submit" class="btn btn-gbz-success">Save & Continue</button>
-					</div>
 				</div>
-			</form>
-		</div>
-	</section>
 
-
-	<!-- Modal For Edit Skills Level Starts -->
-	<div class="modal edit_skills_level_modal fade" id="editLevel">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3>Edit Skills Level</h3>
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
-							aria-hidden="true"></i></button>
+				<div class="form_continue_button">
+					<button type="submit" class="btn btn-gbz-success">Save & Continue</button>
 				</div>
-				<div class="modal-body">
-					<form action="">
-						<div class="form">
-							<div class="form-group">
-								<select name="" id="" class="form-control">
-									<option value="">Beginner</option>
-									<option value="">Intermediate</option>
-									<option value="">Expert</option>
-								</select>
-							</div>
-							<div class="update_button text-right">
-								<button type="submit" class="btn btn-gbz-success">Update</button>
-							</div>
+			</div>
+		</form>
+	</div>
+</section>
+
+
+<!-- Modal For Edit Skills Level Starts -->
+<div class="modal edit_skills_level_modal fade" id="editLevel">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Edit Skills Level</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="form">
+						<div class="form-group">
+							<select name="" id="" class="form-control">
+								<option value="">Beginner</option>
+								<option value="">Intermediate</option>
+								<option value="">Expert</option>
+							</select>
 						</div>
-					</form>
-				</div>
+						<div class="update_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Update</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	<!-- Modal For Edit Skills Level Ends -->
-
-
-	<footer class="main_footer">
-		<div class="container">
-			<p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
-		</div>
-	</footer>
-
-
-
-
-
-	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-	<script src="js/classie.js" type="text/javascript"></script>
-	<script src="js/custom.js" type="text/javascript"></script>
-	<script src="js/category.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('[data-toggle="tooltip"]').tooltip();
-			$('[data-toggle="popover"]').popover();
-		})
-
-
-		$(function () {
-			$('input[name=fencing_service_type]').on('click init-post-format', function () {
-				$('#fencingRepairBottom').toggle($('#fencingRepair').prop('checked'));
-			}).trigger('init-post-format');
-		});
-
-		$(function () {
-			$('input[name=fencing_service_type]').on('click init-post-format', function () {
-				$('#fencingInstallationBottom').toggle($('#fencingInstallation').prop('checked'));
-			}).trigger('init-post-format');
-		});
-
-		$(function () {
-			$('input[name=fencing_service_type]').on('click init-post-format', function () {
-				$('#fencingMaterialBottom').toggle($('#fencingMaterial').prop('checked'));
-			}).trigger('init-post-format');
-		});
-
-
-		$(document).ready(function () {
-			$('.add_new__skills_button').on('click', function () {
-				$('.add_new_skills_row').addClass('active');
-			});
-
-			$('.cancel_to_skill_row').on('click', function () {
-				$('.add_new_skills_row').removeClass('active');
-			});
-		});			
-	</script>
-</body>
-
-</html>
+</div>
+<!-- Modal For Edit Skills Level Ends -->

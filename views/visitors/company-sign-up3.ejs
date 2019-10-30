@@ -1,120 +1,57 @@
-<!DOCTYPE html>
-<html>
+<% layout('layouts/companySignUpBoilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatble" content="ie=edge" />
-    <title>Become a Seller</title>
-    <link href="../images/favicon.png" rel="icon" />
-    <link href="../images/favicon.ico" rel="shortcut icon" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../fonts/fonts.css" rel="stylesheet" />
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
-    <link href="../css/responsive.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <header class="main_header">
-        <nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
-            <form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
-                <select class="form-control form-control-sm">
-                    <option>English</option>
-                    <option>Spanish</option>
-                </select>
-            </form>
-            <div class="main_logo_for_mobile ml-auto">
-                <a href="../index.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+<section class="become_seller_steps_bar">
+    <div class="container_gbz">
+        <div class="row">
+            <div class="col-md-9">
+                <ul>
+                    <li class="completed"><a href="become-a-seller-personal-info.html">Personal Info</a></li>
+                    <li class="completed"><a href="become-a-seller-company-info.html">Company Info</a></li>
+                    <li class="active"><a href="javascript:void(0)">Linked Accounts</a></li>
+                    <li><a href="javascript:void(0)">Account Security</a></li>
+                    <li><a href="javascript:void(0)">Payment Method</a></li>
+                </ul>
             </div>
-            <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
-                <li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
-            </ul>
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-light middlebar">
-            <a class="navbar-brand main_logo_for_desktop text-dark" href="../index.html" target="_self">
-                <img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
-                <img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
-            </a>
-        </nav>
-    </header>
+            <div class="col-md-3">
+                <div class="completion_progressbar">
+                    <h6>Completion Rate:</h6>
+                    <div class="progressbar profession_info_progress">
+                        <div class="progress_fill">
 
-
-    <section class="become_seller_steps_bar">
-        <div class="container_gbz">
-            <div class="row">
-                <div class="col-md-9">
-                    <ul>
-                        <li class="completed"><a href="become-a-seller-personal-info.html">Personal Info</a></li>
-                        <li class="completed"><a href="become-a-seller-company-info.html">Company Info</a></li>
-                        <li class="active"><a href="javascript:void(0)">Linked Accounts</a></li>
-                        <li><a href="javascript:void(0)">Account Security</a></li>
-                        <li><a href="javascript:void(0)">Payment Method</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <div class="completion_progressbar">
-                        <h6>Completion Rate:</h6>
-                        <div class="progressbar profession_info_progress">
-                            <div class="progress_fill">
-
-                            </div>
-                            <span>80%</span>
                         </div>
+                        <span>80%</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="become_a_seller_form">
-        <div class="container">
-            <div class="upper_text">
-                <h3>Linked Accounts</h3>
-                <p>Taking the time to verify and link your accounts can upgrade your credibility and help us provide you
-                    with more business. Don’t worry, your information is and always will remain private.</p>
+<section class="become_a_seller_form">
+    <div class="container">
+        <div class="upper_text">
+            <h3>Linked Accounts</h3>
+            <p>Taking the time to verify and link your accounts can upgrade your credibility and help us provide you
+                with more business. Don’t worry, your information is and always will remain private.</p>
+        </div>
+        <hr />
+        <div class="linked_account">
+            <div class="single_linked_account">
+                <h5>Your Social Presence</h5>
+                <p>Private</p>
+                <ul>
+                    <li class="connected"><span class="linked_media verified"><i class="fa fa-facebook"
+                                aria-hidden="true"></i> Facebook</span> <a href="javascript:void(0)">Connected</a>
+                    </li>
+                </ul>
             </div>
+
             <hr />
-            <div class="linked_account">
-                <div class="single_linked_account">
-                    <h5>Your Social Presence</h5>
-                    <p>Private</p>
-                    <ul>
-                        <li class="connected"><span class="linked_media verified"><i class="fa fa-facebook"
-                                    aria-hidden="true"></i> Facebook</span> <a href="javascript:void(0)">Connected</a>
-                        </li>
-                    </ul>
-                </div>
+            <br />
 
-                <hr />
-                <br />
-
-                <div class="form_continue_button">
-                    <a class="btn btn-gbz-success" href="/company-sign-up4">Continue</a>
-                </div>
+            <div class="form_continue_button">
+                <a class="btn btn-gbz-success" href="/company-sign-up4">Continue</a>
             </div>
         </div>
-    </section>
-
-
-    <footer class="main_footer">
-        <div class="container">
-            <p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
-        </div>
-    </footer>
-
-
-
-
-
-    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <script src="js/classie.js" type="text/javascript"></script>
-    <script src="js/custom.js" type="text/javascript"></script>
-    <script type="text/javascript">
-
-    </script>
-</body>
-
-</html>
+    </div>
+</section>

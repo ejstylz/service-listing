@@ -43,7 +43,7 @@ module.exports = {
         let user = await User.register(newUser, req.body.password);
         req.login(user, function (err) {
             if (err) return next(err);
-            // req.session.success = "User Registered";
+            req.session.success = "User Registered";
             console.log("USER REGISTERED!");
             res.redirect('/');
         });
@@ -69,14 +69,15 @@ module.exports = {
             country: req.body.country,
             phoneNumber: req.body.phoneNumber,
             profilePicture: image.secure_url,
-            profilePictureId: image.public_id
+            profilePictureId: image.public_id,
+            isCompany: true
         });
 
         let user = await User.register(newUser, req.body.password);
         req.login(user, function (err) {
             if (err) return next(err);
-            // req.session.success = "User Registered";
-            console.log("USER REGISTERED!");
+            req.session.success = "Company Registered";
+            console.log("Company REGISTERED!");
             res.redirect('/company-sign-up2');
         });
     },
@@ -116,7 +117,7 @@ module.exports = {
 
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            // req.session.error = 'No account with that email address exists.';
+            req.session.error = 'No account with that email address exists.';
             console.log("no user");
             return res.redirect('/company-sign-up4');
         }
@@ -138,7 +139,7 @@ module.exports = {
 
         await sgMail.send(msg);
 
-        // req.session.success = `An e-mail has been sent to ${user.email} with further instructions. Check in your spam folder also`;
+        req.session.success = `An Email has been sent to ${user.email} with further instructions.`;
         console.log("Email sent!");
         res.redirect('/company-sign-up4');
 
@@ -165,7 +166,7 @@ module.exports = {
         await sgMail.send(msg);
 
         console.log("VERIFIED");
-        // req.session.success = 'Password successfully updated!';
+        req.session.success = 'Email verified!';
         res.redirect('/company-sign-up4');
     },
 
@@ -191,12 +192,18 @@ module.exports = {
         if (!user && error) return next(error);
         req.login(user, function (err) {
             if (err) return next(err);
-            // req.session.success = "Welcome back!";
+            req.session.success = "Welcome back!";
             console.log("Logged In");
             console.log("Welcome back!");
-            const redirectUrl = req.session.redirectTo || '/';
+            const redirectUrl1 = req.session.redirectTo || '/';
+            const redirectUrl2 = req.session.redirectTo || '/company-dashboard';
             delete req.session.redirectTo;
-            res.redirect(redirectUrl);
+
+            if (!user.isCompany) {
+                res.redirect(redirectUrl1);
+            } else {
+                res.redirect(redirectUrl2);
+            }
             // passport.authenticate('local', {
             // 	successRedirect: '/dashboard',
             // 	failureRedirect: '/login'

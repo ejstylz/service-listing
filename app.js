@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 const createError = require('http-errors');
 const express = require('express');
@@ -18,8 +18,8 @@ const User = require('./models/users');
 const app = express();
 
 //connect to the database
-// mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
+// mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;

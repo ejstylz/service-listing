@@ -1,279 +1,207 @@
-<!DOCTYPE html>
-<html>
+<% layout('layouts/companySignUpBoilerplate') -%>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatble" content="ie=edge" />
-	<title>Become a Seller</title>
-	<link href="../images/favicon.png" rel="icon" />
-	<link href="../images/favicon.ico" rel="shortcut icon" />
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-	<link href="../fonts/fonts.css" rel="stylesheet" />
-	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../css/style.css" rel="stylesheet" type="text/css" />
-	<link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
-	<link href="../css/responsive.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-	<header class="main_header">
-		<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
-			<form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
-				<select class="form-control form-control-sm">
-					<option>English</option>
-					<option>Spanish</option>
-				</select>
-			</form>
-			<div class="main_logo_for_mobile ml-auto">
-				<a href="../index.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+<section class="become_seller_steps_bar">
+	<div class="container_gbz">
+		<div class="row">
+			<div class="col-md-10">
+				<ul>
+					<li class="completed"><a href="become-a-seller-personal-info.html">Personal Info</a></li>
+					<li class="completed"><a href="become-a-seller-company-info.html">Company Info</a></li>
+					<li class="completed"><a href="become-a-seller-linked-accounts.html">Linked Accounts</a></li>
+					<li class="completed"><a href="become-a-seller-account-security.html">Account Security</a></li>
+					<li class="active"><a href="javascript:void(0)">Payment Method</a></li>
+				</ul>
 			</div>
-			<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
-				<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
-			</ul>
-		</nav>
-		<nav class="navbar navbar-expand-lg navbar-light middlebar">
-			<a class="navbar-brand main_logo_for_desktop text-dark" href="../index.html" target="_self">
-				<img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
-				<img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
-			</a>
-		</nav>
-	</header>
+			<div class="col-md-2">
+				<div class="completion_progressbar">
+					<h6>Completion Rate:</h6>
+					<div class="progressbar profession_info_progress">
+						<div class="progress_fill">
 
-
-	<section class="become_seller_steps_bar">
-		<div class="container_gbz">
-			<div class="row">
-				<div class="col-md-10">
-					<ul>
-						<li class="completed"><a href="become-a-seller-personal-info.html">Personal Info</a></li>
-						<li class="completed"><a href="become-a-seller-company-info.html">Company Info</a></li>
-						<li class="completed"><a href="become-a-seller-linked-accounts.html">Linked Accounts</a></li>
-						<li class="completed"><a href="become-a-seller-account-security.html">Account Security</a></li>
-						<li class="active"><a href="javascript:void(0)">Payment Method</a></li>
-					</ul>
-				</div>
-				<div class="col-md-2">
-					<div class="completion_progressbar">
-						<h6>Completion Rate:</h6>
-						<div class="progressbar profession_info_progress">
-							<div class="progress_fill">
-
-							</div>
-							<span>80%</span>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="become_a_seller_form">
-		<div class="container">
-			<div class="upper_text">
-				<h3>Payment Method</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
-			</div>
-
-			<hr />
-
-			<div class="payment_method_wrapper">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="pm_left">
-							<div class="top_box single_box">
-								<div class="header_part">
-									<h6>Current Plan</h6>
-									<h5><span class="color_text">Inactive:</span> Standard<span
-											class="monthly">(Monthly)</span></h5>
-								</div>
-								<div class="body_part">
-									<div class="icon">
-										<i class="fa fa-times" aria-hidden="true"></i>
-									</div>
-									<small>Check For Errors Below</small>
-								</div>
-								<div class="footer_part">
-									<h6>You currently have <b>2 premium clips</b> remaining in your plan.</h6>
-								</div>
-							</div>
-
-							<div class="bottom_box single_box">
-								<div class="header_part">
-									<h5>Payment Details</h5>
-								</div>
-								<div class="body_part">
-									<div class="icon">
-										<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-									</div>
-									<div class="card_number">
-										<h4>xxxx xxxx xxxx 2541</h4>
-									</div>
-									<div class="update_payment_details">
-										<a href="#findUpdatePaymentMethod" data-toggle="modal">Update Payment
-											Details</a>
-									</div>
-									<div class="billing_email">
-										<h4>Your Billing Email</h4>
-										<a class="update_email_button" href="javascript:void(0)">Update Email</a>
-										<div class="update_email_form">
-											<form action="">
-												<div class="form">
-													<div class="form-group mb-1">
-														<input type="email" placeholder="Your Email"
-															class="form-control" />
-													</div>
-													<div class="buttons_part">
-														<ul>
-															<li><a class="update_email_button_cancel btn btn-outline-gbz-success"
-																	href="javascript:void(0)">Cancel</a></li>
-															<li><button class="btn btn-gbz-success" type="submit"
-																	href="javascript:void(0)">Save</button></li>
-														</ul>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-								<div class="footer_part">
-									<h6>*Billing Issues: Please contact your credit card company and bank for additional
-										details</h6>
-								</div>
-							</div>
-
-							<div class="outer_box_text">
-								<span><i class="fa fa-envelope-o" aria-hidden="true"></i> Looking for your invoices?
-									Check your email <i class="fa fa-smile-o" aria-hidden="true"></i></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="pm_right">
-							<div class="box_wrapper">
-								<div class="header_part">
-									<h4>Switch To Annual Payments & Save 30%</h4>
-								</div>
-								<div class="body_part">
-									<div class="icon">
-										<i class="fa fa-motorcycle" aria-hidden="true"></i>
-									</div>
-									<div class="amount_in_dollar">
-										<h1><span class="small_text">$</span>828<span class="small_text"> / year</span>
-										</h1>
-										<h4>($69/month)</h4>
-									</div>
-								</div>
-								<div class="footer_part">
-									<p>By moving to annual payments you'll save money and get access to many more
-										exciting new features that we will constantly release and can have a great
-										effect on your business and its success.</p>
-									<div class="action_button">
-										<a class="btn btn-gbz-success" href="javascript:void(0)">Save 30% Now</a>
-									</div>
-								</div>
-							</div>
-							<div class="outer_box_text">
-								<span><a href="javascript:void(0)">See All Plans</a></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<hr />
-			<br />
-
-			<div class="form_continue_button">
-				<a class="btn btn-gbz-success" href="/company-dashboard">Continue</a>
-			</div>
-		</div>
-	</section>
-
-
-	<!-- Update Payment Method Modal -->
-	<div class="modal pm_credit_card_modal fade" id="findUpdatePaymentMethod">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
-							aria-hidden="true"></i></button>
-				</div>
-				<div class="modal-body">
-					<div class="top_part">
-						<div class="icon">
-							<img src="../images/favicon.png" class="img-fluid" alt="" />
-						</div>
-						<h4>Promo</h4>
-						<h5>Promo Videos Standard</h5>
-					</div>
-
-					<hr />
-
-					<div class="bottom_part">
-						<form action="">
-							<div class="form">
-								<div class="form-group">
-									<div class="dollar_input">
-										<input type="text" value="0000 0000 00000 2541" data-mask="0000 0000 0000 0000"
-											class="form-control" />
-										<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-sm-6">
-										<div class="dollar_input">
-											<input type="text" value="15 / 2020" data-mask="00 / 0000"
-												class="form-control" />
-											<i class="fa fa-calendar-o" aria-hidden="true"></i>
-										</div>
-									</div>
-									<div class="form-group col-sm-6">
-										<div class="dollar_input">
-											<input type="password" value="256" data-mask="000" class="form-control" />
-											<i class="fa fa-lock" aria-hidden="true"></i>
-										</div>
-									</div>
-								</div>
-								<div class="save_button">
-									<button type="submit" class="btn btn-gbz-success">Update Credit Card</button>
-								</div>
-							</div>
-						</form>
+						<span>80%</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Update Payment Method Modal -->
+</section>
 
-
-	<footer class="main_footer">
-		<div class="container">
-			<p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
+<section class="become_a_seller_form">
+	<div class="container">
+		<div class="upper_text">
+			<h3>Payment Method</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
 		</div>
-	</footer>
+
+		<hr />
+
+		<div class="payment_method_wrapper">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="pm_left">
+						<div class="top_box single_box">
+							<div class="header_part">
+								<h6>Current Plan</h6>
+								<h5><span class="color_text">Inactive:</span> Standard<span
+										class="monthly">(Monthly)</span></h5>
+							</div>
+							<div class="body_part">
+								<div class="icon">
+									<i class="fa fa-times" aria-hidden="true"></i>
+								</div>
+								<small>Check For Errors Below</small>
+							</div>
+							<div class="footer_part">
+								<h6>You currently have <b>2 premium clips</b> remaining in your plan.</h6>
+							</div>
+						</div>
+
+						<div class="bottom_box single_box">
+							<div class="header_part">
+								<h5>Payment Details</h5>
+							</div>
+							<div class="body_part">
+								<div class="icon">
+									<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+								</div>
+								<div class="card_number">
+									<h4>xxxx xxxx xxxx 2541</h4>
+								</div>
+								<div class="update_payment_details">
+									<a href="#findUpdatePaymentMethod" data-toggle="modal">Update Payment
+										Details</a>
+								</div>
+								<div class="billing_email">
+									<h4>Your Billing Email</h4>
+									<a class="update_email_button" href="javascript:void(0)">Update Email</a>
+									<div class="update_email_form">
+										<form action="">
+											<div class="form">
+												<div class="form-group mb-1">
+													<input type="email" placeholder="Your Email" class="form-control" />
+												</div>
+												<div class="buttons_part">
+													<ul>
+														<li><a class="update_email_button_cancel btn btn-outline-gbz-success"
+																href="javascript:void(0)">Cancel</a></li>
+														<li><button class="btn btn-gbz-success" type="submit"
+																href="javascript:void(0)">Save</button></li>
+													</ul>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="footer_part">
+								<h6>*Billing Issues: Please contact your credit card company and bank for additional
+									details</h6>
+							</div>
+						</div>
+
+						<div class="outer_box_text">
+							<span><i class="fa fa-envelope-o" aria-hidden="true"></i> Looking for your invoices?
+								Check your email <i class="fa fa-smile-o" aria-hidden="true"></i></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="pm_right">
+						<div class="box_wrapper">
+							<div class="header_part">
+								<h4>Switch To Annual Payments & Save 30%</h4>
+							</div>
+							<div class="body_part">
+								<div class="icon">
+									<i class="fa fa-motorcycle" aria-hidden="true"></i>
+								</div>
+								<div class="amount_in_dollar">
+									<h1><span class="small_text">$</span>828<span class="small_text"> / year</span>
+									</h1>
+									<h4>($69/month)</h4>
+								</div>
+							</div>
+							<div class="footer_part">
+								<p>By moving to annual payments you'll save money and get access to many more
+									exciting new features that we will constantly release and can have a great
+									effect on your business and its success.</p>
+								<div class="action_button">
+									<a class="btn btn-gbz-success" href="javascript:void(0)">Save 30% Now</a>
+								</div>
+							</div>
+						</div>
+						<div class="outer_box_text">
+							<span><a href="javascript:void(0)">See All Plans</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr />
+		<br />
+
+		<div class="form_continue_button">
+			<a class="btn btn-gbz-success" href="/company-dashboard">Continue</a>
+		</div>
+	</div>
+</section>
 
 
+<!-- Update Payment Method Modal -->
+<div class="modal pm_credit_card_modal fade" id="findUpdatePaymentMethod">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<div class="top_part">
+					<div class="icon">
+						<img src="../images/favicon.png" class="img-fluid" alt="" />
+					</div>
+					<h4>Promo</h4>
+					<h5>Promo Videos Standard</h5>
+				</div>
 
+				<hr />
 
-
-	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-	<script src="js/classie.js" type="text/javascript"></script>
-	<script src="js/custom.js" type="text/javascript"></script>
-	<script src="js/jquery.mask.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('.update_email_button').click(function () {
-				$('.billing_email').addClass('active');
-			})
-			$('.update_email_button_cancel').click(function () {
-				$('.billing_email').removeClass('active');
-			})
-		})
-	</script>
-</body>
-
-</html>
+				<div class="bottom_part">
+					<form action="">
+						<div class="form">
+							<div class="form-group">
+								<div class="dollar_input">
+									<input type="text" value="0000 0000 00000 2541" data-mask="0000 0000 0000 0000"
+										class="form-control" />
+									<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<div class="dollar_input">
+										<input type="text" value="15 / 2020" data-mask="00 / 0000"
+											class="form-control" />
+										<i class="fa fa-calendar-o" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="form-group col-sm-6">
+									<div class="dollar_input">
+										<input type="password" value="256" data-mask="000" class="form-control" />
+										<i class="fa fa-lock" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+							<div class="save_button">
+								<button type="submit" class="btn btn-gbz-success">Update Credit Card</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Update Payment Method Modal -->
