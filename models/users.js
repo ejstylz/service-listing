@@ -6,7 +6,29 @@ const UserSchema = new Schema({
     firstName: String,
     lastName: String,
     username: String,
-    email: String
+    email: String,
+    firstName: String,
+    lastName: String,
+    username: String,
+    email: String,
+    address1: String,
+    address2: String,
+    city: String,
+    state: String,
+    zipCode: String,
+    country: String,
+    phoneNumber: String,
+    profilePicture: String,
+    profilePictureId: String,
+    logo: String,
+    logoId: String,
+    about: String,
+    service: String,
+    serviceCategory: String,
+    isFacebookVerified: { type: Boolean, default: false },
+    isEmailVerified: { type: Boolean, default: false },
+    verifyToken: String,
+    verifyTokenExpires: Date
 });
 
 UserSchema.plugin(passportLocalMongoose);

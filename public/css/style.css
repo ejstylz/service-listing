@@ -11,6 +11,10 @@ body{
 	margin:0px auto;
 }
 
+.submit {
+	display: inline-block;
+}
+
 /* =============================================
 		Typography Code Starts From Here
 ============================================= */
@@ -10893,6 +10897,19 @@ Company Profile Services/Products Details Ends
 	font-size:18px;
 	
 }
+
+.verify {
+	float:right;
+	border:1px solid black;
+	padding:5px 30px;
+	border-radius:3px;
+	color:#333333;
+	font-weight:500;
+	font-family:'Roboto', sans-serif;
+	font-size:18px;
+	background: white;
+}
+
 .become_a_seller_form .single_linked_account ul li.connected a{
 	background:#B5F0B7;
 }
