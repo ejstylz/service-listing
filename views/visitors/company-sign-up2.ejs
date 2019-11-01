@@ -87,11 +87,11 @@
 							<div class="form-group">
 								<!-- <input type="text" name="about" class="about"
 										placeholder="Write a Short Description About Your Company" class="form-control"> -->
-								<textarea name="about" id=""
+								<textarea name="about" id="myText"
 									placeholder="Write a Short Description About Your Company..." cols="30" rows="4"
-									class="form-control"></textarea>
+									class="form-control" maxlength="600"></textarea>
 								<div class="text-right">
-									<small>0/600</small>
+									<small><span id="wordCount">0</span>/600</small>
 								</div>
 							</div>
 						</div>
@@ -119,132 +119,6 @@
 									</select>
 								</div>
 							</div>
-
-							<!-- <div class="select_subcategory">
-									<h5>Choose the Filters you can work with:</h5>
-
-									<div class="filter_areas my-3">
-										<div class="single_filter_area">
-											<div class="single_service_type_buttons">
-												<div class="form-row">
-													<div class="form-group col-md-4">
-														<label class="radio">Repair
-															<input type="radio" id="fencingRepair"
-																name="fencing_service_type">
-															<span class="checkround"></span>
-														</label>
-													</div>
-
-													<div class="form-group col-md-4">
-														<label class="radio">Installation
-															<input type="radio" id="fencingInstallation"
-																name="fencing_service_type">
-															<span class="checkround"></span>
-														</label>
-													</div>
-
-													<div class="form-group col-md-4">
-														<label class="radio">Material Repair
-															<input type="radio" id="fencingMaterial"
-																name="fencing_service_type">
-															<span class="checkround"></span>
-														</label>
-													</div>
-												</div>
-											</div>
-
-											<div class="single_service_type">
-												<div id="fencingRepairBottom" class="hidden_content">
-													<h4>Fence Repair Project Type:</h4>
-													<label class="check">The Fence is leaning or sagging
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Gate is Leaning or Sagging
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Fence Sections Need Replacement
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Posts Need Replacement
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">The fence needs repainting or Restaining
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Gate hinge or opening mechanism is broken/slow
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Not sure; Needs a professional evaluation
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
-											</div>
-
-											<div class="single_service_type">
-												<div id="fencingInstallationBottom" class="hidden_content">
-													<h4>Material Installation:</h4>
-													<label class="check">Wood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Chain Link
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Vinyl
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Aluminum
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Steel
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Iron
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Electric Wiring
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Barbed Wire
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
-											</div>
-
-											<div class="single_service_type">
-												<div id="fencingMaterialBottom" class="hidden_content">
-													<h4>Fence/Gate Material:</h4>
-													<label class="check">Wood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Chain link Steel or aluminum
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Not sure; I need professional help to identify
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> -->
 						</div>
 					</div>
 				</div>
@@ -252,118 +126,164 @@
 				<div class="form_single_part">
 					<div class="row">
 						<div class="col-md-3">
-							<h4 for="">Skills<b>*</b> <span class="private">private</span></h4>
+							<h4 for="">Filters<b>*</b> <span class="private">private</span></h4>
 							<h6>These are the Services within the filters you can work with.</h6>
 						</div>
 						<div class="col-md-9">
-							<div class="add_new_skills_row add_new_row_in_form">
-								<div class="form">
+							<div class="pb-3">
+								<div class="form" id="content">
 									<div class="form-row">
 										<div class="form-group mb-0 col-md-4">
-											<input type="text" placeholder="Add Skill" class="form-control" />
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="" id="" class="form-control">
-												<option value="">Beginner</option>
-												<option value="">Intermediate</option>
-												<option value="">Expert</option>
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
 											</select>
 										</div>
 										<div class="form-group mb-0 col-md-4">
-											<ul>
-												<li><a class="cancel_to_skill_row btn btn-outline-gbz-success"
-														href="javascript:void(0)">Cancel</a></li>
-												<li><a class="btn btn-gbz-success" href="javascript:void(0)">Add</a>
-												</li>
-											</ul>
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group mb-0 col-md-4">
+											<select name="filters" id="" class="form-control filters">
+												<option value="">--Select Filter--</option>
+											</select>
+										</div>
+										<div class="form-group mb-0 col-md-4">
+											<select name="levels" id="" class="form-control">
+												<option>Beginner</option>
+												<option>Intermediate</option>
+												<option>Expert</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+											<a class="add_new__skills_button btn-gbz-success pr-3"
+												href="javascript:void(0)" onclick="addRow()">Add New</a>
+											<input type="button" value="Remove" class="btn btn-danger"
+												href="javascript:void(0)" onclick="removeRow()">
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="table-responsive">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>Services Name</th>
-											<th>Chosen Filters</th>
-											<th>Level</th>
-											<th class="text-right"><a class="add_new__skills_button"
-													href="javascript:void(0)">Add New</a></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Lorem</td>
-											<td>Lorem</td>
-											<td>Expert</td>
-											<td class="text-right action_buttons">
-												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-														data-toggle="tooltip" class="fa fa-pencil-square-o"
-														aria-hidden="true"></i></a>
-												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-														class="fa fa-trash-o" aria-hidden="true"></i></a>
-											</td>
-										</tr>
-										<tr>
-											<td>Lorem</td>
-											<td>Lorem</td>
-											<td>Beginner</td>
-											<td class="text-right action_buttons">
-												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-														data-toggle="tooltip" class="fa fa-pencil-square-o"
-														aria-hidden="true"></i></a>
-												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-														class="fa fa-trash-o" aria-hidden="true"></i></a>
-											</td>
-										</tr>
-										<tr>
-											<td>Lorem</td>
-											<td>Lorem</td>
-											<td>Expert</td>
-											<td class="text-right action_buttons">
-												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-														data-toggle="tooltip" class="fa fa-pencil-square-o"
-														aria-hidden="true"></i></a>
-												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-														class="fa fa-trash-o" aria-hidden="true"></i></a>
-											</td>
-										</tr>
-										<tr>
-											<td>Lorem</td>
-											<td>Lorem</td>
-											<td>Intermediate</td>
-											<td class="text-right action_buttons">
-												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-														data-toggle="tooltip" class="fa fa-pencil-square-o"
-														aria-hidden="true"></i></a>
-												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-														class="fa fa-trash-o" aria-hidden="true"></i></a>
-											</td>
-										</tr>
-										<tr>
-											<td>Lorem</td>
-											<td>Lorem</td>
-											<td>Expert</td>
-											<td class="text-right action_buttons">
-												<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
-														data-toggle="tooltip" class="fa fa-pencil-square-o"
-														aria-hidden="true"></i></a>
-												<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
-														class="fa fa-trash-o" aria-hidden="true"></i></a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="form_continue_button">
-					<button type="submit" class="btn btn-gbz-success">Save & Continue</button>
-				</div>
 			</div>
-		</form>
+
+			<div class="form_continue_button">
+				<button type="submit" class="btn btn-gbz-success">Save & Continue</button>
+			</div>
+	</div>
+	</form>
 	</div>
 </section>
 

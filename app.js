@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 const createError = require('http-errors');
 const express = require('express');
@@ -18,8 +18,8 @@ const User = require('./models/users');
 const app = express();
 
 //connect to the database
-mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
-// mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
@@ -85,12 +85,15 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // // render the error page
+  // res.status(err.status || 500);
+  // res.render('error');
+  console.log(err);
+  req.session.error = err.message;
+  res.redirect('back');
 });
 
 module.exports = app;

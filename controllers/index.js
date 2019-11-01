@@ -33,18 +33,38 @@ module.exports = {
 
     //POST /sign-up
     async postSignUp(req, res, next) {
+        const token = await crypto.randomBytes(20).toString('hex');
+
         const newUser = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             username: req.body.username,
             email: req.body.email,
+            verifyToken: token,
+            verifyTokenExpires: Date.now() + 3600000 // 1 hour
         });
 
+
         let user = await User.register(newUser, req.body.password);
-        req.login(user, function (err) {
+        req.login(user, async function (err) {
             if (err) return next(err);
-            req.session.success = "User Registered";
-            console.log("USER REGISTERED!");
+
+            const msg = {
+                to: user.email,
+                from: 'Gabazzo <besthands7777@gmail.com>',
+                subject: 'Gabazzo - Verify Email',
+                template_id: "d-73fccd7c26364bdebe21cfd55fcd6993",
+                dynamic_template_data: {
+                    username: user.username,
+                    verify_link: `http://${req.headers.host}/verify/${token}`
+                }
+            };
+
+            await sgMail.send(msg);
+            req.session.success = `An Email has been sent to ${user.email} Kindly verify your email.`;
+            console.log("Email sent!");
+            // req.session.success = "User Registered";
+            // console.log("USER REGISTERED!");
             res.redirect('/');
         });
     },
@@ -88,6 +108,7 @@ module.exports = {
     },
 
     async postCompanySignUp2(req, res, next) {
+        // req.body.filters = [];
         let image = await cloudinary.v2.uploader.upload(req.file.path);
         const user = req.user;
         user.logo = image.secure_url;
@@ -95,6 +116,8 @@ module.exports = {
         user.about = req.body.about;
         user.service = req.body.service;
         user.serviceCategory = req.body.serviceCategory;
+        user.filters = req.body.filters,
+            user.levels = req.body.levels
         await user.save();
         console.log("USER REGISTERED!");
         res.redirect('/company-sign-up3');
@@ -131,10 +154,11 @@ module.exports = {
             to: user.email,
             from: 'Gabazzo <besthands7777@gmail.com>',
             subject: 'Gabazzo - Verify Email',
-            text: `You are receiving this because you (or someone else) have requested to verify your email for account with Username: ${user.username}.
-				Please click on the following link, or copy and paste it into your browser to complete the process:
-				http://${req.headers.host}/verify/${token}
-				If you did not request this, please ignore this email and your password will remain unchanged.`.replace(/				/g, ''),
+            template_id: "d-73fccd7c26364bdebe21cfd55fcd6993",
+            dynamic_template_data: {
+                username: user.username,
+                verify_link: `http://${req.headers.host}/verify/${token}`
+            }
         };
 
         await sgMail.send(msg);
@@ -154,20 +178,22 @@ module.exports = {
         user.verifyTokenExpires = null;
         await user.save();
 
-
         const msg = {
             to: user.email,
             from: 'Gabazzo <besthands7777@gmail.com>',
             subject: 'Gabazzo - Verified',
-            text: `Hello,
-			  This email is to confirm that you have successfully verified your email account.`.replace(/		  	/g, '')
+            template_id: "d-444d5c30c5a242af8a7d74df878df922"
         };
 
         await sgMail.send(msg);
 
         console.log("VERIFIED");
         req.session.success = 'Email verified!';
-        res.redirect('/company-sign-up4');
+        if (!user.isCompany) {
+            res.redirect("/");
+        } else {
+            res.redirect("/company-dashboard");
+        }
     },
 
     //GET /company-sign-up5
@@ -204,10 +230,6 @@ module.exports = {
             } else {
                 res.redirect(redirectUrl2);
             }
-            // passport.authenticate('local', {
-            // 	successRedirect: '/dashboard',
-            // 	failureRedirect: '/login'
-            // })(req, res, next);
         });
     },
 

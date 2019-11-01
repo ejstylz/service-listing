@@ -31,7 +31,7 @@ const {
   getVerify,
   getCompanyDashboard
 } = require('../controllers');
-const { asyncErrorHandler } = require('../middleware');
+const { asyncErrorHandler, checkIfUserExists, isLoggedIn } = require('../middleware');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -43,37 +43,37 @@ router.get('/sign-up', getSignup);
 
 
 /* POST /sign-up */
-router.post('/sign-up', asyncErrorHandler(postSignUp));
+router.post('/sign-up', checkIfUserExists, asyncErrorHandler(postSignUp));
 
 /* GET company-sign-up1 */
-router.get('/company-sign-up', getCompanySignUp);
+router.get('/company-sign-up', checkIfUserExists, getCompanySignUp);
 
 /* POST /company-sign-up */
 router.post('/company-sign-up', upload.single('profilePicture'), asyncErrorHandler(postCompanySignUp));
 
 /* GET company-sign-up2 */
-router.get('/company-sign-up2', getCompanySignUp2);
+router.get('/company-sign-up2', isLoggedIn, getCompanySignUp2);
 
 /* POST /company-sign-up2 */
-router.post('/company-sign-up2', upload.single('logo'), asyncErrorHandler(postCompanySignUp2));
+router.post('/company-sign-up2', isLoggedIn, upload.single('logo'), asyncErrorHandler(postCompanySignUp2));
 
 /* GET company-sign-up2 */
-router.get('/company-sign-up3', getCompanySignUp3);
+router.get('/company-sign-up3', isLoggedIn, getCompanySignUp3);
 
 /* GET company-sign-up4 */
-router.get('/company-sign-up4', getCompanySignUp4);
+router.get('/company-sign-up4', isLoggedIn, getCompanySignUp4);
 
 /* POST /company-sign-up4 */
-router.post('/company-sign-up4', asyncErrorHandler(postCompanySignUp4));
+router.post('/company-sign-up4', isLoggedIn, asyncErrorHandler(postCompanySignUp4));
 
 /* GET /verify */
-router.get('/verify/:token', asyncErrorHandler(getVerify));
+router.get('/verify/:token', isLoggedIn, asyncErrorHandler(getVerify));
 
 /* GET company-sign-up5 */
-router.get('/company-sign-up5', getCompanySignUp5);
+router.get('/company-sign-up5', isLoggedIn, getCompanySignUp5);
 
 /* GET /dashboard */
-router.get('/company-dashboard', getCompanyDashboard);
+router.get('/company-dashboard', isLoggedIn, getCompanyDashboard);
 
 /* GET /login */
 router.get('/login', getLogin);

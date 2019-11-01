@@ -29,7 +29,9 @@ const UserSchema = new Schema({
     isEmailVerified: { type: Boolean, default: false },
     isCompany: { type: Boolean, default: false },
     verifyToken: String,
-    verifyTokenExpires: Date
+    verifyTokenExpires: Date,
+    filters: [String],
+    levels: [String],
 });
 
 UserSchema.plugin(passportLocalMongoose);
