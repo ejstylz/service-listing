@@ -211,10 +211,11 @@ module.exports = {
         await sgMail.send(msg);
 
         console.log("VERIFIED");
-        req.session.success = "Email Verified";
         if (!user.isCompany) {
+            req.session.success = "You have successfully verified your email account, now you can use the Gabazzo Platform for Members*";
             res.redirect("/");
         } else {
+            req.session.success = "You have successfully verified your email account, now you can use the Gabazzo Platform for Companies*";
             res.redirect("/company-sign-up5");
         }
     },
