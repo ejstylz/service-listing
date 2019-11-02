@@ -74,7 +74,7 @@ module.exports = {
                 to: user.email,
                 from: 'Gabazzo <no-reply@gabazzo.com>',
                 subject: 'Gabazzo - Verify Email',
-                template_id: "d-73fccd7c26364bdebe21cfd55fcd6993",
+                template_id: "d-444d5c30c5a242af8a7d74df878df922",
                 dynamic_template_data: {
                     username: user.username,
                     verify_link: `http://${req.headers.host}/verify/${token}`
@@ -177,7 +177,7 @@ module.exports = {
             to: user.email,
             from: 'Gabazzo <no-reply@gabazzo.com>',
             subject: 'Gabazzo - Verify Email',
-            template_id: "d-73fccd7c26364bdebe21cfd55fcd6993",
+            template_id: "d-444d5c30c5a242af8a7d74df878df922",
             dynamic_template_data: {
                 username: user.username,
                 verify_link: `http://${req.headers.host}/verify/${token}`
@@ -205,7 +205,7 @@ module.exports = {
             to: user.email,
             from: 'Gabazzo <no-reply@gabazzo.com>',
             subject: 'Gabazzo - Verified',
-            template_id: "d-444d5c30c5a242af8a7d74df878df922"
+            template_id: "d-73fccd7c26364bdebe21cfd55fcd6993"
         };
 
         await sgMail.send(msg);
