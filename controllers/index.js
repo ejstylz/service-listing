@@ -211,7 +211,7 @@ module.exports = {
         await sgMail.send(msg);
 
         console.log("VERIFIED");
-        req.session.success = "Company Registered";
+        req.session.success = "Email Verified";
         if (!user.isCompany) {
             res.redirect("/");
         } else {
