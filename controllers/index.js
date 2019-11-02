@@ -175,7 +175,7 @@ module.exports = {
 
         const msg = {
             to: user.email,
-            from: 'Gabazzo <besthands7777@gmail.com>',
+            from: 'Gabazzo <no-reply@gabazzo.com>',
             subject: 'Gabazzo - Verify Email',
             template_id: "d-73fccd7c26364bdebe21cfd55fcd6993",
             dynamic_template_data: {
@@ -203,7 +203,7 @@ module.exports = {
 
         const msg = {
             to: user.email,
-            from: 'Gabazzo <besthands7777@gmail.com>',
+            from: 'Gabazzo <no-reply@gabazzo.com>',
             subject: 'Gabazzo - Verified',
             template_id: "d-444d5c30c5a242af8a7d74df878df922"
         };
