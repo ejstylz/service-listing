@@ -29,14 +29,35 @@ const {
   postCompanySignUp4,
   getCompanySignUp5,
   getVerify,
-  getCompanyDashboard
+  getCompanyDashboard,
+  getSellerOverview,
+  getSellerDo,
+  getSellerDoNot,
+  getSellerOverview2
 } = require('../controllers');
-const { asyncErrorHandler, checkIfUserExists, isLoggedIn } = require('../middleware');
+const { asyncErrorHandler,
+  checkIfUserExists,
+  isLoggedIn,
+  goToAccountSecurity,
+  goToPayment
+} = require('../middleware');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'GABAZZO' });
 });
+
+/* GET seller-overview */
+router.get('/become-a-seller-overview', getSellerOverview);
+
+/* GET seller-overview */
+router.get('/become-a-seller-overview-do', getSellerDo);
+
+/* GET seller-overview */
+router.get('/become-a-seller-overview-do-not', getSellerDoNot);
+
+/* GET seller-overview */
+router.get('/become-a-seller-overview2', getSellerOverview2);
 
 /* GET sign-up */
 router.get('/sign-up', getSignup);
@@ -61,7 +82,7 @@ router.post('/company-sign-up2', isLoggedIn, upload.single('logo'), asyncErrorHa
 router.get('/company-sign-up3', isLoggedIn, getCompanySignUp3);
 
 /* GET company-sign-up4 */
-router.get('/company-sign-up4', isLoggedIn, getCompanySignUp4);
+router.get('/company-sign-up4', isLoggedIn, goToAccountSecurity, getCompanySignUp4);
 
 /* POST /company-sign-up4 */
 router.post('/company-sign-up4', isLoggedIn, asyncErrorHandler(postCompanySignUp4));
@@ -70,7 +91,7 @@ router.post('/company-sign-up4', isLoggedIn, asyncErrorHandler(postCompanySignUp
 router.get('/verify/:token', isLoggedIn, asyncErrorHandler(getVerify));
 
 /* GET company-sign-up5 */
-router.get('/company-sign-up5', isLoggedIn, getCompanySignUp5);
+router.get('/company-sign-up5', goToPayment, getCompanySignUp5);
 
 /* GET /dashboard */
 router.get('/company-dashboard', isLoggedIn, getCompanyDashboard);
@@ -82,6 +103,6 @@ router.get('/login', getLogin);
 router.post('/login', postLogin);
 
 /* GET /logout */
-router.get('/logout', getLogout);
+router.get('/logout', isLoggedIn, getLogout);
 
 module.exports = router;

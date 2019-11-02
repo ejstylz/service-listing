@@ -7,10 +7,6 @@ const UserSchema = new Schema({
     lastName: String,
     username: String,
     email: String,
-    firstName: String,
-    lastName: String,
-    username: String,
-    email: String,
     address1: String,
     address2: String,
     city: String,
@@ -32,6 +28,7 @@ const UserSchema = new Schema({
     verifyTokenExpires: Date,
     filters: [String],
     levels: [String],
+    companyName: String
 });
 
 UserSchema.plugin(passportLocalMongoose);

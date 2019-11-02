@@ -28,5 +28,20 @@ module.exports = {
         req.session.redirectTo = req.originalUrl;
         req.session.error = "You need to be logged in to do that";
         res.redirect('/login');
-    }
+    },
+
+    goToAccountSecurity: async (req, res, next) => {
+        let user = req.user;
+        if (user.about && user.serviceCategory) return next();
+        req.session.error = "You Need To Complete This Form First";
+        return res.redirect('/company-sign-up2');
+    },
+
+    goToPayment: async (req, res, next) => {
+        let user = req.user;
+        if (user.isEmailVerified) return next();
+        req.session.error = "You Need To Verify Your Email Before Proceeding";
+        return res.redirect('/company-sign-up4');
+    },
+
 };

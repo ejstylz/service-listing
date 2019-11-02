@@ -26,6 +26,27 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
 
+    //GET /become-a-seller-overview
+    getSellerOverview(req, res, next) {
+        res.render('visitors/become-a-seller-overview', { title: 'Seller Overview' });
+    },
+
+    //GET /become-a-seller-overview-do
+    getSellerDo(req, res, next) {
+        res.render('visitors/become-a-seller-overview-do', { title: 'Seller Overview' });
+    },
+
+    //GET /become-a-seller-overview-do-not
+    getSellerDoNot(req, res, next) {
+        res.render('visitors/become-a-seller-overview-do-not', { title: 'Seller Overview' });
+    },
+
+    //GET /become-a-seller-overview2
+    getSellerOverview2(req, res, next) {
+        res.render('visitors/become-a-seller-overview2', { title: 'Seller Overview' });
+    },
+
+
     //GET /sign-up
     getSignup(req, res, next) {
         res.render('visitors/sign-up', { title: 'Sign Up' });
@@ -96,7 +117,7 @@ module.exports = {
         let user = await User.register(newUser, req.body.password);
         req.login(user, function (err) {
             if (err) return next(err);
-            req.session.success = "Company Registered";
+            // req.session.success = "Company Registered";
             console.log("Company REGISTERED!");
             res.redirect('/company-sign-up2');
         });
@@ -111,6 +132,7 @@ module.exports = {
         // req.body.filters = [];
         let image = await cloudinary.v2.uploader.upload(req.file.path);
         const user = req.user;
+        user.companyName = req.body.companyName;
         user.logo = image.secure_url;
         user.logoId = image.public_id;
         user.about = req.body.about;
@@ -118,8 +140,9 @@ module.exports = {
         user.serviceCategory = req.body.serviceCategory;
         user.filters = req.body.filters,
             user.levels = req.body.levels
+
         await user.save();
-        console.log("USER REGISTERED!");
+
         res.redirect('/company-sign-up3');
 
     },
@@ -188,11 +211,11 @@ module.exports = {
         await sgMail.send(msg);
 
         console.log("VERIFIED");
-        req.session.success = 'Email verified!';
+        req.session.success = "Company Registered";
         if (!user.isCompany) {
             res.redirect("/");
         } else {
-            res.redirect("/company-dashboard");
+            res.redirect("/company-sign-up5");
         }
     },
 

@@ -1,6 +1,9 @@
 const service = document.getElementById("service");
 const category = document.getElementById("category");
 const filters = document.getElementsByClassName("filters");
+const myText = document.getElementById("myText");
+const wordCount = document.getElementById("wordCount");
+const create = document.getElementById("create");
 
 service.onchange = function () {
     // console.log(service[1].value);
@@ -130,71 +133,48 @@ category.onchange = function () {
         $(".filters").html("<option>Window Tinting</option>");
     }
     else if (category.value === "General Handyman") {
-        $(".filters").html("<option>General Handyman</option>");
+        $(".filters").html("<option>Repairs</option> <option>Maintenance</option> <option>Painting</option> <option>Installation</option> <option>Assembly</option> <option>Cleaning</option> <option>Other</option> <option>Need to talk to a pro</option> <option>Doors</option> <option>Walls</option> <option>Cabinets</option> <option>Molding or baseboards</option> <option>Tiling</option> <option>Plumbing</option> <option>Lighting</option> <option>Furniture</option> <option>Windows</option> <option>Gutters</option> <option>Shelving</option> <option>Flooring</option> <option>Appliances</option> <option>Electrical</option> <option>Wall hanging</option> <option>Other</option>");
     }
     else if (category.value === "General Contractor") {
-        $(".filters").html("<option>General Contractor</option>");
+        $(".filters").html("<option>New Custom Construction</option> <option>Complete Renovation</option> <option>Replace parts of the existing structure</option> <option>Repair existing structure</option>");
     }
     else if (category.value === "Electrical Services") {
-        $(".filters").html("<option>Electrical Services</option>");
+        $(".filters").html("<option>Electrical & Wiring Repair</option> <option>Lighting Installation</option> <option>Fan Installation</option> <option>Switch and Outlet Repair</option> <option>Switch and Outlet Installation</option>");
     }
     else if (category.value === "Moving Services") {
-        $(".filters").html("<option>Moving Services</option>");
+        $(".filters").html("<option>Furniture assembly and disassembly</option> <option>Storage</option> <option>Piano Moving</option> <option>Pool table moving</option> <option>Packing</option> <option>Equipment Moving</option> <option>Safe or Security Box Mobinh</option> <option>Automobile moving</option>");
     }
     else if (category.value === "Building Security") {
-        $(".filters").html("<option>Building Security</option>");
+        $(".filters").html("<option>Cameras</option> <option>Surveillance System</option> <option>Remote Viewing</option> <option>Motion detectors</option> <option>Video Doorbell</option> <option>Window and Door Sensors</option> <option>As recommended by a pro</option> <option>Other</option>");
     }
     else if (category.value === "Demolition Services") {
-        $(".filters").html("<option>Demolition Services</option>");
+        $(".filters").html("<option>Total Demolition</option> <option>Partial Demolition</option> <option>Strip Out Interior</option> <option>Pool Demolition</option>");
     }
     else if (category.value === "Appliance Repairs & Installation") {
-        $(".filters").html("<option>Appliance Repairs & Installation</option>");
+        $(".filters").html("<option>Washer</option> <option>Dryer</option> <option>Refigerator</option> <option>Dishwasher</option> Oven/Stove</option> <option>Microwave</option> <option>Other, I need to talk to a pro</option>");
     }
     else if (category.value === "Locksmith Services") {
-        $(".filters").html("<option>Locksmith Services</option>");
+        $(".filters").html("<option>A lost key</option> <option>need a replacement key</option> <option>Install or replace current lock system</option> <option>Locked Out</option> <option>Re-Key Lock for different keys to work</option> <option>Repair Broken Lock</option> <option>Copy Keys</option> <option>Deadbolt</option> <option>Vehicle Lock</option> <option>Doorknob</option> <option>Mailbox</option> <option>Office furniture</option> <option>Electronic combination pad<//option> <option>Keyless remote</option> <option>Other</option>");
     }
     else {
         $("#category").html("<option>--Select Filter--</option>");
     }
 }
 
-const myText = document.getElementById("myText");
-const wordCount = document.getElementById("wordCount");
-
 myText.addEventListener("keyup", function () {
     const characters = myText.value.split('');
     wordCount.innerText = characters.length;
 });
 
-// function addRow() {
-//     const div = document.createElement('div');
+function addRow() {
+    const div = document.createElement('div');
 
-//     div.className = 'form-row';
+    div.className = 'form-row';
 
-//     div.innerHTML = `
-//     <div class="form-group mb-0 col-md-4">
-//     <select name="filters" id="" class="form-control filters">
-//         <option value="">--Select Filter--</option>
-//     </select>
-// </div>
-// <div class="form-group mb-0 col-md-4">
-//     <select name="levels" id="" class="form-control">
-//         <option value="">Beginner</option>
-//         <option value="">Intermediate</option>
-//         <option value="">Expert</option>
-//     </select>
-// </div>
-// <div class="form-group col-md-3">
-//     <a class="add_new__skills_button btn-gbz-success pr-3"
-//         href="javascript:void(0)" onclick="addRow()">Add New</a>
-//         <input type="button" value="Remove" class="btn btn-danger"
-//         href="javascript:void(0)" onclick="removeRow(this)">
-// </div>
-//     `;
+    div.innerHTML = create.innerHTML;
+    document.getElementById('content').appendChild(div);
+}
 
-//     document.getElementById('content').appendChild(div);
-// }
-
-// function removeRow(input) {
-//     document.getElementById('content').removeChild(input.parentNode.parentNode);
-// }
+function removeRow(input) {
+    document.getElementById('content').removeChild(input.parentNode.parentNode);
+}

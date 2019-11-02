@@ -16,10 +16,10 @@
 				<div class="completion_progressbar">
 					<h6>Completion Rate:</h6>
 					<div class="progressbar profession_info_progress">
-						<div class="progress_fill">
+						<div class="progress_fill" style="background:#5DC560; width:40%;">
 
 						</div>
-						<span>80%</span>
+						<span>40%</span>
 					</div>
 				</div>
 			</div>
@@ -36,6 +36,21 @@
 		<hr />
 		<form action="/company-sign-up2" method="POST" enctype="multipart/form-data">
 			<div class="form">
+				<div class="form_single_part">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="left_heading">
+								<h4>Company Name<b>*</b></h4>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="form-group">
+								<input type="text" name="companyName" placeholder="Company Name..." class="form-control"
+									required>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="form_single_part">
 					<div class="row">
 						<div class="col-md-3">
@@ -85,8 +100,6 @@
 						</div>
 						<div class="col-md-9">
 							<div class="form-group">
-								<!-- <input type="text" name="about" class="about"
-										placeholder="Write a Short Description About Your Company" class="form-control"> -->
 								<textarea name="about" id="myText"
 									placeholder="Write a Short Description About Your Company..." cols="30" rows="4"
 									class="form-control" maxlength="600"></textarea>
@@ -132,7 +145,7 @@
 						<div class="col-md-9">
 							<div class="pb-3">
 								<div class="form" id="content">
-									<div class="form-row">
+									<div class="form-row" id="create">
 										<div class="form-group mb-0 col-md-4">
 											<select name="filters" id="" class="form-control filters">
 												<option value="">--Select Filter--</option>
@@ -149,127 +162,7 @@
 											<a class="add_new__skills_button btn-gbz-success pr-3"
 												href="javascript:void(0)" onclick="addRow()">Add New</a>
 											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group mb-0 col-md-4">
-											<select name="filters" id="" class="form-control filters">
-												<option value="">--Select Filter--</option>
-											</select>
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="levels" id="" class="form-control">
-												<option>Beginner</option>
-												<option>Intermediate</option>
-												<option>Expert</option>
-											</select>
-										</div>
-										<div class="form-group col-md-3">
-											<a class="add_new__skills_button btn-gbz-success pr-3"
-												href="javascript:void(0)" onclick="addRow()">Add New</a>
-											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group mb-0 col-md-4">
-											<select name="filters" id="" class="form-control filters">
-												<option value="">--Select Filter--</option>
-											</select>
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="levels" id="" class="form-control">
-												<option>Beginner</option>
-												<option>Intermediate</option>
-												<option>Expert</option>
-											</select>
-										</div>
-										<div class="form-group col-md-3">
-											<a class="add_new__skills_button btn-gbz-success pr-3"
-												href="javascript:void(0)" onclick="addRow()">Add New</a>
-											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group mb-0 col-md-4">
-											<select name="filters" id="" class="form-control filters">
-												<option value="">--Select Filter--</option>
-											</select>
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="levels" id="" class="form-control">
-												<option>Beginner</option>
-												<option>Intermediate</option>
-												<option>Expert</option>
-											</select>
-										</div>
-										<div class="form-group col-md-3">
-											<a class="add_new__skills_button btn-gbz-success pr-3"
-												href="javascript:void(0)" onclick="addRow()">Add New</a>
-											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group mb-0 col-md-4">
-											<select name="filters" id="" class="form-control filters">
-												<option value="">--Select Filter--</option>
-											</select>
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="levels" id="" class="form-control">
-												<option>Beginner</option>
-												<option>Intermediate</option>
-												<option>Expert</option>
-											</select>
-										</div>
-										<div class="form-group col-md-3">
-											<a class="add_new__skills_button btn-gbz-success pr-3"
-												href="javascript:void(0)" onclick="addRow()">Add New</a>
-											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group mb-0 col-md-4">
-											<select name="filters" id="" class="form-control filters">
-												<option value="">--Select Filter--</option>
-											</select>
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="levels" id="" class="form-control">
-												<option>Beginner</option>
-												<option>Intermediate</option>
-												<option>Expert</option>
-											</select>
-										</div>
-										<div class="form-group col-md-3">
-											<a class="add_new__skills_button btn-gbz-success pr-3"
-												href="javascript:void(0)" onclick="addRow()">Add New</a>
-											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group mb-0 col-md-4">
-											<select name="filters" id="" class="form-control filters">
-												<option value="">--Select Filter--</option>
-											</select>
-										</div>
-										<div class="form-group mb-0 col-md-4">
-											<select name="levels" id="" class="form-control">
-												<option>Beginner</option>
-												<option>Intermediate</option>
-												<option>Expert</option>
-											</select>
-										</div>
-										<div class="form-group col-md-3">
-											<a class="add_new__skills_button btn-gbz-success pr-3"
-												href="javascript:void(0)" onclick="addRow()">Add New</a>
-											<input type="button" value="Remove" class="btn btn-danger"
-												href="javascript:void(0)" onclick="removeRow()">
+												href="javascript:void(0)" onclick="removeRow(this)">
 										</div>
 									</div>
 								</div>

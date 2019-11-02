@@ -10539,14 +10539,14 @@ Company Profile Services/Products Details Ends
 }
 .become_seller_steps_bar .progressbar .progress_fill{
 	background:#F5A623;
-	width:60%;
+	width:20%;
 	height:15px;
 	border-radius:4px;
 }
-.become_seller_steps_bar .progressbar.profession_info_progress .progress_fill{
+/* .become_seller_steps_bar .progressbar.profession_info_progress .progress_fill{
 	background:#5DC560;
 	width:80%;
-}
+} */
 .become_seller_steps_bar .progressbar span{
 	position:absolute;
 	color:#333333;

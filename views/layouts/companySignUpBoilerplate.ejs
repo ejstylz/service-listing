@@ -116,7 +116,15 @@
             $('.update_email_button_cancel').click(function () {
                 $('.billing_email').removeClass('active');
             });
-        });	
+        });
+
+        // For Video Popups
+        $(document).ready(function () {
+            var lightcase = $(".lightcase");
+            if (lightcase.length) {
+                $('a[data-rel^=lightcase]').lightcase();
+            }
+        });
     </script>
 </body>
 
