@@ -205,7 +205,10 @@ module.exports = {
             to: user.email,
             from: 'Gabazzo <no-reply@gabazzo.com>',
             subject: 'Gabazzo - Verified',
-            template_id: "d-73fccd7c26364bdebe21cfd55fcd6993"
+            template_id: "d-73fccd7c26364bdebe21cfd55fcd6993",
+            dynamic_template_data: {
+                username: user.username
+            }
         };
 
         await sgMail.send(msg);
