@@ -8,230 +8,181 @@
 	</div>
 </section>
 
-
-<section class="dashboard_middle">
-	<div class="container_gbz">
-		<div class="dashboard_home dashboard_wrap">
-			<div class="upload_files_part">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="single_upload">
-							<div class="upload_header">
-								<h5>Upload Profile Picture</h5>
-							</div>
-							<div class="upload_area">
-								<div class="form-group">
-									<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1"
-										data-multiple-caption="{count} files selected" multiple />
-									<label for="file-1">
-										<div class="upload_fils">
-											<div class="icon">
-												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+<form action="/dashboard?_method=PUT" method="POST">
+	<section class="dashboard_middle">
+		<div class="container_gbz">
+			<div class="dashboard_home dashboard_wrap">
+				<div class="upload_files_part">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="single_upload">
+								<div class="upload_header">
+									<h5>Profile Picture</h5>
+								</div>
+								<div>
+									<div class="form-group" align="center">
+										<div class="col-md-6 pt-3" align="center">
+											<div class="form-group">
+												<div>
+													<img src="<%= currentUser.profilePicture %>" class="img-fluid"
+														alt="" />
+												</div>
 											</div>
-											<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
 										</div>
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="single_upload">
-							<div class="upload_header">
-								<h5>Upload Company Banner</h5>
-							</div>
-							<div class="upload_area">
-								<div class="form-group">
-									<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1"
-										data-multiple-caption="{count} files selected" multiple />
-									<label for="file-1">
-										<div class="upload_fils">
-											<div class="icon">
-												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-											</div>
-											<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+										<div align="center">
+											<a href="#picture" class="btn btn-gbz-success" data-toggle="modal">Change
+												Profile
+												Picture</a>
 										</div>
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="single_upload">
-							<div class="upload_header">
-								<h5>Upload Slider Photo/Video</h5>
-							</div>
-							<div class="upload_area">
-								<div class="form-group">
-									<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1"
-										data-multiple-caption="{count} files selected" multiple />
-									<label for="file-1">
-										<div class="upload_fils">
-											<div class="icon">
-												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-											</div>
-											<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
-										</div>
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="indroduction">
-						<h3>Introduction</h3>
-						<form action="">
-							<div class="form">
-								<div class="form-group">
-									<textarea name="" placeholder="Your Company Introduction...." id="" cols="30"
-										rows="10" class="form-control"></textarea>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="dash_travel_mile">
-						<!-- Travel Mile Radius Map -->
-						<div id="dashboard-travel-mile"></div>
-						<form action="">
-							<div class="form">
-								<div class="form-group my-2">
-									<div class="dollar_input">
-										<input type="text" placeholder="Enter Your Location Here"
-											class="form-control" />
-										<i class="fa fa-location-arrow" aria-hidden="true"></i>
-									</div>
-								</div>
-								<div class="form-group mb-0">
-									<div class="dollar_input">
-										<input type="number" placeholder="Enter Mile Radius..." class="form-control" />
-										<i class="fa fa-map-signs" aria-hidden="true"></i>
 									</div>
 								</div>
 							</div>
-						</form>
+						</div>
+
+						<div class="col-md-6">
+							<div class="single_upload">
+								<div class="upload_header">
+									<h5>Company Banner</h5>
+								</div>
+								<div>
+									<div class="form-group" align="center">
+										<div class="col-md-8 pt-3" align="center">
+											<div class="form-group">
+												<div>
+													<img src="<%= currentUser.logo %>" class="img-fluid" alt="" />
+												</div>
+											</div>
+										</div>
+										<div align="center">
+											<a href="#logo" class="btn btn-gbz-success" data-toggle="modal">Change
+												Logo</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="intro_basic">
 				<div class="row">
-					<div class="col-md-6">
-						<div class="location">
-							<h3>Location</h3>
-							<div class="location_inner">
-								<form action="">
+					<div class="col-md-8">
+						<div class="indroduction">
+							<h3>About</h3>
+							<div class="form">
+								<div class="form-group">
+									<textarea name="about" id="" cols="30" rows="10"
+										class="form-control"><%= currentUser.about %></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="dash_travel_mile">
+							<!-- Travel Mile Radius Map -->
+							<div id="map"></div>
+
+						</div>
+					</div>
+				</div>
+				<div class="intro_basic">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="location">
+								<h3>Location</h3>
+								<div class="location_inner">
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-md-4">
 												<select name="" id="" class="form-control">
-													<option value="">--Select Country--</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
-													<option value="">Country Name</option>
+													<option value="" readonly>United States</option>
 												</select>
 											</div>
 											<div class="form-group col-md-4">
-												<input type="text" placeholder="City" class="form-control" />
+												<input type="text" placeholder="City" class="form-control"
+													value="<%= currentUser.city %>" name="city" />
 											</div>
 											<div class="form-group col-md-4">
-												<input type="text" placeholder="State" class="form-control" />
+												<input type="text" placeholder="State" class="form-control"
+													value="<%= currentUser.state %>" name="state" />
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-12">
-												<input type="text" placeholder="Address" class="form-control" />
+												<input type="text" placeholder="Address" class="form-control"
+													value="<%= currentUser.location %>" name="location"
+													name="location" />
 											</div>
 										</div>
 									</div>
-								</form>
-								<div class="location_map">
-									<div id="dashboard-home-map"></div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="dash_basic_info">
-							<h3>Company Information</h3>
-							<form action="">
+						<div class="col-md-6">
+							<div class="dash_basic_info">
+								<h3>Company Information</h3>
 								<div class="form">
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="">Company Name:</label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control" name="companyName"
+												value="<%= currentUser.companyName %>" required="" />
 										</div>
 										<div class="form-group col-md-6">
 											<label for="">Slogan:</label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control" value="<%= currentUser.slogan %>"
+												name="slogan" />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="">Email:</label>
-											<input type="email" class="form-control" />
+											<input type="email" class="form-control" value="<%= currentUser.email %>"
+												name="email" />
 										</div>
 										<div class="form-group col-md-6">
 											<label for="">Phone Number:</label>
-											<input type="tel" class="form-control" />
+											<input type="tel" class="form-control"
+												value="<%= currentUser.phoneNumber %>" name="phoneNumber" />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="">Years In Business:</label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control"
+												value="<%= currentUser.yearsInBusiness %>" name="yearsInBusiness" />
 										</div>
 										<div class="form-group col-md-6">
 											<label for="">Directions:</label>
-											<input type="url" class="form-control" />
+											<input type="url" class="form-control" value="<%= currentUser.directions %>"
+												name="directions" />
 										</div>
 									</div>
 									<div class="form-group mb-0">
 										<label for="">Website:</label>
-										<input type="url" class="form-control" />
+										<input type="url" class="form-control" value="<%= currentUser.website %>"
+											name="website" />
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<hr />
+				<hr />
 
-			<div class="lang_payment">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="single_box">
-							<h3>Set Your Language</h3>
-							<div class="box_inner">
-								<form action="">
+				<div class="lang_payment">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="single_box">
+								<h3>Set Your Language</h3>
+								<div class="box_inner">
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
-												<select name="" class="form-control" id="">
+												<select name="language" class="form-control" id="">
 													<option value="">---Select Language---</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
-													<option value="">Language Name</option>
+													<option value="">English</option>
+													<option value="">Spanish</option>
+													<option value="">French</option>
 												</select>
 											</div>
 											<div class="form-group col-3">
@@ -239,131 +190,123 @@
 											</div>
 										</div>
 									</div>
-								</form>
-								<div class="added_items">
-									<span>English <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Spanish <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>French <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
+									<div class="added_items">
+										<span>English <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Spanish <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>French <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="col-md-6">
-						<div class="single_box">
-							<h3>Areas of Expertise</h3>
-							<div class="box_inner">
-								<form action="">
+						<div class="col-md-6">
+							<div class="single_box">
+								<h3>Areas of Expertise</h3>
+								<div class="box_inner">
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
 												<input type="text" placeholder="Type Area Expertise and Click Add"
-													class="form-control" />
+													class="form-control" name="areasOfExpertise" />
 											</div>
 											<div class="form-group col-3">
 												<button type="submit" class="btn btn-gbz-success">ADD</button>
 											</div>
 										</div>
 									</div>
-								</form>
-								<div class="added_items">
-									<span>Roofing <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Gutters <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Siding <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
+									<div class="added_items">
+										<span>Roofing <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Gutters <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Siding <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="col-md-6">
-						<div class="single_box">
-							<h3>Service Areas</h3>
-							<div class="box_inner">
-								<form action="">
+						<div class="col-md-6">
+							<div class="single_box">
+								<h3>Service Areas</h3>
+								<div class="box_inner">
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
 												<input type="text" placeholder="Type Service Area and Click Add"
-													class="form-control" />
+													class="form-control" name="serviceAreas" />
 											</div>
 											<div class="form-group col-3">
 												<button type="submit" class="btn btn-gbz-success">ADD</button>
 											</div>
 										</div>
 									</div>
-								</form>
-								<div class="added_items">
-									<span>Hoffman Estate <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Schaumburg <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Palatine <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Carol Stream <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Des Plaines <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Elgin <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Bensenville <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Arlington Heights <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
+									<div class="added_items">
+										<span>Hoffman Estate <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Schaumburg <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Palatine <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Carol Stream <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Des Plaines <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Elgin <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Bensenville <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Arlington Heights <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="col-md-6">
-						<div class="single_box">
-							<h3>Product Used</h3>
-							<div class="box_inner">
-								<form action="">
+						<div class="col-md-6">
+							<div class="single_box">
+								<h3>Product Used</h3>
+								<div class="box_inner">
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
 												<input type="text" placeholder="Type Product and Click Add"
-													class="form-control" />
+													class="form-control" name="productsUsed" />
 											</div>
 											<div class="form-group col-3">
 												<button type="submit" class="btn btn-gbz-success">ADD</button>
 											</div>
 										</div>
 									</div>
-								</form>
-								<div class="added_items">
-									<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Sed Ut <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Ipsum <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Dolor <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Sed Ut <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Ipsum <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Dolor <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
+									<div class="added_items">
+										<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Sed Ut <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Ipsum <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Dolor <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Sed Ut <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Ipsum <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Dolor <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="col-md-6">
-						<div class="single_box payment_method">
-							<h3>Payment Method</h3>
-							<div class="box_inner">
-								<form action="">
+						<div class="col-md-6">
+							<div class="single_box payment_method">
+								<h3>Payment Method</h3>
+								<div class="box_inner">
 									<div class="form">
 										<div class="row">
 											<div class="col-md-6">
@@ -402,22 +345,21 @@
 												</label>
 											</div>
 											<div class="col-md-6">
-												<label class="check"><i class="fa fa-money" aria-hidden="true"></i> Cash
+												<label class="check"><i class="fa fa-money" aria-hidden="true"></i>
+													Cash
 													<input type="checkbox" name="is_name">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 										</div>
 									</div>
-								</form>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="single_box">
-							<h3>Tags</h3>
-							<div class="box_inner">
-								<form action="">
+						<div class="col-md-6">
+							<div class="single_box">
+								<h3>Tags</h3>
+								<div class="box_inner">
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
@@ -429,79 +371,77 @@
 											</div>
 										</div>
 									</div>
-								</form>
-								<div class="added_items">
-									<span>Construction <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Verified <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Nail <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Sed ut <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
-									<span>Furniture Making <a href="javascript:void(0)"><i class="fa fa-times"
-												aria-hidden="true"></i></a></span>
+									<div class="added_items">
+										<span>Construction <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Verified <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Nail <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Sed ut <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+										<span>Furniture Making <a href="javascript:void(0)"><i class="fa fa-times"
+													aria-hidden="true"></i></a></span>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<hr />
+				<hr />
 
-			<div class="important_social">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="social_add">
-							<h3>Add Social Media</h3>
-							<div class="social_inner">
-								<form action="">
+				<div class="important_social">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="social_add">
+								<h3>Add Social Media</h3>
+								<div class="social_inner">
 									<div class="form-group">
 										<div class="dollar_input">
-											<input type="url" placeholder="Enter Your Facebook URL"
-												class="form-control" />
+											<input type="url" placeholder="Enter Your Facebook URL" class="form-control"
+												name="facebookUrl" value="<%= currentUser.facebookUrl %>" />
 											<i class="fa fa-facebook" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="dollar_input">
-											<input type="url" placeholder="Enter Your Twitter URL"
-												class="form-control" />
+											<input type="url" placeholder="Enter Your Twitter URL" class="form-control"
+												name="twitterUrl" value="<%= currentUser.twitterUrl %>" />
 											<i class="fa fa-twitter" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="dollar_input">
 											<input type="url" placeholder="Enter Your Instagram URL"
-												class="form-control" />
+												class="form-control" name="instagramUrl"
+												value="<%= currentUser.instagramUrl %>" />
 											<i class="fa fa-instagram" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="dollar_input">
-											<input type="url" placeholder="Enter Your LinkedIn URL"
-												class="form-control" />
+											<input type="url" placeholder="Enter Your LinkedIn URL" class="form-control"
+												name="linkedinUrl" value="<%= currentUser.linkedinUrl %>" />
 											<i class="fa fa-linkedin" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="form-group mb-0">
 										<div class="dollar_input">
 											<input type="url" placeholder="Enter Your Pinterest URL"
-												class="form-control" />
+												class="form-control" name="pinterestUrl"
+												value="<%= currentUser.pinterestUrl %>" />
 											<i class="fa fa-pinterest" aria-hidden="true"></i>
 										</div>
 									</div>
-								</form>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="dash_basic_info">
-							<h3>Important Facts</h3>
-							<form action="">
+						<div class="col-md-6">
+							<div class="dash_basic_info">
+								<h3>Important Facts</h3>
 								<div class="form">
 									<div class="form-row">
 										<div class="form-group col-md-6">
@@ -509,14 +449,16 @@
 														title="A certificate/document which grants the permission to carry on a particular trade or business for which it is issued."
 														data-toggle="tooltip" class="fa fa-question-circle"
 														aria-hidden="true"></i></a></label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control" name="stateLicenseTrade"
+												value="<%= currentUser.stateLicenseTrade %>" />
 										</div>
 										<div class="form-group col-md-6">
 											<label for="">License Number <a href="javascript:void(0)"><i
 														title="A business license allows you to legally conduct business in your state, city or county."
 														data-toggle="tooltip" class="fa fa-question-circle"
 														aria-hidden="true"></i></a></label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control" name="licenseNumber"
+												value="<%= currentUser.licenseNumber %>" />
 										</div>
 									</div>
 									<div class="form-row">
@@ -525,14 +467,16 @@
 														title="The time of your state license Expiration date."
 														data-toggle="tooltip" class="fa fa-question-circle"
 														aria-hidden="true"></i></a></label>
-											<input type="text" class="form-control" />
+											<input type="date" class="form-control" name="licenseExpiration"
+												value="<%= currentUser.licenseExpiration %>" />
 										</div>
 										<div class="form-group col-md-6">
 											<label for="">Type of Entity <a href="javascript:void(0)"><i
 														title="Your form of business determines which income tax return form you have to file."
 														data-toggle="tooltip" class="fa fa-question-circle"
 														aria-hidden="true"></i></a></label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control" name="entityType"
+												value="<%= currentUser.entityType %>" />
 										</div>
 									</div>
 									<div class="form-row">
@@ -541,130 +485,146 @@
 														title="Insurance is a means of protection from financial loss. It is a form of risk management, primarily used to hedge against the risk of a contingent or uncertain loss."
 														data-toggle="tooltip" class="fa fa-question-circle"
 														aria-hidden="true"></i></a></label>
-											<input type="text" class="form-control" />
+											<input type="text" class="form-control" name="insuranceType"
+												value="<%= currentUser.insuranceType %>" />
 										</div>
 										<div class="form-group mb-0 col-md-6">
 											<label for="">Insurance Expiration <a href="javascript:void(0)"><i
 														title="The time of your Insurance Expiration date."
 														data-toggle="tooltip" class="fa fa-question-circle"
 														aria-hidden="true"></i></a></label>
-											<input type="text" class="form-control mb-3" />
+											<input type="date" class="form-control mb-3" name="insuranceExpiration"
+												value="<%= currentUser.insuranceExpiration %>" />
 										</div>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<hr />
+				<hr />
 
-			<div class="dash_business_hrs">
-				<h3>Set Your Company Business Hours</h3>
+				<div class="dash_business_hrs">
+					<h3>Set Your Company Business Hours</h3>
 
-				<div class="table-responsive">
-					<table class="table table-bordered mb-0">
-						<thead>
-							<tr>
-								<th>Day</th>
-								<th>From</th>
-								<th>To</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="day">Monday</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-							</tr>
+					<div class="table-responsive">
+						<table class="table table-bordered mb-0">
+							<thead>
+								<tr>
+									<th>Day</th>
+									<th>From</th>
+									<th>To</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="day">Monday</td>
+									<td>
+										<input type="time" name="mondayFrom" class="form-control"
+											value="<%= currentUser.mondayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="mondayTo" class="form-control"
+											value="<%= currentUser.mondayTo %>" />
+									</td>
+								</tr>
 
-							<tr>
-								<td class="day">Tuesday</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-							</tr>
+								<tr>
+									<td class="day">Tuesday</td>
+									<td>
+										<input type="time" name="tuesdayFrom" class="form-control"
+											value="<%= currentUser.tuesdayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="tuesdayTo" class="form-control"
+											value="<%= currentUser.tuesdayTo %>" />
+									</td>
+								</tr>
 
-							<tr>
-								<td class="day">Wednesday</td>
-								<td>
-									<input type="time" class="form-control tuesday_action_take" />
-								</td>
-								<td>
-									<input type="time" class="form-control tuesday_action_take" />
-								</td>
-							</tr>
+								<tr>
+									<td class="day">Wednesday</td>
+									<td>
+										<input type="time" name="wednesdayFrom" class="form-control tuesday_action_take"
+											value="<%= currentUser.wednesdayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="wednesdayTo" class="form-control tuesday_action_take"
+											value="<%= currentUser.wednesdayTo %>" />
+									</td>
+								</tr>
 
-							<tr>
-								<td class="day">Thursday</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-							</tr>
+								<tr>
+									<td class="day">Thursday</td>
+									<td>
+										<input type="time" name="thursdayFrom" class="form-control"
+											value="<%= currentUser.thursdayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="thursdayTo" class="form-control"
+											value="<%= currentUser.thursdayTo %>" />
+									</td>
+								</tr>
 
-							<tr>
-								<td class="day">Friday</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-							</tr>
+								<tr>
+									<td class="day">Friday</td>
+									<td>
+										<input type="time" name="fridayFrom" class="form-control"
+											value="<%= currentUser.fridayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="fridayTo" class="form-control"
+											value="<%= currentUser.fridayTo %>" />
+									</td>
+								</tr>
 
-							<tr>
-								<td class="day">Saturday</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-							</tr>
+								<tr>
+									<td class="day">Saturday</td>
+									<td>
+										<input type="time" name="saturdayFrom" class="form-control"
+											value="<%= currentUser.saturdayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="saturdayTo" class="form-control"
+											value="<%= currentUser.saturdayTo %>" />
+									</td>
+								</tr>
 
-							<tr>
-								<td class="day">Sunday</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-								<td>
-									<input type="time" class="form-control" />
-								</td>
-							</tr>
-						</tbody>
-					</table>
+								<tr>
+									<td class="day">Sunday</td>
+									<td>
+										<input type="time" name="sundayFrom" class="form-control"
+											value="<%= currentUser.sundayFrom %>" />
+									</td>
+									<td>
+										<input type="time" name="sundayTo" class="form-control"
+											value="<%= currentUser.sundayTo %>" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 
-<section class="update_now_button_section">
-	<div class="container_gbz">
-		<div class="row">
-			<div class="col-md-7">
-				<p><span>*</span> Click <b>Save Changes</b> to update latest added detail (s).</p>
-			</div>
-			<div class="col-md-5">
-				<div class="save_change_button">
-					<button type="button" class="btn btn-gbz-success">Save Changes</button>
+	<section class="update_now_button_section">
+		<div class="container_gbz">
+			<div class="row">
+				<div class="col-md-7">
+					<p><span>*</span> Click <b>Save Changes</b> to update latest added detail (s).</p>
+				</div>
+				<div class="col-md-5">
+					<div class="save_change_button">
+						<button type="submit" class="btn btn-gbz-success">Save Changes</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</form>
 
 <!-- My Account SideMenu For Desktop -->
 <div class="" id="myAcContents">
@@ -690,3 +650,78 @@
 	</div>
 </div>
 <!-- My Account SideMenu For Desktop -->
+
+<!-- Profile Picture Modal -->
+<div class="modal certificate_modal dashboard_wrap fade" id="picture">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Change Profile Picture</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="/profile-picture?_method=PUT" method="POST" class="single_upload"
+					enctype="multipart/form-data">
+					<div class="upload_header">
+						<h5>Upload Profile Picture</h5>
+					</div>
+					<div class="upload_area">
+						<div class="form-group">
+							<input type="file" name="profilePicture" id="file-1" class="inputfile inputfile-1" />
+							<label for="file-1">
+								<div class="upload_fils">
+									<div class="icon">
+										<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+									</div>
+									<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+								</div>
+							</label>
+						</div>
+					</div>
+			</div>
+			<div class="save_button text-right">
+				<button type="submit" class="btn btn-gbz-success">Save</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Logo Picture Modal -->
+<div class="modal certificate_modal dashboard_wrap fade" id="logo">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Change Logo</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="/logo?_method=PUT" method="POST" class="single_upload" enctype="multipart/form-data">
+					<div class="upload_header">
+						<h5>Change Logo</h5>
+					</div>
+					<div class="upload_area">
+						<div class="form-group">
+							<input type="file" name="logo" id="file-2" class="inputfile inputfile-1" />
+							<label for="file-2">
+								<div class="upload_fils">
+									<div class="icon">
+										<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+									</div>
+									<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+								</div>
+							</label>
+						</div>
+					</div>
+			</div>
+			<div class="save_button text-right">
+				<button type="submit" class="btn btn-gbz-success">Save</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

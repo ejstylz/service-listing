@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const imageFilter = function (req, file, cb) {
   // accept image files only
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|mp4|oog)$/i)) {
     return cb(new Error('Only image files are allowed!'), false);
   }
   cb(null, true);
@@ -33,7 +33,25 @@ const {
   getSellerOverview,
   getSellerDo,
   getSellerDoNot,
-  getSellerOverview2
+  getSellerOverview2,
+  userUpdate,
+  getAbout,
+  getEmployees,
+  getServices,
+  getPortfolio,
+  getProducts,
+  getFaq,
+  getMedia,
+  getReviews,
+  putAbout,
+  postJourney,
+  putJourney,
+  deleteJourney,
+  postCertificate,
+  putCertificate,
+  deleteCertificate,
+  putProfilePicture,
+  putLogo
 } = require('../controllers');
 const { asyncErrorHandler,
   checkIfUserExists,
@@ -61,7 +79,6 @@ router.get('/become-a-seller-overview2', getSellerOverview2);
 
 /* GET sign-up */
 router.get('/sign-up', getSignup);
-
 
 /* POST /sign-up */
 router.post('/sign-up', checkIfUserExists, asyncErrorHandler(postSignUp));
@@ -96,6 +113,9 @@ router.get('/company-sign-up5', goToPayment, getCompanySignUp5);
 /* GET /dashboard */
 router.get('/company-dashboard', isLoggedIn, getCompanyDashboard);
 
+/* PUT /dashboard/:user_id */
+router.put('/dashboard', isLoggedIn, userUpdate);
+
 /* GET /login */
 router.get('/login', getLogin);
 
@@ -104,5 +124,56 @@ router.post('/login', postLogin);
 
 /* GET /logout */
 router.get('/logout', isLoggedIn, getLogout);
+
+/* GET /dashboard/about */
+router.get('/company-dashboard/about', isLoggedIn, asyncErrorHandler(getAbout));
+
+/* POST /journey */
+router.post('/journey', asyncErrorHandler(postJourney));
+
+/* PUT /journey */
+router.put('/journey/:id', isLoggedIn, asyncErrorHandler(putJourney));
+
+/* DELETE /journey */
+router.delete('/journey/:id', isLoggedIn, asyncErrorHandler(deleteJourney));
+
+/* POST /certificate */
+router.post('/certificate', isLoggedIn, upload.single('image'), asyncErrorHandler(postCertificate));
+
+/* PUT /certificate */
+router.put('/certificate/:id', isLoggedIn, upload.single('image'), asyncErrorHandler(putCertificate));
+
+/* Delete /certificate */
+router.delete('/certificate/:id', isLoggedIn, asyncErrorHandler(deleteCertificate));
+
+/* PUT /dashboard/about */
+router.put('/dashboard/about', isLoggedIn, upload.single('video'), asyncErrorHandler(putAbout));
+
+/* PUT /logo */
+router.put('/logo', isLoggedIn, upload.single('logo'), asyncErrorHandler(putLogo));
+
+/* PUT /profile-picture */
+router.put('/profile-picture', isLoggedIn, upload.single('profilePicture'), asyncErrorHandler(putProfilePicture));
+
+/* GET /dashboard/employees */
+router.get('/company-dashboard/employees', isLoggedIn, getEmployees);
+
+/* GET /dashboard/faq */
+router.get('/company-dashboard/faq', isLoggedIn, getFaq);
+
+/* GET /dashboard/media */
+router.get('/company-dashboard/media', isLoggedIn, getMedia);
+
+/* GET /dashboard/portfolio */
+router.get('/company-dashboard/portfolio', isLoggedIn, getPortfolio);
+
+/* GET /dashboard/products */
+router.get('/company-dashboard/products', isLoggedIn, getProducts);
+
+/* GET /dashboard/reviews */
+router.get('/company-dashboard/reviews', isLoggedIn, getReviews);
+
+/* GET /dashboard/services */
+router.get('/company-dashboard/services', isLoggedIn, getServices);
 
 module.exports = router;

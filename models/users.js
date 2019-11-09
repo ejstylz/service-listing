@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     logo: String,
     logoId: String,
     about: String,
+    slogan: String,
     service: String,
     serviceCategory: String,
     isFacebookVerified: { type: Boolean, default: false },
@@ -28,7 +29,97 @@ const UserSchema = new Schema({
     verifyTokenExpires: Date,
     filters: [String],
     levels: [String],
-    companyName: String
+    language: [String],
+    companyName: String,
+    facebookUrl: String,
+    twitterUrl: String,
+    instagramUrl: String,
+    linkedinUrl: String,
+    pinterestUrl: String,
+    directions: String,
+    videoUrl: String,
+    videoId: String,
+    sliderPhotos: [
+        { url: String, public_id: String }
+    ],
+    videos: [
+        { url: String, public_id: String }
+    ],
+    location: String,
+    coordinates: Array,
+    website: String,
+    slogan: String,
+    products: [String],
+    tags: [String],
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ],
+    certificates: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Certificate'
+        }
+    ],
+    employees: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Employee'
+        }
+    ],
+    faqs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Faq'
+        }
+    ],
+    portfolios: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Portfolio'
+        }
+    ],
+    products: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ],
+    services: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Service'
+        }
+    ],
+    yearsInBusiness: String,
+    areasOfExpertise: [String],
+    serviceAreas: [String],
+    productsUsed: [String],
+    paymentMethod: [String],
+    stateLicenseTrade: String,
+    licenseNumber: String,
+    licenseExpiration: String,
+    entityType: String,
+    insuranceType: String,
+    insuranceExpiration: String,
+    mondayFrom: String,
+    mondayTo: String,
+    tuesdayFrom: String,
+    tuesdayTo: String,
+    wednesdayFrom: String,
+    wednesdayTo: String,
+    thursdayFrom: String,
+    thursdayTo: String,
+    fridayFrom: String,
+    fridayTo: String,
+    saturdayFrom: String,
+    saturdayTo: String,
+    sundayFrom: String,
+    sundayTo: String,
+    Purpose: String
+
 });
 
 UserSchema.plugin(passportLocalMongoose);

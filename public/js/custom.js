@@ -221,6 +221,16 @@ function readURL(input) {
     }
 }
 
+$(window).on("scroll", function () {
+    if ($(window).scrollTop() > 400) {
+        $('.update_now_button_section').addClass('active');
+    }
+
+    else {
+        $('.update_now_button_section').removeClass('active');
+    }
+})
+
 $("#file-1").change(function () {
     readURL(this);
 });
