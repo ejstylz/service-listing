@@ -1,5 +1,7 @@
 const User = require('../models/users');
 const Journey = require('../models/journey');
+const MediaPhoto = require('../models/mediaPhoto');
+const MediaVideo = require('../models/mediaVideo');
 const Certificate = require('../models/certificate');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
@@ -457,8 +459,6 @@ module.exports = {
             user.videoId = video.public_id;
         }
 
-
-
         const {
             about,
             purpose
@@ -583,7 +583,7 @@ module.exports = {
         res.redirect("/company-dashboard/about");
     },
 
-    // Delete Journey
+    // Delete Certificate
     async deleteCertificate(req, res, next) {
         let certificate = await Certificate.findById(req.params.id);
         await cloudinary.v2.uploader.destroy(certificate.imageId);
@@ -639,10 +639,127 @@ module.exports = {
     },
 
     //GET /company-dashboard/media
-    getMedia(req, res, next) {
+    async getMedia(req, res, next) {
         let user = req.user;
-        res.render('businesses/media', { title: 'Dashboard | Media' });
+        let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(user._id).exec();
+        let mediaVideo = await MediaVideo.find().where("owner.id").equals(user._id).exec();
+        res.render('businesses/media', { title: 'Dashboard | Media', mediaPhoto, mediaVideo });
     },
+
+    //Create mediaPhoto
+    async postMediaPhoto(req, res, next) {
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+        let image = await cloudinary.v2.uploader.upload(req.file.path);
+
+        const newMediaPhoto = new MediaPhoto({
+            title: req.body.title,
+            owner: owner,
+            description: req.body.description,
+            imageUrl: image.secure_url,
+            imageId: image.public_id
+        });
+
+        // save the updated journey into the db
+        let mediaPhoto = await MediaPhoto.create(newMediaPhoto);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Photo successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/media");
+    },
+
+    //Edit Media Photo
+    async putMediaPhoto(req, res, next) {
+        let mediaPhoto = await MediaPhoto.findById(req.params.id);
+        const {
+            title,
+            description,
+        } = req.body;
+
+        if (title) mediaPhoto.title = req.body.title;
+        if (description) mediaPhoto.description = req.body.description;
+
+        await mediaPhoto.save();
+        req.session.success = "Media Photo successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/media");
+    },
+
+    //Delete Media Photo
+    async deleteMediaPhoto(req, res, next) {
+        let mediaPhoto = await MediaPhoto.findById(req.params.id);
+        await cloudinary.v2.uploader.destroy(mediaPhoto.imageId);
+        await mediaPhoto.remove();
+        req.session.error = "Media Photo Deleted!";
+        res.redirect("/company-dashboard/media");
+    },
+
+    //Create mediaVideo
+    async postMediaVideo(req, res, next) {
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+        let video = await cloudinary.v2.uploader.upload(req.file.path,
+            {
+                resource_type: "video",
+                chunk_size: 6000000,
+                eager: [
+                    { audio_codec: "aac" }],
+                eager_async: true
+            });
+
+        const newMediaVideo = new MediaVideo({
+            title: req.body.title,
+            owner: owner,
+            description: req.body.description,
+            videoUrl: video.secure_url,
+            videoId: video.public_id
+        });
+
+        let mediaVideo = await MediaVideo.create(newMediaVideo);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Video successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/media");
+    },
+
+    //Edit Media Video
+    async putMediaVideo(req, res, next) {
+        let mediaVideo = await MediaVideo.findById(req.params.id);
+        const {
+            title,
+            description,
+        } = req.body;
+
+        if (title) mediaVideo.title = req.body.title;
+        if (description) mediaVideo.description = req.body.description;
+
+        await mediaVideo.save();
+        req.session.success = "Media Video successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/media");
+    },
+
+    //Delete Media Video
+    async deleteMediaVideo(req, res, next) {
+        let mediaVideo = await MediaVideo.findById(req.params.id);
+        await cloudinary.v2.uploader.destroy(mediaVideo.videoId);
+        await mediaVideo.remove();
+        req.session.error = "Media Video Deleted!";
+        res.redirect("/company-dashboard/media");
+    },
+
 
     //GET /company-dashboard/portfolio
     getPortfolio(req, res, next) {

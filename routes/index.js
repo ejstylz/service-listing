@@ -51,7 +51,13 @@ const {
   putCertificate,
   deleteCertificate,
   putProfilePicture,
-  putLogo
+  putLogo,
+  postMediaPhoto,
+  putMediaPhoto,
+  deleteMediaPhoto,
+  postMediaVideo,
+  putMediaVideo,
+  deleteMediaVideo
 } = require('../controllers');
 const { asyncErrorHandler,
   checkIfUserExists,
@@ -162,7 +168,25 @@ router.get('/company-dashboard/employees', isLoggedIn, getEmployees);
 router.get('/company-dashboard/faq', isLoggedIn, getFaq);
 
 /* GET /dashboard/media */
-router.get('/company-dashboard/media', isLoggedIn, getMedia);
+router.get('/company-dashboard/media', isLoggedIn, asyncErrorHandler(getMedia));
+
+/* POST /media-photo */
+router.post('/media-photo', isLoggedIn, upload.single('image'), asyncErrorHandler(postMediaPhoto));
+
+/* PUT /media-photo */
+router.put('/media-photo/:id', isLoggedIn, asyncErrorHandler(putMediaPhoto));
+
+/* Delete /media-photo */
+router.delete('/media-photo/:id', isLoggedIn, asyncErrorHandler(deleteMediaPhoto));
+
+/* POST /media-video */
+router.post('/media-video', isLoggedIn, upload.single('video'), asyncErrorHandler(postMediaVideo));
+
+/* PUT /media-video */
+router.put('/media-video/:id', isLoggedIn, asyncErrorHandler(putMediaVideo));
+
+/* Delete /media-video */
+router.delete('/media-video/:id', isLoggedIn, asyncErrorHandler(deleteMediaVideo));
 
 /* GET /dashboard/portfolio */
 router.get('/company-dashboard/portfolio', isLoggedIn, getPortfolio);
