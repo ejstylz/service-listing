@@ -8,8 +8,11 @@ const EmployeeSchema = new Schema({
     imageUrl: String,
     imageId: String,
     owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
     }
 
 });

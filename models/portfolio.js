@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PortfolioSchema = new Schema({
-    name: String,
+    title: String,
     Category: String,
     description: String,
     images: [
@@ -10,13 +10,16 @@ const PortfolioSchema = new Schema({
     ],
     startTime: String,
     endTime: String,
-    budget: Number,
-    teamMembers: Number,
+    budget: String,
+    teamMembers: String,
     expertise: String,
     products: String,
     owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
     }
 
 });

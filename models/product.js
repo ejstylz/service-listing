@@ -2,25 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    name: String,
     price: String,
+    title: String,
+    category: String,
     description: String,
     images: [
         { url: String, public_id: String }
     ],
-    from: String,
-    to: Array,
     owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
     },
     time: String,
-    teamMembers: String,
-    tags: [String],
-    timeOfDelivery: String,
-    specification: {
-        title: String, description: String
-    }
+    tags: String,
+    specificationTitle: String,
+    specificationDescription: String,
+    deliveryInfo: String
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

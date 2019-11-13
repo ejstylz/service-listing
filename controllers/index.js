@@ -3,6 +3,11 @@ const Journey = require('../models/journey');
 const MediaPhoto = require('../models/mediaPhoto');
 const MediaVideo = require('../models/mediaVideo');
 const Certificate = require('../models/certificate');
+const Employee = require('../models/employee');
+const Portfolio = require('../models/portfolio');
+const Service = require('../models/service');
+const Product = require('../models/product');
+const Faq = require('../models/faq');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 const passport = require('passport');
@@ -425,10 +430,11 @@ module.exports = {
         res.redirect('/');
     },
 
-    //GET /company-dashboard/employess
-    getEmployees(req, res, next) {
+    //GET /company-dashboard/employees
+    async getEmployees(req, res, next) {
         let user = req.user;
-        res.render('businesses/employees', { title: 'Dashboard | Employees' });
+        let employee = await Employee.find().where("owner.id").equals(user._id).exec();
+        res.render('businesses/employees', { title: 'Dashboard | Employees', user, employee });
     },
 
     //GET /company-dashboard/about
@@ -633,9 +639,10 @@ module.exports = {
     },
 
     //GET /company-dashboard/faq
-    getFaq(req, res, next) {
+    async getFaq(req, res, next) {
         let user = req.user;
-        res.render('businesses/faq', { title: 'Dashboard | FAQ' });
+        let faq = await Faq.find().where("owner.id").equals(user._id).exec();
+        res.render('businesses/faq', { title: 'Dashboard | FAQ', faq });
     },
 
     //GET /company-dashboard/media
@@ -760,17 +767,200 @@ module.exports = {
         res.redirect("/company-dashboard/media");
     },
 
+    //Create employee
+    async postEmployee(req, res, next) {
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+        let image = await cloudinary.v2.uploader.upload(req.file.path);
+
+        const newEmployee = new Employee({
+            name: req.body.name,
+            owner: owner,
+            position: req.body.position,
+            description: req.body.description,
+            imageUrl: image.secure_url,
+            imageId: image.public_id
+        });
+
+        // save the updated journey into the db
+        let employee = await Employee.create(newEmployee);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Employee successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/employees");
+    },
+
+    //Edit Employee
+    async putEmployee(req, res, next) {
+        let employee = await Employee.findById(req.params.id);
+        if (req.file) {
+            await cloudinary.v2.uploader.destroy(employee.imageId);
+            // upload image
+            let image = await cloudinary.v2.uploader.upload(req.file.path);
+            // add images to post.images array
+            employee.imageUrl = image.secure_url;
+            employee.imageId = image.public_id;
+        }
+        const {
+            name,
+            description,
+            position
+        } = req.body;
+
+        if (name) employee.name = req.body.name;
+        if (position) employee.position = req.body.position;
+        if (description) employee.description = req.body.description;
+
+        await employee.save();
+        req.session.success = "Employee successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/employees");
+    },
+
+    //Delete Employee
+    async deleteEmployee(req, res, next) {
+        let employee = await Employee.findById(req.params.id);
+        await cloudinary.v2.uploader.destroy(employee.imageId);
+        await employee.remove();
+        req.session.error = "Employee Deleted!";
+        res.redirect("/company-dashboard/employees");
+    },
+
 
     //GET /company-dashboard/portfolio
-    getPortfolio(req, res, next) {
+    async getPortfolio(req, res, next) {
         let user = req.user;
-        res.render('businesses/portfolio', { title: 'Dashboard | Portfolio' });
+        let portfolio = await Portfolio.find().where("owner.id").equals(user._id).exec();
+        res.render('businesses/portfolio', { title: 'Dashboard | Portfolio', portfolio });
+    },
+
+    //Create portfolio
+    async postPortfolio(req, res, next) {
+        req.body.images = [];
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+        for (const file of req.files) {
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            req.body.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
+        }
+
+        const newPortfolio = new Portfolio({
+            title: req.body.title,
+            owner: owner,
+            category: req.body.category,
+            description: req.body.description,
+            startTime: req.body.startTime,
+            endTime: req.body.endTime,
+            budget: req.body.budget,
+            teamMembers: req.body.teamMembers,
+            products: req.body.products,
+            images: req.body.images,
+            expertise: req.body.expertise
+        });
+
+        // save the updated journey into the db
+        let portfolio = await Portfolio.create(newPortfolio);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Portfolio successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/portfolio");
+    },
+
+    //Edit Portfolio
+    async putPortfolio(req, res, next) {
+        let portfolio = await Portfolio.findById(req.params.id);
+
+        if (req.body.deleteImages && req.body.deleteImages.length) {
+            // assign deleteImages from req.body to its own variable
+            let deleteImages = req.body.deleteImages;
+            // loop over deleteImages
+            for (const public_id of deleteImages) {
+                // delete images from cloudinary
+                await cloudinary.v2.uploader.destroy(public_id);
+                // delete image from post.images
+                for (const image of portfolio.images) {
+                    if (image.public_id === public_id) {
+                        let index = portfolio.images.indexOf(image);
+                        portfolio.images.splice(index, 1);
+                    }
+                }
+            }
+        }
+
+        // check if there are any new images for upload
+        if (req.files) {
+            // upload images
+            for (const file of req.files) {
+                let image = await cloudinary.v2.uploader.upload(file.path);
+                // add images to post.images array
+                portfolio.images.push({
+                    url: image.secure_url,
+                    public_id: image.public_id
+                });
+            }
+        }
+
+        const {
+            title,
+            category,
+            description,
+            startTime,
+            endTime,
+            budget,
+            teamMembers,
+            products,
+            expertise
+        } = req.body;
+
+        if (title) portfolio.title = req.body.title;
+        if (category) portfolio.category = req.body.category;
+        if (description) portfolio.description = req.body.description;
+        if (startTime) portfolio.startTime = req.body.startTime;
+        if (endTime) portfolio.endTime = req.body.endTime;
+        if (budget) portfolio.budget = req.body.budget;
+        if (teamMembers) portfolio.teamMembers = req.body.teamMembers;
+        if (products) portfolio.products = req.body.products;
+        if (expertise) portfolio.expertise = req.body.expertise;
+
+        await portfolio.save();
+        req.session.success = "Portfolio successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/portfolio");
+    },
+
+    //Delete Portfolio
+    async deletePortfolio(req, res, next) {
+        let portfolio = await Portfolio.findById(req.params.id);
+        for (const public_id of portfolio.images) {
+            // delete images from cloudinary
+            await cloudinary.v2.uploader.destroy(public_id);
+        }
+
+        await portfolio.remove();
+        req.session.error = "Portfolio Deleted!";
+        res.redirect("/company-dashboard/portfolio");
     },
 
     //GET /company-dashboard/products
-    getProducts(req, res, next) {
+    async getProducts(req, res, next) {
         let user = req.user;
-        res.render('businesses/products', { title: 'Dashboard | Products' });
+        let product = await Product.find().where("owner.id").equals(user._id).exec();
+        res.render('businesses/products', { title: 'Dashboard | Products', product });
     },
 
     //GET /company-dashboard/reviews
@@ -780,9 +970,301 @@ module.exports = {
     },
 
     //GET /company-dashboard/services
-    getServices(req, res, next) {
+    async getServices(req, res, next) {
         let user = req.user;
-        res.render('businesses/services', { title: 'Dashboard | Services' });
+        let service = await Service.find().where("owner.id").equals(user._id).exec();
+        res.render('businesses/services', { title: 'Dashboard | Services', service });
     },
+
+    //Create service
+    async postService(req, res, next) {
+        req.body.images = [];
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+        for (const file of req.files) {
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            req.body.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
+        }
+
+        const newService = new Service({
+            title: req.body.title,
+            owner: owner,
+            category: req.body.category,
+            serviceType: req.body.service,
+            description: req.body.description,
+            time: req.body.time,
+            budget: req.body.budget,
+            teamMembers: req.body.teamMembers,
+            products: req.body.products,
+            images: req.body.images,
+            priceTo: req.body.priceTo,
+            priceFrom: req.body.priceFrom,
+            priceInfo: req.body.priceInfo,
+            teamInfo: req.body.teamInfo,
+        });
+
+        // save the updated journey into the db
+        let service = await Service.create(newService);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Service successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/services");
+    },
+
+    //Edit Service
+    async putService(req, res, next) {
+        let service = await Service.findById(req.params.id);
+
+        if (req.body.deleteImages && req.body.deleteImages.length) {
+            // assign deleteImages from req.body to its own variable
+            let deleteImages = req.body.deleteImages;
+            // loop over deleteImages
+            for (const public_id of deleteImages) {
+                // delete images from cloudinary
+                await cloudinary.v2.uploader.destroy(public_id);
+                // delete image from post.images
+                for (const image of service.images) {
+                    if (image.public_id === public_id) {
+                        let index = service.images.indexOf(image);
+                        service.images.splice(index, 1);
+                    }
+                }
+            }
+        }
+
+        // check if there are any new images for upload
+        if (req.files) {
+            // upload images
+            for (const file of req.files) {
+                let image = await cloudinary.v2.uploader.upload(file.path);
+                // add images to post.images array
+                service.images.push({
+                    url: image.secure_url,
+                    public_id: image.public_id
+                });
+            }
+        }
+
+        const {
+            title,
+            category,
+            serviceType,
+            description,
+            time,
+            budget,
+            teamMembers,
+            products,
+            priceTo,
+            priceFrom,
+            priceInfo,
+            teamInfo,
+        } = req.body;
+
+        if (title) service.title = req.body.title;
+        if (category) service.category = req.body.category;
+        if (description) service.description = req.body.description;
+        if (serviceType) service.serviceType = req.body.serviceType;
+        if (priceTo) service.priceTo = req.body.priceTo;
+        if (priceFrom) service.priceFrom = req.body.priceFrom;
+        if (budget) service.budget = req.body.budget;
+        if (teamMembers) service.teamMembers = req.body.teamMembers;
+        if (products) service.products = req.body.products;
+        if (teamInfo) service.teamInfo = req.body.teamInfo;
+        if (priceInfo) service.priceInfo = req.body.priceInfo;
+        if (time) service.time = req.body.time;
+
+        await service.save();
+        req.session.success = "Service successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/services");
+    },
+
+    //Delete Service
+    async deleteService(req, res, next) {
+        let service = await Service.findById(req.params.id);
+        for (const public_id of service.images) {
+            // delete images from cloudinary
+            await cloudinary.v2.uploader.destroy(public_id);
+        }
+        await service.remove();
+        req.session.error = "Service Deleted!";
+        res.redirect("/company-dashboard/services");
+    },
+
+    //Create product
+    async postProduct(req, res, next) {
+        req.body.images = [];
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+        for (const file of req.files) {
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            req.body.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
+        }
+
+        const newProduct = new Product({
+            price: req.body.price,
+            title: req.body.title,
+            category: req.body.category,
+            description: req.body.description,
+            images: req.body.images,
+            owner: owner,
+            time: req.body.time,
+            tags: req.body.tags,
+            specificationTitle: req.body.specificationTitle,
+            specificationDescription: req.body.specificationDescription,
+            deliveryInfo: req.body.deliveryInfo
+        });
+
+        // save the updated journey into the db
+        let product = await Product.create(newProduct);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Product successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/products");
+    },
+
+    //Edit Product
+    async putProduct(req, res, next) {
+        let product = await Product.findById(req.params.id);
+
+        if (req.body.deleteImages && req.body.deleteImages.length) {
+            // assign deleteImages from req.body to its own variable
+            let deleteImages = req.body.deleteImages;
+            // loop over deleteImages
+            for (const public_id of deleteImages) {
+                // delete images from cloudinary
+                await cloudinary.v2.uploader.destroy(public_id);
+                // delete image from post.images
+                for (const image of product.images) {
+                    if (image.public_id === public_id) {
+                        let index = product.images.indexOf(image);
+                        product.images.splice(index, 1);
+                    }
+                }
+            }
+        }
+
+        // check if there are any new images for upload
+        if (req.files) {
+            // upload images
+            for (const file of req.files) {
+                let image = await cloudinary.v2.uploader.upload(file.path);
+                // add images to post.images array
+                product.images.push({
+                    url: image.secure_url,
+                    public_id: image.public_id
+                });
+            }
+        }
+
+        const {
+            price,
+            title,
+            category,
+            description,
+            time,
+            tags,
+            specificationTitle,
+            specificationDescription,
+            deliveryInfo
+        } = req.body;
+
+        if (title) product.title = req.body.title;
+        if (category) product.category = req.body.category;
+        if (description) product.description = req.body.description;
+        if (price) product.price = req.body.price;
+        if (tags) product.tags = req.body.tags;
+        if (specificationTitle) product.specificationTitle = req.body.specificationTitle;
+        if (specificationDescription) product.specificationDescription = req.body.specificationDescription;
+        if (deliveryInfo) product.deliveryInfo = req.body.deliveryInfo;
+        if (time) product.time = req.body.time;
+
+        await product.save();
+        req.session.success = "Product successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/products");
+    },
+
+    //Delete Product
+    async deleteProduct(req, res, next) {
+        let product = await Product.findById(req.params.id);
+        for (const public_id of product.images) {
+            // delete images from cloudinary
+            await cloudinary.v2.uploader.destroy(public_id);
+        }
+        await product.remove();
+        req.session.error = "Product Deleted!";
+        res.redirect("/company-dashboard/products");
+    },
+
+    //Create Faq
+    async postFaq(req, res, next) {
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+
+        const newFaq = new Faq({
+            question: req.body.question,
+            answer: req.body.answer,
+            owner: owner
+        });
+
+        // save the updated journey into the db
+        let faq = await Faq.create(newFaq);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Faq successfully added!";
+        // redirect to show page
+        res.redirect("/company-dashboard/faq");
+    },
+
+    //Edit Faq
+    async putFaq(req, res, next) {
+        let faq = await Faq.findById(req.params.id);
+
+        const {
+            question,
+            answer,
+        } = req.body;
+
+        if (question) faq.question = req.body.question;
+        if (answer) faq.answer = req.body.answer;
+
+        await faq.save();
+        req.session.success = "Faq successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-dashboard/faq");
+    },
+
+    //Delete Faq
+    async deleteFaq(req, res, next) {
+        let faq = await Faq.findById(req.params.id);
+        await faq.remove();
+        req.session.error = "Faq Deleted!";
+        res.redirect("/company-dashboard/faq");
+    },
+
 
 };
