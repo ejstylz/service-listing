@@ -19,6 +19,7 @@ const app = express();
 
 //connect to the database
 // mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
