@@ -29,6 +29,7 @@
 				</select>
 			</form>
 			<ul class="navbar-nav flex-row">
+				<li class="nav-item"><a href="/company-profile/<%= user._id %>">Display Page</a></li>
 				<!-- Messages -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
@@ -507,14 +508,14 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2IfLxIJDmARP7GZMuA1Vjn5KTgBWCSjs&callback=initMap"></script> -->
 	<script src="../js/custom.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		var user = <%- JSON.stringify(user) %>;
+		var user = <% - JSON.stringify(user) %>;
 
 		mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
 
 		var map = new mapboxgl.Map({
 			container: 'map',
 			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [<%- user.coordinates %>],
+			center: [<% - user.coordinates %>],
 			zoom: 4
 		});
 
@@ -529,7 +530,7 @@
 
 		// make a marker for each feature and add to the map
 		new mapboxgl.Marker(el)
-			.setLngLat([<%- user.coordinates %>])
+			.setLngLat([<% - user.coordinates %>])
 			.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
 				.setHTML('<h3>' + "<%= user.title %>" + '</h3><p>' + "<%= user.about %>" + '</p>'))
 			.addTo(map);

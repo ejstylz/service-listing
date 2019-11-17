@@ -48,6 +48,7 @@
 									<div class="single_sp_wrapper">
 										<div class="sp_image">
 											<img src="<%= service[i].images[0].url %>" class="img-fluid" alt="" />
+
 										</div>
 										<div class="sp_title">
 											<h5><%= service[i].title %></h5>
@@ -92,7 +93,7 @@
 							<div class="upload_area">
 								<div class="form-group mb-2">
 									<input type="file" name="images" id="file-1" class="inputfile inputfile-1"
-										data-multiple-caption="{count} files selected" multiple />
+										data-multiple-caption="{count} files selected" multiple required />
 									<label for="file-1">
 										<div class="upload_fils">
 											<div class="icon">

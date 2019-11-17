@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const PortfolioSchema = new Schema({
     title: String,
-    Category: String,
+    category: String,
     description: String,
     images: [
         { url: String, public_id: String }

@@ -120,7 +120,7 @@ const UserSchema = new Schema({
     sundayTo: String,
     Purpose: String
 
-});
+}, { timestamps: true });
 
 UserSchema.plugin(passportLocalMongoose);
 

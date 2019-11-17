@@ -1266,5 +1266,66 @@ module.exports = {
         res.redirect("/company-dashboard/faq");
     },
 
+    async companyProfileShow(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let service = await Service.find().where("owner.id").equals(company._id).exec();
+        let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/company-profile', { title: 'Company Profile', company, service, mediaPhoto });
+    },
+
+    async companyProfileAbout(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let journey = await Journey.find().where("owner.id").equals(company._id).exec();
+        let certificate = await Certificate.find().where("owner.id").equals(company._id).exec();
+        let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/about', { title: 'Company Profile', company, journey, certificate, mediaPhoto });
+    },
+
+    async companyProfileMedia(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let photo = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
+        let video = await MediaVideo.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/media', { title: 'Company Profile', company, photo, video });
+    },
+
+    async companyProfileEmployee(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let employee = await Employee.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/employees', { title: 'Company Profile', company, employee });
+    },
+
+    async companyProfilePortfolio(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let portfolio = await Portfolio.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/portfolio', { title: 'Company Profile', company, portfolio });
+    },
+
+    async companyProfileServices(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let product = await Product.find().where("owner.id").equals(company._id).exec();
+        let service = await Service.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/services-products', { title: 'Company Profile', company, product, service });
+    },
+
+    async serviceDetails(req, res, next) {
+        let service = await Service.findById(req.params.id);
+        let company = await User.findById(service.owner.id);
+        let otherServices = await Service.find().where("owner.id").equals(company).exec();
+        res.render('show-pages/service-details', { title: 'Company Profile', service, company, otherServices });
+    },
+
+    async productDetails(req, res, next) {
+        let product = await Product.findById(req.params.id);
+        let company = await User.findById(product.owner.id);
+        let otherProducts = await Product.find().where("owner.id").equals(company).exec();
+        res.render('show-pages/product-details', { title: 'Company Profile', product, company, otherProducts });
+    },
+
+    async companyProfileFaq(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let faq = await Faq.find().where("owner.id").equals(company._id).exec();
+        res.render('show-pages/faq', { title: 'Company Profile', company, faq });
+    },
+
 
 };

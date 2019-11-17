@@ -72,7 +72,16 @@ const {
   deleteProduct,
   postFaq,
   putFaq,
-  deleteFaq
+  deleteFaq,
+  companyProfileShow,
+  companyProfileAbout,
+  companyProfileMedia,
+  companyProfileEmployee,
+  companyProfilePortfolio,
+  companyProfileServices,
+  serviceDetails,
+  productDetails,
+  companyProfileFaq
 } = require('../controllers');
 const { asyncErrorHandler,
   checkIfUserExists,
@@ -261,5 +270,34 @@ router.put('/services/:id', isLoggedIn, upload.array('images'), asyncErrorHandle
 
 /* Delete /portfolio */
 router.delete('/services/:id', isLoggedIn, asyncErrorHandler(deleteService));
+
+
+//SHOW PAGES
+/* GET company-profile */
+router.get('/company-profile/:id', asyncErrorHandler(companyProfileShow));
+
+/* GET company-profile/about */
+router.get('/company-profile/:id/about', asyncErrorHandler(companyProfileAbout));
+
+/* GET company-profile/media */
+router.get('/company-profile/:id/media', asyncErrorHandler(companyProfileMedia));
+
+/* GET company-profile/employee */
+router.get('/company-profile/:id/employees', asyncErrorHandler(companyProfileEmployee));
+
+/* GET company-profile/portfolio */
+router.get('/company-profile/:id/portfolio', asyncErrorHandler(companyProfilePortfolio));
+
+/* GET company-profile/services-products */
+router.get('/company-profile/:id/services-products', asyncErrorHandler(companyProfileServices));
+
+/* GET service*/
+router.get('/service/:id', asyncErrorHandler(serviceDetails));
+
+/* GET product*/
+router.get('/product/:id', asyncErrorHandler(productDetails));
+
+/* GET company-profile/faq */
+router.get('/company-profile/:id/faq', asyncErrorHandler(companyProfileFaq));
 
 module.exports = router;

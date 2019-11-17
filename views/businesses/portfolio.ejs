@@ -1,389 +1,388 @@
 <% layout('layouts/companyPortfolioBoilerplate') -%>
 
-	<% var alph = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] %>
-	<% var alpha = ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll", "mm", "nn", "oo", "pp", "qq", "rr", "ss", "tt", "uu", "vv", "wx", "xx", "yy", "zz"] %>
+<% var alph = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] %>
+<% var alpha = ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll", "mm", "nn", "oo", "pp", "qq", "rr", "ss", "tt", "uu", "vv", "wx", "xx", "yy", "zz"] %>
 
 
-	<section class="dashboard_banner">
-		<div class="overlay">
-			<div class="container">
-				<h1>Dashboard <b>/</b> <span>Portfolio</span></h1>
-			</div>
+<section class="dashboard_banner">
+	<div class="overlay">
+		<div class="container">
+			<h1>Dashboard <b>/</b> <span>Portfolio</span></h1>
 		</div>
-	</section>
+	</div>
+</section>
 
 
-	<section class="dashboard_middle">
-		<div class="container_gbz">
-			<div class="dashboard_media dashboard_wrap">
-				<div class="single_upload_area photo_upload">
-					<div class="single_part">
-						<h3>Upload & Manage Your Portfolio</h3>
-						<div class="inner_part">
-							<div class="row">
-								<div class="col-lg-3 col-md-4 col-sm-6">
-									<div class="dash_single_media add_new_media">
-										<div class="text-center">
-											<a class="" href="#addPortfolio" data-toggle="modal">
-												<i class="fa fa-plus" aria-hidden="true"></i>
-												<div class=""><span>Add Portfolio</span></div>
-											</a>
-										</div>
+<section class="dashboard_middle">
+	<div class="container_gbz">
+		<div class="dashboard_media dashboard_wrap">
+			<div class="single_upload_area photo_upload">
+				<div class="single_part">
+					<h3>Upload & Manage Your Portfolio</h3>
+					<div class="inner_part">
+						<div class="row">
+							<div class="col-lg-3 col-md-4 col-sm-6">
+								<div class="dash_single_media add_new_media">
+									<div class="text-center">
+										<a class="" href="#addPortfolio" data-toggle="modal">
+											<i class="fa fa-plus" aria-hidden="true"></i>
+											<div class=""><span>Add Portfolio</span></div>
+										</a>
 									</div>
 								</div>
-								<% for (var i = 0; i < portfolio.length; i++) { %>
-								<div class="col-lg-3 col-md-4 col-sm-6">
-									<div class="dash_single_media">
-										<div class="action_button">
-											<ul>
-												<li><a href="#<%= alph[i] %>" data-toggle="modal"><i title="Edit"
-															data-toggle="tooltip" class="fa fa-pencil-square-o"
-															aria-hidden="true"></i></a></li>
-												<li><a href="#<%= alpha[i] %>" data-toggle="modal"><i title="Delete"
-															data-toggle="tooltip" class="fa fa-trash-o"
-															aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-										<div class="certi_wrapper">
-											<div class="certi_image">
-												<img src="<%= portfolio[i].images[0].url %>" class="img-fluid" alt="" />
-											</div>
-											<div class="certi_info">
-												<h5><%= portfolio[i].title %></h5>
-											</div>
-										</div>
-									</div>
-								</div>
-								<% } %>
 							</div>
+							<% for (var i = 0; i < portfolio.length; i++) { %>
+							<div class="col-lg-3 col-md-4 col-sm-6">
+								<div class="dash_single_media">
+									<div class="action_button">
+										<ul>
+											<li><a href="#<%= alph[i] %>" data-toggle="modal"><i title="Edit"
+														data-toggle="tooltip" class="fa fa-pencil-square-o"
+														aria-hidden="true"></i></a></li>
+											<li><a href="#<%= alpha[i] %>" data-toggle="modal"><i title="Delete"
+														data-toggle="tooltip" class="fa fa-trash-o"
+														aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+									<div class="certi_wrapper">
+										<div class="certi_image">
+											<img src="<%= portfolio[i].images[0].url %>" class="img-fluid" alt="" />
+										</div>
+										<div class="certi_info">
+											<h5><%= portfolio[i].title %></h5>
+										</div>
+									</div>
+								</div>
+							</div>
+							<% } %>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 
 
-	<!-- Add Portfolio Modal Starts From Here -->
-	<div class="modal dash_port_modal dashboard_wrap fade" id="addPortfolio">
-		<div class="modal-dialog modal-lg modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3>Add New Portfolio</h3>
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
-							aria-hidden="true"></i></button>
-				</div>
-				<div class="modal-body">
-					<form action="/portfolio" method="POST" enctype="multipart/form-data">
-						<div class="form">
-							<div class="single_upload">
-								<div class="upload_header">
-									<h5>Upload Portfolio Photos/Videos</h5>
-								</div>
-								<div class="upload_area">
-									<div class="form-group mb-2">
-										<input type="file" name="images" id="file-1" class="inputfile inputfile-1"
-											data-multiple-caption="{count} files selected" multiple />
-										<label for="file-1">
-											<div class="upload_fils">
-												<div class="icon">
-													<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-												</div>
-												<h5>Drag & Drop a Photos Here <br /> or <br /> Click to Upload</h5>
-											</div>
-										</label>
-									</div>
-								</div>
+<!-- Add Portfolio Modal Starts From Here -->
+<div class="modal dash_port_modal dashboard_wrap fade" id="addPortfolio">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Add New Portfolio</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="/portfolio" method="POST" enctype="multipart/form-data">
+					<div class="form">
+						<div class="single_upload">
+							<div class="upload_header">
+								<h5>Upload Portfolio Photos/Videos</h5>
 							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<input type="text" name="title" placeholder="Enter a Portfolio Title"
-										class="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<select name="category" id="" class="form-control">
-										<option value="">---Select Category---</option>
-										<option value="">Indoor Work</option>
-										<option value="">Indoor Work</option>
-										<option value="">Vehicle Services</option>
-										<option value="">Other Services</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<textarea name="description" value="" placeholder="Write a Short Description..." id=""
-									cols="30" rows="3" class="form-control"></textarea>
-								<div class="form-text text-right">
-									<span>0/600</span>
-								</div>
-							</div>
-
-							<hr class="my-4" />
-
-							<div class="boxes_wrapper">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Time Period</h4>
-											<div class="box_inner">
-												<div class="form-group">
-													<label for="">Start Time:</label>
-													<input type="date" name="startTime" class="form-control" />
-												</div>
-												<div class="form-group mb-0">
-													<label for="">End Time:</label>
-													<input type="date" name="endTime" class="form-control" />
-												</div>
+							<div class="upload_area">
+								<div class="form-group mb-2">
+									<input type="file" name="images" id="file-1" class="inputfile inputfile-1"
+										data-multiple-caption="{count} files selected" multiple />
+									<label for="file-1">
+										<div class="upload_fils">
+											<div class="icon">
+												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 											</div>
+											<h5>Drag & Drop a Photos Here <br /> or <br /> Click to Upload</h5>
 										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Team Members</h4>
-											<div class="box_inner">
-												<div class="form-group mb-0">
-													<label for="">Number of Team Members:</label>
-													<input type="number" name="teamMembers" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Product Used</h4>
-											<div class="box_inner">
-												<div class="form">
-													<div class="form-row">
-														<div class="form-group col-9">
-															<input name="products" type="text"
-																placeholder="Type Product" class="form-control" />
-														</div>
-													</div>
-												</div>
-												<div class="added_items">
-
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Important Short Facts</h4>
-											<div class="box_inner">
-												<div class="form-group">
-													<label>Budget:</label>
-													<div class="dollar_input">
-														<input type="number" name="budget" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i> <i
-															class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-												<div class="form-group mb-0">
-													<label>Areas of Expertise Used:</label>
-													<input name="expertise" type="text" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
+									</label>
 								</div>
-							</div>
-
-							<div class="save_button text-right">
-								<button type="submit" class="btn btn-gbz-success">Save</button>
 							</div>
 						</div>
-					</form>
-				</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<input type="text" name="title" placeholder="Enter a Portfolio Title"
+									class="form-control" />
+							</div>
+							<div class="form-group col-md-6">
+								<select name="category" id="" class="form-control">
+									<option>---Select Category---</option>
+									<option>Indoor Work</option>
+									<option>Indoor Work</option>
+									<option>Vehicle Services</option>
+									<option>Other Services</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<textarea name="description" placeholder="Write a Short Description..." id="" cols="30"
+								rows="3" class="form-control"></textarea>
+							<div class="form-text text-right">
+								<span>0/600</span>
+							</div>
+						</div>
+
+						<hr class="my-4" />
+
+						<div class="boxes_wrapper">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Time Period</h4>
+										<div class="box_inner">
+											<div class="form-group">
+												<label for="">Start Time:</label>
+												<input type="date" name="startTime" class="form-control" />
+											</div>
+											<div class="form-group mb-0">
+												<label for="">End Time:</label>
+												<input type="date" name="endTime" class="form-control" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Team Members</h4>
+										<div class="box_inner">
+											<div class="form-group mb-0">
+												<label for="">Number of Team Members:</label>
+												<input type="number" name="teamMembers" class="form-control" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Product Used</h4>
+										<div class="box_inner">
+											<div class="form">
+												<div class="form-row">
+													<div class="form-group col-9">
+														<input name="products" type="text" placeholder="Type Product"
+															class="form-control" />
+													</div>
+												</div>
+											</div>
+											<div class="added_items">
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Important Short Facts</h4>
+										<div class="box_inner">
+											<div class="form-group">
+												<label>Budget:</label>
+												<div class="dollar_input">
+													<input type="number" name="budget" class="form-control" />
+													<i class="fa fa-usd" aria-hidden="true"></i> <i class="fa fa-usd"
+														aria-hidden="true"></i>
+												</div>
+											</div>
+											<div class="form-group mb-0">
+												<label>Areas of Expertise Used:</label>
+												<input name="expertise" type="text" class="form-control" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="save_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Save</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	<!-- Add Portfolio Modal Ends Here -->
+</div>
+<!-- Add Portfolio Modal Ends Here -->
 
 
 
-	<!-- Edit Portfolio Modal Starts From Here -->
-	<% for (var i = 0; i < portfolio.length; i++) { %>
-	<div class="modal dash_port_modal dashboard_wrap fade" id="<%= alph[i] %>">
-		<div class="modal-dialog modal-lg modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3>Edit Portfolio</h3>
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
-							aria-hidden="true"></i></button>
-				</div>
-				<div class="modal-body">
-					<form action="/portfolio/<%= portfolio[i].id %>?_method=PUT" method="POST"
-						enctype="multipart/form-data">
-						<div class="form">
-							<div class="single_upload">
-								<div class="upload_header">
-									<h5>Upload Portfolio Photos</h5>
-								</div>
-								<div class="upload_area">
-									<div class="form-group mb-2">
-										<input type="file" name="images" id="file-2" class="inputfile inputfile-1"
-											data-multiple-caption="{count} files selected" multiple />
-										<label for="file-2">
-											<div class="upload_fils">
-												<div class="icon">
-													<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-												</div>
-												<h5>Drag & Drop a Photos Here <br /> or <br /> Click to Upload</h5>
+<!-- Edit Portfolio Modal Starts From Here -->
+<% for (var i = 0; i < portfolio.length; i++) { %>
+<div class="modal dash_port_modal dashboard_wrap fade" id="<%= alph[i] %>">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Edit Portfolio</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="/portfolio/<%= portfolio[i].id %>?_method=PUT" method="POST"
+					enctype="multipart/form-data">
+					<div class="form">
+						<div class="single_upload">
+							<div class="upload_header">
+								<h5>Upload Portfolio Photos</h5>
+							</div>
+							<div class="upload_area">
+								<div class="form-group mb-2">
+									<input type="file" name="images" id="file-2" class="inputfile inputfile-1"
+										data-multiple-caption="{count} files selected" multiple />
+									<label for="file-2">
+										<div class="upload_fils">
+											<div class="icon">
+												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 											</div>
-										</label>
-									</div>
+											<h5>Drag & Drop a Photos Here <br /> or <br /> Click to Upload</h5>
+										</div>
+									</label>
 								</div>
 							</div>
-							<div class="uploaded_portfolio_photo">
-								<% for (var x = 0; x < portfolio[i].images.length; x++) { %>
-								<div class="single_uploaded_port">
-									<img src="<%= portfolio[i].images[x].url %>" class="img-fluid" alt="" />
-									<!-- <div class="overlay">
+						</div>
+						<div class="uploaded_portfolio_photo">
+							<% for (var x = 0; x < portfolio[i].images.length; x++) { %>
+							<div class="single_uploaded_port">
+								<img src="<%= portfolio[i].images[x].url %>" class="img-fluid" alt="" />
+								<!-- <div class="overlay">
 
 									</div> -->
-									<div class="action_button">
-										<input type="checkbox" name="deleteImages[]"
-											value="<%= portfolio[i].images[x].public_id %>">
-									</div>
-								</div>
-								<% } %>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<input type="text" name="title" placeholder="Enter a Portfolio Title"
-										value="<%= portfolio[i].title %>" class="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<select name="category" id="" class="form-control">
-										<option value="">Outdoor Work</option>
-										<option value="">Indoor Work</option>
-										<option value="">Vehicle Services</option>
-										<option value="">Other Services</option>
-									</select>
+								<div class="action_button">
+									<input type="checkbox" name="deleteImages[]"
+										value="<%= portfolio[i].images[x].public_id %>">
 								</div>
 							</div>
-							<div class="form-group">
-								<textarea name="description" value="" placeholder="Write a Short Description..." id=""
-									cols="30" rows="3" class="form-control"><%= portfolio[i].description %></textarea>
-								<div class="form-text text-right">
-									<span>0/600</span>
-								</div>
+							<% } %>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<input type="text" name="title" placeholder="Enter a Portfolio Title"
+									value="<%= portfolio[i].title %>" class="form-control" />
 							</div>
-
-							<hr class="my-4" />
-
-							<div class="boxes_wrapper">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Time Period</h4>
-											<div class="box_inner">
-												<div class="form-group">
-													<label for="">Start Time:</label>
-													<input type="date" name="startTime"
-														value="<%= portfolio[i].startTime %>" class="form-control" />
-												</div>
-												<div class="form-group mb-0">
-													<label for="">End Time:</label>
-													<input type="date" name="endTime"
-														value="<%= portfolio[i].endTime %>" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Team Members</h4>
-											<div class="box_inner">
-												<div class="form-group mb-0">
-													<label for="">Number of Team Members:</label>
-													<input type="number" name="teamMembers"
-														value="<%= portfolio[i].teamMembers %>" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Product Used</h4>
-											<div class="box_inner">
-												<div class="form">
-													<div class="form-row">
-														<div class="form-group col-9">
-															<input type="text" name="products"
-																placeholder="Type Product and Click Add"
-																class="form-control"
-																value="<%= portfolio[i].products %>" />
-														</div>
-
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="single_box">
-											<h4>Important Short Facts</h4>
-											<div class="box_inner">
-												<div class="form-group">
-													<label>Budget:</label>
-													<div class="dollar_input">
-														<input type="number" name="budget"
-															value="<%= portfolio[i].budget %>" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-												<div class="form-group mb-0">
-													<label>Areas of Expertise Used:</label>
-													<input type="text" name="expertise"
-														value="<%= portfolio[i].expertise %>" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="save_button text-right">
-								<button type="submit" class="btn btn-gbz-success">Save</button>
+							<div class="form-group col-md-6">
+								<select name="category" id="" class="form-control">
+									<option value="">Outdoor Work</option>
+									<option value="">Indoor Work</option>
+									<option value="">Vehicle Services</option>
+									<option value="">Other Services</option>
+								</select>
 							</div>
 						</div>
-					</form>
-				</div>
+						<div class="form-group">
+							<textarea name="description" value="" placeholder="Write a Short Description..." id=""
+								cols="30" rows="3" class="form-control"><%= portfolio[i].description %></textarea>
+							<div class="form-text text-right">
+								<span>0/600</span>
+							</div>
+						</div>
+
+						<hr class="my-4" />
+
+						<div class="boxes_wrapper">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Time Period</h4>
+										<div class="box_inner">
+											<div class="form-group">
+												<label for="">Start Time:</label>
+												<input type="date" name="startTime"
+													value="<%= portfolio[i].startTime %>" class="form-control" />
+											</div>
+											<div class="form-group mb-0">
+												<label for="">End Time:</label>
+												<input type="date" name="endTime" value="<%= portfolio[i].endTime %>"
+													class="form-control" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Team Members</h4>
+										<div class="box_inner">
+											<div class="form-group mb-0">
+												<label for="">Number of Team Members:</label>
+												<input type="number" name="teamMembers"
+													value="<%= portfolio[i].teamMembers %>" class="form-control" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Product Used</h4>
+										<div class="box_inner">
+											<div class="form">
+												<div class="form-row">
+													<div class="form-group col-9">
+														<input type="text" name="products"
+															placeholder="Type Product and Click Add"
+															class="form-control" value="<%= portfolio[i].products %>" />
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>Important Short Facts</h4>
+										<div class="box_inner">
+											<div class="form-group">
+												<label>Budget:</label>
+												<div class="dollar_input">
+													<input type="number" name="budget"
+														value="<%= portfolio[i].budget %>" class="form-control" />
+													<i class="fa fa-usd" aria-hidden="true"></i>
+												</div>
+											</div>
+											<div class="form-group mb-0">
+												<label>Areas of Expertise Used:</label>
+												<input type="text" name="expertise"
+													value="<%= portfolio[i].expertise %>" class="form-control" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="save_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Save</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	<% } %>
-	<!-- Edit Portfolio Modal Ends Here -->
+</div>
+<% } %>
+<!-- Edit Portfolio Modal Ends Here -->
 
-	<!-- Delete Portfolio Modal Starts From Here -->
-	<% for (var i = 0; i < portfolio.length; i++) { %>
-	<div class="modal dash_port_modal dashboard_wrap fade" id="<%= alpha[i] %>">
-		<div class="modal-dialog modal-lg modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3>Delete Portfolio</h3>
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
-							aria-hidden="true"></i></button>
-				</div>
-				<div class="modal-body">
-					<form action="/portfolio/<%= portfolio[i].id %>?_method=DELETE" method="POST"
-						enctype="multipart/form-data">
-						<div class="form">
-							<div class="single_upload">
-								<h5>Are you sure you want to delete this portfolio?</h5>
+<!-- Delete Portfolio Modal Starts From Here -->
+<% for (var i = 0; i < portfolio.length; i++) { %>
+<div class="modal dash_port_modal dashboard_wrap fade" id="<%= alpha[i] %>">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Delete Portfolio</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="/portfolio/<%= portfolio[i].id %>?_method=DELETE" method="POST"
+					enctype="multipart/form-data">
+					<div class="form">
+						<div class="single_upload">
+							<h5>Are you sure you want to delete this portfolio?</h5>
 
-							</div>
-
-							<div class="save_button text-right">
-								<button type="submit" class="btn btn-danger">Delete</button>
-							</div>
 						</div>
-					</form>
-				</div>
+
+						<div class="save_button text-right">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	<% } %>
-	<!-- Delete Portfolio Modal Ends Here -->
+</div>
+<% } %>
+<!-- Delete Portfolio Modal Ends Here -->
