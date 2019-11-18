@@ -471,7 +471,10 @@
 									<!--Slides-->
 									<div class="carousel-inner" role="listbox">
 										<div class="carousel-item active">
+											<% if (mediaPhoto[0]) { %>
 											<img src="<%= mediaPhoto[0].imageUrl %>" class="img-fluid" alt="" />
+											<% }; %>
+
 										</div>
 
 										<% for (var i = 1; i < mediaPhoto.length; i++) { %>
@@ -483,6 +486,7 @@
 									</div>
 									<!--/.Slides-->
 
+									<% if (mediaPhoto[0]) { %>
 									<ol class="carousel-indicators">
 										<li data-target="#carousel-thumb" data-slide-to="0" class="active">
 											<img src="<%= mediaPhoto[0].imageUrl %>" class="d-block w-100 img-fluid"
@@ -494,8 +498,9 @@
 												alt="" />
 										</li>
 										<% } %>
-
 									</ol>
+									<% } %>
+
 
 									<!--Controls-->
 									<a class="carousel-control-prev" href="#carousel-thumb" role="button"

@@ -680,12 +680,14 @@
 
                                     <!-- The slideshow -->
                                     <div class="carousel-inner">
+                                        <% if (mediaPhoto[0]) { %>
                                         <div class="carousel-item text-center active">
                                             <a class="lightcase" href="<%= mediaPhoto[0].imageUrl %>"
                                                 data-rel="lightcase:carousel">
                                                 <img src="<%= mediaPhoto[0].imageUrl %>" class="img-fluid" alt="" />
                                             </a>
                                         </div>
+                                        <%  }; %>
                                         <% for (var i = 1; i < mediaPhoto.length; i++) { %>
                                         <div class="carousel-item text-center">
                                             <a class="lightcase" href="<%= mediaPhoto[i].imageUrl %>"
