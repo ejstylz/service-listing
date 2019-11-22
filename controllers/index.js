@@ -1328,4 +1328,259 @@ module.exports = {
     },
 
 
+    //Services Pages Controllers
+
+    async garageServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Garage services").exec();
+        res.render('show-pages/garage-services', { title: 'Company Profile', user, company });
+    },
+
+    async roofingServies(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Roofing Services").exec();
+        res.render('show-pages/roofing-services', { title: 'Company Profile', user, company });
+    },
+
+    async landscapingServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Landscaping services").exec();
+        res.render('show-pages/landscaping-services', { title: 'Company Profile', user, company });
+    },
+
+    async pavingServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Paving services").exec();
+        res.render('show-pages/paving-services', { title: 'Company Profile', user, company });
+    },
+
+    async fencingServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Fencing services").exec();
+        res.render('show-pages/fencing-services', { title: 'Company Profile', user, company });
+    },
+
+    async junkRemoval(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Junk Removal").exec();
+        res.render('show-pages/junk-removal', { title: 'Company Profile', user, company });
+    },
+
+    async generalSiding(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("General Siding").exec();
+        res.render('show-pages/general-siding', { title: 'Company Profile', user, company });
+    },
+
+    async exteriorPainting(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Exterior Painting").exec();
+        res.render('show-pages/exterior-painting', { title: 'Company Profile', user, company });
+    },
+
+    async poolsSpas(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Pools, Spas and Hot Tubs").exec();
+        res.render('show-pages/pools-hot-tubes-spas', { title: 'Company Profile', user, company });
+    },
+
+    async masonryServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Masonry services").exec();
+        res.render('show-pages/masonry-services', { title: 'Company Profile', user, company });
+    },
+
+    async plumbingServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Plumbing Services").exec();
+        res.render('show-pages/plumbing-services', { title: 'Company Profile', user, company });
+    },
+
+    async hvacServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("HVAC Services").exec();
+        res.render('show-pages/hvac-services', { title: 'Company Profile', user, company });
+    },
+
+    async dryWallAndInsulation(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Dry Wall & Insulation").exec();
+        res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company });
+    },
+
+    async pestControl(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Pest Control").exec();
+        res.render('show-pages/pest-control', { title: 'Company Profile', user, company });
+    },
+
+    async generalCleaning(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("General cleaning").exec();
+        res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company });
+    },
+
+    async interiorPainting(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Interior Painting").exec();
+        res.render('show-pages/interior-painting', { title: 'Company Profile', user, company });
+    },
+
+    async windowDoorServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Window & Door Services").exec();
+        res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company });
+    },
+
+    async flooringServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Flooring Services").exec();
+        res.render('show-pages/flooring-services', { title: 'Company Profile', user, company });
+    },
+
+    async generalRemodeling(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("General Remodeling").exec();
+        res.render('show-pages/general-remodeling', { title: 'Company Profile', user, company });
+    },
+
+    async carpentersServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Carpenters Services").exec();
+        res.render('show-pages/carpenters-services', { title: 'Company Profile', user, company });
+    },
+
+    async towingServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Towing Services").exec();
+        res.render('show-pages/towing-services', { title: 'Company Profile', user, company });
+    },
+
+    async oilAndFluidExchange(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Oil & Fluid Exchange").exec();
+        res.render('show-pages/oil-and-fluid-exchange', { title: 'Company Profile', user, company });
+    },
+
+    async bodyShop(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Body Shop").exec();
+        res.render('show-pages/body-shop', { title: 'Company Profile', user, company });
+    },
+
+    async mufflersAndExhaust(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Mufflers & Exhaust Services").exec();
+        res.render('show-pages/mufflers-and-exhaust', { title: 'Company Profile', user, company });
+    },
+
+    async suspensionServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Suspension Services").exec();
+        res.render('show-pages/suspension-services', { title: 'Company Profile', user, company });
+    },
+
+    async brakeChange(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Brake Change").exec();
+        res.render('show-pages/brake-change', { title: 'Company Profile', user, company });
+    },
+
+    async alarmInstallation(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Alarm Installation").exec();
+        res.render('show-pages/alarm-installation', { title: 'Company Profile', user, company });
+    },
+
+    async engineDiagnostic(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Engine Diagnostic Services").exec();
+        res.render('show-pages/engine-diagnostic', { title: 'Company Profile', user, company });
+    },
+
+    async heatingAndCooling(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Heating & Cooling").exec();
+        res.render('show-pages/heating-and-cooling', { title: 'Company Profile', user, company });
+    },
+
+    async wheelAndTire(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Wheel & Tire Services").exec();
+        res.render('show-pages/wheel-and-tire', { title: 'Company Profile', user, company });
+    },
+
+    async checkEngineLight(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Check Engine Light").exec();
+        res.render('show-pages/check-engine-light', { title: 'Company Profile', user, company });
+    },
+
+    async batteryServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Battery Services").exec();
+        res.render('show-pages/battery-services', { title: 'Company Profile', user, company });
+    },
+
+    async windowTinting(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Window Tinting").exec();
+        res.render('show-pages/window-tinting', { title: 'Company Profile', user, company });
+    },
+
+    async generalHandyman(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("General Handyman").exec();
+        res.render('show-pages/general-handyman', { title: 'Company Profile', user, company });
+    },
+
+    async generalContractor(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("General Contractor").exec();
+        res.render('show-pages/general-contractor', { title: 'Company Profile', user, company });
+    },
+
+    async electricalServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Electrical Services").exec();
+        res.render('show-pages/electrical-services', { title: 'Company Profile', user, company });
+    },
+
+    async movingServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Moving Services").exec();
+        res.render('show-pages/moving-services', { title: 'Company Profile', user, company });
+    },
+
+    async buildingSecurity(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Building Security").exec();
+        res.render('show-pages/building-security', { title: 'Company Profile', user, company });
+    },
+
+    async demolitionServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Demolition Services").exec();
+        res.render('show-pages/demolition-services', { title: 'Company Profile', user, company });
+    },
+
+    async applianceRepairs(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Appliance Repairs & Installation").exec();
+        res.render('show-pages/appliance-repairs', { title: 'Company Profile', user, company });
+    },
+
+    async locksmithServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Locksmith Services").exec();
+        res.render('show-pages/locksmith-services', { title: 'Company Profile', user, company });
+    },
+
+    async fleetServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("serviceCategory").equals("Fleet Services").exec();
+        res.render('show-pages/fleet-services', { title: 'Company Profile', user, company });
+    },
+
+
 };

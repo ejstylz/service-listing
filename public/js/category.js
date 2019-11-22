@@ -14,7 +14,7 @@ service.onchange = function () {
     } else if (service.value === "Indoor Work") {
         $("#category").html("<option>--Select Service Category--</option> <option>Plumbing Services</option> <option>HVAC Services</option> <option>Dry Wall & Insulation</option> <option>Pest Control</option> <option>General cleaning</option> <option>Interior Painting</option> <option>Window & Door Services</option> <option>Flooring Services</option> <option>General Remodeling</option> <option>Carpenters Services</option>");
     } else if (service.value === "Vehicle Services") {
-        $("#category").html("<option>--Select Service Category--</option> <option>Towing Services</option> <option>Oil & Fluid Exchange</option> <option>Body Shop</option> <option>Mufflers & Exhaust Services</option> <option>Suspension Services</option> <option>Brake Change</option> <option>Alarm Installation</option> <option>Engine Diagnostic Services</option> <option>Heating & Cooling</option> <option>Wheel & Tire Services</option> <option>Check Engine Light</option> <option>Battery Services</option> <option>Window Tinting</option>");
+        $("#category").html("<option>--Select Service Category--</option> <option>Towing Services</option> <option>Oil & Fluid Exchange</option> <option>Body Shop</option> <option>Mufflers & Exhaust Services</option> <option>Suspension Services</option> <option>Brake Change</option> <option>Alarm Installation</option> <option>Engine Diagnostic Services</option> <option>Heating & Cooling</option> <option>Wheel & Tire Services</option> <option>Check Engine Light</option> <option>Fleet Services</option> <option>Battery Services</option> <option>Window Tinting</option>");
     } else if (service.value === "Other Services") {
         $("#category").html("<option>--Select Service Category--</option> <option>General Handyman</option> <option>General Contractor</option> <option>Electrical Services</option> <option>Moving Services</option> <option>Building Security</option> <option>Demolition Services</option> <option>Appliance Repairs & Installation</option> <option>Locksmith Services</option>");
     } else {
@@ -148,6 +148,9 @@ category.onchange = function () {
     }
     else if (category.value === "Window Tinting") {
         $(".filters").html("<option>Window Tinting</option>");
+    }
+    else if (category.value === "Fleet Services") {
+        $(".filters").html("<option>Fleet Services</option>");
     }
     else if (category.value === "General Handyman") {
         $(".filters").html("<option>Repairs</option> <option>Maintenance</option> <option>Painting</option> <option>Installation</option> <option>Assembly</option> <option>Cleaning</option> <option>Other</option> <option>Need to talk to a pro</option> <option>Doors</option> <option>Walls</option> <option>Cabinets</option> <option>Molding or baseboards</option> <option>Tiling</option> <option>Plumbing</option> <option>Lighting</option> <option>Furniture</option> <option>Windows</option> <option>Gutters</option> <option>Shelving</option> <option>Flooring</option> <option>Appliances</option> <option>Electrical</option> <option>Wall hanging</option> <option>Other</option>");
