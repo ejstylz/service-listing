@@ -974,7 +974,7 @@
 
                     <div class="col-md-7 px-0 services_mapps_wrapper services_map_for_desktop_only">
                         <!--The div element for the map -->
-                        <div id="services-page-large-map"></div>
+                        <div id="large-map"></div>
                     </div>
                 </div>
             </div>
@@ -1003,7 +1003,7 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div id="services-page-large-map-mobile"></div>
+                    <div id="large-map-mobile"></div>
                     <div class="need_list_button">
                         <button type="button" class="btn" data-dismiss="modal"><i class="fa fa-list"
                                 aria-hidden="true"></i> List</button>
@@ -1709,6 +1709,8 @@
     <script src="../js/ion.rangeSlider.min.js" type="text/javascript"></script>
     <script src="../js/lightcase.js" type="text/javascript"></script>
     <script src="../js/read_more.js" type="text/javascript"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2IfLxIJDmARP7GZMuA1Vjn5KTgBWCSjs&callback=initMap"></script>
     <script src="../js/services-map.js" type="text/javascript"></script>
@@ -1778,6 +1780,66 @@
 
 
     </script>
+
+  <% if(company.length){ %>
+    <script type="text/javascript">
+        var user = <%- JSON.stringify(company) %>;
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
+
+        var map = new mapboxgl.Map({
+            container: 'large-map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [<%- company[0].coordinates %>],
+            zoom: 4
+        });
+
+        var map2 = new mapboxgl.Map({
+            container: 'large-map-mobile',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [<%- company[0].coordinates %>],
+            zoom: 4
+        });
+
+        // code from the next step will go here!
+
+        // add markers to map
+
+        // create a HTML element for each feature
+        var el2 = document.createElement('div');
+        el2.className = 'marker';
+
+
+        // make a marker for each feature and add to the map
+        <% company.forEach(function(company, i){ %>
+          new mapboxgl.Marker(el2)
+              .setLngLat([<%- company.coordinates %>])
+              .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                  .setHTML('<div id="mapInfoBoxContent" class="col-md-12">' + '<div id="firstHeading" class="logo_wrapper">'+ '<img src="<%= company.logo %>" alt="logo">' + '</div>'+ '<h4 class="company_title">'+ "<%= company.companyName %>" +'</h4>'+ '<div id="bodyContent">' + '<p>'+  '<h6 class="address_text mb-0">' + '<b>' + "Address:" + '</b>' + "<%= company.location %>" + '</h6>' +'</p>'+ '<p>'+ '<ul class="footer_buttons">' + '<li>' + '<a class="btn btn-gbz-success" href="#company<%= i %>" data-toggle="modal">' + "Message" + '</a>' + '</li>' + '<li>'+ '<a class="btn btn-gbz-success mt-2 ml-2" href="/company-profile/<%= company._id %>">'+ "More" + '</a>' + '<li>' + '</ul>'+'</p>'+ '</div>'+ '</div>'))
+              .addTo(map2);
+          map2.addControl(new mapboxgl.NavigationControl());
+          map2.addControl(new mapboxgl.FullscreenControl());
+
+
+          // create a HTML element for each feature
+          var el = document.createElement('div');
+          el.className = 'marker';
+
+
+          // make a marker for each feature and add to the map
+          new mapboxgl.Marker(el)
+              .setLngLat([<%- company.coordinates %>])
+              .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                  .setHTML('<div id="mapInfoBoxContent" class="col-md-12">' + '<div id="firstHeading" class="logo_wrapper">'+ '<img src="<%= company.logo %>" alt="logo">' + '</div>'+ '<h4 class="company_title">'+ "<%= company.companyName %>" +'</h4>'+ '<div id="bodyContent">' + '<p>'+  '<h6 class="address_text mb-0">' + '<b>' + "Address:" + '</b>' + "<%= company.location %>" + '</h6>' +'</p>'+ '<p>'+ '<ul class="footer_buttons">' + '<li>' + '<a class="btn btn-gbz-success" href="#company<%= i %>" data-toggle="modal">' + "Message" + '</a>' + '</li>' + '<li>'+ '<a class="btn btn-gbz-success mt-2 ml-2" href="/company-profile/<%= company._id %>">'+ "More" + '</a>' + '<li>' + '</ul>'+'</p>'+ '</div>'+ '</div>'))
+              .addTo(map);
+          map.addControl(new mapboxgl.NavigationControl());
+          map.addControl(new mapboxgl.FullscreenControl());
+        <% }); %>
+
+    </script>
+  <% } %>
+
+
 </body>
 
 </html>

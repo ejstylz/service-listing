@@ -526,7 +526,7 @@
                                 <div class="single_part mt-0">
                                     <div class="location_info">
                                         <!--The div element for the map -->
-                                        <div id="company-profile-map-mobile"></div>
+                                        <div id="map2"></div>
 
                                         <ul>
                                             <li><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Address:</b>
@@ -881,7 +881,7 @@
                         <div class="single_part">
                             <div class="location_info location_info_desktop_only">
                                 <!--The div element for the map -->
-                                <div id="company-profile-map"></div>
+                                <div id="map"></div>
 
                                 <ul>
                                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Address:</b>
@@ -968,13 +968,7 @@
                             </div>
                         </div>
 
-                        <div class="single_part">
-                            <div class="dash_travel_mile">
-                                <!-- Travel Mile Radius Map -->
-                                <div id="map"></div>
 
-                            </div>
-                        </div>
 
                         <div class="single_part">
                             <div class="services_area">
@@ -1554,46 +1548,6 @@
     <script src="../js/read_more.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        // Initialize and add the map
-        function initMap() {
-            // The location of located
-            var located = { lat: 41.8333925, lng: -88.0121551 };
-            // The map, centered at located
-            var map = new google.maps.Map(
-                document.getElementById('company-profile-map'), { zoom: 9, center: located });
-            // The marker, positioned at located
-            var marker = new google.maps.Marker({
-                position: located,
-                map: map,
-                title: 'Company Name',
-            });
-
-            // The location of located
-            var located = { lat: 41.8333925, lng: -88.0121551 };
-            // The map, centered at located
-            var map = new google.maps.Map(
-                document.getElementById('company-profile-map-mobile'), { zoom: 9, center: located });
-            // The marker, positioned at located
-            var marker = new google.maps.Marker({
-                position: located,
-                map: map,
-                title: 'Company Name',
-            });
-
-
-            // The location of travelmile
-            var travelmile = { lat: 39.7642547, lng: -104.9951974 };
-            // The map, centered at travelmile
-            var travelmilemap = new google.maps.Map(
-                document.getElementById('travel-mile-map'), { zoom: 9, center: travelmile });
-            // The marker, positioned at travelmile
-            var marker = new google.maps.Marker({
-                position: travelmile,
-                map: travelmilemap,
-                title: 'Company Name',
-            });
-
-        }
 
 
         // For Slider Popups
@@ -1626,14 +1580,21 @@
 
     </script>
     <script type="text/javascript">
-        var user = <% - JSON.stringify(company) %>;
+        var user = <%- JSON.stringify(company) %>;
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
 
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<% - company.coordinates %>],
+            center: [<%- company.coordinates %>],
+            zoom: 4
+        });
+
+        var map2 = new mapboxgl.Map({
+            container: 'map2',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [<%- company.coordinates %>],
             zoom: 4
         });
 
@@ -1641,16 +1602,31 @@
 
         // add markers to map
 
+        // create a HTML element for each feature
+        var el2 = document.createElement('div');
+        el2.className = 'marker';
+
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el2)
+            .setLngLat([<%- company.coordinates %>])
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML('<h3>' + "<%= company.title %>" + '</h3><p>' + "<%= company.about %>" + '</p>'))
+            .addTo(map2);
+        map2.addControl(new mapboxgl.NavigationControl());
+        map2.addControl(new mapboxgl.FullscreenControl());
+
 
         // create a HTML element for each feature
         var el = document.createElement('div');
         el.className = 'marker';
 
+
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el)
-            .setLngLat([<% - company.coordinates %>])
+            .setLngLat([<%- company.coordinates %>])
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                .setHTML('<h3>' + "<%= company.title %>" + '</h3><p>' + "<%= company.about %>" + '</p>'))
+            .setHTML('<h3>' + '<a  href="/company-profile/<%= company._id %>">' + "<%= company.companyName %>" + '</a>' + '</h3><p>' + "<%= company.about %>" + '</p>'))
             .addTo(map);
         map.addControl(new mapboxgl.NavigationControl());
         map.addControl(new mapboxgl.FullscreenControl());
