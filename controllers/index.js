@@ -471,7 +471,7 @@ module.exports = {
         } = req.body;
 
         if (about) user.about = req.body.about;
-        if (purpose) user.purpose = req.body.purpose;
+        if (purpose) user.Purpose = req.body.purpose;
 
         // save the updated user into the db
         await user.save();
