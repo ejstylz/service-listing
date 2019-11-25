@@ -579,7 +579,7 @@
                                         <li><i class="fa fa-location-arrow" aria-hidden="true"></i>
                                             <span>Location:</span> <b><%= company.location %></b></li>
                                         <li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
-                                            <b>Apr 2018</b></li>
+                                            <b><%= moment(company.createdAt).format("MMM YY") %></b></li>
                                         <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Number of
                                                 Likes:</span> <b>N/A</b></li>
                                     </ul>
@@ -664,7 +664,7 @@
                                     <li><i class="fa fa-location-arrow" aria-hidden="true"></i>
                                         <span>Location:</span> <b><%= company.location %></b></li>
                                     <li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
-                                        <b>Apr 2018</b></li>
+                                        <b><%= moment(company.createdAt).format("MMM YYYY") %></b></li>
                                     <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Number of
                                             Likes:</span> <b>N/A</b></li>
                                 </ul>
@@ -812,18 +812,18 @@
                         <div class="contact_us single_part contact_us_desktop_only">
                             <div class="contact_us_inner">
                                 <h4>Contact Us</h4>
-                                <form action="">
+                                <form action="/company-contact" method="POST">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="First Name">
+                                                <input type="text" name="firstName" class="form-control" placeholder="First Name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name">
+                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name">
                                             </div>
                                         </div>
                                     </div>
@@ -831,13 +831,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="email" name="email" class="form-control" placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="tel" class="form-control" placeholder="Phone">
+                                                <input type="tel" name="phone" class="form-control" placeholder="Phone">
                                             </div>
                                         </div>
                                     </div>
@@ -846,14 +846,14 @@
                                             <div class="form-group">
                                                 <label>Reason for Contact</label>
                                                 <select class="form-control">
-                                                    <option>Reason for Contact</option>
+                                                  <input type="text" name="reason" class="form-control" placeholder="Phone">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Address">
+                                                <input type="text" name="address" class="form-control" placeholder="Address">
                                             </div>
                                         </div>
                                     </div>
@@ -861,7 +861,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Comments</label>
-                                                <textarea name="" id="" cols="30" rows="3"
+                                                <textarea name="comment" cols="30" rows="3"
                                                     class="form-control"></textarea>
                                             </div>
                                         </div>
@@ -1588,14 +1588,14 @@
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [<%- company.coordinates %>],
-            zoom: 4
+            zoom: 12
         });
 
         var map2 = new mapboxgl.Map({
             container: 'map2',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [<%- company.coordinates %>],
-            zoom: 4
+            zoom: 7
         });
 
         // code from the next step will go here!

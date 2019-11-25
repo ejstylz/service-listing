@@ -44,4 +44,18 @@ module.exports = {
         return res.redirect('/company-sign-up4');
     },
 
+    isCompany: async (req, res, next) => {
+        let user = req.user;
+        if (user.isCompany) return next();
+        req.session.error = "You don't have permission to view that page";
+        return res.redirect('back');
+    },
+
+    isMember: async (req, res, next) => {
+        let user = req.user;
+        if (!user.isCompany) return next();
+        req.session.error = "You don't have permission to view that page";
+        return res.redirect('back');
+    },
+
 };

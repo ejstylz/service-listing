@@ -49,7 +49,7 @@ const UserSchema = new Schema({
     coordinates: Array,
     website: String,
     slogan: String,
-    products: [String],
+    productsUsed: [String],
     tags: [String],
     reviews: [
         {

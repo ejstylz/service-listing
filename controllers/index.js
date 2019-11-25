@@ -397,6 +397,12 @@ module.exports = {
         res.render('businesses/dashboard', { title: 'Dashboard | Home', user });
     },
 
+    //GET /dashboard
+    getMemberProfile(req, res, next) {
+        let member = req.user;
+        res.render('members/profile', { title: 'Your Profile', member });
+    },
+
     //GET /login
     getLogin(req, res, next) {
         res.render('visitors/login', { title: 'Login' });
@@ -1271,6 +1277,27 @@ module.exports = {
         let service = await Service.find().where("owner.id").equals(company._id).exec();
         let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         res.render('show-pages/company-profile', { title: 'Company Profile', company, service, mediaPhoto });
+    },
+
+    async companyContact(req, res, next) {
+        let company = await User.findById(req.params.id);
+        const msg = {
+            to: company.email,
+            from: 'GABAZZO <no-reply@gbazzo.com>',
+            subject: 'GABAZZO Contact Form',
+            text: `First Name: ${req.body.firstName}
+                   Last Name: ${req.body.lastName}
+                   Email: ${req.body.email}
+                   Phone Number: ${req.body.phone}
+                   Reason For Contact: ${req.body.reason}
+                   Address: ${req.body.address}
+                   Comment: ${req.body.comment}`.replace(/				/g, ''),
+        };
+
+        await sgMail.send(msg);
+
+        req.session.success = `Email Sent`;
+        res.redirect('back');
     },
 
     async companyProfileAbout(req, res, next) {
