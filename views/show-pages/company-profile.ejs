@@ -74,8 +74,7 @@
                         <a class="nav-link" href="/login">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-gbz-success join_butotn"
-                            href="/sign-up">Join</a>
+                        <a class="nav-link btn btn-outline-gbz-success join_butotn" href="/sign-up">Join</a>
                     </li>
                 </ul>
             </div>
@@ -352,8 +351,7 @@
                     </li>
                     <li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer
                                 Help Center</span></a></li>
-                    <li><a href="/" target="_self"><i
-                                class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+                    <li><a href="/" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </div>
@@ -378,8 +376,7 @@
                     </li>
                     <li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer
                                 Help Center</span></a></li>
-                    <li><a href="/" target="_self"><i
-                                class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+                    <li><a href="/" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </div>
@@ -528,14 +525,14 @@
 
                                         <div class="social_area">
                                             <ul>
-                                              <li><a href="<%= company.facebookUrl %>" data-target="_blank"><i
-                                                          class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                              <li><a href="<%= company.twitterUrl %>" data-target="_blank"><i
-                                                          class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                              <li><a href="<%= company.linkedinUrl %>" data-target="_blank"><i
-                                                          class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                              <li><a href="<%= company.instagramUrl %>" data-target="_blank"><i
-                                                          class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                                <li><a href="<%= company.facebookUrl %>" data-target="_blank"><i
+                                                            class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="<%= company.twitterUrl %>" data-target="_blank"><i
+                                                            class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="<%= company.linkedinUrl %>" data-target="_blank"><i
+                                                            class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                <li><a href="<%= company.instagramUrl %>" data-target="_blank"><i
+                                                            class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                             </ul>
                                         </div>
 
@@ -609,7 +606,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Thu</td>
-                                                    <td><%= company.thurdayFrom %></td>
+                                                    <td><%= company.thursdayFrom %></td>
                                                     <td><%= company.thursdayTo %></td>
                                                 </tr>
                                                 <tr>
@@ -798,13 +795,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" name="firstName" class="form-control" placeholder="First Name">
+                                                <input type="text" name="firstName" class="form-control"
+                                                    placeholder="First Name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name">
+                                                <input type="text" name="lastname" class="form-control"
+                                                    placeholder="Last Name">
                                             </div>
                                         </div>
                                     </div>
@@ -812,7 +811,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                                <input type="email" name="email" class="form-control"
+                                                    placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -827,14 +827,16 @@
                                             <div class="form-group">
                                                 <label>Reason for Contact</label>
                                                 <select class="form-control">
-                                                  <input type="text" name="reason" class="form-control" placeholder="Phone">
+                                                    <input type="text" name="reason" class="form-control"
+                                                        placeholder="Phone">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" name="address" class="form-control" placeholder="Address">
+                                                <input type="text" name="address" class="form-control"
+                                                    placeholder="Address">
                                             </div>
                                         </div>
                                     </div>
@@ -1457,8 +1459,7 @@
                     <div class="col-md-3">
                         <div class="single_part footer_logo_part">
                             <div class="footer_logo">
-                                <a href="/"><img src="../images/gabazzo_logo_white.png" class="img-fluid"
-                                        alt="" /></a>
+                                <a href="/"><img src="../images/gabazzo_logo_white.png" class="img-fluid" alt="" /></a>
                             </div>
                             <ul>
                                 <li>Chicago, IL 60623-1325</li>
@@ -1561,21 +1562,21 @@
 
     </script>
     <script type="text/javascript">
-        var user = <%- JSON.stringify(company) %>;
+        var user = <% - JSON.stringify(company) %>;
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
 
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<%- company.coordinates %>],
+            center: [<% - company.coordinates %>],
             zoom: 12
         });
 
         var map2 = new mapboxgl.Map({
             container: 'map2',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<%- company.coordinates %>],
+            center: [<% - company.coordinates %>],
             zoom: 7
         });
 
@@ -1590,7 +1591,7 @@
 
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el2)
-            .setLngLat([<%- company.coordinates %>])
+            .setLngLat([<% - company.coordinates %>])
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML('<h3>' + "<%= company.title %>" + '</h3><p>' + "<%= company.about %>" + '</p>'))
             .addTo(map2);
@@ -1605,9 +1606,9 @@
 
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el)
-            .setLngLat([<%- company.coordinates %>])
+            .setLngLat([<% - company.coordinates %>])
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML('<h3>' + '<a  href="/company-profile/<%= company._id %>">' + "<%= company.companyName %>" + '</a>' + '</h3><p>' + "<%= company.about %>" + '</p>'))
+                .setHTML('<h3>' + '<a  href="/company-profile/<%= company._id %>">' + "<%= company.companyName %>" + '</a>' + '</h3><p>' + "<%= company.about %>" + '</p>'))
             .addTo(map);
         map.addControl(new mapboxgl.NavigationControl());
         map.addControl(new mapboxgl.FullscreenControl());
