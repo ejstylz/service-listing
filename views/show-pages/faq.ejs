@@ -35,13 +35,13 @@
                     <img src="/images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
                     <img src="/images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
                 </a>
-				
+
 				<div class="services_menu_bar">
 					<button class="navbar-toggler services_responsive_bar border-0" type="button" data-toggle="collapse" data-target="#responsive-bar">
 						<div class="animated-icon1"><span></span><span></span><span></span> <b class="">Services</b></div>
 					</button>
 				</div>
-				
+
 				<div class="members_menu_bar">
 					<ul class="navbar-nav mr-sm-0 align-items-center text-center flex-row">
 						<li>
@@ -59,21 +59,21 @@
 							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 						</div>
                     </form>
-					
+
                     <ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../new-visitors/become-a-seller-overview.html">Become a Seller</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../new-visitors/sign-in.html">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-gbz-success join_butotn" href="../new-visitors/sign-up-as-a-member.html">Join</a>
-                        </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/login">Sign In</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link btn btn-outline-gbz-success join_butotn"
+                              href="/sign-up">Join</a>
                     </ul>
                 </div>
             </nav>
-			
+
             <nav class="navbar main_navbar navbar-expand-lg bottombar">
                 <div class="collapse nav_item_wrap navbar-collapse" id="responsive-bar">
                     <ul class="nav navbar-nav">
@@ -323,14 +323,14 @@
                 </div>
             </nav>
         </header>
-		
+
 		<section class="main_search_bar_mobile">
 			<div class="search_bar">
 				<input type="search" placeholder="Search...." />
 				<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			</div>
 		</section>
-		
+
 		<!-- My Account SideMenu For Desktop -->
 		<div class="" id="myAcContents">
 			<div id="dismissMyAcActionLink">
@@ -352,7 +352,7 @@
 			</div>
 		</div>
 		<!-- My Account SideMenu For Desktop -->
-		
+
 		<!-- My Account SideMenu For Mobile -->
 		<div class="" id="myAcContentsMB">
 			<div id="dismissMyAcActionLinkMB">
@@ -420,7 +420,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="company_nav company_nav_for_desktop_only">
 						<ul>
 							<li><a href="/company-profile/<%= company._id %>">Home</a></li>
@@ -436,7 +436,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<div class="company_nav_for_mobile_only">
 			<div class="container_gbz">
 				<div class="horizontal_mobile_menu">
@@ -453,11 +453,11 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="cp_banner_bottom">
 
 		</div>
-		
+
 		<section class="cp_like_share_breadcrumb">
 			<div class="container_gbz">
 				<div class="row">
@@ -498,13 +498,13 @@
 						<h5>Welcome to <%= company.companyName%>'s FAQ's</h5>
 						<h6>Where you can find a quick solution for your questions. Please select from the topics below.</h6>
 					</div>
-								
+
 					<div class="row bottom_part">
 						<div class="col-md-12">
 							<div class="single_faqs_part">
-								<h3>FAQ's</h3>		
-								<div class="business_faqs">	
-                                    <% faq.forEach(function(faq) { %>	
+								<h3>FAQ's</h3>
+								<div class="business_faqs">
+                                    <% faq.forEach(function(faq) { %>
 									<div class="set">
 										<a href="#">
 											<%= faq.question %>
@@ -515,7 +515,7 @@
 										</div>
                                     </div>
                                     <% }); %>
-                                    
+
 								</div>
 							</div>
 						</div>
@@ -524,7 +524,7 @@
 				<!-- This is The Main Row -->
 			</div>
 		</section>
-        
+
 		<!-- Message Seller Modal Starts From Here -->
 		<div class="modal message_seller_modal fade" id="findMessageSeller">
 			<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -635,7 +635,7 @@
                 </div>
             </div>
         </footer>
-		
+
         <footer class="footer_top">
 			<div class="container">
 				<div class="upper_part">
@@ -790,7 +790,7 @@
 				</div>
 			</div>
 		</footer>
-		
+
         <footer class="main_footer">
             <div class="container">
                 <p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
@@ -803,7 +803,7 @@
 		<script src="/js/jquery.nicescroll.min.js" type="text/javascript"></script>
         <script src="/js/custom.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			
+
 			$(document).ready(function(){
 			  $(".set > a").on("click", function(){
 				if($(this).hasClass('active')){
@@ -821,7 +821,7 @@
 
 			  });
 			});
-			
+
 			$('.set > a').click(function(e)
 			{
 				// Special stuff to do when this link is clicked...
@@ -829,8 +829,8 @@
 				// Cancel the default action
 				e.preventDefault();
 			});
-			
+
 		</script>
-		
+
     </body>
 </html>

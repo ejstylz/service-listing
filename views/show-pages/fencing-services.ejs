@@ -71,15 +71,14 @@
 
 					<ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="../new-visitors/become-a-seller-overview.html">Become a Seller</a>
+								<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="../new-visitors/sign-in.html">Sign In</a>
+								<a class="nav-link" href="/login">Sign In</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link btn btn-outline-gbz-success join_butotn"
-								href="../new-visitors/sign-up-as-a-member.html">Join</a>
-						</li>
+								<a class="nav-link btn btn-outline-gbz-success join_butotn"
+										href="/sign-up">Join</a>
 					</ul>
 				</div>
 			</nav>
@@ -1221,14 +1220,14 @@
             container: 'large-map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [<%- company[0].coordinates %>],
-            zoom: 4
+            zoom: 7
         });
 
         var map2 = new mapboxgl.Map({
             container: 'large-map-mobile',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [<%- company[0].coordinates %>],
-            zoom: 4
+            zoom: 7
         });
 
         // code from the next step will go here!
