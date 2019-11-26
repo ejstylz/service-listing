@@ -400,7 +400,13 @@ module.exports = {
     //GET /dashboard
     getMemberProfile(req, res, next) {
         let member = req.user;
-        res.render('members/profile', { title: 'Your Profile', member });
+        let percentage = 0;
+        if (member.isEmailVerified || member.isFacebookVerified) {
+            percentage = 50;
+        } else if (member.isEmailVerified && member.isFacebookVerified) {
+            percentage = 100;
+        }
+        res.render('members/profile', { title: 'Your Profile', member, percentage });
     },
 
     //GET /login
