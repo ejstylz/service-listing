@@ -1562,21 +1562,21 @@
 
     </script>
     <script type="text/javascript">
-        var user = <% - JSON.stringify(company) %>;
+        var user = <%- JSON.stringify(company) %>;
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
 
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<% - company.coordinates %>],
+            center: [<%- company.coordinates %>],
             zoom: 12
         });
 
         var map2 = new mapboxgl.Map({
             container: 'map2',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<% - company.coordinates %>],
+            center: [<%- company.coordinates %>],
             zoom: 7
         });
 
@@ -1591,7 +1591,7 @@
 
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el2)
-            .setLngLat([<% - company.coordinates %>])
+            .setLngLat([<%- company.coordinates %>])
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML('<h3>' + "<%= company.title %>" + '</h3><p>' + "<%= company.about %>" + '</p>'))
             .addTo(map2);
@@ -1606,7 +1606,7 @@
 
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el)
-            .setLngLat([<% - company.coordinates %>])
+            .setLngLat([<%- company.coordinates %>])
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML('<h3>' + '<a  href="/company-profile/<%= company._id %>">' + "<%= company.companyName %>" + '</a>' + '</h3><p>' + "<%= company.about %>" + '</p>'))
             .addTo(map);

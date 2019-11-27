@@ -24,6 +24,7 @@ const UserSchema = new Schema({
     serviceCategory: String,
     isFacebookVerified: { type: Boolean, default: false },
     isEmailVerified: { type: Boolean, default: false },
+    isPhoneVerified: { type: Boolean, default: false },
     isCompany: { type: Boolean, default: false },
     verifyToken: String,
     verifyTokenExpires: Date,
