@@ -111,7 +111,7 @@ module.exports = {
         let image = await cloudinary.v2.uploader.upload(req.file.path);
         let response = await geocodingClient
             .forwardGeocode({
-                query: req.body.location,
+                query: req.body.location + req.body.city + req.body.state,
                 limit: 1
             })
             .send();
