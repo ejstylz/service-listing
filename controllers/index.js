@@ -219,19 +219,13 @@ module.exports = {
     async userUpdate(req, res, next) {
         // find the user by id
         const user = req.user;
-
-        // let images = await cloudinary.v2.uploader.upload([{
-        //     name: 'logo', maxCount: 1
-        // }, {
-        //     name: 'profilePicture', maxCount: 1
-        // }]);
         console.log(req.file);
 
         // check if location was updated
         if (req.body.location && req.body.location !== user.location) {
             let response = await geocodingClient
                 .forwardGeocode({
-                    query: req.body.location,
+                    query: req.body.location + req.body.city + req.body.state,
                     limit: 1
                 })
                 .send();

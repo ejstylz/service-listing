@@ -555,7 +555,7 @@
                                         <li><i class="fa fa-at" aria-hidden="true"></i> <span> Username:</span>
                                             <b>@<%= company.username %></b></li>
                                         <li><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                                            <span>Location:</span> <b><%= company.location %></b></li>
+                                            <span>Location:</span> <b><%= company.location %>, <%= company.city %>, <%= company.state %></b></li>
                                         <li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
                                             <b><%= moment(company.createdAt).format("MMM YY") %></b></li>
                                         <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Number of
@@ -640,7 +640,7 @@
                                     <li><i class="fa fa-at" aria-hidden="true"></i> <span> Username:</span>
                                         <b>@<%= company.username %></b></li>
                                     <li><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                                        <span>Location:</span> <b><%= company.location %></b></li>
+                                        <span>Location:</span> <b><%= company.location %>, <%= company.city %>, <%= company.state %></b></li>
                                     <li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
                                         <b><%= moment(company.createdAt).format("MMM YYYY") %></b></li>
                                     <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Number of
@@ -868,7 +868,7 @@
 
                                 <ul>
                                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Address:</b>
-                                        <span><%= company.location %></span></li>
+                                        <span><%= company.location %>, <%= company.city %>, <%= company.state %></span></li>
                                     <li><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>
                                         <span><%= company.phoneNumber %></span></li>
                                     <li><i class="fa fa-globe" aria-hidden="true"></i> <b>Website:</b> <span><a
