@@ -232,6 +232,12 @@
 			<div class="modal-body">
 				<form action="/products/<%= product[i].id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 					<div class="form">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<input type="text" name="title" value="<%= product[i].title %>" class="form-control"
+									placeholder="Enter Product Title" />
+							</div>
+						</div>
 						<div class="single_upload">
 							<div class="upload_header">
 								<h5>Upload Product Related Photos/Videos <small>(Max: 10 Items)</small></h5>
