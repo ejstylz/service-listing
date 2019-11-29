@@ -17,7 +17,7 @@
 	<link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
 	<link href="../css/responsive.css" rel="stylesheet" type="text/css" />
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -71,14 +71,13 @@
 
 					<ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
 						<li class="nav-item">
-								<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
+							<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
 						</li>
 						<li class="nav-item">
-								<a class="nav-link" href="/login">Sign In</a>
+							<a class="nav-link" href="/login">Sign In</a>
 						</li>
 						<li class="nav-item">
-								<a class="nav-link btn btn-outline-gbz-success join_butotn"
-										href="/sign-up">Join</a>
+							<a class="nav-link btn btn-outline-gbz-success join_butotn" href="/sign-up">Join</a>
 					</ul>
 				</div>
 			</nav>
@@ -448,7 +447,26 @@
 													<span class="online">- Online</span>
 												</div>
 												<div class="business_hours">
+													<%   let d = new Date(); %>
+													<% if (d.getDay() === 0) { %>
+													<h4><%= company.sundayFrom %> - <%= company.sundayTo %></h4>
+													<% } else if(d.getDay() === 1) { %>
+													<h4><%= company.mondayFrom %> - <%= company.mondayTo %></h4>
+													<% } else if (d.getDay() === 2) { %>
+													<h4><%= company.tuesdayFrom %> - <%= company.tuesdayTo %></h4>
+													<% } else if (d.getDay() === 3) { %>
+													<h4><%= company.wednesdayFrom %> - <%= company.wednesdayTo %></h4>
+													<% } else if (d.getDay() === 4) { %>
+													<h4><%= company.thursdayFrom %> - <%= company.thursdayTo %></h4>
+													<% } else if (d.getDay() === 5) { %>
+													<h4><%= company.fridayFrom %> - <%= company.fridayTo %></h4>
+													<% } else if (d.getDay() === 6) { %>
+													<h4><%= company.fridayFrom %> - <%= company.fridayTo %></h4>
+													<% } else if (d.getDay() === 7) { %>
+													<h4><%= company.saturdayFrom %> - <%= company.saturdayTo %></h4>
+													<% } else { %>
 													<h4>8 AM - 5 PM</h4>
+													<% } %>
 												</div>
 												<h6>Address: <span><%= company.location %></span></h6>
 											</div>
@@ -1019,8 +1037,7 @@
 					<div class="col-md-3">
 						<div class="single_part footer_logo_part">
 							<div class="footer_logo">
-								<a href="/"><img src="../images/gabazzo_logo_white.png" class="img-fluid"
-										alt="" /></a>
+								<a href="/"><img src="../images/gabazzo_logo_white.png" class="img-fluid" alt="" /></a>
 							</div>
 							<ul>
 								<li>Chicago, IL 60623-1325</li>
@@ -1118,62 +1135,62 @@
 
 	</script>
 	<% if(company.length){ %>
-    <script type="text/javascript">
-        var user = <%- JSON.stringify(company) %>;
+	<script type="text/javascript">
+		var user = <%- JSON.stringify(company) %>;
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
+		mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
 
-        var map = new mapboxgl.Map({
-            container: 'large-map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<%- company[0].coordinates %>],
-            zoom: 7
-        });
+		var map = new mapboxgl.Map({
+			container: 'large-map',
+			style: 'mapbox://styles/mapbox/streets-v11',
+			center: [<%- company[0].coordinates %>],
+			zoom: 7
+		});
 
-        var map2 = new mapboxgl.Map({
-            container: 'large-map-mobile',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [<%- company[0].coordinates %>],
-            zoom: 7
-        });
+		var map2 = new mapboxgl.Map({
+			container: 'large-map-mobile',
+			style: 'mapbox://styles/mapbox/streets-v11',
+			center: [<%- company[0].coordinates %>],
+			zoom: 7
+		});
 
-        // code from the next step will go here!
+		// code from the next step will go here!
 
-        // add markers to map
+		// add markers to map
 
-        // create a HTML element for each feature
-        var el2 = document.createElement('div');
-        el2.className = 'marker';
+		// create a HTML element for each feature
+		var el2 = document.createElement('div');
+		el2.className = 'marker';
 
 
         // make a marker for each feature and add to the map
-        <% company.forEach(function(company, i){ %>
-          new mapboxgl.Marker(el2)
-              .setLngLat([<%- company.coordinates %>])
-              .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                  .setHTML('<div id="mapInfoBoxContent" class="col-md-12">' + '<div id="firstHeading" class="logo_wrapper">'+ '<img src="<%= company.logo %>" alt="logo">' + '</div>'+ '<h4 class="company_title">'+ "<%= company.companyName %>" +'</h4>'+ '<div id="bodyContent">' + '<p>'+  '<h6 class="address_text mb-0">' + '<b>' + "Address:" + '</b>' + "<%= company.location %>" + '</h6>' +'</p>'+ '<p>'+ '<ul class="footer_buttons">' + '<li>' + '<a class="btn btn-gbz-success" href="#company<%= i %>" data-toggle="modal">' + "Message" + '</a>' + '</li>' + '<li>'+ '<a class="btn btn-gbz-success mt-2 ml-2" href="/company-profile/<%= company._id %>">'+ "More" + '</a>' + '<li>' + '</ul>'+'</p>'+ '</div>'+ '</div>'))
-              .addTo(map2);
-          map2.addControl(new mapboxgl.NavigationControl());
-          map2.addControl(new mapboxgl.FullscreenControl());
+        <% company.forEach(function (company, i) { %>
+			new mapboxgl.Marker(el2)
+				.setLngLat([<%- company.coordinates %>])
+				.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+					.setHTML('<div id="mapInfoBoxContent" class="col-md-12">' + '<div id="firstHeading" class="logo_wrapper">' + '<img src="<%= company.logo %>" alt="logo">' + '</div>' + '<h4 class="company_title">' + "<%= company.companyName %>" + '</h4>' + '<div id="bodyContent">' + '<p>' + '<h6 class="address_text mb-0">' + '<b>' + "Address:" + '</b>' + "<%= company.location %>" + '</h6>' + '</p>' + '<p>' + '<ul class="footer_buttons">' + '<li>' + '<a class="btn btn-gbz-success" href="#company<%= i %>" data-toggle="modal">' + "Message" + '</a>' + '</li>' + '<li>' + '<a class="btn btn-gbz-success mt-2 ml-2" href="/company-profile/<%= company._id %>">' + "More" + '</a>' + '<li>' + '</ul>' + '</p>' + '</div>' + '</div>'))
+				.addTo(map2);
+			map2.addControl(new mapboxgl.NavigationControl());
+			map2.addControl(new mapboxgl.FullscreenControl());
 
 
-          // create a HTML element for each feature
-          var el = document.createElement('div');
-          el.className = 'marker';
+			// create a HTML element for each feature
+			var el = document.createElement('div');
+			el.className = 'marker';
 
 
-          // make a marker for each feature and add to the map
-          new mapboxgl.Marker(el)
-              .setLngLat([<%- company.coordinates %>])
-              .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                  .setHTML('<div id="mapInfoBoxContent" class="col-md-12">' + '<div id="firstHeading" class="logo_wrapper">'+ '<img src="<%= company.logo %>" alt="logo">' + '</div>'+ '<h4 class="company_title">'+ "<%= company.companyName %>" +'</h4>'+ '<div id="bodyContent">' + '<p>'+  '<h6 class="address_text mb-0">' + '<b>' + "Address:" + '</b>' + "<%= company.location %>" + '</h6>' +'</p>'+ '<p>'+ '<ul class="footer_buttons">' + '<li>' + '<a class="btn btn-gbz-success" href="#company<%= i %>" data-toggle="modal">' + "Message" + '</a>' + '</li>' + '<li>'+ '<a class="btn btn-gbz-success mt-2 ml-2" href="/company-profile/<%= company._id %>">'+ "More" + '</a>' + '<li>' + '</ul>'+'</p>'+ '</div>'+ '</div>'))
-              .addTo(map);
-          map.addControl(new mapboxgl.NavigationControl());
-          map.addControl(new mapboxgl.FullscreenControl());
+			// make a marker for each feature and add to the map
+			new mapboxgl.Marker(el)
+				.setLngLat([<%- company.coordinates %>])
+				.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+					.setHTML('<div id="mapInfoBoxContent" class="col-md-12">' + '<div id="firstHeading" class="logo_wrapper">' + '<img src="<%= company.logo %>" alt="logo">' + '</div>' + '<h4 class="company_title">' + "<%= company.companyName %>" + '</h4>' + '<div id="bodyContent">' + '<p>' + '<h6 class="address_text mb-0">' + '<b>' + "Address:" + '</b>' + "<%= company.location %>" + '</h6>' + '</p>' + '<p>' + '<ul class="footer_buttons">' + '<li>' + '<a class="btn btn-gbz-success" href="#company<%= i %>" data-toggle="modal">' + "Message" + '</a>' + '</li>' + '<li>' + '<a class="btn btn-gbz-success mt-2 ml-2" href="/company-profile/<%= company._id %>">' + "More" + '</a>' + '<li>' + '</ul>' + '</p>' + '</div>' + '</div>'))
+				.addTo(map);
+			map.addControl(new mapboxgl.NavigationControl());
+			map.addControl(new mapboxgl.FullscreenControl());
         <% }); %>
 
-    </script>
-  <% } %>
+	</script>
+	<% } %>
 </body>
 
 </html>
