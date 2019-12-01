@@ -38,6 +38,104 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
 
+    //GET /
+    async getHomePage(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find();
+        res.render('index', { title: 'GABAZZO', user, company });
+    },
+
+    search(req, res, next) {
+        let search = req.body.service;
+        if (search === "Roofing Services") {
+            res.redirect("/services/roofing-services");
+        } else if (search === "Landscaping Services") {
+            res.redirect("/services/landscaping-services");
+        } else if (search === "Paving Services") {
+            res.redirect("/services/paving-services");
+        } else if (search === "Fencing Services") {
+            res.redirect("/services/fencing-services")
+        } else if (search === "Junk Removal") {
+            res.redirect("/services/junk-removal")
+        } else if (search === "General Siding") {
+            res.redirect("/services/general-siding")
+        } else if (search === "Exterior Painting") {
+            res.redirect("/services/exterior-painting")
+        } else if (search === "Garage Services") {
+            res.redirect("/services/garage-services")
+        } else if (search === "Pools, Spas and Hot Tubs") {
+            res.redirect("/services/pools-hot-tubes-spas")
+        } else if (search === "Masonry Services") {
+            res.redirect("/services/masonry-services")
+        } else if (search === "Plumbing Services") {
+            res.redirect("/services/plumbing-services")
+        } else if (search === "HVAC Services") {
+            res.redirect("/services/hvac-services")
+        } else if (search === "Dry Wall & Insulation") {
+            res.redirect("/services/drywall-and-insulation")
+        } else if (search === "Pest Control") {
+            res.redirect("/services/pest-control")
+        } else if (search === "General Cleaning") {
+            res.redirect("/services/general-cleaning")
+        } else if (search === "Interior Painting") {
+            res.redirect("/services/interior-painting")
+        } else if (search === "Window & Door Services") {
+            res.redirect("/services/window-and-door-services")
+        } else if (search === "Flooring Services") {
+            res.redirect("/services/flooring-services")
+        } else if (search === "General Remodeling") {
+            res.redirect("/services/general-remodeling")
+        } else if (search === "Carpenters Services") {
+            res.redirect("/services/carpenters-services")
+        } else if (search === "Towing Services") {
+            res.redirect("/services/towing-services")
+        } else if (search === "Oil & Fluid Exchange") {
+            res.redirect("/services/oil-and-fluid-exchange")
+        } else if (search === "Body Shop") {
+            res.redirect("/services/body-shop")
+        } else if (search === "Mufflers & Exhaust Services") {
+            res.redirect("/services/mufflers-and-exhaust")
+        } else if (search === "Suspension Services") {
+            res.redirect("/services/suspension-services")
+        } else if (search === "Brake Change") {
+            res.redirect("/services/brake-change")
+        } else if (search === "Alarm Installation") {
+            res.redirect("/services/alarm-installation")
+        } else if (search === "Engine Diagnostic Services") {
+            res.redirect("/services/engine-diagnostic")
+        } else if (search === "Heating & Cooling") {
+            res.redirect("/services/heating-and-cooling")
+        } else if (search === "Wheel & Tire Services") {
+            res.redirect("/services/wheel-and-tire")
+        } else if (search === "Check Engine Light") {
+            res.redirect("/services/check-engine-light")
+        } else if (search === "Battery Services") {
+            res.redirect("/services/battery-services")
+        } else if (search === "Window Tinting") {
+            res.redirect("/services/window-tinting")
+        } else if (search === "Fleet Services") {
+            res.redirect("/services/fleet-services")
+        } else if (search === "General Handyman") {
+            res.redirect("/services/general-handyman")
+        } else if (search === "General Contractor") {
+            res.redirect("/services/general-contractor")
+        } else if (search === "Electrical Services") {
+            res.redirect("/services/electrical-services")
+        } else if (search === "Moving Services") {
+            res.redirect("/services/moving-services")
+        } else if (search === "Building Security") {
+            res.redirect("/services/building-security")
+        } else if (search === "Demolition Services") {
+            res.redirect("/services/demolition-services")
+        } else if (search === "Appliance Repairs & Installation") {
+            res.redirect("/services/appliance-repairs")
+        } else if (search === "Locksmith Services") {
+            res.redirect("/services/locksmith-services")
+        } else {
+            res.redirect("back")
+        }
+    },
+
     //GET /become-a-seller-overview
     getSellerOverview(req, res, next) {
         res.render('visitors/become-a-seller-overview', { title: 'Seller Overview' });

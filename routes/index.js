@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage, fileFilter: imageFilter });
 const {
+  getHomePage,
   postSignUp,
   postLogin,
   getLogout,
@@ -125,7 +126,8 @@ const {
   locksmithServices,
   fleetServices,
   getMemberProfile,
-  companyContact
+  companyContact,
+  search
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -138,9 +140,10 @@ const {
 } = require('../middleware');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'GABAZZO' });
-});
+router.get('/', asyncErrorHandler(getHomePage));
+
+/* GET search. */
+router.post('/pages', search);
 
 /* GET seller-overview */
 router.get('/become-a-seller-overview', getSellerOverview);
