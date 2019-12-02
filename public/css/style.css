@@ -2401,7 +2401,7 @@ html[data-lc-type="video"] #lightcase-content .lightcase-contentInner{
 .cp_middle_content .left_content .basic_info ul li{
 	list-style:none;
 	margin:10px 0px;
-	color:#666666;'
+	color:#666666;
 	font-family:'Roboto', sans-serif;
 	font-weight:400;
 	font-size:16px;
@@ -3320,7 +3320,7 @@ html[data-lc-type="video"] #lightcase-content .lightcase-contentInner{
 .cp_split_reviews .single_review .like_unlike small{
 	font-family:'Roboto', sans-serif;
 	font-weight:300;
-	color:#a4a4a;
+	color: #a4a4a;
 }
 .cp_split_reviews .single_review .like_unlike > ul{
 	margin-bottom:0px;
@@ -10012,7 +10012,7 @@ Company Profile Services/Products Details Ends
 .members_profile .basic_info ul li{
 	list-style:none;
 	margin:10px 0px;
-	color:#666666;'
+	color:#666666;
 	font-family:'Roboto', sans-serif;
 	font-weight:400;
 	font-size:14px;
@@ -12124,7 +12124,7 @@ Company Profile Services/Products Details Ends
 	font-family: 'Open Sans', sans-serif;
 	font-weight:600;
 	font-size:60px;
-	text-align:center;\
+	text-align:center;
 	margin-bottom:0px;
 }
 .blog_middle_part{
