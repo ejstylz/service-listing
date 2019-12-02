@@ -56,12 +56,12 @@
 				</div>
 
                 <div class="collapse nav_item_wrap navbar-collapse" id="navb">
-                    <form class="form-inline mr-auto main_search_bar_desktop">
-						<div class="search_bar">
-							<input type="search" placeholder="Search...." />
-							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-						</div>
-                    </form>
+                  <form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages" method="POST">
+                    <div class="search_bar autocomplete">
+                      <input id="myInput" name="service" type="text" placeholder="Search...." />
+                      <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                  </form>
 
                     <ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
                       <li class="nav-item">
@@ -327,12 +327,14 @@
             </nav>
         </header>
 
-		<section class="main_search_bar_mobile">
-			<div class="search_bar">
-				<input type="search" placeholder="Search...." />
-				<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-			</div>
-		</section>
+        <section class="main_search_bar_mobile">
+          <form autocomplete="off" action="/pages" method="POST">
+            <div class="search_bar autocomplete">
+              <input id="myInput2" name="service" type="text" placeholder="Search...." />
+              <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+          </form>
+        </section>
 
 		<!-- My Account SideMenu For Desktop -->
 		<div class="" id="myAcContents">
@@ -1045,14 +1047,15 @@
 
 
 
-        <script src="/js/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="/js/classie.js" type="text/javascript"></script>
+    <script src="/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="/js/classie.js" type="text/javascript"></script>
 		<script src="/js/lightcase.js" type="text/javascript"></script>
 		<script src="/js/lightslider.min.js" type="text/javascript"></script>
 		<script src="/js/owl.carousel.min.js" type="text/javascript"></script>
 		<script src="/js/jquery.custom-file-input.js" type="text/javascript"></script>
-        <script src="/js/custom.js" type="text/javascript"></script>
+    <script src="../js/autocomplete.js" type="text/javascript"></script>
+    <script src="/js/custom.js" type="text/javascript"></script>
 		<script type="text/javascript">
 
     var homeServices = $(".other_services_wrap .owl-carousel");

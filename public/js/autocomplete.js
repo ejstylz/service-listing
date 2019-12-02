@@ -104,4 +104,5 @@ var services = [
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), services);
+autocomplete(document.getElementById("myInput2"), services);
 
