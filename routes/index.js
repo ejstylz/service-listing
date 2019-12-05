@@ -80,6 +80,7 @@ const {
   companyProfileEmployee,
   companyProfilePortfolio,
   companyProfileServices,
+  companyProfileReviews,
   serviceDetails,
   productDetails,
   companyProfileFaq,
@@ -127,7 +128,13 @@ const {
   fleetServices,
   getMemberProfile,
   companyContact,
-  search
+  search,
+  createReview,
+  reviewReply,
+  getForgotPw,
+  putForgotPw,
+  getReset,
+  putReset
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -300,7 +307,7 @@ router.delete('/portfolio/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteP
 /* GET /dashboard/products */
 router.get('/company-dashboard/products', isLoggedIn, isCompany, asyncErrorHandler(getProducts));
 
-/* POST /services */
+/* POST /products */
 router.post('/products', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(postProduct));
 
 /* PUT /products */
@@ -310,7 +317,10 @@ router.put('/products/:id', isLoggedIn, isCompany, upload.array('images'), async
 router.delete('/products/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteProduct));
 
 /* GET /dashboard/reviews */
-router.get('/company-dashboard/reviews', isCompany, isLoggedIn, getReviews);
+router.get('/company-dashboard/reviews', isLoggedIn, isCompany, asyncErrorHandler(getReviews));
+
+/* PUT /review */
+router.put('/review/:id', isLoggedIn, isCompany, asyncErrorHandler(reviewReply));
 
 /* GET /dashboard/services */
 router.get('/company-dashboard/services', isLoggedIn, isCompany, asyncErrorHandler(getServices));
@@ -344,6 +354,12 @@ router.get('/company-profile/:id/employees', asyncErrorHandler(companyProfileEmp
 
 /* GET company-profile/portfolio */
 router.get('/company-profile/:id/portfolio', asyncErrorHandler(companyProfilePortfolio));
+
+/* GET company-profile/reviews */
+router.get('/company-profile/:id/reviews', asyncErrorHandler(companyProfileReviews));
+
+/* POST /reviews */
+router.post('/create-review/:id', isLoggedIn, upload.array('images'), asyncErrorHandler(createReview));
 
 /* GET company-profile/services-products */
 router.get('/company-profile/:id/services-products', asyncErrorHandler(companyProfileServices));
@@ -482,5 +498,17 @@ router.get('/services/fleet-services', asyncErrorHandler(fleetServices));
 
 /* GET services/roofing-services */
 router.get('/services/roofing-services', asyncErrorHandler(roofingServies));
+
+/* GET forgot */
+router.get('/forgot-password', getForgotPw);
+
+/* PUT forgot */
+router.put('/forgot-password', asyncErrorHandler(putForgotPw));
+
+/* GET /reset/:token */
+router.get('/reset/:token', asyncErrorHandler(getReset));
+
+/* PUT /reset/:token */
+router.put('/reset/:token', asyncErrorHandler(putReset));
 
 module.exports = router;

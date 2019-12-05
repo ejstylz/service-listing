@@ -3281,7 +3281,6 @@ html[data-lc-type="video"] #lightcase-content .lightcase-contentInner{
 .cp_split_reviews .single_review{
 	padding:15px 0px;
 	border-bottom:1px solid #DEDEDE;
-	background:url(../images/man.png) no-repeat;
 	background-position:left top 15px;
 	background-size:40px 40px;
 	padding-left:50px;
@@ -6630,7 +6629,6 @@ Company Profile Services/Products Details Ends
 }
 .dashboard_reviews .single_review{
 	padding:15px;
-	background:url(../images/man.png) no-repeat;
 	background-position:left 15px top 15px;
 	background-size:40px 40px;
 	padding-left:70px;

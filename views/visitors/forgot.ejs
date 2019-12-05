@@ -1,0 +1,27 @@
+<% layout('layouts/loginBoilerplate') -%>
+
+<section class="registration_form">
+    <div class="container_gbz">
+        <div class="">
+            <div class="sign_in_wrap">
+                <div class="form_wrapper">
+                    <form action="/forgot-password?_method=PUT" method="POST">
+                        <div class="form">
+                            <p>A link to reset your password will be sent to your email. Check in Your spam folder also.
+                            </p>
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="text" name="email" placeholder="Your Email" required
+                                    class="form-control" />
+                            </div>
+
+                            <div class="create_account_button mt-0">
+                                <button type="submit" class="btn btn-gbz-success d-block">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

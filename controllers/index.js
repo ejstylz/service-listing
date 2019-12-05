@@ -5,6 +5,7 @@ const MediaVideo = require('../models/mediaVideo');
 const Certificate = require('../models/certificate');
 const Employee = require('../models/employee');
 const Portfolio = require('../models/portfolio');
+const Review = require('../models/review');
 const Service = require('../models/service');
 const Product = require('../models/product');
 const Faq = require('../models/faq');
@@ -1068,9 +1069,37 @@ module.exports = {
     },
 
     //GET /company-dashboard/reviews
-    getReviews(req, res, next) {
+    async getReviews(req, res, next) {
         let user = req.user;
-        res.render('businesses/reviews', { title: 'Dashboard | Reviews' });
+        let review = await Review.find().where("owner.id").equals(user._id).exec();
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review);
+        res.render('businesses/reviews', { title: 'Dashboard | Reviews', review, average });
+    },
+
+    //Reply Review
+    async reviewReply(req, res, next) {
+        let review = await Review.findById(req.params.id);
+
+        const {
+            reply
+        } = req.body;
+
+        if (reply) review.reply = req.body.reply;
+
+        await review.save();
+        req.session.success = "Reply Successful";
+        // redirect to show page
+        res.redirect("back");
     },
 
     //GET /company-dashboard/services
@@ -1432,6 +1461,98 @@ module.exports = {
         res.render('show-pages/services-products', { title: 'Company Profile', company, product, service });
     },
 
+    async companyProfileReviews(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let review = await Review.find().where("owner.id").equals(company._id).exec();
+        let fiveReview = [];
+        let fourReview = [];
+        let threeReview = [];
+        let twoReview = [];
+        let oneReview = [];
+        await review.forEach(function (review) {
+            if (review.rating === 5) {
+                fiveReview.push(review)
+            }
+            if (review.rating === 4) {
+                fourReview.push(review)
+            }
+            if (review.rating === 3) {
+                threeReview.push(review)
+            }
+            if (review.rating === 2) {
+                twoReview.push(review)
+            }
+            if (review.rating === 1) {
+                oneReview.push(review)
+            }
+        });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review);
+        res.render('show-pages/reviews',
+            {
+                title: 'Company Profile',
+                review,
+                company,
+                average,
+                fiveReview,
+                fourReview,
+                threeReview,
+                twoReview,
+                oneReview
+            });
+    },
+
+    //Create Review
+    async createReview(req, res, next) {
+        req.body.images = [];
+        // find the user
+        const user = req.user;
+        const company = await User.findById(req.params.id);
+        const owner = {
+            id: company._id,
+            username: company.username
+        }
+        const author = {
+            id: user._id,
+            username: user.username
+        }
+
+        for (const file of req.files) {
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            req.body.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
+        }
+
+        const newReview = new Review({
+            text: req.body.text,
+            author: author,
+            rating: req.body.rating,
+            owner: owner,
+            images: req.body.images,
+        });
+
+        // save the updated journey into the db
+        let review = await Review.create(newReview);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log(review);
+        req.session.success = "Review successfully created!";
+        // redirect to show page
+        res.redirect("back");
+    },
+
     async serviceDetails(req, res, next) {
         let service = await Service.findById(req.params.id);
         let company = await User.findById(service.owner.id);
@@ -1705,6 +1826,92 @@ module.exports = {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("Fleet Services").exec();
         res.render('show-pages/fleet-services', { title: 'Company Profile', user, company });
+    },
+
+    // GET /forgot-password
+    getForgotPw(req, res, next) {
+        res.render('visitors/forgot');
+    },
+
+    //PUT /forgot-password
+    async putForgotPw(req, res, next) {
+        const token = await crypto.randomBytes(20).toString('hex');
+
+        const user = await User.findOne({ email: req.body.email })
+        if (!user) {
+            req.session.error = 'No account with that email address exists.';
+            return res.redirect('/forgot-password');
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        await user.save();
+
+        const msg = {
+            to: user.email,
+            from: 'GABAZZO <no-reply@gabazzo.com>',
+            subject: 'GABAZZO - Forgot Password / Reset',
+            text: `You are receiving this because you (or someone else) have requested the reset of the password for your account with Username: ${user.username}.
+				Please click on the following link, or copy and paste it into your browser to complete the process:
+				http://${req.headers.host}/reset/${token}
+				If you did not request this, please ignore this email and your password will remain unchanged.`.replace(/				/g, ''),
+        };
+
+        await sgMail.send(msg);
+
+        req.session.success = `An e-mail has been sent to ${user.email} with further instructions. Check in your spam folder also`;
+        res.redirect('/forgot-password');
+    },
+
+    //GET /reset
+    async getReset(req, res, next) {
+        const { token } = req.params;
+        const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } })
+        if (!user) {
+            req.session.error = 'Password reset token is invalid or has expired.';
+            return res.redirect('/forgot-password');
+        }
+        res.render('visitors/reset', { token });
+    },
+
+    // PUT /reset
+    async putReset(req, res, next) {
+        const { token } = req.params;
+        const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } });
+
+        if (!user) {
+            req.session.error = 'Password reset token is invalid or has expired.';
+            return res.redirect(`/reset/${token}`);
+        }
+
+        if (req.body.password === req.body.confirm) {
+            await user.setPassword(req.body.password);
+            user.resetPasswordToken = null;
+            user.resetPasswordExpires = null;
+            await user.save();
+            const login = util.promisify(req.login.bind(req));
+            await login(user);
+        } else {
+            req.session.error = 'Passwords do not match.';
+            return res.redirect(`/reset/${token}`);
+        }
+
+        const msg = {
+            to: user.email,
+            from: 'GABAZZO <no-reply@gabazzo.com>',
+            subject: 'GABAZZO - Password Changed',
+            text: `Hello, This email is to confirm that the password for your account has just been changed.
+			  If you did not make this change, please hit reply and notify us at once.`.replace(/		  	/g, '')
+        };
+
+        await sgMail.send(msg);
+
+        if (!user.isCompany) {
+            res.redirect('/');
+        } else {
+            res.redirect('/company-dashboard');
+        }
     },
 
 

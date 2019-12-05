@@ -119,7 +119,9 @@ const UserSchema = new Schema({
     saturdayTo: String,
     sundayFrom: String,
     sundayTo: String,
-    Purpose: String
+    Purpose: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 
 }, { timestamps: true });
 
