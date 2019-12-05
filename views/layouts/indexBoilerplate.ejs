@@ -87,8 +87,11 @@
 									<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
 									<li class="nav-item my_account my_account_for_desktop mx-2">
 										<a class="nav-link" id="myAcActionLink" href="javascript:void(0)">
-											<img src="<%= currentUser.profilePicture %>" alt="" class="img-fluid mr-1"/>
-											My Account
+											<% if (currentUser.isCompany === true) { %>
+												<img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+												<% } else if (currentUser.isCompany === false) { %>
+													<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+											<% } %>	My Account
 										</a>
 									</li>
 								</ul>
@@ -109,8 +112,11 @@
 									<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
 										<li class="nav-item my_account_for_mobile">
 											<a class="nav-link" id="myAcActionLinkMB" href="javascript:void(0)">
-												<img src="<%= currentUser.profilePicture %>" style="width:30px;" alt="" class="img-fluid mr-1"/>
-											</a>
+												<% if (currentUser.isCompany === true) { %>
+													<img src="<%= currentUser.logo %>" style="width:30px;" class="profile-photo" alt="">
+													<% } else if (currentUser.isCompany === false) { %>
+														<img src="<%= currentUser.profilePicture %>" style="width:30px;" class="profile-photo" alt="">
+												<% } %>											</a>
 										</li>
 										<li>
 											<button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
@@ -532,7 +538,11 @@
 				</div>
 				<div class="my_account_menu">
 					<div class="top_part">
-						<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+						<% if (currentUser.isCompany === true) { %>
+						<img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+						<% } else if (currentUser.isCompany === false) { %>
+							<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+						<% } %>
 						<div class="profile_name">Hi <%= currentUser.username %></div>
 					</div>
 					<div class="bottom_part">
@@ -554,8 +564,11 @@
 				</div>
 				<div class="my_account_menu">
 					<div class="top_part">
-						<img src="../images/man.png" class="profile-photo" alt="">
-						<div class="profile_name">Hi <%= currentUser.username %></div>
+						<% if (currentUser.isCompany === true) { %>
+							<img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+							<% } else if (currentUser.isCompany === false) { %>
+								<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+						<% } %>						<div class="profile_name">Hi <%= currentUser.username %></div>
 					</div>
 					<div class="bottom_part">
 						<ul>
