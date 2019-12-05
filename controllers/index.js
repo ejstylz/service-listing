@@ -42,9 +42,121 @@ module.exports = {
     //GET /
     async getHomePage(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find();
-        res.render('index', { title: 'GABAZZO', user, company });
+        let company = await User.find().where("isCompany").equals(true).exec();
+        let compa = []
+        company.forEach(function (comp) {
+            if (company.indexOf(comp) < 5) {
+                compa.push(comp);
+            }
+        });
+        res.render('index', { title: 'GABAZZO', user, company, compa });
     },
+
+    //GET /aboutUs
+    async getAboutUs(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('about-us', { title: 'GABAZZO | About Us', user, company });
+    },
+
+    //GET blogSingle
+    async getBlogSingle(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('blog-single-post', { title: 'GABAZZO | Blog Post', user, company });
+    },
+
+    //GET blog
+    async getBlog(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('blog', { title: 'GABAZZO | Blog', user, company });
+    },
+
+    //GET contact-us
+    async getContactUs(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('contact-us', { title: 'GABAZZO | Contact Us', user, company });
+    },
+
+    //GET cookie-policy
+    async getCookiePolicy(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('cookie-policy', { title: 'GABAZZO | Cookie Policy', user, company });
+    },
+
+    //GET help-center-buyer
+    async getHelpBuyer(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('help-center-buyer', { title: 'GABAZZO | Help Center', user, company });
+    },
+
+    //GET help-center-seller
+    async getHelpSeller(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('help-center-seller', { title: 'GABAZZO | Help Center', user, company });
+    },
+
+    //GET how-it-works-business-owner
+    async getHowBusiness(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('how-it-works-business-owner', { title: 'GABAZZO | How It Works', user, company });
+    },
+
+    //GET how-it-works-members
+    async getHowMember(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('how-it-works-members', { title: 'GABAZZO | How It Works', user, company });
+    },
+
+    //GET press-and-news
+    async getPress(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('press-and-news', { title: 'GABAZZO | Press & News', user, company });
+    },
+
+    //GET privacyPolicy
+    async getPrivacyPolicy(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('privacy-policy', { title: 'GABAZZO | Privacy Policy', user, company });
+    },
+
+    //GET safety-buyer
+    async getSafetyBuyer(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('safety-buyer', { title: 'GABAZZO | Safety-Buyer', user, company });
+    },
+
+    //GET safety-seller
+    async getSafetySeller(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('safety-seller', { title: 'GABAZZO | Safety-Seller', user, company });
+    },
+
+    //GET site-map
+    async getSiteMap(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('site-map', { title: 'GABAZZO | Site Map', user, company });
+    },
+
+    //GET terms
+    async getTerms(req, res, next) {
+        let user = await User.findById(req.user);
+        let company = await User.find().where("isCompany").equals(true).exec();
+        res.render('terms-and-conditions', { title: 'GABAZZO | Terms And Conditions', user, company });
+    },
+
 
     search(req, res, next) {
         let search = req.body.service;
@@ -1665,49 +1777,49 @@ module.exports = {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("HVAC Services").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/hvac-services', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/hvac-services', { title: 'Company Profile', user, company, review });
     },
 
     async dryWallAndInsulation(req, res, next) {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("Dry Wall & Insulation").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company, review });
     },
 
     async pestControl(req, res, next) {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("Pest Control").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/pest-control', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/pest-control', { title: 'Company Profile', user, company, review });
     },
 
     async generalCleaning(req, res, next) {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("General cleaning").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company, review });
     },
 
     async interiorPainting(req, res, next) {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("Interior Painting").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/interior-painting', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/interior-painting', { title: 'Company Profile', user, company, review });
     },
 
     async windowDoorServices(req, res, next) {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("Window & Door Services").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company, review });
     },
 
     async flooringServices(req, res, next) {
         let user = await User.findById(req.user);
         let company = await User.find().where("serviceCategory").equals("Flooring Services").exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/flooring-services', { title: 'Company Profile', user, company, review, review });
+        res.render('show-pages/flooring-services', { title: 'Company Profile', user, company, review });
     },
 
     async generalRemodeling(req, res, next) {

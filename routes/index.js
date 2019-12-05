@@ -134,7 +134,22 @@ const {
   getForgotPw,
   putForgotPw,
   getReset,
-  putReset
+  putReset,
+  getAboutUs,
+  getBlogSingle,
+  getBlog,
+  getContactUs,
+  getCookiePolicy,
+  getHelpBuyer,
+  getHelpSeller,
+  getHowBusiness,
+  getHowMember,
+  getPress,
+  getPrivacyPolicy,
+  getSafetyBuyer,
+  getSafetySeller,
+  getSiteMap,
+  getTerms
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -149,7 +164,52 @@ const {
 /* GET home page. */
 router.get('/', asyncErrorHandler(getHomePage));
 
-/* GET search. */
+/* GET about-us. */
+router.get('/about-us', asyncErrorHandler(getAboutUs));
+
+/* GET blog-single-post. */
+router.get('/blog-single-post', asyncErrorHandler(getBlogSingle));
+
+/* GET blog. */
+router.get('/blog', asyncErrorHandler(getBlog));
+
+/* GET contact-us. */
+router.get('/contact-us', asyncErrorHandler(getContactUs));
+
+/* GET cookie-policy. */
+router.get('/cookie-policy', asyncErrorHandler(getCookiePolicy));
+
+/* GET help-center-buyer. */
+router.get('/help-center-buyer', asyncErrorHandler(getHelpBuyer));
+
+/* GET help-center-seller. */
+router.get('/help-center-seller', asyncErrorHandler(getHelpSeller));
+
+/* GET how-it-works-business-owner. */
+router.get('/how-it-works-business-owner', asyncErrorHandler(getHowBusiness));
+
+/* GET how-it-works-member. */
+router.get('/how-it-works-members', asyncErrorHandler(getHowMember));
+
+/* GET press-and-news. */
+router.get('/press-and-news', asyncErrorHandler(getPress));
+
+/* GET privacy-policy. */
+router.get('/privacy-policy', asyncErrorHandler(getPrivacyPolicy));
+
+/* GET safety-buyer. */
+router.get('/safety-buyer', asyncErrorHandler(getSafetyBuyer));
+
+/* GET safety-seller. */
+router.get('/safety-seller', asyncErrorHandler(getSafetySeller));
+
+/* GET site-map. */
+router.get('/site-map', asyncErrorHandler(getSiteMap));
+
+/* GET terms-and-conditions. */
+router.get('/terms-and-conditions', asyncErrorHandler(getTerms));
+
+/* POST search. */
 router.post('/pages', search);
 
 /* GET seller-overview */

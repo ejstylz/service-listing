@@ -30,7 +30,7 @@
 								<div class="nearby_companies_container">
 									<div class="owl-carousel">
 										<div class="item">
-											<a href="new-visitors/general-cleaning.html">
+											<a href="/services/general-cleaning">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/indoor-work/Cleaning Services.jpg"
@@ -45,7 +45,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/roofing-services.html">
+											<a href="/services/roofing-services">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/outdoor-work/Roofing.jpg" class="img-fluid"
@@ -60,7 +60,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/body-shop.html">
+											<a href="/services/body-shop">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/vehicle-services/body shop.jpg"
@@ -75,7 +75,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/home-security.html">
+											<a href="/building-security">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/other-services/security_services.jpg"
@@ -90,7 +90,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/moving-services.html">
+											<a href="/services/moving-servicesl">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/other-services/moving_services.jpg"
@@ -105,7 +105,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/demolition-services.html">
+											<a href="/services/demolition-services">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/other-services/Demolition-deconstruction-v8.jpg"
@@ -120,7 +120,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/landscaping-services.html">
+											<a href="/services/landscaping-services">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/outdoor-work/landscaping.jpg" class="img-fluid"
@@ -135,7 +135,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/junk-removal-services.html">
+											<a href="/services/junk-removal">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/outdoor-work/junk_removal_services.jpg"
@@ -150,7 +150,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/plumbing-services.html">
+											<a href="/services/plumbing-services">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/indoor-work/Plumbing Services.jpg"
@@ -165,7 +165,7 @@
 										</div>
 
 										<div class="item">
-											<a href="new-visitors/interior-painting.html">
+											<a href="/services/interior-painting">
 												<div class="single_services">
 													<div class="service_cover">
 														<img src="images/indoor-work/Painting Services.jpg"
@@ -188,574 +188,80 @@
 							<div class="nearby_companies">
 								<div class="nearby_companies_container">
 									<div class="owl-carousel">
+										<% compa.forEach(function(company, i) { %>
 										<div class="item">
 											<div class="single_company">
 												<div class="company_title">
-													<h3>Award Landscaping</h3>
+													<h3><%= company.companyName %></h3>
 												</div>
 												<div class="the_inner">
 													<div class="header_part">
 														<div class="row">
 															<div class="col-4 pl-1 pr-1">
 																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/award-landscape.png"
-																		alt="" />
+																	<img src="<%= company.logo %>" alt="" />
 																</div>
 															</div>
 															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
 																<div class="company-status">
 																	<span class="online">- Online</span>
 																</div>
 																<div class="business_hours">
+																	<%   let d = new Date(); %>
+																	<% if (d.getDay() === 0) { %>
+																	<h4><%= company.sundayFrom %> -
+																		<%= company.sundayTo %></h4>
+																	<% } else if(d.getDay() === 1) { %>
+																	<h4><%= company.mondayFrom %> -
+																		<%= company.mondayTo %></h4>
+																	<% } else if (d.getDay() === 2) { %>
+																	<h4><%= company.tuesdayFrom %> -
+																		<%= company.tuesdayTo %></h4>
+																	<% } else if (d.getDay() === 3) { %>
+																	<h4><%= company.wednesdayFrom %> -
+																		<%= company.wednesdayTo %></h4>
+																	<% } else if (d.getDay() === 4) { %>
+																	<h4><%= company.thursdayFrom %> -
+																		<%= company.thursdayTo %></h4>
+																	<% } else if (d.getDay() === 5) { %>
+																	<h4><%= company.fridayFrom %> -
+																		<%= company.fridayTo %></h4>
+																	<% } else if (d.getDay() === 6) { %>
+																	<h4><%= company.fridayFrom %> -
+																		<%= company.fridayTo %></h4>
+																	<% } else if (d.getDay() === 7) { %>
+																	<h4><%= company.saturdayFrom %> -
+																		<%= company.saturdayTo %></h4>
+																	<% } else { %>
 																	<h4>8 AM - 5 PM</h4>
+																	<% } %>
 																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
+																<h6>Address: <span><%= company.location %></span></h6>
 															</div>
 														</div>
 													</div>
 													<div class="company_body">
 														<div class="about_section">
 															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
+															<p class="morea"><%= company.about %></p>
 														</div>
 													</div>
 													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
+														<span><b>Category:</b> <%= company.serviceCategory %></span>
 													</div>
 												</div>
 												<div class="view_more">
 													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
+														<li><a class="btn btn-gbz-success" href="#company<%= i %>"
 																data-toggle="modal">Message</a></li>
 														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
+																href="/company-profile/<%= company._id %>">View More</a>
 														</li>
 													</ul>
 												</div>
 											</div>
 										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Midwest Elite Exteriors</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/midwest-elite-exteriors.jpeg"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Apex Plumbing</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/apex-plumbing.jpg"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Good Plumbing</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/good-plumbing.png"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Great Junk Removal</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/great-junk-removal.jpg"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Expert Super Seal</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/expert-super-seal.png"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Power Plumbing</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/pwer-plumbing.jpg"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Rocket Plumbing</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/rocket-plumbing.jpg"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Roof Systems</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/roof-systems.jpg"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="single_company">
-												<div class="company_title">
-													<h3>Sandoval Fences Corp</h3>
-												</div>
-												<div class="the_inner">
-													<div class="header_part">
-														<div class="row">
-															<div class="col-4 pl-1 pr-1">
-																<div class="company-profile-pic">
-																	<img src="images/company-profile-pic/sandoval-fences-corp.png"
-																		alt="" />
-																</div>
-															</div>
-															<div class="col-8 px-1">
-
-																<div class="stars">
-																	<h5>
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																		<span class="star">5.0</span> <span
-																			class="amount">(N/A Reviews)</span>
-																	</h5>
-																</div>
-																<div class="company-status">
-																	<span class="online">- Online</span>
-																</div>
-																<div class="business_hours">
-																	<h4>8 AM - 5 PM</h4>
-																</div>
-																<h6>Address: <span>2130 N Cicero Ave, 60639</span></h6>
-															</div>
-														</div>
-													</div>
-													<div class="company_body">
-														<div class="about_section">
-															<h4>About</h4>
-															<p class="morea">Lorem ipsum dolor sit amet, consectetur
-																adipiscing elit. Quae quo sunt excelsiores, eo dant
-																clariora indicia naturae.</p>
-														</div>
-													</div>
-													<div class="category_text">
-														<span><b>Category:</b> Service Name</span>
-													</div>
-												</div>
-												<div class="view_more">
-													<ul>
-														<li><a class="btn btn-gbz-success" href="#findMessageSeller"
-																data-toggle="modal">Message</a></li>
-														<li><a class="btn btn-gbz-success"
-																href="new-visitors/company-profile.html">View More</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
+										<% }); %>
 									</div>
 								</div>
 							</div>
@@ -833,10 +339,9 @@
 							<p>If you’re in Chicago, Illinois whether looking to buy trusted services or selling your
 								Services think of signing up with us today.</p>
 							<ul>
-								<li><a class="btn btn-gbz-success d-block"
-										href="new-visitors/sign-up-as-a-member.html">Sign up as a Member</a></li>
-								<li><a class="btn btn-gbz-success d-block"
-										href="new-visitors/company-sign-up-home.html">Sign up as a Company</a></li>
+								<li><a class="btn btn-gbz-success d-block" href="/sign-up">Sign up as a Member</a></li>
+								<li><a class="btn btn-gbz-success d-block" href="/company-sign-up">Sign up as a
+										Company</a></li>
 							</ul>
 						</div>
 					</div>
@@ -848,7 +353,7 @@
 									<div class="texts">
 										<h6>Have Questions, Comments or Concerns?</h6>
 										<div class="contact_now_button text-center">
-											<a class="btn btn-gbz-success" href="footer-pages/contact-us.html">Contact
+											<a class="btn btn-gbz-success" href="/contact-us">Contact
 												Now</a>
 										</div>
 									</div>
@@ -860,7 +365,7 @@
 									<div class="texts">
 										<h6>Learn How to Use Our Gabazzo Platform?</h6>
 										<div class="contact_now_button text-center">
-											<a class="btn btn-gbz-success" href="footer-pages/how-it-works.html">Learn
+											<a class="btn btn-gbz-success" href="/how-it-works-business-owner">Learn
 												More</a>
 										</div>
 									</div>
@@ -872,9 +377,9 @@
 									<div class="texts">
 										<h6>View Safety Tips Whether You’re Buying or Selling Services</h6>
 										<div class="contact_now_button text-center">
-											<a class="btn btn-gbz-success" href="footer-pages/safety-buyer.html">View as
+											<a class="btn btn-gbz-success" href="/safety-buyer">View as
 												Buyer</a>
-											<a class="btn btn-gbz-success" href="footer-pages/safety-seller.html">View
+											<a class="btn btn-gbz-success" href="/safety-seller">View
 												as Seller</a>
 										</div>
 									</div>
@@ -960,7 +465,8 @@
 
 
 <!-- Message Seller Modal Starts From Here -->
-<div class="modal message_seller_modal fade" id="findMessageSeller">
+<% company.forEach(function(company, i){ %>
+<div class="modal message_seller_modal fade" id="company<%= i %>">
 	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -974,10 +480,10 @@
 						<div class="profile_info_left">
 							<div class="top">
 								<div class="profile_pic">
-									<img src="images/company-profile-pic/happy_girls.jpg" class="img-fluid" alt="" />
+									<img src="<%= company.logo %>" class="img-fluid" alt="" />
 								</div>
 								<div class="profile_name">
-									<h5>Brotherit Han</h5>
+									<h5><%= company.companyName %></h5>
 								</div>
 								<div class="related_text">
 									<h6>Away</h6>
@@ -1000,8 +506,8 @@
 						<div class="message_area">
 							<div class="message_header">
 								<ul>
-									<li><span class="status_online">Status: <i class="fa fa-circle"
-												aria-hidden="true"></i></span> <b>Fri 08:48 AM</b></li>
+									<li><span>Status: <i class="fa fa-moon-o" aria-hidden="true"></i></span> <b>Fri
+											08:48 AM</b></li>
 									<li><span>Avg. Response Time:</span> <b>1 Hrs.</b></li>
 								</ul>
 							</div>
@@ -1038,4 +544,5 @@
 		</div>
 	</div>
 </div>
+<% }); %>
 <!-- Message Seller Modal Ends Here -->
