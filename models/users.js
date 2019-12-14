@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
+const Review = require('./review');
+
 
 const UserSchema = new Schema({
     firstName: String,
@@ -121,7 +123,8 @@ const UserSchema = new Schema({
     sundayTo: String,
     Purpose: String,
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    averageReview: String
 
 }, { timestamps: true });
 

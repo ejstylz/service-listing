@@ -15,7 +15,7 @@
     <link href="/css/timeline.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/css/night-mode.css" rel="stylesheet" type="text/css" />
-    <link href="/css/starability-all.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/starability-basic.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -410,8 +410,8 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
-                                        <span class="star">5.0</span>
-                                        <span class="amount">(<%= review.length %> Reviews)</span>
+                                        <span class="star"><%= average %></span>
+                                        <span class="amount">(<%= company.reviews.length %> Reviews)</span>
                                     </h4>
                                     <div class="company_status">
                                         <h3 class="company_online_status">Status: <span class="online_status"><i
@@ -651,7 +651,7 @@
                                                         <img src="<%= image.url %>" class="img-fluid" alt="" />
                                                     </a>
                                                 </div>
-                                                <% }); %>
+
                                             </div>
 
                                             <!-- Left and right controls -->
@@ -662,6 +662,7 @@
                                                 <span class="carousel-control-next-icon"></span>
                                             </a>
                                         </div>
+                                        <% }); %>
                                     </div>
                                 </div>
                             </div>
@@ -712,7 +713,7 @@
                             <div class="form-group">
                                 <fieldset class="starability-basic">
                                     <legend>Rating:</legend>
-                                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                                    <input type="radio" id="first-rate1" name="rating" value="1" checked />
                                     <label for="first-rate1" title="Terrible">1 star</label>
                                     <input type="radio" id="first-rate2" name="rating" value="2" />
                                     <label for="first-rate2" title="Not good">2 stars</label>
@@ -909,7 +910,6 @@
                                         </div>
                                         <ul class="">
                                             <li><a href="/new-visitors/sign-up-as-a-member.html">Sign Up</a></li>
-                                            <li><a href="javascript:void(0)">One Pager</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -933,7 +933,6 @@
                                         <ul class="">
                                             <li><a href="/new-visitors/company-sign-up-home.html">Sign Up as a
                                                     Company</a></li>
-                                            <li><a href="javascript:void(0)">One Pager</a></li>
                                         </ul>
                                     </div>
                                 </div>
