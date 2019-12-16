@@ -149,7 +149,8 @@ const {
   getSafetyBuyer,
   getSafetySeller,
   getSiteMap,
-  getTerms
+  getTerms,
+  getCompanySignUpHome
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -229,6 +230,9 @@ router.get('/sign-up', getSignup);
 
 /* POST /sign-up */
 router.post('/sign-up', checkIfUserExists, asyncErrorHandler(postSignUp));
+
+/* GET company-sign-up1 */
+router.get('/company-sign-up-home', asyncErrorHandler(getCompanySignUpHome));
 
 /* GET company-sign-up1 */
 router.get('/company-sign-up', checkIfUserExists, getCompanySignUp);

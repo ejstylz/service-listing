@@ -126,6 +126,34 @@
             }
         });
     </script>
+    <script type="text/javascript">
+
+        var homeServices = $(".nearby_companies .owl-carousel");
+        if (homeServices.length) {
+            $('.nearby_companies .owl-carousel').owlCarousel({
+                loop: false,
+                margin: 20,
+                nav: true,
+                navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 1
+                    },
+                    992: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 3
+                    }
+                }
+            });
+        }
+
+    </script>
 </body>
 
 </html>

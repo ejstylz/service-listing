@@ -314,6 +314,18 @@ module.exports = {
     },
 
     //GET /company-sign-up
+    async getCompanySignUpHome(req, res, next) {
+        let company = await User.find().where("isCompany").equals(true).exec();
+        let compa = []
+        company.forEach(function (comp) {
+            if (company.indexOf(comp) < 7) {
+                compa.push(comp);
+            }
+        });
+        res.render('visitors/company-sign-up-home', { title: 'Company Sign Up', company, compa });
+    },
+
+    //GET /company-sign-up
     getCompanySignUp(req, res, next) {
         res.render('visitors/company-sign-up1', { title: 'Company Sign Up' });
     },

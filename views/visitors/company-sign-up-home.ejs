@@ -1,0 +1,292 @@
+<% layout('layouts/companySignUpBoilerplate') -%>
+
+<section class="company_sign_up_head_bottom">
+	<div class="overlay">
+		<div class="container">
+			<div class="center_contents text-center">
+				<h2>Work Your Way</h2>
+				<h6>Bring in your Company Skills and Receive Leads!</h6>
+				<div class="become_seller_button">
+					<a class="btn btn-gbz-success" href="become-a-seller-overview.html">Become a Seller</a>
+				</div>
+			</div>
+		</div>
+		<div class="">
+			<div class="bottom_contents">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="single_part">
+							<h5>Number of Companies in Waiting List</h5>
+							<h1>245</h1>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single_part">
+							<h5>Monthly Plan</h5>
+							<h1>$45.00</h1>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single_part">
+							<h5>Price Range</h5>
+							<h1>$50 - $50,000</h1>
+						</div>
+					</div>
+				</div>
+				<p><b>Note:</b> Until 3,000 companies are registered in the Gabazzo Platform we will be charging $45.00
+					monthly, meanwhile it is Completely Free to Use! but a fee of $25 will be Applied while signing up.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="recently_joined">
+	<div class="container_gbz">
+		<div class="single_part">
+			<h2>Companies Recently Joined</h2>
+			<div class="nearby_companies">
+				<div class="nearby_companies_container">
+					<div class="owl-carousel">
+
+						<% compa.forEach(function(company, i) { %>
+						<div class="item">
+							<div class="single_company">
+								<div class="company_title">
+									<h3><%= company.companyName %></h3>
+								</div>
+								<div class="the_inner">
+									<div class="header_part">
+										<div class="row">
+											<div class="col-4 pl-1 pr-1">
+												<div class="company-profile-pic">
+													<img src="<%= company.logo %>" alt="" />
+												</div>
+											</div>
+											<div class="col-8 px-1">
+
+												<div class="stars">
+													<h5>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<span class="star"><%= company.averageReview %></span> <span
+															class="amount">(<%= company.reviews.length %>
+															Reviews)</span>
+													</h5>
+												</div>
+												<div class="company-status">
+													<span class="online">- Online</span>
+												</div>
+												<div class="business_hours">
+													<%   let d = new Date(); %>
+													<% if (d.getDay() === 0) { %>
+													<h4><%= company.sundayFrom %> - <%= company.sundayTo %></h4>
+													<% } else if(d.getDay() === 1) { %>
+													<h4><%= company.mondayFrom %> - <%= company.mondayTo %></h4>
+													<% } else if (d.getDay() === 2) { %>
+													<h4><%= company.tuesdayFrom %> - <%= company.tuesdayTo %></h4>
+													<% } else if (d.getDay() === 3) { %>
+													<h4><%= company.wednesdayFrom %> - <%= company.wednesdayTo %></h4>
+													<% } else if (d.getDay() === 4) { %>
+													<h4><%= company.thursdayFrom %> - <%= company.thursdayTo %></h4>
+													<% } else if (d.getDay() === 5) { %>
+													<h4><%= company.fridayFrom %> - <%= company.fridayTo %></h4>
+													<% } else if (d.getDay() === 6) { %>
+													<h4><%= company.fridayFrom %> - <%= company.fridayTo %></h4>
+													<% } else if (d.getDay() === 7) { %>
+													<h4><%= company.saturdayFrom %> - <%= company.saturdayTo %></h4>
+													<% } else { %>
+													<h4>8 AM - 5 PM</h4>
+													<% } %>
+												</div>
+												<h6>Address: <span><%= company.location %></span></h6>
+											</div>
+										</div>
+									</div>
+									<div class="company_body">
+										<div class="about_section">
+											<h4>About</h4>
+											<p class="morea"><%= company.about %></p>
+										</div>
+									</div>
+									<div class="category_text">
+										<span><b>Category:</b> <%= company.serviceCategory %></span>
+									</div>
+								</div>
+								<div class="view_more">
+									<ul>
+										<li><a class="btn btn-gbz-success" href="#company<%= i %>"
+												data-toggle="modal">Message</a></li>
+										<li><a class="btn btn-gbz-success"
+												href="/company-profile/<%= company._id %>">View More</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<% }); %>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="how_works_gabazzo">
+	<div class="container_gbz">
+		<h3>How It Works</h3>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="single_part">
+					<div class="icon">
+						<img src="../images/icons/creating_icon.png" class="black_icon" alt="" />
+						<img src="../images/icons/creating_icon_white.png" class="white_icon" alt="" />
+					</div>
+					<h5>1. Create a Service or Products</h5>
+					<p>Sign Up For Free, Set Up Your Service and Products. Offer Your Work to Our Chicago and Nearby
+						Areas Audience.</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="single_part">
+					<div class="icon">
+						<img src="../images/icons/delivery_icon.png" class="black_icon" alt="" />
+						<img src="../images/icons/delivery_icon_white.png" class="white_icon" alt="" />
+					</div>
+					<h5>2. Deliver great work</h5>
+					<p>Get notified when you receive a potential client and use our system to discuss details with
+						customers.</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="single_part">
+					<div class="icon">
+						<img src="../images/icons/complete_icon.png" class="black_icon" alt="" />
+						<img src="../images/icons/complete_icon_white.png" class="white_icon" alt="" />
+					</div>
+					<h5>3. Receive Feedback</h5>
+					<p>Once you've delivered your Service or Product on time, you'll receive a rating from the client.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="done_faster_right">
+	<div class="container_gbz">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="right_image">
+					<img src="../images/data_communication.jpg" class="img-fluid" alt="" />
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="left_content">
+					<h3>Give Your Business The Right Tools</h3>
+					<div class="single_confidence">
+						<h5>Why do business with Gabazzo?</h5>
+						<p>Create/Edit your Company profile, we’ve added more features than other Websites. Your profile
+							in Gabazzo is what attracts potential clients.</p>
+					</div>
+					<div class="single_confidence">
+						<h5>Benefits for the Future</h5>
+						<p>Receive Business Tips, Software, and other tools to run your business. When BETA ends we’re
+							releasing software to manage your company in one place. </p>
+					</div>
+					<div class="single_confidence">
+						<h5>Know Our Updates</h5>
+						<p>With every update to Gabazzo Services, we promise to give you 1-week free trial to use our
+							developed software when released.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Message Seller Modal Starts From Here -->
+<% company.forEach(function(company, i){ %>
+<div class="modal message_seller_modal fade" id="company<%= i %>">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Send a Message</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="profile_info_left">
+							<div class="top">
+								<div class="profile_pic">
+									<img src="<%= company.logo %>" class="img-fluid" alt="" />
+								</div>
+								<div class="profile_name">
+									<h5><%= company.companyName %></h5>
+								</div>
+								<div class="related_text">
+									<h6>Away</h6>
+								</div>
+							</div>
+							<hr />
+							<div class="bottom">
+								<h5>Please Include:</h5>
+								<ul>
+									<li>Project Description</li>
+									<li>Specific Instructions</li>
+									<li>Relevant Files</li>
+									<li>Your Budget</li>
+									<li>Delivery Time</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="message_area">
+							<div class="message_header">
+								<ul>
+									<li><span>Status: <i class="fa fa-moon-o" aria-hidden="true"></i></span> <b>Fri
+											08:48 AM</b></li>
+									<li><span>Avg. Response Time:</span> <b>1 Hrs.</b></li>
+								</ul>
+							</div>
+							<div class="message_body">
+								<form action="">
+									<div class="form">
+										<div class="body_top_part">
+											<textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+										</div>
+										<div class="body_bottom_part">
+											<div class="form-row">
+												<div class="form-group col-6">
+													<span class="form-text">0/2500</span>
+												</div>
+												<div class="form-group text-right col-6">
+													<input type="file" name="file-1[]" id="file-1"
+														class="inputfile inputfile-1"
+														data-multiple-caption="{count} files selected" multiple />
+													<label for="file-1"><i class="fa fa-paperclip"
+															aria-hidden="true"></i></label>
+												</div>
+											</div>
+										</div>
+										<div class="message_send_button text-right mt-3">
+											<button type="submit" class="btn btn-gbz-success">Send</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<% }); %>
+<!-- Message Seller Modal Ends Here -->
