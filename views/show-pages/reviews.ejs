@@ -405,11 +405,16 @@
                                     <h2><%= company.companyName %></h2>
                                     <h5><%= company.slogan %></h5>
                                     <h4 class="reviews_ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <div class="star-ratings-css">
+                                            <div class="star-ratings-css-top" style="width: <%= (average/5) * 100 %>%">
+                                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                            </div>
+                                            <div class="star-ratings-css-bottom">
+                                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                            </div>
+                                        </div>
+
                                         <span class="star"><%= average %></span>
                                         <span class="amount">(<%= company.reviews.length %> Reviews)</span>
                                     </h4>
@@ -508,12 +513,13 @@
                                 <div class="main_ratings_count_inner">
 
                                     <h3>Average Rating: <%= average %></h3>
-                                    <div class="stars">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    <div class="star-ratings-css mb-2">
+                                        <div class="star-ratings-css-top" style="width: <%= (average/5) * 100 %>%">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <div class="star-ratings-css-bottom">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
                                     </div>
                                     <h6>[<%= review.length %> Reviews]</h6>
                                 </div>

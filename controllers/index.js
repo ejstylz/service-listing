@@ -1206,7 +1206,8 @@ module.exports = {
             });
             return sum / review.length;
         }
-        let average = calculateAverage(review);
+        let average = await calculateAverage(review);
+
         res.render('businesses/reviews', { title: 'Dashboard | Reviews', review, average });
     },
 
@@ -1629,7 +1630,9 @@ module.exports = {
             });
             return sum / review.length;
         }
-        let average = calculateAverage(review);
+        let average = calculateAverage(review).toFixed(1);
+        company.averageReview = average.toString();
+        await company.save();
         res.render('show-pages/reviews',
             {
                 title: 'Company Profile',
@@ -1679,25 +1682,10 @@ module.exports = {
         let review = await Review.create(newReview);
 
         await company.reviews.push(review);
-
-        function calculateAverage(reviews) {
-            if (company.reviews.length === 0) {
-                return 0;
-            }
-            var sum = 0;
-            company.reviews.forEach(function (element) {
-                sum += element.rating;
-            });
-            return sum / company.reviews.length;
-        }
-        if (company.reviews.length) company.averageReview = calculateAverage(review);
-        console.log(company.averageReview);
-
         await company.save();
 
         const login = util.promisify(req.login.bind(req));
         await login(user);
-        console.log(review);
         req.session.success = "Review successfully created!";
         // redirect to show page
         res.redirect("back");
