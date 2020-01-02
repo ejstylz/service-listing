@@ -150,7 +150,14 @@ const {
   getSafetySeller,
   getSiteMap,
   getTerms,
-  getCompanySignUpHome
+  getCompanySignUpHome,
+  getAccount,
+  getBilling,
+  getCompanyInfo,
+  getNotifications,
+  getPayment,
+  getSecurity,
+  getVerification
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -397,6 +404,29 @@ router.put('/services/:id', isLoggedIn, isCompany, upload.array('images'), async
 
 /* Delete /services */
 router.delete('/services/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteService));
+
+// COMPANY SETTINGS
+
+/* GET /company-settings/account */
+router.get('/company-settings/account', isLoggedIn, isCompany, asyncErrorHandler(getAccount));
+
+/* GET /company-settings/billing */
+router.get('/company-settings/billing', isLoggedIn, isCompany, asyncErrorHandler(getBilling));
+
+/* GET /company-settings/company-info */
+router.get('/company-settings/company-info', isLoggedIn, isCompany, asyncErrorHandler(getCompanyInfo));
+
+/* GET /company-settings/notifications */
+router.get('/company-settings/notifications', isLoggedIn, isCompany, asyncErrorHandler(getNotifications));
+
+/* GET /company-settings/payment */
+router.get('/company-settings/payment', isLoggedIn, isCompany, asyncErrorHandler(getPayment));
+
+/* GET /company-settings/security */
+router.get('/company-settings/security', isLoggedIn, isCompany, asyncErrorHandler(getSecurity));
+
+/* GET /company-settings/trust-verification */
+router.get('/company-settings/trust-verification', isLoggedIn, isCompany, asyncErrorHandler(getVerification));
 
 
 //SHOW PAGES

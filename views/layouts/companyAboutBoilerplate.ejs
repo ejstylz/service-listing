@@ -501,71 +501,70 @@
 			</div>
 			<div class="bottom_part">
 				<ul>
-					<li><a href="/company-dashboard"><i class="fa fa-tachometer"
-								aria-hidden="true"></i><span>View Dashboard</span></a></li>
-					<li><a href="#"><i
-								class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
-					<li><a href="#"><i
-								class="fa fa-fw fa-comments"></i><span>Seller Help Center</span></a></li>
-					<li><a href="/logout" target="_self"><i
-								class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+					<li><a href="/company-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i><span>View
+								Dashboard</span></a></li>
+					<li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a>
+					</li>
+					<li><a href="#"><i class="fa fa-fw fa-comments"></i><span>Seller Help Center</span></a></li>
+					<li><a href="/logout" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-    <!-- My Account SideMenu For Desktop -->
+	<!-- My Account SideMenu For Desktop -->
 
-    <% include ../partials/flash-messages %>
+	<% include ../partials/flash-messages %>
 	<%- body -%>
-    
-    <footer class="main_footer business_owner_dashboard_footer">
-            <div class="container">
-                <p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
-            </div>
-        </footer>
-    
-        <script src="../js/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="../js/classie.js" type="text/javascript"></script>
-        <script src="../js/timeline.min.js" type="text/javascript"></script>
-        <script src="../js/lightcase.js" type="text/javascript"></script>
-        <script src="../js/custom.js" type="text/javascript"></script>
-        <script type="text/javascript">
-    
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('[data-toggle="popover"]').popover();
-            })
-    
-            timeline(document.querySelectorAll('.timeline'), {
-                mode: 'horizontal',
-                verticalStartPosition: 'left',
-                forceVerticalMode: 768,
-                verticalTrigger: '15%',
-                visibleItems: 4,
-            });
-    
-    
-            // For Slider Popups
-            $(document).ready(function () {
-                var lightcase = $(".lightcase");
-                if (lightcase.length) {
-                    $('a[data-rel^=lightcase]').lightcase();
-                }
-            })
-    
-    
-            $(window).on("scroll", function () {
-                if ($(window).scrollTop() > 400) {
-                    $('.update_now_button_section').addClass('active');
-                }
-    
-                else {
-                    $('.update_now_button_section').removeClass('active');
-                }
-            })
-        </script>
-    
-    </body>
-    
-    </html>
+
+	<footer class="main_footer business_owner_dashboard_footer">
+		<div class="container">
+			<p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
+		</div>
+	</footer>
+
+	<script src="../js/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+	<script src="../js/classie.js" type="text/javascript"></script>
+	<script src="../js/timeline.min.js" type="text/javascript"></script>
+	<script src="../js/lightcase.js" type="text/javascript"></script>
+	<script src="../js/custom.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+			$('[data-toggle="popover"]').popover();
+		})
+
+		timeline(document.querySelectorAll('.timeline'), {
+			mode: 'horizontal',
+			verticalStartPosition: 'left',
+			forceVerticalMode: 768,
+			verticalTrigger: '15%',
+			visibleItems: 4,
+		});
+
+
+		// For Slider Popups
+		$(document).ready(function () {
+			var lightcase = $(".lightcase");
+			if (lightcase.length) {
+				$('a[data-rel^=lightcase]').lightcase();
+			}
+		})
+
+
+		$(window).on("scroll", function () {
+			if ($(window).scrollTop() > 400) {
+				$('.update_now_button_section').addClass('active');
+			}
+
+			else {
+				$('.update_now_button_section').removeClass('active');
+			}
+		})
+	</script>
+
+</body>
+
+</html>

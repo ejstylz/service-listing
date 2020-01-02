@@ -1,0 +1,383 @@
+<% layout('layouts/settingsBoilerplate') -%>
+
+<div class="profile_setting_wrap">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Left Menu Starts From Here -->
+			<div class="col-md-3">
+				<nav class="navbar navbar-expand-lg">
+					<div class="ps_left_menu border collapse navbar-collapse h-100" id="responsive-bar">
+						<ul class="list-group list-group-flush list-group-sidemenu">
+							<li class="list-group-item"><a href="/company-settings/account">Account</a></li>
+							<li class="list-group-item"><a href="/company-settings/security">Security</a></li>
+							<li class="list-group-item"><a href="/company-settings/notifications">Emails &
+									Notifications</a></li>
+							<li class="list-group-item"><a href="/company-settings/billing">Billing</a></li>
+							<li class="list-group-item active"><a href="javascript:void(0)">Payment & Financial</a></li>
+							<li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
+									Verification</a>
+							</li>
+							<li class="list-group-item"><a href="/company-settings/company-info">Company Info Box</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!-- Left Menu Ends Here -->
+
+			<div class="col-md-9 profile_setting">
+				<div class="profile_setting_wrapper notifications">
+					<div class="profile_header">
+						<h1>Payment & Financials</h1>
+					</div>
+					<div class="single_notify">
+						<div class="existing_payment_method">
+							<h4>Payment Methods:</h4>
+							<div class="card_information">
+								<div class="card_image">
+									<img src="../images/payment-icon/paypal.png" class="img-fluid" alt="" />
+								</div>
+								<div class="bank_name">
+									<h5>Paypal Credit Card</h5>
+								</div>
+								<div class="info_wrap">
+									<div class="single_info">
+										<h6>Type</h6>
+										<p>Credit</p>
+									</div>
+									<div class="single_info">
+										<h6>Expiration Date</h6>
+										<p>02/2022</p>
+									</div>
+								</div>
+								<div class="action_button mt-4">
+									<ul>
+										<li><a class="btn btn-gbz-success" href="#addNewPaymentMethod"
+												data-toggle="modal">Add New Payment Method</a></li>
+										<li><a class="btn btn-outline-gbz-success" href="#editPaymentMethod"
+												data-toggle="modal">Change Payment Method</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Add New Payment Method Modal Starts -->
+<div class="modal payment_method_modal fade" id="addNewPaymentMethod">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Gabazzo.com Payment Option</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="form">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="single_part left_part">
+									<div class="single_payment_info">
+										<h5>Payment Details</h5>
+										<div class="form-group">
+											<label for="">Fee<b>*</b></label>
+											<select name="" required id="" class="form-control">
+												<option value="">Gabazzo Fee ($25.00)</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="">Payment Type<b>*</b></label>
+											<div class="row">
+												<div class="col-md-6">
+													<label class="radio">One Time
+														<input type="radio" required name="payment_type">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-6">
+													<label class="radio">Recurring <i title="Lorem Ipsum Dolor Sit Amet"
+															data-toggle="tooltip" class="fa fa-question-circle-o"
+															aria-hidden="true"></i>
+														<input type="radio" required name="payment_type">
+														<span class="checkround"></span>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="single_payment_info">
+										<h5>Your Information</h5>
+										<div class="form-group">
+											<label for="">Name<b>*</b></label>
+											<input type="text" placeholder="Enter Your Name" required
+												class="form-control" />
+										</div>
+										<div class="form-group">
+											<label for="">Email<b>*</b></label>
+											<input type="email" placeholder="Enter Your Email Address" required
+												class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="single_part right_part">
+									<div class="single_payment_info">
+										<h5>Payment Method</h5>
+										<div class="accepted_card_wrapper">
+											<div class="row">
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip"
+															title="American Express" class="fa fa-cc-amex"
+															aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Discover"
+															class="fa fa-cc-discover" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Master Card"
+															class="fa fa-cc-mastercard" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Paypal"
+															class="fa fa-cc-paypal" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Visa"
+															class="fa fa-cc-visa" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Cash"
+															class="fa fa-money" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="">Name on Card<b>*</b></label>
+											<div class="input_wrap">
+												<input type="text" placeholder="Enter the on Card" required
+													class="form-control" />
+												<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="">Card Number<b>*</b></label>
+											<input type="text" placeholder="Enter Card Number" required
+												class="form-control" />
+										</div>
+										<div class="form-row">
+											<div class="form-group col-6">
+												<label for="">Expiration<b>*</b></label>
+												<div class="input_wrap">
+													<input type="month" class="form-control" />
+													<i class="fa fa-calendar" aria-hidden="true"></i>
+												</div>
+											</div>
+											<div class="form-group col-6">
+												<label for="">CVC<b>*</b></label>
+												<div class="input_wrap">
+													<input type="text" placeholder="Enter CVC Code"
+														class="form-control" />
+													<i class="fa fa-lock" aria-hidden="true"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="save_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Save</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Add New Payment Method Modal Ends -->
+
+
+<!-- Edit Payment Method Modal Starts -->
+<div class="modal payment_method_modal fade" id="editPaymentMethod">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Gabazzo.com Payment Option</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="form">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="single_part left_part">
+									<div class="single_payment_info">
+										<h5>Payment Details</h5>
+										<div class="form-group">
+											<label for="">Fee<b>*</b></label>
+											<select name="" required id="" class="form-control">
+												<option value="">Gabazzo Fee ($25.00)</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="">Payment Type<b>*</b></label>
+											<div class="row">
+												<div class="col-md-6">
+													<label class="radio">One Time
+														<input type="radio" required name="payment_type">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-6">
+													<label class="radio">Recurring <i title="Lorem Ipsum Dolor Sit Amet"
+															data-toggle="tooltip" class="fa fa-question-circle-o"
+															aria-hidden="true"></i>
+														<input type="radio" required name="payment_type">
+														<span class="checkround"></span>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="single_payment_info">
+										<h5>Your Information</h5>
+										<div class="form-group">
+											<label for="">Name<b>*</b></label>
+											<input type="text" value="Christel Mac" placeholder="Enter Your Name"
+												required class="form-control" />
+										</div>
+										<div class="form-group">
+											<label for="">Email<b>*</b></label>
+											<input type="email" value="example@gamil.com"
+												placeholder="Enter Your Email Address" required class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="single_part right_part">
+									<div class="single_payment_info">
+										<h5>Payment Method</h5>
+										<div class="accepted_card_wrapper">
+											<div class="row">
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip"
+															title="American Express" class="fa fa-cc-amex"
+															aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Discover"
+															class="fa fa-cc-discover" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Master Card"
+															class="fa fa-cc-mastercard" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Paypal"
+															class="fa fa-cc-paypal" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Visa"
+															class="fa fa-cc-visa" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="radio"><i data-toggle="tooltip" title="Cash"
+															class="fa fa-money" aria-hidden="true"></i>
+														<input type="radio" name="slect_card">
+														<span class="checkround"></span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="">Name on Card<b>*</b></label>
+											<div class="input_wrap">
+												<input type="text" value="Christel Mac" placeholder="Enter the on Card"
+													required class="form-control" />
+												<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="">Card Number<b>*</b></label>
+											<input type="text" placeholder="Enter Card Number" required
+												class="form-control" />
+										</div>
+										<div class="form-row">
+											<div class="form-group col-6">
+												<label for="">Expiration<b>*</b></label>
+												<div class="input_wrap">
+													<input type="month" class="form-control" />
+													<i class="fa fa-calendar" aria-hidden="true"></i>
+												</div>
+											</div>
+											<div class="form-group col-6">
+												<label for="">CVC<b>*</b></label>
+												<div class="input_wrap">
+													<input type="text" placeholder="Enter CVC Code"
+														class="form-control" />
+													<i class="fa fa-lock" aria-hidden="true"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="save_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Save Changes</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Edit Payment Method Modal Ends -->

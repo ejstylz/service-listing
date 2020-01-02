@@ -1,0 +1,203 @@
+<% layout('layouts/settingsBoilerplate') -%>
+
+<div class="profile_setting_wrap">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Left Menu Starts From Here -->
+			<div class="col-md-3">
+				<nav class="navbar navbar-expand-lg">
+					<div class="ps_left_menu border collapse navbar-collapse h-100" id="responsive-bar">
+						<ul class="list-group list-group-flush list-group-sidemenu">
+							<li class="list-group-item"><a href="/company-settings/account">Account</a></li>
+							<li class="list-group-item"><a href="/company-settings/security">Security</a></li>
+							<li class="list-group-item"><a href="/company-settings/notifications">Emails &
+									Notifications</a></li>
+							<li class="list-group-item"><a href="/company-settings/billing">Billing</a></li>
+							<li class="list-group-item"><a href="/company-settings/payment">Payment & Financial</a></li>
+							<li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
+									Verification</a>
+							</li>
+							<li class="list-group-item active"><a href="javascript:void(0)">Company Info Box</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!-- Left Menu Ends Here -->
+
+			<div class="col-md-9 profile_setting">
+				<div class="profile_setting_wrapper notifications">
+					<div class="profile_header">
+						<h1>Company Info Box</h1>
+					</div>
+
+					<div class="single_notify">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group mb-0">
+									<div class="upload_profile_pic">
+										<a href="javascript:void(0)"><img src="../images/man.png" class="img-fluid"
+												alt="" /></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="single_upload">
+									<div class="upload_header">
+										<h5>Change Your Company Logo</h5>
+									</div>
+									<div class="upload_area">
+										<div class="form-group">
+											<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1"
+												data-multiple-caption="{count} files selected" multiple />
+											<label for="file-1">
+												<div class="upload_fils">
+													<div class="icon">
+														<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+													</div>
+													<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+												</div>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="single_notify">
+						<h4>About Your Company</h4>
+						<form action="">
+							<div class="form">
+								<div class="form-grou">
+									<textarea name="" placeholder="Write a Short Description About Your Company" id=""
+										cols="30" rows="4"
+										class="form-control">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+					<hr class="my-4" />
+					<div class="form_single_part">
+						<div class="">
+							<div class="header_part">
+								<h4>Skills</h4>
+							</div>
+							<div class="body_part">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Services Name</th>
+												<th>Chosen Filters</th>
+												<th>Level</th>
+												<th class="text-right">Edit/Remove</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Lorem</td>
+												<td>Lorem</td>
+												<td>Expert</td>
+												<td class="text-right action_buttons">
+													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+															data-toggle="tooltip" class="fa fa-pencil-square-o"
+															aria-hidden="true"></i></a>
+													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+															class="fa fa-trash-o" aria-hidden="true"></i></a>
+												</td>
+											</tr>
+											<tr>
+												<td>Lorem</td>
+												<td>Lorem</td>
+												<td>Beginner</td>
+												<td class="text-right action_buttons">
+													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+															data-toggle="tooltip" class="fa fa-pencil-square-o"
+															aria-hidden="true"></i></a>
+													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+															class="fa fa-trash-o" aria-hidden="true"></i></a>
+												</td>
+											</tr>
+											<tr>
+												<td>Lorem</td>
+												<td>Lorem</td>
+												<td>Expert</td>
+												<td class="text-right action_buttons">
+													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+															data-toggle="tooltip" class="fa fa-pencil-square-o"
+															aria-hidden="true"></i></a>
+													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+															class="fa fa-trash-o" aria-hidden="true"></i></a>
+												</td>
+											</tr>
+											<tr>
+												<td>Lorem</td>
+												<td>Lorem</td>
+												<td>Intermediate</td>
+												<td class="text-right action_buttons">
+													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+															data-toggle="tooltip" class="fa fa-pencil-square-o"
+															aria-hidden="true"></i></a>
+													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+															class="fa fa-trash-o" aria-hidden="true"></i></a>
+												</td>
+											</tr>
+											<tr>
+												<td>Lorem</td>
+												<td>Lorem</td>
+												<td>Expert</td>
+												<td class="text-right action_buttons">
+													<a href="#editLevel" data-toggle="modal"><i title="Edit Level"
+															data-toggle="tooltip" class="fa fa-pencil-square-o"
+															aria-hidden="true"></i></a>
+													<a href="javascript:void(0)"><i title="Remove" data-toggle="tooltip"
+															class="fa fa-trash-o" aria-hidden="true"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="save_button">
+						<button class="btn" type="submit">Save Changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal For Edit Skills Level Starts -->
+<div class="modal edit_skills_level_modal fade" id="editLevel">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Edit Skills Level</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="form">
+						<div class="form-group">
+							<select name="" id="" class="form-control">
+								<option value="">Beginner</option>
+								<option value="">Intermediate</option>
+								<option value="">Expert</option>
+							</select>
+						</div>
+						<div class="update_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Update</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal For Edit Skills Level Ends -->

@@ -1192,6 +1192,45 @@ module.exports = {
         res.render('businesses/products', { title: 'Dashboard | Products', product });
     },
 
+    // COMPANY SETTINGS PAGES
+
+    // GET account settings
+    async getAccount(req, res, next) {
+        res.render('businesses/account', { title: 'Settings' });
+    },
+
+    // GET billing settings
+    async getBilling(req, res, next) {
+        res.render('businesses/billing', { title: 'Settings' });
+    },
+
+    // GET company-info settings
+    async getCompanyInfo(req, res, next) {
+        res.render('businesses/company-info', { title: 'Settings' });
+    },
+
+    // GET notifications settings
+    async getNotifications(req, res, next) {
+        res.render('businesses/notifications', { title: 'Settings' });
+    },
+
+    // GET payment settings
+    async getPayment(req, res, next) {
+        res.render('businesses/payment', { title: 'Settings' });
+    },
+
+    // GET security settings
+    async getSecurity(req, res, next) {
+        res.render('businesses/security', { title: 'Settings' });
+    },
+
+    // GET verification settings
+    async getVerification(req, res, next) {
+        res.render('businesses/trust-verification', { title: 'Settings' });
+    },
+
+
+
     //GET /company-dashboard/reviews
     async getReviews(req, res, next) {
         let user = req.user;

@@ -1,0 +1,199 @@
+<% layout('layouts/settingsBoilerplate') -%>
+
+
+<div class="profile_setting_wrap">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Left Menu Starts From Here -->
+			<div class="col-md-3">
+				<nav class="navbar navbar-expand-lg">
+					<div class="ps_left_menu border collapse navbar-collapse h-100" id="responsive-bar">
+						<ul class="list-group list-group-flush list-group-sidemenu">
+							<li class="list-group-item"><a href="/company-settings/account">Account</a></li>
+							<li class="list-group-item"><a href="/company-settings/security">Security</a></li>
+							<li class="list-group-item active"><a href="javascript:void(0)">Emails &
+									Notifications</a></li>
+							<li class="list-group-item"><a href="/company-settings/billing">Billing</a></li>
+							<li class="list-group-item"><a href="/company-settings/payment">Payment & Financial</a></li>
+							<li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
+									Verification</a>
+							</li>
+							<li class="list-group-item"><a href="/company-settings/company-info">Company Info Box</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!-- Left Menu Ends Here -->
+
+			<div class="col-md-9 profile_setting">
+				<div class="profile_setting_wrapper notifications">
+					<div class="single_notify pt-2">
+						<h4>Email</h4>
+						<form action="">
+							<div class="form">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="">Email Address</label>
+										<input type="email" placeholder="Type your mail" class="form-control" />
+									</div>
+									<div class="form-group col-md-6">
+										<label for="">Current Password (if changing email)</label>
+										<input type="password" placeholder="Type your password" class="form-control" />
+									</div>
+								</div>
+								<div class="save_button text-left my-3">
+									<button type="submit" class="btn">Update Email Address</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="single_notify">
+						<div class="row">
+							<div class="col-md-4">
+								<h4>Notifications</h4>
+								<p>For important updates regarding your activity, certain notifications cannot be
+									disabled.</p>
+							</div>
+							<div class="col-md-8">
+								<div class="table-responsive notifications_table">
+									<table class="table table-bordered" data-aos="flip-up">
+										<thead>
+											<tr>
+												<th>Type</th>
+												<th>Email</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<h6>Inbox Messages</h6>
+												</td>
+												<td>
+													<label class="checkbox">
+														<input type="checkbox" name="" value="" checked />
+														<span class="checkmark"></span>
+													</label>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<h6>My Services</h6>
+												</td>
+												<td>
+													<label class="checkbox">
+														<input type="checkbox" name="" value="" checked />
+														<span class="checkmark"></span>
+													</label>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<h6>My Account</h6>
+												</td>
+												<td>
+													<label class="checkbox">
+														<input type="checkbox" name="" value="" checked />
+														<span class="checkmark"></span>
+													</label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="single_notify">
+						<h4 class="mb-4">Real-Time Notifications <i class="fa fa-question-circle"
+								aria-hidden="true"></i></h4>
+
+						<div class="on_off_button">
+							<div class="row my-3">
+								<div class="col-sm-5">
+									<h6>Enable or Disable Real-Time Notifications</h6>
+								</div>
+								<div class="col-sm-7">
+									<input type="checkbox" id="switcher" checked class="m_switch_check" value="0">
+								</div>
+							</div>
+							<div class="save_button">
+								<button class="btn" type="submit">Save Changes</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="single_notify">
+						<h4>Digest emails for messages</h4>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" checked class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>When you receive a private message from a contact</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" checked class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>When you receive a message from our staff</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="single_notify">
+						<h4>Individual Notifications</h4>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>News and announcements from our site</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" checked class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>We notify you of the latest activity regarding Services.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="single_notify">
+						<h4>Other Notifications</h4>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>Marketing Emails</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>Our site deals</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-2 pr-0">
+								<input type="checkbox" id="switcher" class="m_switch_check" value="0">
+							</div>
+							<div class="col-xl-11 col-lg-10 pl-0">
+								<p>Monthly Newsletter</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

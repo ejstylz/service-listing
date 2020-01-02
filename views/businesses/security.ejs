@@ -1,0 +1,153 @@
+<% layout('layouts/settingsBoilerplate') -%>
+
+<div class="profile_setting_wrap">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Left Menu Starts From Here -->
+			<div class="col-md-3">
+				<nav class="navbar navbar-expand-lg">
+					<div class="ps_left_menu border collapse navbar-collapse h-100" id="responsive-bar">
+						<ul class="list-group list-group-flush list-group-sidemenu">
+							<li class="list-group-item"><a href="/company-settings/account">Account</a></li>
+							<li class="list-group-item active"><a href="javascript:void(0)">Security</a></li>
+							<li class="list-group-item"><a href="/company-settings/notifications">Emails &
+									Notifications</a></li>
+							<li class="list-group-item"><a href="/company-settings/billing">Billing</a></li>
+							<li class="list-group-item"><a href="/company-settings/payment">Payment & Financial</a></li>
+							<li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
+									Verification</a>
+							</li>
+							<li class="list-group-item"><a href="/company-settings/company-info">Company Info Box</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!-- Left Menu Ends Here -->
+
+			<div class="col-md-9 profile_setting">
+				<div class="profile_setting_wrapper sc_setting ac_setting">
+					<h3>Change Password</h3>
+					<form action="">
+						<div class="form">
+							<div class="form-row">
+								<div class="col-md-4">
+									<label for="">Current Password</label>
+								</div>
+								<div class="form-group col-md-8">
+									<input type="password" class="form-control" />
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<label for="">New Password</label>
+								</div>
+								<div class="form-group col-md-8">
+									<input type="password" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="col-md-4">
+									<label for="">Confirm Password</label>
+								</div>
+								<div class="form-group col-md-8">
+									<input type="password" class="form-control" />
+									<h6>8 Characters or longer. Combine upper and lowercase letters and number. </h6>
+								</div>
+							</div>
+
+							<div class="save_button">
+								<button type="submit" class="btn">Save Change</button>
+							</div>
+						</div>
+					</form>
+					<div class="verifi_securi">
+						<div class="row">
+							<div class="col-md-4">
+								<h4>Email Verification</h4>
+							</div>
+							<div class="col-md-8 single_part">
+								<h5>Your Email is verified with our team. Click edit change your Email Address.</h5>
+								<a href="#changeEmail" data-toggle="modal" class="btn">Edit</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<h4>Security Question</h4>
+							</div>
+							<div class="col-md-8 single_part">
+								<h5>By creating a security question, you will add an additional layer of protection for
+									your revenue withdrawls and for change your password.</h5>
+								<a href="#setSecurityQuestion" data-toggle="modal" class="btn">Edit</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Edit Email Modal Starts -->
+<div class="modal edit_security_modal fade" id="changeEmail">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Change Your Email</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="form">
+						<div class="form-group">
+							<input type="email" value="example@gmail.com" placeholder="Enter Your Email Address..."
+								class="form-control" />
+						</div>
+						<div class="submit_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Save Changes</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Edit Email Modal Ends -->
+
+
+<!-- Set Security Modal Starts -->
+<div class="modal edit_security_modal fade" id="setSecurityQuestion">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Create You Security Qustion</h3>
+				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
+						aria-hidden="true"></i></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="form">
+						<div class="form-group">
+							<label for="">Choose Your Security Qustion</label>
+							<select name="" id="" class="form-control">
+								<option value="">Your Security Question 1</option>
+								<option value="">Your Security Question 2</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Enter Answer of Your Security Question</label>
+							<input type="text" class="form-control" />
+						</div>
+						<div class="submit_button text-right">
+							<button type="submit" class="btn btn-gbz-success">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Set Security Modal Ends -->

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatble" content="ie=edge" />
+    <title>Dashboard | About</title>
+    <link href="../images/favicon.png" rel="icon" />
+    <link href="../images/favicon.ico" rel="shortcut icon" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../fonts/fonts.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/timeline.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/lightcase.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
+    <link href="../css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header class="main_header dashboard_header">
+        <nav class="navbar navbar-expand-sm navbar-dark topbar bs_dash_topbar">
+            <form class="form-inline mr-auto">
+                <select class="form-control form-control-sm">
+                    <option>English</option>
+                    <option>Spanish</option>
+                </select>
+            </form>
+            <ul class="navbar-nav flex-row">
+
+                <li class="night_mode_image mr-0 mx-4"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
+                <li class="nav-item my_account">
+                    <a class="nav-link" id="myAcActionLink" href="javascript:void(0)">
+                        <span class="dash_nav_icon dash_nav_image"><img src="<%= currentUser.logo %>" alt=""
+                                class="img-fluid mr-1" /></span>
+                        <span class="dash_nav_text">My Account</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg dashboard_nav navbar-light middlebar">
+            <a class="navbar-brand" href="/company-dashboard">
+                <img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
+                <img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
+            </a>
+
+            <div class="members_menu_bar">
+                <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
+                    <li>
+                        <button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
+                            <div class="animated-icon2"><span></span><span></span><span></span></div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- My Account SideMenu For Desktop -->
+    <div class="" id="myAcContents">
+        <div id="dismissMyAcActionLink">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="my_account_menu">
+            <div class="top_part">
+                <img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+                <div class="profile_name"><%= currentUser.companyName %></div>
+            </div>
+            <div class="bottom_part">
+                <ul>
+                    <li><a href="/company-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i><span>View
+                                Dashboard</span></a></li>
+                    <li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-fw fa-comments"></i><span>Seller Help Center</span></a></li>
+                    <li><a href="/logout" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- My Account SideMenu For Desktop -->
+
+    <% include ../partials/flash-messages %>
+    <%- body -%>
+
+    <footer class="main_footer business_owner_dashboard_footer">
+        <div class="container">
+            <p class="mb-0">Copyright:&copy; 2019 Gabazzo. All Rights Reserved. Patent Pending</p>
+        </div>
+    </footer>
+
+    <script src="../js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../js/classie.js" type="text/javascript"></script>
+    <script src="../js/timeline.min.js" type="text/javascript"></script>
+    <script src="../js/lightcase.js" type="text/javascript"></script>
+    <script src="../js/custom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".m_switch_check:checkbox").mSwitch({
+
+                onRendered: function (elem) {
+                    console.log(elem);
+                },
+                onTurnOn: function (elem) {
+                    var entity = elem.attr("entity");
+                    var label = elem.parent().parent().prev(".m_settings_label");
+                    if (elem.val() == "0") {
+                        elem.val("1");
+                        label.html(entity + " <span class=\"m_green\">(Enable)</font>");
+                    } else {
+                        label.html(entity + " <span class=\"m_red\">(Error)</font>");
+                    }
+                },
+                onTurnOff: function (elem) {
+                    var entity = elem.attr("entity");
+                    var label = elem.parent().parent().prev(".m_settings_label");
+                    if (elem.val() == 1) {
+                        elem.val("0");
+                        label.html(entity + " <span class=\"m_red\">(Disable)</font>");
+                    } else {
+                        label.html(entity + " <span class=\"m_red\">(Error)</font>");
+                    }
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
