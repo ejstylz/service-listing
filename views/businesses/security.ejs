@@ -17,8 +17,8 @@
 							<li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
 									Verification</a>
 							</li>
-							<li class="list-group-item"><a href="/company-settings/company-info">Company Info Box</a>
-							</li>
+							<!-- <li class="list-group-item"><a href="/company-settings/company-info">Company Info Box</a>
+							</li> -->
 						</ul>
 					</div>
 				</nav>
@@ -28,14 +28,14 @@
 			<div class="col-md-9 profile_setting">
 				<div class="profile_setting_wrapper sc_setting ac_setting">
 					<h3>Change Password</h3>
-					<form action="">
+					<form action="/company-settings/security?_method=PUT" method="POST">
 						<div class="form">
 							<div class="form-row">
 								<div class="col-md-4">
 									<label for="">Current Password</label>
 								</div>
 								<div class="form-group col-md-8">
-									<input type="password" class="form-control" />
+									<input type="password" name="currentPassword" class="form-control" />
 								</div>
 							</div>
 							<div class="form-row">
@@ -43,7 +43,7 @@
 									<label for="">New Password</label>
 								</div>
 								<div class="form-group col-md-8">
-									<input type="password" class="form-control" />
+									<input type="password" name="newPassword" class="form-control" />
 								</div>
 							</div>
 
@@ -52,8 +52,8 @@
 									<label for="">Confirm Password</label>
 								</div>
 								<div class="form-group col-md-8">
-									<input type="password" class="form-control" />
-									<h6>8 Characters or longer. Combine upper and lowercase letters and number. </h6>
+									<input type="password" name="passwordConfirmation" class="form-control" />
+									<!-- <h6>8 Characters or longer. Combine upper and lowercase letters and number. </h6> -->
 								</div>
 							</div>
 
@@ -100,11 +100,11 @@
 						aria-hidden="true"></i></button>
 			</div>
 			<div class="modal-body">
-				<form action="">
+				<form action="/company-settings/account?_method=PUT" method="POST">
 					<div class="form">
 						<div class="form-group">
-							<input type="email" value="example@gmail.com" placeholder="Enter Your Email Address..."
-								class="form-control" />
+							<input type="email" name="email" value="<%= currentUser.email %>"
+								placeholder="Enter Your Email Address..." class="form-control" />
 						</div>
 						<div class="submit_button text-right">
 							<button type="submit" class="btn btn-gbz-success">Save Changes</button>

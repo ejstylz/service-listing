@@ -58,4 +58,39 @@ module.exports = {
         return res.redirect('back');
     },
 
+    isValidPassword: async (req, res, next) => {
+        const { user } = await User.authenticate()(req.user.username, req.body.currentPassword);
+        if (user) {
+            // add user to res.locals
+            res.locals.user = user;
+            next();
+        } else {
+            req.session.error = "Incorrect Password";
+            // console.log("Incorrect Password");
+            return res.redirect('/company-settings/security');
+        }
+    },
+
+    changePassword: async (req, res, next) => {
+        const {
+            newPassword,
+            passwordConfirmation
+        } = req.body;
+
+        if (newPassword && passwordConfirmation) {
+            const { user } = res.locals;
+            if (newPassword === passwordConfirmation) {
+                await user.setPassword(newPassword);
+                await user.save();
+                next();
+            } else {
+                req.session.error = "The new passwords must match!";
+                // console.log('The new passwords must match!');
+                return res.redirect('/company-settings/security');
+            }
+        } else {
+            next();
+        }
+    },
+
 };

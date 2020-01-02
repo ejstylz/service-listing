@@ -157,7 +157,9 @@ const {
   getNotifications,
   getPayment,
   getSecurity,
-  getVerification
+  getVerification,
+  putAccount,
+  putSecurity
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -166,7 +168,9 @@ const {
   goToAccountSecurity,
   goToPayment,
   isCompany,
-  isMember
+  isMember,
+  changePassword,
+  isValidPassword
 } = require('../middleware');
 
 /* GET home page. */
@@ -410,11 +414,14 @@ router.delete('/services/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteSe
 /* GET /company-settings/account */
 router.get('/company-settings/account', isLoggedIn, isCompany, asyncErrorHandler(getAccount));
 
+/* PUT /company-settings/account */
+router.put('/company-settings/account', isLoggedIn, isCompany, asyncErrorHandler(putAccount));
+
 /* GET /company-settings/billing */
 router.get('/company-settings/billing', isLoggedIn, isCompany, asyncErrorHandler(getBilling));
 
-/* GET /company-settings/company-info */
-router.get('/company-settings/company-info', isLoggedIn, isCompany, asyncErrorHandler(getCompanyInfo));
+// /* GET /company-settings/company-info */
+// router.get('/company-settings/company-info', isLoggedIn, isCompany, asyncErrorHandler(getCompanyInfo));
 
 /* GET /company-settings/notifications */
 router.get('/company-settings/notifications', isLoggedIn, isCompany, asyncErrorHandler(getNotifications));
@@ -424,6 +431,14 @@ router.get('/company-settings/payment', isLoggedIn, isCompany, asyncErrorHandler
 
 /* GET /company-settings/security */
 router.get('/company-settings/security', isLoggedIn, isCompany, asyncErrorHandler(getSecurity));
+
+/* PUT /company-settings/security */
+router.put('/company-settings/security',
+  isLoggedIn,
+  asyncErrorHandler(isValidPassword),
+  asyncErrorHandler(changePassword),
+  asyncErrorHandler(putSecurity)
+);
 
 /* GET /company-settings/trust-verification */
 router.get('/company-settings/trust-verification', isLoggedIn, isCompany, asyncErrorHandler(getVerification));

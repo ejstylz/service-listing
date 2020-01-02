@@ -1199,15 +1199,32 @@ module.exports = {
         res.render('businesses/account', { title: 'Settings' });
     },
 
+    //Company Update
+    async putAccount(req, res, next) {
+        const user = req.user;
+
+        const {
+            email
+        } = req.body;
+
+        if (email) user.email = req.body.email;
+
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Profile Updated";
+        res.redirect("/company-settings/account");
+    },
+
     // GET billing settings
     async getBilling(req, res, next) {
         res.render('businesses/billing', { title: 'Settings' });
     },
 
     // GET company-info settings
-    async getCompanyInfo(req, res, next) {
-        res.render('businesses/company-info', { title: 'Settings' });
-    },
+    // async getCompanyInfo(req, res, next) {
+    //     res.render('businesses/company-info', { title: 'Settings' });
+    // },
 
     // GET notifications settings
     async getNotifications(req, res, next) {
@@ -1224,9 +1241,32 @@ module.exports = {
         res.render('businesses/security', { title: 'Settings' });
     },
 
+    async putSecurity(req, res, next) {
+        const user = req.user;
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "Password Updated";
+        res.redirect("/company-settings/security");
+    },
+
+
     // GET verification settings
     async getVerification(req, res, next) {
-        res.render('businesses/trust-verification', { title: 'Settings' });
+        const user = req.user;
+        let score = 0;
+        let grade = "Poor"
+        if (user.isEmailVerified || user.isFacebookVerified) {
+            score = 5;
+            grade = "Good"
+        } else if (user.isEmailVerified && user.isFacebookVerified) {
+            score = 10;
+            grade = "Excellent"
+        } else {
+            score = 0;
+            grade = "Poor"
+        }
+        res.render('businesses/trust-verification', { title: 'Settings', score, grade });
     },
 
 
