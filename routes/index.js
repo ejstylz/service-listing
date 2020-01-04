@@ -159,7 +159,13 @@ const {
   getSecurity,
   getVerification,
   putAccount,
-  putSecurity
+  putSecurity,
+  likes,
+  unlike,
+  saveToList,
+  removeFromList,
+  getProfile,
+  putProfile
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -170,7 +176,8 @@ const {
   isCompany,
   isMember,
   changePassword,
-  isValidPassword
+  isValidPassword,
+  isNotCompany
 } = require('../middleware');
 
 /* GET home page. */
@@ -412,10 +419,10 @@ router.delete('/services/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteSe
 // COMPANY SETTINGS
 
 /* GET /company-settings/account */
-router.get('/company-settings/account', isLoggedIn, isCompany, asyncErrorHandler(getAccount));
+router.get('/company-settings/account', isLoggedIn, asyncErrorHandler(getAccount));
 
 /* PUT /company-settings/account */
-router.put('/company-settings/account', isLoggedIn, isCompany, asyncErrorHandler(putAccount));
+router.put('/company-settings/account', isLoggedIn, asyncErrorHandler(putAccount));
 
 /* GET /company-settings/billing */
 router.get('/company-settings/billing', isLoggedIn, isCompany, asyncErrorHandler(getBilling));
@@ -424,13 +431,13 @@ router.get('/company-settings/billing', isLoggedIn, isCompany, asyncErrorHandler
 // router.get('/company-settings/company-info', isLoggedIn, isCompany, asyncErrorHandler(getCompanyInfo));
 
 /* GET /company-settings/notifications */
-router.get('/company-settings/notifications', isLoggedIn, isCompany, asyncErrorHandler(getNotifications));
+router.get('/company-settings/notifications', isLoggedIn, asyncErrorHandler(getNotifications));
 
 /* GET /company-settings/payment */
 router.get('/company-settings/payment', isLoggedIn, isCompany, asyncErrorHandler(getPayment));
 
 /* GET /company-settings/security */
-router.get('/company-settings/security', isLoggedIn, isCompany, asyncErrorHandler(getSecurity));
+router.get('/company-settings/security', isLoggedIn, asyncErrorHandler(getSecurity));
 
 /* PUT /company-settings/security */
 router.put('/company-settings/security',
@@ -441,7 +448,13 @@ router.put('/company-settings/security',
 );
 
 /* GET /company-settings/trust-verification */
-router.get('/company-settings/trust-verification', isLoggedIn, isCompany, asyncErrorHandler(getVerification));
+router.get('/company-settings/trust-verification', isLoggedIn, asyncErrorHandler(getVerification));
+
+/* GET /company-settings/profile */
+router.get('/company-settings/profile', isLoggedIn, asyncErrorHandler(getProfile));
+
+/* PUT /profile */
+router.put('/profile', isLoggedIn, isNotCompany, upload.single('profilePicture'), asyncErrorHandler(putProfile));
 
 
 //SHOW PAGES
@@ -619,5 +632,17 @@ router.get('/reset/:token', asyncErrorHandler(getReset));
 
 /* PUT /reset/:token */
 router.put('/reset/:token', asyncErrorHandler(putReset));
+
+/* POST /likes/:id */
+router.post('/likes/:id', isLoggedIn, asyncErrorHandler(likes));
+
+/* POST /unlike/:id */
+router.post('/unlike/:id', isLoggedIn, asyncErrorHandler(unlike));
+
+/* POST /save-to-list/:id */
+router.post('/save-to-list/:id', isLoggedIn, asyncErrorHandler(saveToList));
+
+/* POST /remove-from-list/:id */
+router.post('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromList));
 
 module.exports = router;

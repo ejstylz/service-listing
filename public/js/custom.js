@@ -5,7 +5,9 @@ $(document).ready(function () {
         $('.night_mode_icon').toggleClass('active');
         $('body').toggleClass('night');
     })
-})
+});
+
+localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')
 
 /*	=============================================	*/
 
@@ -234,6 +236,10 @@ $(window).on("scroll", function () {
 $("#file-1").change(function () {
     readURL(this);
 });
+
+function getURL() {
+    alert("The URL of this page is: " + window.location.href);
+}
 
 
 

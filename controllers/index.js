@@ -1231,6 +1231,52 @@ module.exports = {
         res.render('businesses/notifications', { title: 'Settings' });
     },
 
+    // GET profile settings
+    async getProfile(req, res, next) {
+        res.render('businesses/profile', { title: 'Settings' });
+    },
+
+    //Edit Profile
+    async putProfile(req, res, next) {
+        let user = req.user;
+        if (req.file) {
+            if (user.profilePictureId) await cloudinary.v2.uploader.destroy(user.profilePictureId);
+            // upload image
+            let picture = await cloudinary.v2.uploader.upload(req.file.path);
+            // add images to post.images array
+            user.profilePicture = picture.secure_url;
+            user.profilePictureId = picture.public_id;
+        }
+
+        const {
+            firstName,
+            lastName,
+            location,
+            city,
+            state,
+            zipCode,
+            country,
+            phoneNumber,
+        } = req.body;
+
+        if (firstName) user.firstName = firstName;
+        if (lastName) user.lastName = lastName;
+        if (location) user.location = location;
+        if (city) user.city = req.body.city;
+        if (state) user.state = req.body.state;
+        if (zipCode) user.zipCode = req.body.zipCode;
+        if (country) user.country = req.body.country;
+        if (phoneNumber) user.phoneNumber = req.body.phoneNumber;
+
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log("updated");
+        req.session.success = "Profile Successfully Updated!";
+        // redirect to show page
+        res.redirect("/company-settings/profile");
+    },
+
     // GET payment settings
     async getPayment(req, res, next) {
         res.render('businesses/payment', { title: 'Settings' });
@@ -2305,6 +2351,73 @@ module.exports = {
         } else {
             res.redirect('/company-dashboard');
         }
+    },
+
+    async likes(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let user = req.user;
+        if (!user.likes.includes(company._id)) {
+            await user.likes.push(company);
+        } else {
+            colsole.log("ALREADY LIKED")
+        }
+        // save the updated user into the db
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log("LIKED!!!");
+        req.session.success = "Profile successfully updated!";
+        // redirect to show page
+        res.redirect("back");
+    },
+
+    async unlike(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let user = req.user;
+
+        const index = user.likes.indexOf(company);
+        await user.likes.splice(index, 1);
+        // save the updated user into the db
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log("UNLIKED!!!");
+        req.session.success = "Profile successfully updated!";
+        // redirect to show page
+        res.redirect("back");
+    },
+
+    async saveToList(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let user = req.user;
+        if (!user.list.includes(company._id)) {
+            await user.list.push(company);
+        } else {
+            colsole.log("ALREADY SAVED")
+        }
+        // save the updated user into the db
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log("SAVED!!!");
+        req.session.success = "Profile successfully updated!";
+        // redirect to show page
+        res.redirect("back");
+    },
+
+    async removeFromList(req, res, next) {
+        let company = await User.findById(req.params.id);
+        let user = req.user;
+        const index = user.list.indexOf(company);
+        await user.list.splice(index, 1);
+        // save the updated user into the db
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log("REMOVED!!!");
+        req.session.success = "Profile successfully updated!";
+        // redirect to show page
+        res.redirect("back");
     },
 
 

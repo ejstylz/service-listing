@@ -27,6 +27,11 @@
                     <option>Spanish</option>
                 </select>
             </form>
+
+            <div class="main_logo_for_mobile ml-auto">
+                <a href="../members/index-members.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+            </div>
+
             <ul class="navbar-nav flex-row">
 
                 <li class="night_mode_image mr-0 mx-4"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
@@ -40,11 +45,18 @@
             </ul>
         </nav>
 
-        <nav class="navbar navbar-expand-lg dashboard_nav navbar-light middlebar">
-            <a class="navbar-brand" href="/">
+        <nav class="navbar navbar-expand-lg navbar-light middlebar busi_owner_settings">
+            <a class="navbar-brand main_logo_for_desktop" href="/">
                 <img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
                 <img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
             </a>
+
+            <div class="services_menu_bar">
+                <button class="navbar-toggler services_responsive_bar border-0" type="button" data-toggle="collapse"
+                    data-target="#responsive-bar">
+                    <div class="animated-icon1"><span></span><span></span><span></span> <b class="">Settings</b></div>
+                </button>
+            </div>
 
             <div class="members_menu_bar">
                 <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
@@ -65,7 +77,11 @@
         </div>
         <div class="my_account_menu">
             <div class="top_part">
+                <% if (currentUser.isCompany) { %>
                 <img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+                <% } else { %>
+                <img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+                <% } %>
                 <div class="profile_name"><%= currentUser.companyName %></div>
             </div>
             <div class="bottom_part">

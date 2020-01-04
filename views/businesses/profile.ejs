@@ -1,0 +1,179 @@
+<% layout('layouts/settingsBoilerplate') -%>
+
+
+<div class="profile_setting_wrap">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Menu Starts From Here -->
+            <div class="col-md-3">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="ps_left_menu border collapse navbar-collapse h-100" id="responsive-bar">
+                        <ul class="list-group list-group-flush list-group-sidemenu">
+                            <li class="list-group-item"><a href="/company-settings/account">Account</a></li>
+                            <li class="list-group-item"><a href="/company-settings/security">Security</a></li>
+                            <li class="list-group-item"><a href="/company-settings/notifications">Emails &
+                                    Notifications</a></li>
+                            <% if(currentUser.isCompany) { %>
+                            <li class="list-group-item"><a href="/company-settings/billing">Billing</a></li>
+                            <li class="list-group-item"><a href="/company-settings/payment">Payment & Financial</a></li>
+                            <% } else { %>
+                            <li class="list-group-item active"><a href="javascript:void(0)">Profile</a>
+                                <% } %>
+                            <li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
+                                    Verification</a>
+                            </li>
+                            <!-- <li class="list-group-item"><a href="/company-settings/company-info">Company Info Box</a>
+							</li> -->
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- Left Menu Ends Here -->
+
+            <div class="col-md-9 profile_setting">
+                <form action="/profile?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <div class="profile_setting_wrapper notifications">
+                        <div class="profile_header">
+                            <h1>Profile Details</h1>
+                        </div>
+                        <div class="single_notify">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group mb-0">
+                                        <div class="upload_profile_pic">
+                                            <a href="javascript:void(0)"><img id="blah" src="../images/man.png"
+                                                    class="img-fluid" alt="" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single_upload">
+                                        <div class="upload_header">
+                                            <h5>Change Profile Picture</h5>
+                                        </div>
+                                        <div class="upload_area">
+                                            <div class="form-group">
+                                                <input type="file" name="profilePicture" id="file-1"
+                                                    class="inputfile inputfile-1" accept="image/*" />
+                                                <label for="file-1">
+                                                    <div class="upload_fils">
+                                                        <div class="icon">
+                                                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                                        </div>
+                                                        <h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload
+                                                        </h5>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_notify">
+                            <h4>Full Name:</h4>
+                            <div class="form">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="">First Name*</label>
+                                        <input type="text" name="firstName" placeholder=""
+                                            value="<%= currentUser.firstName %>" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Last Name*</label>
+                                        <input type="text" name="lastName" value="<%= currentUser.lastName %>"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single_notify">
+                            <h4>Address:</h4>
+                            <div class="form">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="">Address*</label>
+                                        <input type="text" name="location" value="<%= currentUser.location %>"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="">City:</label>
+                                        <input type="text" name="city" placeholder="Ex: Chicago"
+                                            value="<%= currentUser.city %>" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>State/Province/Region:</label>
+                                        <input type="text" name="state" placeholder="Ex: Illinois"
+                                            value="<%= currentUser.state %>" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">ZIP Code:</label>
+                                        <input type="text" name="zipCode" placeholder="Ex: 54004"
+                                            value="<%= currentUser.zipCode %>" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Country*</label>
+                                        <select name="country" id="" class="form-control mb-2">
+                                            <option>United States</option>
+                                            <option>Australia</option>
+                                            <option>France</option>
+                                            <option>Italy</option>
+                                            <option>Others</option>
+                                        </select>
+                                        <h6>In order to change your country, we require you to <a
+                                                href="javascript:void(0)">verify your identity</a>. This is so we can
+                                            verify your address details. The country will be automatically updated once
+                                            the process is complete.</h6>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Phone Number</label>
+                                        <input type="tel" name="phoneNumber" placeholder="Ex: +1 (222)444-5566"
+                                            value="<%= currentUser.phoneNumber %>" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single_notify pb-0">
+                            <h4>Language Settings:</h4>
+                            <div class="form">
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="">I want to browse the website in:</label>
+                                        <select name="" id="" class="form-control">
+                                            <option value="">English</option>
+                                            <option value="">Spanish</option>
+                                            <option value="">Francis</option>
+                                            <option value="">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="">I want to browse projects int the following languages:</label>
+                                        <select name="" id="" class="form-control">
+                                            <option value="">Add Languages</option>
+                                            <option value="">English</option>
+                                            <option value="">Spanish</option>
+                                            <option value="">Francis</option>
+                                            <option value="">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="save_button">
+                                <button class="btn" type="submit">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -59,12 +59,13 @@
             </div>
 
             <div class="collapse nav_item_wrap navbar-collapse" id="navb">
-              <form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages" method="POST">
-                <div class="search_bar autocomplete">
-                  <input id="myInput" name="service" type="text" placeholder="Search...." />
-                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-              </form>
+                <form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages"
+                    method="POST">
+                    <div class="search_bar autocomplete">
+                        <input id="myInput" name="service" type="text" placeholder="Search...." />
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </form>
 
                 <ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
                     <li class="nav-item">
@@ -327,12 +328,12 @@
     </header>
 
     <section class="main_search_bar_mobile">
-      <form autocomplete="off" action="/pages" method="POST">
-        <div class="search_bar autocomplete">
-          <input id="myInput2" name="service" type="text" placeholder="Search...." />
-          <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </div>
-      </form>
+        <form autocomplete="off" action="/pages" method="POST">
+            <div class="search_bar autocomplete">
+                <input id="myInput2" name="service" type="text" placeholder="Search...." />
+                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </form>
     </section>
 
     <!-- My Account SideMenu For Desktop -->
@@ -488,10 +489,31 @@
                     <div class="reviews_amount_part">
                         <div class="like_share_menu">
                             <ul>
-                                <li><a href="javascript:void(0)">Like</a></li>
-                                <li><a href="javascript:void(0)">Share</a></li>
-                                <li><a href="javascript:void(0)">Save to List</a></li>
-                                <li><a href="javascript:void(0)">Print Page</a></li>
+                              <% if(currentUser && currentUser.likes.includes(company._id)) { %>
+                                <li>
+                              <form class="" action="/unlike/<%= company._id %>" method="POST">
+                                <button type="submit" class="like">Unlike</button>
+                              </form></li>
+                              <% } else { %>
+                                <li>
+                              <form class="" action="/likes/<%= company._id %>" method="POST">
+                                <button type="submit" class="like">Like</button>
+                              </form></li>
+                              <% } %>
+
+                                <li><a href="javascript:void(0)" onclick="copyToClipboard()">Share</a></li>
+                                <input type="hidden" id="input-url" value="Copied!">
+
+                                <% if(currentUser && currentUser.list.includes(company._id)) { %>
+                                <li><form class="" action="/remove-from-list/<%= company._id %>" method="POST">
+                                  <button type="submit" class="like">Remove From List</button>
+                                </form></li>
+                                <% } else { %>
+                                <li><form class="" action="/save-to-list/<%= company._id %>" method="POST">
+                                  <button type="submit" class="like">Save To List</button>
+                                </form></li>
+                                <% } %>
+                                <li><a id="export" href="#" onclick="window.print()">Print Page</a></li>
                             </ul>
                         </div>
                     </div>
@@ -514,7 +536,8 @@
 
                                         <ul>
                                             <li><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Address:</b>
-                                                <span><%= company.location %>, <%= company.city %>, <%= company.state %></span></li>
+                                                <span><%= company.location %>, <%= company.city %>,
+                                                    <%= company.state %></span></li>
                                             <li><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>
                                                 <span><%= company.phoneNumber %></span></li>
                                             <li><i class="fa fa-globe" aria-hidden="true"></i> <b>Website:</b> <span><a
@@ -557,7 +580,8 @@
                                         <li><i class="fa fa-at" aria-hidden="true"></i> <span> Username:</span>
                                             <b>@<%= company.username %></b></li>
                                         <li><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                                            <span>Location:</span> <b><%= company.location %>, <%= company.city %>, <%= company.state %></b></li>
+                                            <span>Location:</span> <b><%= company.location %>, <%= company.city %>,
+                                                <%= company.state %></b></li>
                                         <li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
                                             <b><%= moment(company.createdAt).format("MMM YY") %></b></li>
                                         <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Number of
@@ -642,7 +666,8 @@
                                     <li><i class="fa fa-at" aria-hidden="true"></i> <span> Username:</span>
                                         <b>@<%= company.username %></b></li>
                                     <li><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                                        <span>Location:</span> <b><%= company.location %>, <%= company.city %>, <%= company.state %></b></li>
+                                        <span>Location:</span> <b><%= company.location %>, <%= company.city %>,
+                                            <%= company.state %></b></li>
                                     <li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
                                         <b><%= moment(company.createdAt).format("MMM YYYY") %></b></li>
                                     <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Number of
@@ -870,7 +895,8 @@
 
                                 <ul>
                                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Address:</b>
-                                        <span><%= company.location %>, <%= company.city %>, <%= company.state %></span></li>
+                                        <span><%= company.location %>, <%= company.city %>, <%= company.state %></span>
+                                    </li>
                                     <li><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>
                                         <span><%= company.phoneNumber %></span></li>
                                     <li><i class="fa fa-globe" aria-hidden="true"></i> <b>Website:</b> <span><a
@@ -1613,6 +1639,17 @@
             .addTo(map);
         map.addControl(new mapboxgl.NavigationControl());
         map.addControl(new mapboxgl.FullscreenControl());
+    </script>
+    <script type="text/javascript">
+        function copyToClipboard() {
+            const el = document.createElement('textarea');
+            el.value = window.location.href;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("URL Copied!");
+        };
     </script>
 
 </body>

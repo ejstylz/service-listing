@@ -13,8 +13,13 @@
 							<li class="list-group-item"><a href="/company-settings/security">Security</a></li>
 							<li class="list-group-item"><a href="/company-settings/notifications">Emails &
 									Notifications</a></li>
+							<% if(currentUser.isCompany) { %>
 							<li class="list-group-item"><a href="/company-settings/billing">Billing</a></li>
 							<li class="list-group-item"><a href="/company-settings/payment">Payment & Financial</a></li>
+							<% } else { %>
+							<li class="list-group-item"><a href="/company-settings/profile">Profile</a>
+								<% } %>
+
 							<li class="list-group-item"><a href="/company-settings/trust-verification">Trust &
 									Verification</a>
 							</li>

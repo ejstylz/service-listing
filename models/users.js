@@ -124,7 +124,19 @@ const UserSchema = new Schema({
     Purpose: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    averageReview: String
+    averageReview: String,
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
+    list: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
 
 }, { timestamps: true });
 
