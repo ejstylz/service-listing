@@ -137,6 +137,10 @@ const UserSchema = new Schema({
             ref: 'User'
         }
     ],
+    isActive: { type: Boolean, default: true },
+
+    activateToken: String,
+    activateExpires: Date,
 
 }, { timestamps: true });
 

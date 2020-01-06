@@ -165,7 +165,9 @@ const {
   saveToList,
   removeFromList,
   getProfile,
-  putProfile
+  putProfile,
+  activateAccount,
+  deactivateAccount
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -644,5 +646,12 @@ router.post('/save-to-list/:id', isLoggedIn, asyncErrorHandler(saveToList));
 
 /* POST /remove-from-list/:id */
 router.post('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromList));
+
+
+/* De-activate account */
+router.put('/deactivate', asyncErrorHandler(deactivateAccount));
+
+/* GET Activate account */
+router.get('/activate/:token', asyncErrorHandler(activateAccount));
 
 module.exports = router;

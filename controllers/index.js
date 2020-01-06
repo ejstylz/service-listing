@@ -636,21 +636,28 @@ module.exports = {
         const { username, password } = req.body;
         const { user, error } = await User.authenticate()(username, password);
         if (!user && error) return next(error);
-        req.login(user, function (err) {
-            if (err) return next(err);
-            req.session.success = "Welcome back!";
-            console.log("Logged In");
-            console.log("Welcome back!");
-            const redirectUrl1 = req.session.redirectTo || '/';
-            const redirectUrl2 = req.session.redirectTo || '/company-dashboard';
-            delete req.session.redirectTo;
+        if (!user.isActive) {
+            req.session.error = "The Account is currently de-activated!";
+            res.redirect('/');
 
-            if (!user.isCompany) {
-                res.redirect(redirectUrl1);
-            } else {
-                res.redirect(redirectUrl2);
-            }
-        });
+        } else {
+            req.login(user, function (err) {
+                if (err) return next(err);
+                req.session.success = "Welcome back!";
+                console.log("Logged In");
+                console.log("Welcome back!");
+                const redirectUrl1 = req.session.redirectTo || '/';
+                const redirectUrl2 = req.session.redirectTo || '/company-dashboard';
+                delete req.session.redirectTo;
+
+                if (!user.isCompany) {
+                    res.redirect(redirectUrl1);
+                } else {
+                    res.redirect(redirectUrl2);
+                }
+            });
+        }
+
     },
 
     //GET /logout
@@ -2418,6 +2425,67 @@ module.exports = {
         req.session.success = "Profile successfully updated!";
         // redirect to show page
         res.redirect("back");
+    },
+
+    async deactivateAccount(req, res, next) {
+        const user = req.user;
+        if (user.isActive) user.isActive = false;
+        await user.save();
+
+        const token = await crypto.randomBytes(20).toString('hex');
+        user.activateToken = token;
+        user.activateExpires = Date.now() + 86400000000000;
+
+        await user.save();
+
+        console.log("Account Deactivated");
+
+        const msg = {
+            to: user.email,
+            from: 'GABAZZO <no-reply@gabazzo.com>',
+            subject: 'GABAZZO - Account Deactivation',
+            text: `We are sad to see you go ${user.username}.
+				To re-activate your account at anytime, click on the following link, or copy and paste it into your browser to complete the process:
+				http://${req.headers.host}/activate/${token}`.replace(/				/g, ''),
+        };
+
+        await sgMail.send(msg);
+
+        req.session.success = `An e-mail has been sent to ${user.email}.`;
+
+        console.log("Account Deactivated");
+        req.session.success = "Account Deactivated";
+        // redirect to show page
+        res.redirect("/logout");
+    },
+
+
+    // RE-ACTIVATE ACCOUNT
+
+    async activateAccount(req, res, next) {
+        const { token } = req.params;
+        const user = await User.findOne({ activateToken: token, activateExpires: { $gt: Date.now() } });
+
+        if (!user) {
+            req.session.error = 'Activation token is invalid or has expired.';
+            return res.redirect(`/activate/${token}`);
+        }
+
+        user.isActive = true;
+        user.activateToken = null;
+        user.activateExpires = null;
+        await user.save();
+
+        const msg = {
+            to: user.email,
+            from: 'GABAZZO <no-reply@gabazzo.com>',
+            subject: 'GABAZZO - Account Re-activated',
+            text: `Hello, This email is to confirm that your account has just been re-activated.
+            Kindly login here: http://${req.headers.host}/login}`.replace(/		  	/g, '')
+        };
+
+        await sgMail.send(msg);
+        res.redirect('/login');
     },
 
 

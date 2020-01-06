@@ -58,12 +58,11 @@
 								<div class="form-group col-md-8 mt-2">
 									<select name="" id="" class="form-control">
 										<option value="">GO OFFLINE FOR</option>
-										<option value="">GO OFFLINE FOR</option>
-										<option value="">GO OFFLINE FOR</option>
-										<option value="">GO OFFLINE FOR</option>
-										<option value="">GO OFFLINE FOR</option>
-										<option value="">GO OFFLINE FOR</option>
-										<option value="">GO OFFLINE FOR</option>
+										<option value="">8 Hrs</option>
+										<option value="">1 Day</option>
+										<option value="">1 Month</option>
+										<option value="">1 Week</option>
+										<option value="">1 year</option>
 									</select>
 								</div>
 							</div>
@@ -73,24 +72,28 @@
 							</div>
 						</div>
 					</form>
-					<div class="deactive_account">
-						<div class="row">
-							<div class="col-md-4">
-								<h4>Account Deactivation</h4>
+					<form action="/deactivate?_method=PUT" method="POST">
+						<div class="deactive_account">
+							<div class="row">
+								<div class="col-md-4">
+									<h4>Account Deactivation</h4>
+								</div>
+								<div class="col-md-8">
+									<h5>What happens when you deactivate your account?</h5>
+									<ul>
+										<li>Your profile & service won't be shown on the site anymore.</li>
+										<li>Messages will be cancelled.</li>
+										<li>You won't be reactivate your service. Until you contact our Support Team.
+										</li>
+									</ul>
+								</div>
 							</div>
-							<div class="col-md-8">
-								<h5>What happens when you deactivate your account?</h5>
-								<ul>
-									<li>Your profile & service won't be shown on the site anymore.</li>
-									<li>Messages will be cancelled.</li>
-									<li>You won't be reactivate your service. Until you contact our Support Team.</li>
-								</ul>
+							<div class="save_button">
+								<button type="submit" class="btn disabled">Deactivate Account</button>
 							</div>
 						</div>
-						<div class="save_button">
-							<button type="submit" class="btn disabled">Deactivate Account</button>
-						</div>
-					</div>
+					</form>
+
 				</div>
 			</div>
 		</div>
