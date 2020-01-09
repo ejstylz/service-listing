@@ -90,13 +90,7 @@
 											<% if (currentUser.isCompany === true) { %>
 												<img src="<%= currentUser.logo %>" class="profile-photo" alt="">
 												<% } else if (currentUser.isCompany === false) { %>
-													if(currentUser.profilePicture){
-														<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
-
-													} else {
-														<img src="../images/man.png" class="profile-photo" alt="">
-
-													}
+													<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
 											<% } %>	My Account
 										</a>
 									</li>
@@ -121,8 +115,15 @@
 												<% if (currentUser.isCompany === true) { %>
 													<img src="<%= currentUser.logo %>" style="width:30px;" class="profile-photo" alt="">
 													<% } else if (currentUser.isCompany === false) { %>
-														<img src="<%= currentUser.profilePicture %>" style="width:30px;" class="profile-photo" alt="">
-												<% } %>											</a>
+														<% if(currentUser.profilePicture){ %>
+															<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+	
+														<% } else { %>
+															<img src="../images/man.png" class="profile-photo" alt="">
+	
+														<% } %>
+													<% } %>	
+											</a>
 										</li>
 										<li>
 											<button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
