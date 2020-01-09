@@ -90,7 +90,13 @@
 											<% if (currentUser.isCompany === true) { %>
 												<img src="<%= currentUser.logo %>" class="profile-photo" alt="">
 												<% } else if (currentUser.isCompany === false) { %>
-													<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+													if(currentUser.profilePicture){
+														<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+
+													} else {
+														<img src="../images/man.png" class="profile-photo" alt="">
+
+													}
 											<% } %>	My Account
 										</a>
 									</li>
@@ -573,7 +579,7 @@
 					<div class="bottom_part">
 						<ul>
 							<li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
-							<li><a href="ps-account.html"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
+							<li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
 							<li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer Help Center</span></a></li>
 							<li><a href="/logout" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
 						</ul>
