@@ -442,7 +442,6 @@ module.exports = {
     async userUpdate(req, res, next) {
         // find the user by id
         const user = req.user;
-        console.log(req.file);
 
         // check if location was updated
         if (req.body.location && req.body.location !== user.location) {
@@ -454,6 +453,21 @@ module.exports = {
                 .send();
             user.coordinates = response.body.features[0].geometry.coordinates;
             user.location = req.body.location;
+        }
+
+        req.body.images = [];
+
+        for (const file of req.files) {
+            if (user.sliderPhotos.length > 0) {
+                user.sliderPhotos.forEach(async function (photo) {
+                    await cloudinary.v2.uploader.destroy(photo.public_id);
+                });
+            }
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            req.body.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
         }
         // update the user with any new properties
         const {
@@ -560,6 +574,8 @@ module.exports = {
         if (saturdayTo) user.saturdayTo = req.body.saturdayTo;
         if (sundayFrom) user.sundayFrom = req.body.sundayFrom;
         if (sundayTo) user.sundayTo = req.body.sundayTo;
+        if (req.body.images) user.sliderPhotos = req.body.images;
+
 
 
         // save the updated user into the db
@@ -1225,7 +1241,8 @@ module.exports = {
 
     // GET billing settings
     async getBilling(req, res, next) {
-        res.render('businesses/billing', { title: 'Settings' });
+        const user = req.user;
+        res.render('businesses/billing', { title: 'Settings', user });
     },
 
     // GET company-info settings
@@ -2486,6 +2503,60 @@ module.exports = {
 
         await sgMail.send(msg);
         res.redirect('/login');
+    },
+
+    //GET saved to list
+    async getSavedList(req, res, next) {
+        let user = await User.findById(req.user).populate('users');
+        let ids = [];
+        await user.list.forEach(function (comp) {
+            ids.push(comp);
+        });
+        let company = await User.find().where('_id').in(ids).exec();
+        console.log(company);
+        res.render('businesses/saved-list-items', { title: 'Saved List', user, company });
+    },
+
+    //PUT Security Question
+    async putSecurityQuestion(req, res, next) {
+        let user = req.user;
+        const {
+            question,
+            answer,
+        } = req.body;
+
+        if (question) user.securityQuestion.question = req.body.question;
+        if (answer) user.securityQuestion.answer = req.body.answer;
+
+        await user.save();
+        req.session.success = "Security question successfully Updated!";
+        // redirect to show page
+        res.redirect("back");
+    },
+
+    //PUT Billing
+    async putBilling(req, res, next) {
+        let user = req.user;
+        const {
+            companyName,
+            fullName,
+            country,
+            address,
+            city,
+            zipCode
+        } = req.body;
+
+        if (companyName) user.billing.companyName = req.body.companyName;
+        if (fullName) user.billing.fullName = req.body.fullName;
+        if (country) user.billing.country = req.body.country;
+        if (address) user.billing.address = req.body.address;
+        if (city) user.billing.city = req.body.city;
+        if (zipCode) user.billing.zipCode = req.body.zipCode;
+
+        await user.save();
+        req.session.success = "Billing Info successfully Updated!";
+        // redirect to show page
+        res.redirect("back");
     },
 
 

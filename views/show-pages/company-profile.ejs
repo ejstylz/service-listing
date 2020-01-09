@@ -21,60 +21,8 @@
 
 <body>
     <header class="main_header">
-      <% if(!currentUser) { %>
-					<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
-							<form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
-								<select class="form-control form-control-sm">
-									<option>English</option>
-									<option>Spanish</option>
-								</select>
-							</form>
-							<div class="main_logo_for_mobile ml-auto">
-								<a href="/"><img src="images/gabazzo_logo_white.png" alt="" /></a>
-							</div>
-							<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
-								<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
-							</ul>
-						</nav>
-						<nav class="navbar navbar-expand-lg navbar-light middlebar">
-							<a class="navbar-brand main_logo_for_desktop" href="/">
-								<img src="images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
-								<img src="images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
-							</a>
-
-							<div class="services_menu_bar">
-								<button class="navbar-toggler services_responsive_bar border-0" type="button" data-toggle="collapse" data-target="#responsive-bar">
-									<div class="animated-icon1"><span></span><span></span><span></span> <b class="">Services</b></div>
-								</button>
-							</div>
-
-							<div class="members_menu_bar">
-								<ul class="navbar-nav mr-sm-0 align-items-center text-center flex-row">
-									<li>
-										<button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
-											<div class="animated-icon2"><span></span><span></span><span></span></div>
-										</button>
-									</li>
-								</ul>
-							</div>
-
-							<div class="collapse nav_item_wrap navbar-collapse" id="navb">
-								<ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
-									<li class="nav-item">
-										<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="/login">Sign In</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link btn btn-outline-gbz-success join_butotn" href="/sign-up">Join</a>
-									</li>
-								</ul>
-							</div>
-						</nav>
-					<% } else { %>
-
-						<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
+      <% if(currentUser) { %>
+				<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
 								<form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
 									<select class="form-control form-control-sm">
 										<option>English</option>
@@ -128,6 +76,13 @@
 								</div>
 
 								<div class="collapse nav_item_wrap navbar-collapse" id="navb">
+									<form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages"
+										method="POST">
+										<div class="search_bar autocomplete">
+											<input id="myInput" name="service" type="text" placeholder="Search...." />
+											<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+										</div>
+									</form>
 									<ul class="navbar-nav ml-auto">
 										<!-- Messages -->
 										<li class="nav-item dropdown">
@@ -532,7 +487,7 @@
 								</div>
 							</nav>
 
-							<!-- My Account SideMenu For Desktop -->
+						<!-- My Account SideMenu For Desktop -->
 		<div class="" id="myAcContents">
 				<div id="dismissMyAcActionLink">
 					<i class="fa fa-times" aria-hidden="true"></i>
@@ -583,7 +538,73 @@
 			</div>
 			<!-- My Account SideMenu For Mobile -->
 
+			<% } else { %>
+				<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
+					<form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
+						<select class="form-control form-control-sm">
+							<option>English</option>
+							<option>Spanish</option>
+						</select>
+					</form>
+					<div class="main_logo_for_mobile ml-auto">
+						<a href="/"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+					</div>
+
+					<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
+						<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
+					</ul>
+				</nav>
+
+				<nav class="navbar navbar-expand-lg navbar-light middlebar">
+					<a class="navbar-brand main_logo_for_desktop text-dark" href="/" target="_self">
+						<img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
+						<img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
+					</a>
+
+					<div class="services_menu_bar">
+						<button class="navbar-toggler services_responsive_bar border-0" type="button" data-toggle="collapse"
+							data-target="#responsive-bar">
+							<div class="animated-icon1"><span></span><span></span><span></span> <b class="">Services</b>
+							</div>
+						</button>
+					</div>
+
+					<div class="members_menu_bar">
+						<ul class="navbar-nav mr-sm-0 align-items-center text-center flex-row">
+							<li>
+								<button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
+									<div class="animated-icon2"><span></span><span></span><span></span></div>
+								</button>
+							</li>
+						</ul>
+					</div>
+
+					<div class="collapse nav_item_wrap navbar-collapse" id="navb">
+						<form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages"
+							method="POST">
+							<div class="search_bar autocomplete">
+								<input id="myInput" name="service" type="text" placeholder="Search...." />
+								<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+							</div>
+						</form>
+
+						<% if(!currentUser) { %>
+							<ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
+								<li class="nav-item">
+									<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="/login">Sign In</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link btn btn-outline-gbz-success join_butotn" href="/sign-up">Join</a>
+							</ul>
+
 						<% } %>
+					</div>
+				</nav>
+
+		<% } %>
 
         <nav class="navbar main_navbar navbar-expand-lg bottombar">
             <div class="collapse nav_item_wrap navbar-collapse" id="responsive-bar">
@@ -1181,27 +1202,27 @@
                             <div class="slider_part">
                                 <div id="demo" class="carousel slider_part_inner slide" data-ride="carousel">
                                     <!-- Indicators -->
-                                    <!-- <ul class="carousel-indicators">
+                                    <ul class="carousel-indicators">
                                         <li data-target="#demo" data-slide-to="0" class="active"></li>
                                         <li data-target="#demo" data-slide-to="1"></li>
                                         <li data-target="#demo" data-slide-to="2"></li>
-                                    </ul> -->
+                                    </ul>
 
                                     <!-- The slideshow -->
                                     <div class="carousel-inner">
-                                        <% if (mediaPhoto[0]) { %>
+                                        <% if (company.sliderPhotos[0]) { %>
                                         <div class="carousel-item text-center active">
-                                            <a class="lightcase" href="<%= mediaPhoto[0].imageUrl %>"
+                                            <a class="lightcase" href="<%= company.sliderPhotos[0].imageUrl %>"
                                                 data-rel="lightcase:carousel">
-                                                <img src="<%= mediaPhoto[0].imageUrl %>" class="img-fluid" alt="" />
+                                                <img src="<%= company.sliderPhotos[0].url %>" class="img-fluid" alt="" />
                                             </a>
                                         </div>
                                         <%  }; %>
-                                        <% for (var i = 1; i < mediaPhoto.length; i++) { %>
+                                        <% for (var i = 1; i < company.sliderPhotos.length; i++) { %>
                                         <div class="carousel-item text-center">
-                                            <a class="lightcase" href="<%= mediaPhoto[i].imageUrl %>"
+                                            <a class="lightcase" href="<%= company.sliderPhotos[i].url %>"
                                                 data-rel="lightcase:carousel">
-                                                <img src="<%= mediaPhoto[i].imageUrl %>" class="img-fluid" alt="" />
+                                                <img src="<%= company.sliderPhotos[i].url %>" class="img-fluid" alt="" />
                                             </a>
                                         </div>
                                         <%  }; %>
@@ -1414,20 +1435,31 @@
 
                                 <div class="social_area">
                                     <ul>
+                                      <% if(company.facebookUrl) { %>
                                         <li><a href="<%= company.facebookUrl %>" data-target="_blank"><i
                                                     class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="<%= company.twitterUrl %>" data-target="_blank"><i
-                                                    class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <% } %>
+
+                                    <% if(company.twitterUrl) { %>
+                                      <li><a href="<%= company.twitterUrl %>" data-target="_blank"><i
+                                                  class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                      <% } %>
+
+                                      <% if(company.linkedinrUrl) { %>
                                         <li><a href="<%= company.linkedinUrl %>" data-target="_blank"><i
                                                     class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="<%= company.instagramUrl %>" data-target="_blank"><i
-                                                    class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        <% } %>
+
+                                        <% if(company.instagramUrl) { %>
+                                          <li><a href="<%= company.instagramUrl %>" data-target="_blank"><i
+                                                      class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                          <% } %>
                                     </ul>
                                 </div>
 
-                                <div class="get_direction">
+                                <!-- <div class="get_direction">
                                     <a href="javascript:void(0)" class="btn btn-gbz-success d-block">Get Direction</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 

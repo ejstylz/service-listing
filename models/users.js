@@ -141,6 +141,17 @@ const UserSchema = new Schema({
 
     activateToken: String,
     activateExpires: Date,
+    securityQuestion: { question: String, answer: String },
+    billing: {
+        companyName: String,
+        fullName: String,
+        country: String,
+        address: String,
+        city: String,
+        zipCode: String,
+        sendEmail: { type: Boolean, default: true },
+
+    }
 
 }, { timestamps: true });
 

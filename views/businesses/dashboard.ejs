@@ -8,7 +8,7 @@
 	</div>
 </section>
 
-<form action="/dashboard?_method=PUT" method="POST">
+<form action="/dashboard?_method=PUT" method="POST" enctype="multipart/form-data">
 	<section class="dashboard_middle">
 		<div class="container_gbz">
 			<div class="dashboard_home dashboard_wrap">
@@ -17,32 +17,7 @@
 						<div class="col-md-6">
 							<div class="single_upload">
 								<div class="upload_header">
-									<h5>Profile Picture</h5>
-								</div>
-								<div>
-									<div class="form-group" align="center">
-										<div class="col-md-6 pt-3" align="center">
-											<div class="form-group">
-												<div>
-													<img src="<%= currentUser.profilePicture %>" class="img-fluid"
-														alt="" />
-												</div>
-											</div>
-										</div>
-										<div align="center">
-											<a href="#picture" class="btn btn-gbz-success" data-toggle="modal">Change
-												Profile
-												Picture</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="single_upload">
-								<div class="upload_header">
-									<h5>Company Banner</h5>
+									<h5>Company Logo</h5>
 								</div>
 								<div>
 									<div class="form-group" align="center">
@@ -60,6 +35,27 @@
 									</div>
 								</div>
 							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="single_upload">
+									<div class="upload_header">
+										<h5>Upload Slider Photos</h5>
+									</div>
+									<div class="upload_area">
+										<div class="form-group">
+											<input type="file" name="slider" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
+											<label for="file-1">
+												<div class="upload_fils">
+													<div class="icon">
+														<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+													</div>
+													<h5>Drag & Drop a Files Here <br /> or <br /> Click to Upload</h5>
+												</div>
+											</label>
+										</div>
+									</div>
+								</div>
 						</div>
 					</div>
 				</div>

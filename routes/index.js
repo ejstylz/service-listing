@@ -167,7 +167,10 @@ const {
   getProfile,
   putProfile,
   activateAccount,
-  deactivateAccount
+  deactivateAccount,
+  getSavedList,
+  putSecurityQuestion,
+  putBilling
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -288,7 +291,7 @@ router.get('/member-profile/:id', isLoggedIn, isMember, getMemberProfile);
 router.get('/company-dashboard', isLoggedIn, isCompany, getCompanyDashboard);
 
 /* PUT /dashboard/:user_id */
-router.put('/dashboard', isLoggedIn, isCompany, userUpdate);
+router.put('/dashboard', isLoggedIn, isCompany, upload.array('slider', 3), asyncErrorHandler(userUpdate));
 
 /* GET /login */
 router.get('/login', getLogin);
@@ -649,9 +652,18 @@ router.post('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromLis
 
 
 /* De-activate account */
-router.put('/deactivate', asyncErrorHandler(deactivateAccount));
+router.put('/deactivate', isLoggedIn, asyncErrorHandler(deactivateAccount));
 
 /* GET Activate account */
 router.get('/activate/:token', asyncErrorHandler(activateAccount));
+
+/* GET /saved-list-item */
+router.get('/saved-list-item', isLoggedIn, asyncErrorHandler(getSavedList));
+
+/* Security Question */
+router.put('/security-question', isLoggedIn, asyncErrorHandler(putSecurityQuestion));
+
+/* Billing info*/
+router.put('/billing-info', isLoggedIn, asyncErrorHandler(putBilling));
 
 module.exports = router;
