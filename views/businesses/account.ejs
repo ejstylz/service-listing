@@ -34,9 +34,14 @@
 			<div class="col-lg-9 profile_setting">
 				<div class="profile_setting_wrapper ac_setting">
 					<div class="top text-right">
-						<p>Need to update your public profile? <a href="/company-dashboard">Go to
-								My
-								Profile</a></p>
+						<p>Need to update your public profile?
+							<% if(currentUser && currentUser.iscompany){ %>
+							<a href="/company-dashboard">Go to MyProfile</a>
+							<% } else { %>
+							<a href="/company-settings/profile">Go to MyProfile</a>
+							<% } %>
+
+						</p>
 					</div>
 					<form action="/company-settings/account?_method=PUT" method="POST">
 						<div class="form">
