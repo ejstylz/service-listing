@@ -116,10 +116,10 @@
 													<img src="<%= currentUser.logo %>" style="width:30px;" class="profile-photo" alt="">
 													<% } else if (currentUser.isCompany === false) { %>
 														<% if(currentUser.profilePicture){ %>
-															<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+															<img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="" class="img-fluid mr-1">
 	
 														<% } else { %>
-															<img src="../images/man.png" class="profile-photo" alt="">
+															<img src="../images/man.png" class="profile-photo" alt="" class="img-fluid mr-1">
 	
 														<% } %>
 													<% } %>	
