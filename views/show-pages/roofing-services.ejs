@@ -1099,7 +1099,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/roofing-services" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1112,31 +1112,31 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Inspection
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" value="Inspection" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Repair
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" value="Repair" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Gutter & Downspout Cleaning or Maintenance
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" value="Gutter & Downspout Cleaning or Maintenance" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Tuck Pointing
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" value="Tuck Pointing" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Replace Roof Material
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" value="Replace Roof Material" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1156,31 +1156,31 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Commercial
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Residential
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Office/Business
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Home
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Multi-Unit Building
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1315,11 +1315,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" id="button1" type="submit">Apply Filters</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1637,6 +1637,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	  var tmp = [];
+
+	  $("input").click(function() {
+	    if ($(this).is(':checked')) {
+	      var checked = ($(this).val());
+	      tmp.push(checked);
+	    } else {
+	      tmp.splice($.inArray(checked, tmp),1);
+	    }
+	  });
+
+	});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

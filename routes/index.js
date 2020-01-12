@@ -170,7 +170,8 @@ const {
   deactivateAccount,
   getSavedList,
   putSecurityQuestion,
-  putBilling
+  putBilling,
+  roofingServiesFilter
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -503,128 +504,188 @@ router.get('/company-profile/:id/faq', asyncErrorHandler(companyProfileFaq));
 /* GET services/garage-services */
 router.get('/services/garage-services', asyncErrorHandler(garageServices));
 
+/* POST services/garage-services */
+router.post('/services/garage-services', asyncErrorHandler(garageServices));
+
 /* GET services/landscaping-services */
 router.get('/services/landscaping-services', asyncErrorHandler(landscapingServices));
+
+/* POST services/landscaping-services */
+router.post('/services/landscaping-services', asyncErrorHandler(landscapingServices));
 
 /* GET services/paving-services */
 router.get('/services/paving-services', asyncErrorHandler(pavingServices));
 
+/* POST services/paving-services */
+router.post('/services/paving-services', asyncErrorHandler(pavingServices));
+
 /* GET services/fencing-services */
 router.get('/services/fencing-services', asyncErrorHandler(fencingServices));
+
+/* POST services/fencing-services */
+router.post('/services/fencing-services', asyncErrorHandler(fencingServices));
 
 /* GET services/junk-removal */
 router.get('/services/junk-removal', asyncErrorHandler(junkRemoval));
 
+/* POST services/junk-removal */
+router.post('/services/junk-removal', asyncErrorHandler(junkRemoval));
+
 /* GET services/general-siding */
 router.get('/services/general-siding', asyncErrorHandler(generalSiding));
+
+/* POST services/general-siding */
+router.post('/services/general-siding', asyncErrorHandler(generalSiding));
 
 /* GET services/exterior-painting */
 router.get('/services/exterior-painting', asyncErrorHandler(exteriorPainting));
 
+/* POST services/exterior-painting */
+router.post('/services/exterior-painting', asyncErrorHandler(exteriorPainting));
+
 /* GET services/pools-hot-tubes-spas */
 router.get('/services/pools-hot-tubes-spas', asyncErrorHandler(poolsSpas));
 
+/* POST services/pools-hot-tubes-spas */
+router.post('/services/pools-hot-tubes-spas', asyncErrorHandler(poolsSpas));
+
 /* GET services/masonry-services */
 router.get('/services/masonry-services', asyncErrorHandler(masonryServices));
+router.post('/services/masonry-services', asyncErrorHandler(masonryServices));
 
 /* GET services/plumbing-services */
 router.get('/services/plumbing-services', asyncErrorHandler(plumbingServices));
+router.post('/services/plumbing-services', asyncErrorHandler(plumbingServices));
 
 /* GET services/hvac-services */
 router.get('/services/hvac-services', asyncErrorHandler(hvacServices));
+router.post('/services/hvac-services', asyncErrorHandler(hvacServices));
 
 /* GET services/drywall-and-insulation */
 router.get('/services/drywall-and-insulation', asyncErrorHandler(dryWallAndInsulation));
+router.post('/services/drywall-and-insulation', asyncErrorHandler(dryWallAndInsulation));
 
 /* GET services/pest-control */
 router.get('/services/pest-control', asyncErrorHandler(pestControl));
+router.post('/services/pest-control', asyncErrorHandler(pestControl));
 
 /* GET services/general-cleaning */
 router.get('/services/general-cleaning', asyncErrorHandler(generalCleaning));
+router.post('/services/general-cleaning', asyncErrorHandler(generalCleaning));
 
 /* GET services/interior-painting */
 router.get('/services/interior-painting', asyncErrorHandler(interiorPainting));
+router.post('/services/interior-painting', asyncErrorHandler(interiorPainting));
 
 /* GET services/window-and-door-services */
 router.get('/services/window-and-door-services', asyncErrorHandler(windowDoorServices));
+router.post('/services/window-and-door-services', asyncErrorHandler(windowDoorServices));
 
 /* GET services/flooring-services */
 router.get('/services/flooring-services', asyncErrorHandler(flooringServices));
+router.post('/services/flooring-services', asyncErrorHandler(flooringServices));
 
 /* GET services/general-remodeling */
 router.get('/services/general-remodeling', asyncErrorHandler(generalRemodeling));
+router.post('/services/general-remodeling', asyncErrorHandler(generalRemodeling));
 
 /* GET services/carpenters-services */
 router.get('/services/carpenters-services', asyncErrorHandler(carpentersServices));
+router.post('/services/carpenters-services', asyncErrorHandler(carpentersServices));
 
 /* GET services/towing-services */
 router.get('/services/towing-services', asyncErrorHandler(towingServices));
+router.post('/services/towing-services', asyncErrorHandler(towingServices));
 
 /* GET services/oil-and-fluid-exchange */
 router.get('/services/oil-and-fluid-exchange', asyncErrorHandler(oilAndFluidExchange));
+router.post('/services/oil-and-fluid-exchange', asyncErrorHandler(oilAndFluidExchange));
 
 /* GET services/body-shop */
 router.get('/services/body-shop', asyncErrorHandler(bodyShop));
+router.post('/services/body-shop', asyncErrorHandler(bodyShop));
 
 /* GET services/mufflers-and-exhaust */
 router.get('/services/mufflers-and-exhaust', asyncErrorHandler(mufflersAndExhaust));
+router.post('/services/mufflers-and-exhaust', asyncErrorHandler(mufflersAndExhaust));
 
 /* GET services/suspension-services */
 router.get('/services/suspension-services', asyncErrorHandler(suspensionServices));
+router.post('/services/suspension-services', asyncErrorHandler(suspensionServices));
 
 /* GET services/brake-change */
 router.get('/services/brake-change', asyncErrorHandler(brakeChange));
+router.post('/services/brake-change', asyncErrorHandler(brakeChange));
 
 /* GET services/alarm-installation */
 router.get('/services/alarm-installation', asyncErrorHandler(alarmInstallation));
+router.post('/services/alarm-installation', asyncErrorHandler(alarmInstallation));
 
 /* GET services/engine-diagnostic */
 router.get('/services/engine-diagnostic', asyncErrorHandler(engineDiagnostic));
+router.post('/services/engine-diagnostic', asyncErrorHandler(engineDiagnostic));
 
 /* GET services/heating-and-cooling */
 router.get('/services/heating-and-cooling', asyncErrorHandler(heatingAndCooling));
+router.post('/services/heating-and-cooling', asyncErrorHandler(heatingAndCooling));
 
 /* GET services/wheel-and-tire */
 router.get('/services/wheel-and-tire', asyncErrorHandler(wheelAndTire));
+router.post('/services/wheel-and-tire', asyncErrorHandler(wheelAndTire));
 
 /* GET services/check-engine-light */
 router.get('/services/check-engine-light', asyncErrorHandler(checkEngineLight));
+router.post('/services/check-engine-light', asyncErrorHandler(checkEngineLight));
 
 /* GET services/battery-services */
 router.get('/services/battery-services', asyncErrorHandler(batteryServices));
+router.post('/services/battery-services', asyncErrorHandler(batteryServices));
 
 /* GET services/window-tinting */
 router.get('/services/window-tinting', asyncErrorHandler(windowTinting));
+router.post('/services/window-tinting', asyncErrorHandler(windowTinting));
 
 /* GET services/general-handyman */
 router.get('/services/general-handyman', asyncErrorHandler(generalHandyman));
+router.post('/services/general-handyman', asyncErrorHandler(generalHandyman));
 
 /* GET services/general-contractor */
 router.get('/services/general-contractor', asyncErrorHandler(generalContractor));
+router.post('/services/general-contractor', asyncErrorHandler(generalContractor));
 
 /* GET services/electrical-services */
 router.get('/services/electrical-services', asyncErrorHandler(electricalServices));
+router.post('/services/electrical-services', asyncErrorHandler(electricalServices));
 
 /* GET services/moving-services */
 router.get('/services/moving-services', asyncErrorHandler(movingServices));
+router.post('/services/moving-services', asyncErrorHandler(movingServices));
 
 /* GET services/building-security */
 router.get('/services/building-security', asyncErrorHandler(buildingSecurity));
+router.post('/services/building-security', asyncErrorHandler(buildingSecurity));
 
 /* GET services/demolition-services */
 router.get('/services/demolition-services', asyncErrorHandler(demolitionServices));
+router.post('/services/demolition-services', asyncErrorHandler(demolitionServices));
 
 /* GET services/appliance-repairs */
 router.get('/services/appliance-repairs', asyncErrorHandler(applianceRepairs));
+router.post('/services/appliance-repairs', asyncErrorHandler(applianceRepairs));
 
 /* GET services/locksmith-services */
 router.get('/services/locksmith-services', asyncErrorHandler(locksmithServices));
+router.post('/services/locksmith-services', asyncErrorHandler(locksmithServices));
 
 /* GET services/fleet-services */
 router.get('/services/fleet-services', asyncErrorHandler(fleetServices));
+router.post('/services/fleet-services', asyncErrorHandler(fleetServices));
 
 /* GET services/roofing-services */
 router.get('/services/roofing-services', asyncErrorHandler(roofingServies));
+
+/* POST services/roofing-services */
+router.post('/services/roofing-services', asyncErrorHandler(roofingServies));
 
 /* GET forgot */
 router.get('/forgot-password', getForgotPw);

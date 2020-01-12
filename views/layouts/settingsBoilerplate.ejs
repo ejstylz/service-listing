@@ -86,8 +86,13 @@
             </div>
             <div class="bottom_part">
                 <ul>
-                    <li><a href="/company-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i><span>View
+                    <% if (currentUser.isCompany === true) { %>
+                    <li><a href="/company-dashboard" target="_self"><i class="fa fa-tachometer"></i><span>View
                                 Dashboard</span></a></li>
+                    <% } else if (currentUser.isCompany === false) { %>
+                    <li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i
+                                class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+                    <% } %>
                     <li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a>
                     </li>
                     <li><a href="#"><i class="fa fa-fw fa-comments"></i><span>Seller Help Center</span></a></li>

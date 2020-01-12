@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/pest-control" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1110,62 +1110,62 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Rodents
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Rodents">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Cockroaches
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Cockroaches">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Ants
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Ants">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Bed Bugs
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Bed Bugs">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Fleas or Mites
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Fleas or Mites">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Bees
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Bees">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Spiders
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Spiders">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Hornets or Wasps
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Hornets or Wasps">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Mosquitoes
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Mosquitoes">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Ticks
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Ticks">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1344,12 +1344,13 @@
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -1667,6 +1668,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	  var tmp = [];
+
+	  $("input").click(function() {
+	    if ($(this).is(':checked')) {
+	      var checked = ($(this).val());
+	      tmp.push(checked);
+	    } else {
+	      tmp.splice($.inArray(checked, tmp),1);
+	    }
+	  });
+
+	});
+
+</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

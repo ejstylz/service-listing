@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/paving-services" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1110,25 +1110,25 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Asphalt Installation
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Asphalt Installation">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Asphalt Repair or Maintenance
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Asphalt Repair or Maintenance">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Masonry Construction Services
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Masonry Construction Services">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Paving Stone Contractors
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Paving Stone Contractors">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1148,37 +1148,37 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Cracks on Bricks/Stone
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Cracks on Bricks/Stone">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Cracks in Mortar
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Cracks in Mortar">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Water Leaking
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Water Leaking">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Leaning Structure
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Leaning Structure">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Foundation Cracked
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Foundation Cracked">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Other
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Other">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1357,11 +1357,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1680,6 +1680,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	  var tmp = [];
+
+	  $("input").click(function() {
+	    if ($(this).is(':checked')) {
+	      var checked = ($(this).val());
+	      tmp.push(checked);
+	    } else {
+	      tmp.splice($.inArray(checked, tmp),1);
+	    }
+	  });
+
+	});
+
+</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

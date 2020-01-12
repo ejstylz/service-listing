@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/moving-services" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1157,56 +1157,56 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Furniture assembly and disassembly
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Furniture assembly and disassembly">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Packing
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Packing">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Storage
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Storage">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Equipment Moving
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Equipment Moving">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Piano Moving
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Piano Moving">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Safe or Security Box Mobinh
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Safe or Security Box Mobinh">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Pool table moving
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Pool table moving">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Automobile moving
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Automobile moving">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Other, I need to talk to a pro
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Other, I need to talk to a pro">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1341,11 +1341,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1664,6 +1664,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	  var tmp = [];
+
+	  $("input").click(function() {
+	    if ($(this).is(':checked')) {
+	      var checked = ($(this).val());
+	      tmp.push(checked);
+	    } else {
+	      tmp.splice($.inArray(checked, tmp),1);
+	    }
+	  });
+
+	});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

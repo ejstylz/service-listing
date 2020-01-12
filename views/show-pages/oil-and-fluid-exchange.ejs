@@ -1096,7 +1096,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/oil-and-fluid-exchange" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1509,6 +1509,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	  var tmp = [];
+
+	  $("input").click(function() {
+	    if ($(this).is(':checked')) {
+	      var checked = ($(this).val());
+	      tmp.push(checked);
+	    } else {
+	      tmp.splice($.inArray(checked, tmp),1);
+	    }
+	  });
+
+	});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

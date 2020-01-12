@@ -503,7 +503,11 @@
 					</div>
 					<div class="bottom_part">
 						<ul>
-							<li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+              <% if (currentUser.isCompany === true) { %>
+                <li><a href="/company-dashboard" target="_self"><i class="fa fa-tachometer"></i><span>View Dashboard</span></a></li>
+              <% } else if (currentUser.isCompany === false) { %>
+                <li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+              <% } %>
 							<li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
 							<li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer Help Center</span></a></li>
 							<li><a href="/logout" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
@@ -528,7 +532,11 @@
 					</div>
 					<div class="bottom_part">
 						<ul>
-							<li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+              <% if (currentUser.isCompany === true) { %>
+                <li><a href="/company-dashboard" target="_self"><i class="fa fa-tachometer"></i><span>View Dashboard</span></a></li>
+              <% } else if (currentUser.isCompany === false) { %>
+                <li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+              <% } %>
 							<li><a href="ps-account.html"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
 							<li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer Help Center</span></a></li>
 							<li><a href="/logout" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
@@ -1074,16 +1082,27 @@
                                         </ul>
 
                                         <div class="social_area">
-                                            <ul>
-                                                <li><a href="<%= company.facebookUrl %>" data-target="_blank"><i
-                                                            class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="<%= company.twitterUrl %>" data-target="_blank"><i
-                                                            class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                <li><a href="<%= company.linkedinUrl %>" data-target="_blank"><i
-                                                            class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                          <ul>
+                                            <% if(company.facebookUrl) { %>
+                                              <li><a href="<%= company.facebookUrl %>" data-target="_blank"><i
+                                                          class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                          <% } %>
+
+                                          <% if(company.twitterUrl) { %>
+                                            <li><a href="<%= company.twitterUrl %>" data-target="_blank"><i
+                                                        class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <% } %>
+
+                                            <% if(company.linkedinUrl) { %>
+                                              <li><a href="<%= company.linkedinUrl %>" data-target="_blank"><i
+                                                          class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                              <% } %>
+
+                                              <% if(company.instagramUrl) { %>
                                                 <li><a href="<%= company.instagramUrl %>" data-target="_blank"><i
                                                             class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                                <% } %>
+                                          </ul>
                                         </div>
 
                                         <div class="get_direction">
@@ -1445,7 +1464,7 @@
                                                   class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                       <% } %>
 
-                                      <% if(company.linkedinrUrl) { %>
+                                      <% if(company.linkedinUrl) { %>
                                         <li><a href="<%= company.linkedinUrl %>" data-target="_blank"><i
                                                     class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                         <% } %>
