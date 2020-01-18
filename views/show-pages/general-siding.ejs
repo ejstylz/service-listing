@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/general-siding" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1110,196 +1110,37 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Wood
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Wood">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Vinyl
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Vinyl">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Metal
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Metal">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Fiber Cement
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Fiber Cement">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Masonry Siding (Brick. Stucco, or Stone)
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Masonry Siding (Brick. Stucco, or Stone)">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Need a professional's help to decide?
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Removal (Siding Removal Needs)</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="row">
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Siding has been damaged
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Prepare structure for new siding installation
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Prepare structure for new construction or addition
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Safety concerns with current siding
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Other
-													<input type="checkbox" id="sidingOther" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-
-												<div id="sidingOtherBottom" class="">
-													<div class="hidden_content">
-														<h6>Add:</h6>
-														<label class="radio">Wood
-															<input type="radio" name="siding_other_add">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">Vinyl
-															<input type="radio" name="siding_other_add">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">Metal
-															<input type="radio" name="siding_other_add">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">Fiber Cement
-															<input type="radio" name="siding_other_add">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">Masonry Siding (Brick. Stucco, or Stone)
-															<input type="radio" name="siding_other_add">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">Need a professional's help to decide?
-															<input type="radio" name="siding_other_add">
-															<span class="checkround"></span>
-														</label>
-													</div>
-													<div class="hidden_content">
-														<h6>Dispose of Siding:</h6>
-														<label class="radio">Yes
-															<input type="radio" name="dipose_of_siding">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">No
-															<input type="radio" name="dipose_of_siding">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">I would like to discuss with the
-															professional
-															<input type="radio" name="dipose_of_siding">
-															<span class="checkround"></span>
-														</label>
-													</div>
-													<div class="hidden_content">
-														<h6>Property Age:</h6>
-														<label class="radio">Less than 10 years old
-															<input type="radio" name="siding_other_property_age">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">10-50 years old
-															<input type="radio" name="siding_other_property_age">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">51-100 years old
-															<input type="radio" name="siding_other_property_age">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">More than 100 years old
-															<input type="radio" name="siding_other_property_age">
-															<span class="checkround"></span>
-														</label>
-														<label class="radio">I’m not sure, need professional's help to
-															estimate
-															<input type="radio" name="siding_other_property_age">
-															<span class="checkround"></span>
-														</label>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Property Type</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="row">
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Commercial
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Residential
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Office/Business
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Home
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Multi-Unit Building
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Need a professional's help to decide?">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1348,37 +1189,6 @@
 
 							<div class="single_filter_area">
 								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Budget</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="budget_form">
-											<div class="form-row">
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-												<div class="form-group col-2 text-center">
-													<h5 class="mt-2">To</h5>
-												</div>
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
 									<div class="col-sm-3">
 										<div class="filter_topic">
 											<h4>Seller Availability</h4>
@@ -1394,52 +1204,14 @@
 								</div>
 							</div>
 
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Financing Available</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Is It And Emergency?</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -1755,6 +1527,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

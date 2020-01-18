@@ -1100,7 +1100,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form action="">
+                  <form action="/services/garage-services" method="POST">
                         <div class="filter_areas">
                             <div class="single_filter_area">
                                 <div class="row">
@@ -1112,222 +1112,24 @@
                                     <div class="col-md-9">
                                         <div class="">
                                             <div class="">
-                                                <label class="radio">Installation:
-                                                    <input type="radio" id="fencingRepair" name="fencing_service_type">
-                                                    <span class="checkround"></span>
+                                                <label class="check">Installation
+                                                    <input type="checkbox" id="fencingRepair" name="filter[]" value="Installation">
+                                                    <span class="checkmark"></span>
                                                 </label>
-                                                <div id="fencingRepairBottom" class="">
-                                                    <div class="hidden_content">
-                                                        <h6>01. Project Type:</h6>
-                                                        <label class="check">Install New Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Remove Old Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Replace Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Install or program a remote
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Build a Garage
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <hr />
-                                                        <h6>02. Garage Door Size:</h6>
-                                                        <label class="check">Single Car Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Double Car Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Triple Car Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Other, need to talk to professional
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <hr />
-                                                        <h6>03. Garage Door Material:</h6>
-                                                        <label class="check">Aluminum
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Steel
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Vinyl
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Wood
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Not sure, I want to talk to a professional
-                                                            to receive a quote
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <hr />
-                                                        <h6>04. Garage Door Mechanism:</h6>
-                                                        <label class="check">One-piece tilt-up
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Sectional roll-up
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">Other, I need to talk to a professional
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <hr />
-                                                        <h6>05. Door purchased:</h6>
-                                                        <label class="check">I already purchased the Garage Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">I’d like to discuss with a professional
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <label class="check">I’d like the pro to buy the Garage Door
-                                                            <input type="checkbox" name="is_name">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                    </div>
-                                                </div>
                                             </div>
 
 
                                             <div class="">
-                                                <label class="radio">Repair:
-                                                    <input type="radio" id="fencingInstallation"
-                                                        name="fencing_service_type">
-                                                    <span class="checkround"></span>
+                                                <label class="check">Repair
+                                                    <input type="checkbox" id="fencingInstallation"
+                                                        name="filter[]" value="Repair">
+                                                    <span class="checkmark"></span>
                                                 </label>
-
-                                                <div id="fencingInstallationBottom" class="hidden_content">
-                                                    <label class="check">Damaged Section
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Broken Springs (Door will not go up)
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Worn out Hardware (Side Hinges)
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Rollers out the tracks
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Cable off the Drums
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Door Damaged, broken, dented, or other related
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">The door won’t open
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">The door won’t close
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Broken Door Parts
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Gaps around door (bottom, side or top) when
-                                                        closed
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Bent or Damaged Tracks
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="check">Other, I need to talk with a professional
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </div>
                                             </div>
                                             <div class="">
-                                                <label class="radio">Remodeling
-                                                    <input type="radio" id="fencingMaterial"
-                                                        name="fencing_service_type">
-                                                    <span class="checkround"></span>
-                                                </label>
-
-
-                                                <div id="fencingMaterialBottom" class="hidden_content">
-                                                    <label class="check">I’d like to speak to a professional
-                                                        <input type="checkbox" name="is_name">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single_filter_area">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="filter_topic">
-                                            <h4>Property Type</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-6">
-                                                <label class="check">Commercial
-                                                    <input type="checkbox" name="is_name">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                                <label class="check">Residential
-                                                    <input type="checkbox" name="is_name">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                                <label class="check">Office/Business
-                                                    <input type="checkbox" name="is_name">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                                <label class="check">Home
-                                                    <input type="checkbox" name="is_name">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                                <label class="check">Multi-Unit Building
-                                                    <input type="checkbox" name="is_name">
+                                                <label class="check">Remodeling
+                                                    <input type="checkbox" id="fencingMaterial"
+                                                        name="filter[]" value="Remodeling">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -1376,37 +1178,6 @@
 
                             <div class="single_filter_area">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="filter_topic">
-                                            <h4>Budget</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="budget_form">
-                                            <div class="form-row">
-                                                <div class="form-group col-5">
-                                                    <div class="dollar_input">
-                                                        <input type="text" class="form-control" />
-                                                        <i class="fa fa-usd" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-2 text-center">
-                                                    <h5 class="mt-2">To</h5>
-                                                </div>
-                                                <div class="form-group col-5">
-                                                    <div class="dollar_input">
-                                                        <input type="text" class="form-control" />
-                                                        <i class="fa fa-usd" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single_filter_area">
-                                <div class="row">
                                     <div class="col-sm-3">
                                         <div class="filter_topic">
                                             <h4>Seller Availability</h4>
@@ -1421,52 +1192,12 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="single_filter_area">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="filter_topic">
-                                            <h4>Financing Available</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <label class="radio">Yes
-                                            <input type="radio" name="financing_available">
-                                            <span class="checkround"></span>
-                                        </label>
-                                        <label class="radio">No
-                                            <input type="radio" name="financing_available">
-                                            <span class="checkround"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single_filter_area">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="filter_topic">
-                                            <h4>Is It And Emergency?</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <label class="radio">Yes
-                                            <input type="radio" name="is_it_an_emergency">
-                                            <span class="checkround"></span>
-                                        </label>
-                                        <label class="radio">No
-                                            <input type="radio" name="is_it_an_emergency">
-                                            <span class="checkround"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
                 </div>
             </div>
         </div>
@@ -1789,6 +1520,24 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
     <script src="../js/autocomplete.js" type="text/javascript"></script>
     <script src="../js/services-map.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
     <script type="text/javascript">
 
         // For Photo Gallery Popups

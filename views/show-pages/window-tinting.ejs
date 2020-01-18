@@ -1098,38 +1098,8 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/window-tinting" method="POST">
 						<div class="filter_areas">
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Budget</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="budget_form">
-											<div class="form-row">
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-												<div class="form-group col-2 text-center">
-													<h5 class="mt-2">To</h5>
-												</div>
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 
 							<div class="single_filter_area">
 								<div class="row">
@@ -1147,52 +1117,12 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Financing Available</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Is It And Emergency?</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1511,6 +1441,25 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
+
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

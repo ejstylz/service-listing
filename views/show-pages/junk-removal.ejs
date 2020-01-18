@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/junk-removal" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1110,19 +1110,19 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Furniture, Appliances, or Electronics
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Furniture, Appliances, or Electronics">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Yard Waste, Construction debris or scrap metal
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Yard Waste, Construction debris or scrap metal">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Mixed Trash
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Mixed Trash">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1142,75 +1142,31 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Enough to fill half of a pickup truck
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Enough to fill half of a pickup truck">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Enough to fill one pickup truck
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Enough to fill one pickup truck">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Enough to fill two pickup trucks
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Enough to fill two pickup trucks">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Enough to fill three pickup trucks
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Enough to fill three pickup trucks">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Enough to fill four pickup trucks
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Stairs</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="row">
-											<div class="col-md-4 col-sm-6">
-												<label class="check">There are no flights of stairs
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">One Flight
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Two Flights
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Three Flights
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Elevator Available
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Enough to fill four pickup trucks">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1389,11 +1345,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1712,6 +1668,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

@@ -1102,7 +1102,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/general-handyman" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1115,43 +1115,43 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Repairs
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Repairs">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Installation
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Installation">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Maintenance
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Maintenance">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Assembly
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Assembly">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Painting
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Painting">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Cleaning
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Cleaning">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Other, Need to talk to a pro
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Other, Need to talk to a pro">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1171,98 +1171,98 @@
 										<div class="row">
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Doors
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Doors">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Windows
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Windows">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
-												<label class="check">Walls [Select one “Inside” or “Outside”
-													<input type="checkbox" name="is_name">
+												<label class="check">Walls
+													<input type="checkbox" name="filter[]" value="Walls">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Gutters
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Gutters">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Cabinets
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Cabinets">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Shelving
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Shelving">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Molding or baseboards
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Molding or baseboards">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Flooring
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Flooring">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Tiling
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Tiling">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Appliances
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Appliances">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Plumbing
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Plumbing">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Electrical
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Electrical">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Lighting
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Lighting">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Wall Hanging
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Wall Hanging">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Furniture
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Furniture">
 													<span class="checkmark"></span>
 												</label>
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label class="check">Other
-													<input type="checkbox" name="is_name">
+													<input type="checkbox" name="filter[]" value="Other">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1311,37 +1311,6 @@
 
 							<div class="single_filter_area">
 								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Budget</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="budget_form">
-											<div class="form-row">
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-												<div class="form-group col-2 text-center">
-													<h5 class="mt-2">To</h5>
-												</div>
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
 									<div class="col-sm-3">
 										<div class="filter_topic">
 											<h4>Seller Availability</h4>
@@ -1356,52 +1325,12 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Financing Available</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Is It And Emergency?</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1720,6 +1649,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

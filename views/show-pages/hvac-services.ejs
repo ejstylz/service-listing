@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/hvac-services" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1109,83 +1109,26 @@
 									<div class="col-md-9">
 										<div class="">
 											<div class="single_service_type">
-												<label class="radio">1. Central Air Conditioning
-													<input type="radio" id="fencingRepair" name="fencing_service_type">
-													<span class="checkround"></span>
+												<label class="check">1. Central Air Conditioning
+													<input type="checkbox" id="fencingRepair" name="filter[]" value="Central Air Conditioning">
+													<span class="checkmark"></span>
 												</label>
-												<div id="fencingRepairBottom" class="pl-3">
-													<label class="check">Installation
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Replacement
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Repair
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Maintenance
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
 											</div>
 											<hr />
 											<div class="single_service_type">
-												<label class="radio">2. Duct and Vent Cleaning
-													<input type="radio" id="fencingInstallation"
-														name="fencing_service_type">
-													<span class="checkround"></span>
+												<label class="check">2. Duct and Vent Cleaning
+													<input type="checkbox" id="fencingInstallation"
+														name="filter[]" value="Duct and Vent Cleaning">
+													<span class="checkmark"></span>
 												</label>
-
-												<div id="fencingInstallationBottom" class="pl-3">
-													<label class="check">Heating & Cooling
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Dryer
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Exhaust (Bathroom/Kitchen)
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Other, I need to talk to a professional
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
 											</div>
 											<hr />
 											<div class="single_service_type">
-												<label class="radio">3. Heating System
-													<input type="radio" id="fencingMaterial"
-														name="fencing_service_type">
-													<span class="checkround"></span>
+												<label class="check">3. Heating System
+													<input type="checkbox" id="fencingMaterial"
+														name="filter[]" value="Heating System">
+													<span class="checkmark"></span>
 												</label>
-
-
-												<div id="fencingMaterialBottom" class="pl-3">
-													<label class="check">Repair
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Maintenance
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Installation
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Replacement
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -1362,11 +1305,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1684,6 +1627,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups

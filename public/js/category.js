@@ -51,7 +51,7 @@ category.onchange = function () {
         $(".filters").html("<option>Repair</option> <option>Installation</option> <option>Material Repair</option>");
     }
     else if (category.value === "Junk Removal") {
-        $(".filters").html("<option>Furniture</option> <option>Appliances</option> <option>or Electronics</option> <option>Yard Waste</option> <option>Construction debris or scrap metal</option> <option>Mixed Trash</option>");
+        $(".filters").html("<option>Furniture, Appliances, or Electronics</option> <option>Yard Waste, Construction debris or scrap metal</option> <option>Mixed Trash</option> <option>Enough to fill half of a pickup truck</option> <option>Enough to fill one pickup truck</option> <option>Enough to fill two pickup trucks</option> <option>Enough to fill three pickup trucks</option> <option>Enough to fill four pickup trucks</option>");
     }
     else if (category.value === "General Siding") {
         $(".filters").html("<option>Wood</option> <option>Vinyl</option> <option>Metal</option> <option>Fiber Cement</option> <option>Masonry Siding (Brick, Stucco, Stone)</option> <option>Need a professional's help to decide</option>");
@@ -107,7 +107,7 @@ category.onchange = function () {
     }
 
     else if (category.value === "Carpenters Services") {
-        $(".filters").html("<option>Areas Needing Carpentry Help</option> <option>Installation</option> <option>Repair</option>");
+        $(".filters").html("<option>Cabinets, Shelves, or bookcases</option> <option>Outdoor animal enclosure</option> <option>Walls</option> <option>Door</option> <option>Deck, Porch, or Balcony</option> <option>Furniture</option> <option>Stairs</option> <option>Windows</option> <option>Garage, carport, or shed</option> <option>Tiling</option> <option>Installation</option> <option>Repair</option>");
     }
 
     else if (category.value === "Towing Services") {

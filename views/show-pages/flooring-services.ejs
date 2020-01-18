@@ -1097,7 +1097,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="">
+					<form action="/services/flooring-services" method="POST">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1109,158 +1109,22 @@
 									<div class="col-md-9">
 										<div class="">
 											<div class="single_service_type">
-												<label class="radio">Installation
-													<input type="radio" id="fencingRepair" name="fencing_service_type">
-													<span class="checkround"></span>
+												<label class="check">Installation
+													<input type="checkbox" id="fencingRepair" name="filter[]" value="Installation">
+													<span class="checkmark"></span>
 												</label>
-												<div id="fencingRepairBottom" class="hidden_content">
-													<h6>Install Type:</h6>
-													<label class="check">Laminate
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Vinyl or Linoleum
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Engineered Hardwood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Solid Wood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Tile
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Concrete
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
 											</div>
 											<div class="single_service_type">
-												<label class="radio">Repair
-													<input type="radio" id="fencingInstallation"
-														name="fencing_service_type">
-													<span class="checkround"></span>
+												<label class="check">Repair
+													<input type="checkbox" id="fencingInstallation"
+														name="filter[]" value="Repair">
+													<span class="checkmark"></span>
 												</label>
-
-												<div id="fencingInstallationBottom" class="hidden_content">
-													<div class="form-row">
-														<div class="form-group col-md-3">
-															<input type="number" class="form-control" />
-														</div>
-														<div class="form-group col-md-9">
-															<h5 class="mt-2">Enter Square Footage in Sq Ft</h5>
-														</div>
-													</div>
-													<h6>Flooring to Repair:</h6>
-													<label class="check">Solid Wood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Engineered Hardwood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Laminate
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Vinyl or Linoleum
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Tile
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Concrete
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Other
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
 											</div>
 											<div class="single_service_type">
-												<label class="radio">Cleaning
-													<input type="radio" id="fencingMaterial"
-														name="fencing_service_type">
-													<span class="checkround"></span>
-												</label>
-
-
-												<div id="fencingMaterialBottom" class="hidden_content">
-													<h6>Floor Type:</h6>
-													<label class="check">Hardwood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Laminate Wood
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Concrete
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Tile
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-													<label class="check">Vinyl or Linoleum or VCT
-														<input type="checkbox" name="is_name">
-														<span class="checkmark"></span>
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Property Type</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="row">
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Commercial
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Residential
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Office/Business
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Home
-													<input type="checkbox" name="is_name">
-													<span class="checkmark"></span>
-												</label>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<label class="check">Multi-Unit Building
-													<input type="checkbox" name="is_name">
+												<label class="check">Cleaning
+													<input type="checkbox" id="fencingMaterial"
+														name="filter[]" value="Cleaning">
 													<span class="checkmark"></span>
 												</label>
 											</div>
@@ -1309,37 +1173,6 @@
 
 							<div class="single_filter_area">
 								<div class="row">
-									<div class="col-md-3">
-										<div class="filter_topic">
-											<h4>Budget</h4>
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="budget_form">
-											<div class="form-row">
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-												<div class="form-group col-2 text-center">
-													<h5 class="mt-2">To</h5>
-												</div>
-												<div class="form-group col-5">
-													<div class="dollar_input">
-														<input type="text" class="form-control" />
-														<i class="fa fa-usd" aria-hidden="true"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
 									<div class="col-sm-3">
 										<div class="filter_topic">
 											<h4>Seller Availability</h4>
@@ -1354,52 +1187,12 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Financing Available</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
-
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Is It And Emergency?</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="is_it_an_emergency">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
 				</div>
 			</div>
 		</div>
@@ -1718,6 +1511,24 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			var tmp = [];
+
+			$("input").click(function () {
+				if ($(this).is(':checked')) {
+					var checked = ($(this).val());
+					tmp.push(checked);
+				} else {
+					tmp.splice($.inArray(checked, tmp), 1);
+				}
+			});
+
+		});
+
+	</script>
 	<script type="text/javascript">
 
 		// For Photo Gallery Popups
