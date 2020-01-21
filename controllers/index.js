@@ -550,7 +550,6 @@ module.exports = {
         if (website) user.website = req.body.website;
         if (tags) user.tags = req.body.tags;
         if (yearsInBusiness) user.yearsInBusiness = req.body.yearsInBusiness;
-        if (areasOfExpertise) user.areasOfExpertise = req.body.areasOfExpertise;
         if (serviceAreas) user.serviceAreas = req.body.serviceAreas;
         if (productsUsed) user.productsUsed = req.body.productsUsed;
         if (paymentMethod) user.paymentMethod = req.body.paymentMethod;
@@ -575,6 +574,11 @@ module.exports = {
         if (sundayFrom) user.sundayFrom = req.body.sundayFrom;
         if (sundayTo) user.sundayTo = req.body.sundayTo;
         if (req.body.images) user.sliderPhotos = req.body.images;
+        if (req.body.languages) user.language = req.body.languages;
+        if (req.body.products) user.productsUsed = req.body.products;
+        if (req.body.areas) user.areasOfExpertise = req.body.areas;
+        if (req.body.areas) user.serviceAreas = req.body.areas;
+        if (req.body.tags) user.tags = req.body.tags;
 
 
 
@@ -586,6 +590,8 @@ module.exports = {
         req.session.success = "Profile Updated";
         // redirect to show page
         res.redirect("/company-dashboard");
+        console.log(user.language);
+        console.log(user.productsUsed);
     },
 
     // GET /verify

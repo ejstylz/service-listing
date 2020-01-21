@@ -174,25 +174,25 @@
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
-												<select name="language" class="form-control" id="">
-													<option value="">---Select Language---</option>
-													<option value="">English</option>
-													<option value="">Spanish</option>
-													<option value="">French</option>
+												<select name="language" class="form-control" id="text1">
+													<option>English</option>
+													<option>Spanish</option>
+													<option>French</option>
 												</select>
 											</div>
 											<div class="form-group col-3">
-												<button type="submit" class="btn btn-gbz-success">ADD</button>
+												<input type="button" name="" value="Add" class="btn btn-gbz-success" onclick="add_element_to_array_lang();">
 											</div>
 										</div>
 									</div>
-									<div class="added_items">
-										<span>English <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Spanish <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>French <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
+									<div class="added_items" id="lang">
+
+										<% let uniqueLanguage = new Set(user.language); %>
+										<% let langs = [...uniqueLanguage] %>
+										<% langs.forEach(function(lang){ %>
+											<span><%= lang %> <a href="javascript:void(0)"><i class="fa fa-times"
+														aria-hidden="true"></i></a></span>
+										<% }); %>
 									</div>
 								</div>
 							</div>
@@ -205,21 +205,22 @@
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
-												<input type="text" placeholder="Type Area Expertise and Click Add"
+												<input type="text" id="text2" placeholder="Type Area Expertise and Click Add"
 													class="form-control" name="areasOfExpertise" />
 											</div>
 											<div class="form-group col-3">
-												<button type="submit" class="btn btn-gbz-success">ADD</button>
+												<input type="button" name="" value="Add" class="btn btn-gbz-success add2" onclick="add_element_to_array_exp();">
 											</div>
 										</div>
 									</div>
-									<div class="added_items">
-										<span>Roofing <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Gutters <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Siding <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
+									<div class="added_items" id="exp">
+										<% let uniqueArea = new Set(user.areasOfExpertise); %>
+										<% let arr = [...uniqueArea] %>
+										<% arr.forEach(function(arr){ %>
+											<span><%= arr %> <a href="javascript:void(0)"><i class="fa fa-times"
+														aria-hidden="true"></i></a></span>
+										<% }); %>
+
 									</div>
 								</div>
 							</div>
@@ -232,31 +233,21 @@
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
-												<input type="text" placeholder="Type Service Area and Click Add"
+												<input type="text" id="text3" placeholder="Type Service Area and Click Add"
 													class="form-control" name="serviceAreas" />
 											</div>
 											<div class="form-group col-3">
-												<button type="submit" class="btn btn-gbz-success">ADD</button>
+												<input type="button" name="" value="Add" class="btn btn-gbz-success add3" onclick="add_element_to_array_ser();">
 											</div>
 										</div>
 									</div>
-									<div class="added_items">
-										<span>Hoffman Estate <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Schaumburg <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Palatine <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Carol Stream <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Des Plaines <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Elgin <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Bensenville <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Arlington Heights <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
+									<div class="added_items" id="ser">
+										<% let uniqueService = new Set(user.serviceAreas); %>
+										<% let servs = [...uniqueService] %>
+										<% servs.forEach(function(serv){ %>
+											<span><%= serv %> <a href="javascript:void(0)"><i class="fa fa-times"
+														aria-hidden="true"></i></a></span>
+										<% }); %>
 									</div>
 								</div>
 							</div>
@@ -269,31 +260,21 @@
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
-												<input type="text" placeholder="Type Product and Click Add"
+												<input type="text" id="text4" placeholder="Type Product and Click Add"
 													class="form-control" name="productsUsed" />
 											</div>
 											<div class="form-group col-3">
-												<button type="submit" class="btn btn-gbz-success">ADD</button>
+												<input type="button" name="" value="Add" class="btn btn-gbz-success add4" onclick="add_element_to_array_pro();">
 											</div>
 										</div>
 									</div>
-									<div class="added_items">
-										<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Sed Ut <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Ipsum <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Dolor <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Sed Ut <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Ipsum <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Dolor <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
+									<div class="added_items" id="pro">
+										<% let uniqueProduct = new Set(user.productsUsed); %>
+										<% let prods = [...uniqueProduct] %>
+										<% prods.forEach(function(prod){ %>
+											<span><%= prod %> <a href="javascript:void(0)"><i class="fa fa-times"
+														aria-hidden="true"></i></a></span>
+										<% }); %>
 									</div>
 								</div>
 							</div>
@@ -359,27 +340,21 @@
 									<div class="form">
 										<div class="form-row">
 											<div class="form-group col-9">
-												<input type="text" placeholder="Type Tags and Click Add"
+												<input type="text" id="text5" placeholder="Type Tags and Click Add"
 													class="form-control" />
 											</div>
 											<div class="form-group col-3">
-												<button type="submit" class="btn btn-gbz-success">ADD</button>
+												<input type="button" name="" value="Add" class="btn btn-gbz-success add5" onclick="add_element_to_array_tag();">
 											</div>
 										</div>
 									</div>
-									<div class="added_items">
-										<span>Construction <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Verified <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Nail <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Lorem <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Sed ut <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
-										<span>Furniture Making <a href="javascript:void(0)"><i class="fa fa-times"
-													aria-hidden="true"></i></a></span>
+									<div class="added_items" id="tag">
+										<% let uniqueTags = new Set(user.tags); %>
+										<% let tags = [...uniqueTags] %>
+										<% tags.forEach(function(tag){ %>
+											<span><%= tag %> <a href="javascript:void(0)"><i class="fa fa-times"
+														aria-hidden="true"></i></a></span>
+										<% }); %>
 									</div>
 								</div>
 							</div>
@@ -648,8 +623,7 @@
 						aria-hidden="true"></i></button>
 			</div>
 			<div class="modal-body">
-				<form action="/profile-picture?_method=PUT" method="POST" class="single_upload"
-					enctype="multipart/form-data">
+				<form action="/profile-picture?_method=PUT" method="POST" class="single_upload" enctype="multipart/form-data">
 					<div class="upload_header">
 						<h5>Upload Profile Picture</h5>
 					</div>
@@ -666,11 +640,11 @@
 							</label>
 						</div>
 					</div>
+				</form>
 			</div>
 			<div class="save_button text-right">
 				<button type="submit" class="btn btn-gbz-success">Save</button>
 			</div>
-			</form>
 		</div>
 	</div>
 </div>
@@ -703,11 +677,11 @@
 							</label>
 						</div>
 					</div>
+				</form>
 			</div>
 			<div class="save_button text-right">
 				<button type="submit" class="btn btn-gbz-success">Save</button>
 			</div>
-			</form>
 		</div>
 	</div>
 </div>
