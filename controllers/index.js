@@ -45,7 +45,7 @@ module.exports = {
         let company = await User.find().where("isCompany").equals(true).exec();
         let compa = []
         company.forEach(function (comp) {
-            if (company.indexOf(comp) < 5) {
+            if (company.indexOf(comp) < 5 && company.isEmailVerified) {
                 compa.push(comp);
             }
         });
