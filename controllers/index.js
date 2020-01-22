@@ -42,10 +42,10 @@ module.exports = {
     //GET /
     async getHomePage(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         let compa = []
         company.forEach(function (comp) {
-            if (company.indexOf(comp) < 5 && company.isEmailVerified) {
+            if (company.indexOf(comp) < 5) {
                 compa.push(comp);
             }
         });
@@ -55,105 +55,105 @@ module.exports = {
     //GET /aboutUs
     async getAboutUs(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('about-us', { title: 'GABAZZO | About Us', user, company });
     },
 
     //GET blogSingle
     async getBlogSingle(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('blog-single-post', { title: 'GABAZZO | Blog Post', user, company });
     },
 
     //GET blog
     async getBlog(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('blog', { title: 'GABAZZO | Blog', user, company });
     },
 
     //GET contact-us
     async getContactUs(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('contact-us', { title: 'GABAZZO | Contact Us', user, company });
     },
 
     //GET cookie-policy
     async getCookiePolicy(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('cookie-policy', { title: 'GABAZZO | Cookie Policy', user, company });
     },
 
     //GET help-center-buyer
     async getHelpBuyer(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('help-center-buyer', { title: 'GABAZZO | Help Center', user, company });
     },
 
     //GET help-center-seller
     async getHelpSeller(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('help-center-seller', { title: 'GABAZZO | Help Center', user, company });
     },
 
     //GET how-it-works-business-owner
     async getHowBusiness(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('how-it-works-business-owner', { title: 'GABAZZO | How It Works', user, company });
     },
 
     //GET how-it-works-members
     async getHowMember(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('how-it-works-members', { title: 'GABAZZO | How It Works', user, company });
     },
 
     //GET press-and-news
     async getPress(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('press-and-news', { title: 'GABAZZO | Press & News', user, company });
     },
 
     //GET privacyPolicy
     async getPrivacyPolicy(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('privacy-policy', { title: 'GABAZZO | Privacy Policy', user, company });
     },
 
     //GET safety-buyer
     async getSafetyBuyer(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('safety-buyer', { title: 'GABAZZO | Safety-Buyer', user, company });
     },
 
     //GET safety-seller
     async getSafetySeller(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('safety-seller', { title: 'GABAZZO | Safety-Seller', user, company });
     },
 
     //GET site-map
     async getSiteMap(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('site-map', { title: 'GABAZZO | Site Map', user, company });
     },
 
     //GET terms
     async getTerms(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         res.render('terms-and-conditions', { title: 'GABAZZO | Terms And Conditions', user, company });
     },
 
@@ -315,7 +315,7 @@ module.exports = {
 
     //GET /company-sign-up
     async getCompanySignUpHome(req, res, next) {
-        let company = await User.find().where("isCompany").equals(true).exec();
+        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
         let compa = []
         company.forEach(function (comp) {
             if (company.indexOf(comp) < 7) {
