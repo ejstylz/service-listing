@@ -1684,7 +1684,18 @@ module.exports = {
         let service = await Service.find().where("owner.id").equals(company._id).exec();
         let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/company-profile', { title: 'Company Profile', company, service, mediaPhoto, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/company-profile', { title: 'Company Profile', average, company, service, mediaPhoto, review });
     },
 
     async companyContact(req, res, next) {
@@ -1714,7 +1725,18 @@ module.exports = {
         let certificate = await Certificate.find().where("owner.id").equals(company._id).exec();
         let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/about', { title: 'Company Profile', company, journey, certificate, mediaPhoto, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/about', { title: 'Company Profile', average, company, journey, certificate, mediaPhoto, review });
     },
 
     async companyProfileMedia(req, res, next) {
@@ -1722,21 +1744,54 @@ module.exports = {
         let photo = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let video = await MediaVideo.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/media', { title: 'Company Profile', company, photo, video, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/media', { title: 'Company Profile', average, company, photo, video, review });
     },
 
     async companyProfileEmployee(req, res, next) {
         let company = await User.findById(req.params.id);
         let employee = await Employee.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/employees', { title: 'Company Profile', company, employee, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/employees', { title: 'Company Profile', average, company, employee, review });
     },
 
     async companyProfilePortfolio(req, res, next) {
         let company = await User.findById(req.params.id);
         let portfolio = await Portfolio.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/portfolio', { title: 'Company Profile', company, portfolio, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/portfolio', { title: 'Company Profile', average, company, portfolio, review });
     },
 
     async companyProfileServices(req, res, next) {
@@ -1744,7 +1799,18 @@ module.exports = {
         let product = await Product.find().where("owner.id").equals(company._id).exec();
         let service = await Service.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/services-products', { title: 'Company Profile', company, product, service, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/services-products', { title: 'Company Profile', average, company, product, service, review });
     },
 
     async companyProfileReviews(req, res, next) {
@@ -1854,7 +1920,18 @@ module.exports = {
         }).exec();;
         let otherServices = await Service.find().where("owner.id").equals(company).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/service-details', { title: 'Company Profile', service, company, otherServices, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/service-details', { title: 'Company Profile', average, service, company, otherServices, review });
     },
 
     async productDetails(req, res, next) {
@@ -1865,7 +1942,18 @@ module.exports = {
         }).exec();;
         let otherProducts = await Product.find().where("owner.id").equals(company).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/product-details', { title: 'Company Profile', product, company, otherProducts, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/product-details', { title: 'Company Profile', average, product, company, otherProducts, review });
     },
 
     async companyProfileFaq(req, res, next) {
@@ -1875,7 +1963,18 @@ module.exports = {
         }).exec();;
         let faq = await Faq.find().where("owner.id").equals(company._id).exec();
         let review = await company.reviews;
-        res.render('show-pages/faq', { title: 'Company Profile', company, faq, review });
+        function calculateAverage(reviews) {
+            if (review.length === 0) {
+                return 0;
+            }
+            var sum = 0;
+            review.forEach(function (element) {
+                sum += element.rating;
+            });
+            return sum / review.length;
+        }
+        let average = calculateAverage(review).toFixed(1);
+        res.render('show-pages/faq', { title: 'Company Profile', average, company, faq, review });
     },
 
 

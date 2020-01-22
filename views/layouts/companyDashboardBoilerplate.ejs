@@ -509,34 +509,56 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2IfLxIJDmARP7GZMuA1Vjn5KTgBWCSjs&callback=initMap"></script> -->
 	<script src="../js/custom.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		var user = <%- JSON.stringify(user) %>;
+			var user = <%- JSON.stringify(user) %>;
 
-		mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
+			mapboxgl.accessToken = 'pk.eyJ1IjoiZWpzdHlseiIsImEiOiJjazJuZjBoNWIwcG84M2J4NW5icHVsYWJ2In0.NADiMyMrSjAnQNuNn_XgCA';
 
-		var map = new mapboxgl.Map({
-			container: 'map',
-			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [<%- user.coordinates %>],
-			zoom: 4
-		});
+			var map = new mapboxgl.Map({
+					container: 'map',
+					style: 'mapbox://styles/mapbox/streets-v11',
+					center: [<%- user.coordinates %>],
+					zoom: 12
+			});
 
-		// code from the next step will go here!
+			var map2 = new mapboxgl.Map({
+					container: 'map2',
+					style: 'mapbox://styles/mapbox/streets-v11',
+					center: [<%- user.coordinates %>],
+					zoom: 7
+			});
 
-		// add markers to map
+			// code from the next step will go here!
+
+			// add markers to map
+
+			// create a HTML element for each feature
+			var el2 = document.createElement('div');
+			el2.className = 'marker';
 
 
-		// create a HTML element for each feature
-		var el = document.createElement('div');
-		el.className = 'marker';
+			// make a marker for each feature and add to the map
+			new mapboxgl.Marker(el2)
+					.setLngLat([<%- user.coordinates %>])
+					.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+							.setHTML('<h3>' + "<%= user.title %>" + '</h3><p>' + '</p>'))
+					.addTo(map2);
+			map2.addControl(new mapboxgl.NavigationControl());
+			map2.addControl(new mapboxgl.FullscreenControl());
 
-		// make a marker for each feature and add to the map
-		new mapboxgl.Marker(el)
-			.setLngLat([<%- user.coordinates %>])
-			.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-				.setHTML('<h3>' + "<%= user.title %>" + '</h3><p>' + "<%= user.about %>" + '</p>'))
-			.addTo(map);
-		map.addControl(new mapboxgl.NavigationControl());
-		map.addControl(new mapboxgl.FullscreenControl());
+
+			// create a HTML element for each feature
+			var el = document.createElement('div');
+			el.className = 'marker';
+
+
+			// make a marker for each feature and add to the map
+			new mapboxgl.Marker(el)
+					.setLngLat([<%- user.coordinates %>])
+					.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+							.setHTML('<h3>' + '<a  href="/company-profile/<%= user._id %>">' + "<%= user.companyName %>" + '</a>' + '</h3><p>' + '</p>'))
+					.addTo(map);
+			map.addControl(new mapboxgl.NavigationControl());
+			map.addControl(new mapboxgl.FullscreenControl());
 	</script>
 	<script type="text/javascript">
 

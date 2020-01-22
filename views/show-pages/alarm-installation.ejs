@@ -531,7 +531,7 @@
 					<div class="bottom_part">
 						<ul>
 							<li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
-							<li><a href="ps-account.html"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
+							<li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
 							<li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer Help Center</span></a></li>
 							<li><a href="/logout" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
 						</ul>
@@ -1004,7 +1004,7 @@
 									<div class="company_body">
 										<div class="about_section">
 											<h4>About</h4>
-											<p class="morea"><%= company.about %></p>
+											<p class="morea"><%= company.about.substring(0,100) %></p>
 										</div>
 									</div>
 								</div>
