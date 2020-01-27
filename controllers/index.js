@@ -1981,156 +1981,202 @@ module.exports = {
     //Services Pages Controllers
     async garageServices(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("serviceCategory").equals("Garage services").populate({
-            path: 'reviews',
-            options: { sort: { '_id': -1 } },
-        }).exec();
-        let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review });
-    },
-
-    async roofingServies(req, res, next) {
-        let user = await User.findById(req.user);
         let company;
-        if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Roofing Services").populate({
+        let filter = req.body.filter;
+        if (filter) {
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Garage services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Roofing Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Garage services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/roofing-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review });
+        }
+    },
+
+    async roofingServies(req, res, next) {
+        let user = await User.findById(req.user);
+        let company;
+        let filter = req.body.filter;
+        if (filter) {
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Roofing Services").populate({
+                path: 'reviews',
+                options: { sort: { '_id': -1 } },
+            }).exec();
+        } else {
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Roofing Services").populate({
+                path: 'reviews',
+                options: { sort: { '_id': -1 } },
+            }).exec();
+        }
+        let review = await Review.find().where("owner.id").equals(company._id).exec();
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/roofing-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async landscapingServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Landscaping services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Landscaping services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Landscaping services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Landscaping services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/landscaping-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/landscaping-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async pavingServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Paving services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Paving services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Paving services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Paving services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/paving-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/paving-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async fencingServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Fencing services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Fencing services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Fencing services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Fencing services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/fencing-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/fencing-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async junkRemoval(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Junk Removal").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Junk Removal").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Junk Removal").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Junk Removal").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/junk-removal', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/junk-removal', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async generalSiding(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("General Siding").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("General Siding").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("General Siding").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("General Siding").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/general-siding', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/general-siding', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async exteriorPainting(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Exterior Painting").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Exterior Painting").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Exterior Painting").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Exterior Painting").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/exterior-painting', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/exterior-painting', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async poolsSpas(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Pools, Spas and Hot Tubs").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Pools, Spas and Hot Tubs").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Pools, Spas and Hot Tubs").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Pools, Spas and Hot Tubs").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/pools-hot-tubes-spas', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/pools-hot-tubes-spas', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async masonryServices(req, res, next) {
@@ -2138,594 +2184,726 @@ module.exports = {
         let company;
         if (req.body.filter) {
             console.log(req.body.filter)
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Masonry services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Masonry services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Masonry services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Masonry services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/masonry-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/masonry-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async plumbingServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Plumbing Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Plumbing Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Plumbing Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Plumbing Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/plumbing-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/plumbing-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async hvacServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("HVAC Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("HVAC Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("HVAC Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("HVAC Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/hvac-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/hvac-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async dryWallAndInsulation(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Dry Wall & Insulation").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Dry Wall & Insulation").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Dry Wall & Insulation").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Dry Wall & Insulation").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async pestControl(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Pest Control").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Pest Control").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Pest Control").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Pest Control").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/pest-control', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/pest-control', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async generalCleaning(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("General cleaning").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("General cleaning").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("General cleaning").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("General cleaning").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async interiorPainting(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Interior Painting").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Interior Painting").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Interior Painting").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Interior Painting").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/interior-painting', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/interior-painting', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async windowDoorServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Window & Door Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Window & Door Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Window & Door Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Window & Door Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async flooringServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Flooring Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Flooring Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Flooring Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Flooring Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/flooring-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/flooring-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async generalRemodeling(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("General Remodeling").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("General Remodeling").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("General Remodeling").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("General Remodeling").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/general-remodeling', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/general-remodeling', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async carpentersServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Carpenters Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Carpenters Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Carpenters Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Carpenters Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/carpenters-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/carpenters-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async towingServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Towing Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Towing Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Towing Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Towing Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/towing-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/towing-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async oilAndFluidExchange(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Oil & Fluid Exchange").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Oil & Fluid Exchange").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Oil & Fluid Exchange").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Oil & Fluid Exchange").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/oil-and-fluid-exchange', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/oil-and-fluid-exchange', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async bodyShop(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Body Shop").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Body Shop").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Body Shop").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Body Shop").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/body-shop', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/body-shop', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async mufflersAndExhaust(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Mufflers & Exhaust Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Mufflers & Exhaust Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Mufflers & Exhaust Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Mufflers & Exhaust Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/mufflers-and-exhaust', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/mufflers-and-exhaust', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async suspensionServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Suspension Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Suspension Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Suspension Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Suspension Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/suspension-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/suspension-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async brakeChange(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Brake Change").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Brake Change").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Brake Change").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Brake Change").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/brake-change', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/brake-change', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async alarmInstallation(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Alarm Installation").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Alarm Installation").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Alarm Installation").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Alarm Installation").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/alarm-installation', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/alarm-installation', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async engineDiagnostic(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Engine Diagnostic Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Engine Diagnostic Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Engine Diagnostic Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Engine Diagnostic Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/engine-diagnostic', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/engine-diagnostic', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async heatingAndCooling(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Heating & Cooling").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Heating & Cooling").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Heating & Cooling").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Heating & Cooling").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/heating-and-cooling', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/heating-and-cooling', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async wheelAndTire(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Wheel & Tire Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Wheel & Tire Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Wheel & Tire Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Wheel & Tire Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/wheel-and-tire', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/wheel-and-tire', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async checkEngineLight(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Check Engine Light").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Check Engine Light").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Check Engine Light").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Check Engine Light").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/check-engine-light', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/check-engine-light', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async batteryServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Battery Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Battery Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Battery Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Battery Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/battery-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/battery-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async windowTinting(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Window Tinting").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Window Tinting").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Window Tinting").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Window Tinting").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/window-tinting', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/window-tinting', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async generalHandyman(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("General Handyman").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("General Handyman").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("General Handyman").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("General Handyman").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/general-handyman', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/general-handyman', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async generalContractor(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("General Contractor").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("General Contractor").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("General Contractor").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("General Contractor").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/general-contractor', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/general-contractor', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async electricalServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Electrical Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Electrical Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Electrical Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Electrical Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/electrical-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/electrical-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async movingServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Moving Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Moving Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Moving Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Moving Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/moving-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/moving-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async buildingSecurity(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Building Security").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Building Security").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Building Security").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Building Security").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/building-security', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/building-security', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async demolitionServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Demolition Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Demolition Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Demolition Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Demolition Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/demolition-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/demolition-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async applianceRepairs(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Appliance Repairs & Installation").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Appliance Repairs & Installation").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Appliance Repairs & Installation").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Appliance Repairs & Installation").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/appliance-repairs', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/appliance-repairs', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async locksmithServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Locksmith Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Locksmith Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Locksmith Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Locksmith Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/locksmith-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/locksmith-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     async fleetServices(req, res, next) {
         let user = await User.findById(req.user);
         let company;
         if (req.body.filter) {
-            company = await User.find({ filters: { $in: req.body.filter } }).where("serviceCategory").equals("Fleet Services").populate({
+            company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Fleet Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         } else {
-            company = await User.find().where("serviceCategory").equals("Fleet Services").populate({
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Fleet Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
             }).exec();
         }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
-        res.render('show-pages/fleet-services', { title: 'Company Profile', user, company, review });
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/fleet-services', { title: 'Company Profile', user, company, review });
+        }
     },
 
     // GET /forgot-password

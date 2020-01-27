@@ -1352,7 +1352,6 @@
                                         <div class="tags_part">
                                             <h5>Tags</h5>
                                             <div class="all_tags_wrapper">
-
                                               <% if(company.tags.length) { %>
                                                 <% let uniqueTags= new Set(company.tags); %>
                                                 <% let tags = [...uniqueTags] %>
@@ -1549,15 +1548,13 @@
                             <div class="services_area">
                                 <h5>Service Areas</h5>
                                 <ul>
-                                    <li><a href="javascript:void(0)">Hoffman Estates</a></li>
-                                    <li><a href="javascript:void(0)">Schaumburg</a></li>
-                                    <li><a href="javascript:void(0)">Palatine</a></li>
-                                    <li><a href="javascript:void(0)">Carol Stream</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
-                                    <li><a href="javascript:void(0)">Elgin</a></li>
-                                    <li><a href="javascript:void(0)">Bensenville</a></li>
-                                    <li><a href="javascript:void(0)">Arlington Heights</a></li>
-                                    <li><a href="javascript:void(0)">Wood Dale</a></li>
+                                  <% if(company.serviceAreas.length) { %>
+                                    <% let uniqueAreas= new Set(company.serviceAreas); %>
+                                    <% let servs = [...uniqueAreas] %>
+                                      <% servs.forEach(function(serv){ %>
+                                        <li><a href="javascript:void(0)"><%= serv %></a></li>
+                                      <% }); %>
+                                  <% } %>
                                     <li><a href="#findServicesAll" data-toggle="modal">View All</a></li>
                                 </ul>
                             </div>
@@ -1588,17 +1585,13 @@
                             <div class="the_product_used services_area">
                                 <h5>Product Used</h5>
                                 <ul>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">Lorem Ipsum</a></li>
-                                    <li><a href="javascript:void(0)">View All</a></li>
+                                  <% if(company.productsUsed.length) { %>
+                                    <% let uniqueProducts= new Set(company.productsUsed); %>
+                                    <% let products = [...uniqueProducts] %>
+                                      <% products.forEach(function(product){ %>
+                                        <li><a href="javascript:void(0)"><%= product %></a></li>
+                                      <% }); %>
+                                  <% } %>
                                 </ul>
                             </div>
                         </div>
@@ -1625,10 +1618,15 @@
                             <div class="our_language">
                                 <h5>Our Languages</h5>
                                 <ul>
-                                    <li><img src="../images/flags/United-States.png" alt="" class="img-fluid" /> English
-                                    </li>
-                                    <li><img src="../images/flags/Mexico.png" alt="" class="img-fluid" /> Spanish</li>
-                                    <li><img src="../images/flags/France.png" alt="" class="img-fluid" /> French</li>
+                                  <% if(company.language.length) { %>
+                                    <% let uniqueLanguage = new Set(company.language); %>
+                                    <% let langs = [...uniqueLanguage] %>
+                                    <ul>
+                                      <% langs.forEach(function(lang){ %>
+                                        <li> <%= lang %></li>
+                                      <% }); %>
+                                    </ul>
+                                  <% } %>
                                 </ul>
                             </div>
                         </div>
@@ -1661,85 +1659,16 @@
                             <div class="tags_part">
                                 <h5>Tags</h5>
                                 <div class="all_tags_wrapper">
-                                    <a class="tg-tag" href="javascript:void(0)">Construction</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Verified</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Furniture Making</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Nail</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Hammer</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Fun Time</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Renovation</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Palace</a>
-                                    <a class="tg-tag" href="javascript:void(0)">Dream Makers</a>
+                                  <% if(company.tags.length) { %>
+                                    <% let uniqueTags= new Set(company.tags); %>
+                                    <% let tags = [...uniqueTags] %>
+                                      <% tags.forEach(function(tag){ %>
+                                        <a class="tg-tag" href="javascript:void(0)"><%= tag %></a>
+                                      <% }); %>
+                                  <% } %>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="left_content">
-                <div class="contact_us single_part contact_us_mobile_only">
-                    <div class="contact_us_inner">
-                        <h4>Contact Us</h4>
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" class="form-control" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control" placeholder="Last Name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input type="tel" class="form-control" placeholder="Phone">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Reason for Contact</label>
-                                        <select class="form-control">
-                                            <option>Reason for Contact</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" placeholder="Address">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Comments</label>
-                                        <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <input type="submit" class="btn btn-primary px-4" value="Submit">
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -1761,51 +1690,17 @@
                         <div class="col-md-4">
                             <div class="single_part">
                                 <ul>
-                                    <li><a href="javascript:void(0)">Hoffman Estates</a></li>
-                                    <li><a href="javascript:void(0)">Schaumburg</a></li>
-                                    <li><a href="javascript:void(0)">Palatine</a></li>
-                                    <li><a href="javascript:void(0)">Carol Stream</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
-                                    <li><a href="javascript:void(0)">Elgin</a></li>
-                                    <li><a href="javascript:void(0)">Bensenville</a></li>
-                                    <li><a href="javascript:void(0)">Arlington Heights</a></li>
-                                    <li><a href="javascript:void(0)">Wood Dale</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
+                                  <% if(company.serviceAreas.length) { %>
+                                    <% let uniqueAreas= new Set(company.serviceAreas); %>
+                                    <% let servs = [...uniqueAreas] %>
+                                      <% servs.forEach(function(serv){ %>
+                                        <li><a href="javascript:void(0)"><%= serv %></a></li>
+                                      <% }); %>
+                                  <% } %>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="single_part">
-                                <ul>
-                                    <li><a href="javascript:void(0)">Hoffman Estates</a></li>
-                                    <li><a href="javascript:void(0)">Schaumburg</a></li>
-                                    <li><a href="javascript:void(0)">Palatine</a></li>
-                                    <li><a href="javascript:void(0)">Carol Stream</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
-                                    <li><a href="javascript:void(0)">Elgin</a></li>
-                                    <li><a href="javascript:void(0)">Bensenville</a></li>
-                                    <li><a href="javascript:void(0)">Arlington Heights</a></li>
-                                    <li><a href="javascript:void(0)">Wood Dale</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single_part">
-                                <ul>
-                                    <li><a href="javascript:void(0)">Hoffman Estates</a></li>
-                                    <li><a href="javascript:void(0)">Schaumburg</a></li>
-                                    <li><a href="javascript:void(0)">Palatine</a></li>
-                                    <li><a href="javascript:void(0)">Carol Stream</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
-                                    <li><a href="javascript:void(0)">Elgin</a></li>
-                                    <li><a href="javascript:void(0)">Bensenville</a></li>
-                                    <li><a href="javascript:void(0)">Arlington Heights</a></li>
-                                    <li><a href="javascript:void(0)">Wood Dale</a></li>
-                                    <li><a href="javascript:void(0)">Des Plaines</a></li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

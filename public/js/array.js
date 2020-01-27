@@ -58,7 +58,7 @@ async function add_element_to_array_lang() {
 
     for (var y = 0; y < languages.length; y++) {
         // e += array[y] + "<br/>";
-        if (languages[y] != undefined) {
+        if (languages[y] != undefined && languages[y] !== "") {
             e += "<span>" + languages[y] + "<a href='javascript:void(0)'> <i class='fa fa-times' aria-hidden='true'> </i> </a> </span>";
             document.getElementById("lang").innerHTML = e;
         }

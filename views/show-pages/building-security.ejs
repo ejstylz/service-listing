@@ -931,7 +931,7 @@
 										<div class="row">
 											<div class="col-6">
 												<div class="deco_filter_header">
-													<h6><%= company.length %> Results Found</h6>
+													<h6 id="num"><%= company.length %> Results Found</h6>
 												</div>
 											</div>
 											<div class="col-6">
@@ -948,7 +948,7 @@
 
 						<hr />
 
-						<div class="company_wrapper company_wrapper_new pl-4">
+						<div class="company_wrapper company_wrapper_new pl-4" id="single">
 							<% company.forEach(function(company, i){ %>
 							<div class="single_company">
 								<div class="company_title">
@@ -1098,7 +1098,7 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="/services/building-security" method="POST">
+					<form action="/services/building-security" method="POST" id="filter-form">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1540,6 +1540,103 @@
 	<script src="../js/read_more.js" type="text/javascript"></script>
 	<script src="../js/autocomplete.js" type="text/javascript"></script>
 	<script src="../js/services-map-new-visitors.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$('#filter-form').submit(function (e) {
+			e.preventDefault();
+
+			let compa = $(this).serialize();
+
+			$.post('/services/roofing-services', compa, function (data) {
+				$('#num').html(data.length + ' Results Found');
+				comp_html='';
+					data.forEach(function(company, i){
+
+						comp_html =
+							`
+							<div class="single_company">
+								<div class="company_title">
+									<h3>${company.companyName}</h3>
+								</div>
+								<div class="the_inner">
+									<div class="header_part">
+										<div class="row">
+											<div class="col-4 pl-1 pr-1">
+												<div class="company-profile-pic">
+													<img src="${company.logo}" style="border:none" alt="Logo" />
+												</div>
+											</div>
+											<div class="col-8 px-1">
+
+												<div class="stars">
+													<h5>
+														<i class="fa fa-star" aria-hidden="true"></i>
+
+														<span class="star">${company.averageReview}</span> <span
+															class="amount">(${company.reviews.length}
+															Reviews)</span>
+													</h5>
+												</div>
+												<div class="company-status">
+													<span class="online">- Online</span>
+												</div>
+												<div class="business_hours">
+													<%   let d = new Date(); %>
+													<% if (d.getDay() === 0) { %>
+													<h4>${company.sundayFrom} - ${company.sundayTo}</h4>
+													<% } else if(d.getDay() === 1) { %>
+													<h4>${company.mondayFrom} - ${company.mondayTo}</h4>
+													<% } else if (d.getDay() === 2) { %>
+													<h4>${company.tuesdayFrom} - ${company.tuesdayTo}</h4>
+													<% } else if (d.getDay() === 3) { %>
+													<h4>${company.wednesdayFrom} - ${company.wednesdayTo}</h4>
+													<% } else if (d.getDay() === 4) { %>
+													<h4>${company.thursdayFrom} - ${company.thursdayTo}</h4>
+													<% } else if (d.getDay() === 5) { %>
+													<h4>${company.fridayFrom} - ${company.fridayTo}</h4>
+													<% } else if (d.getDay() === 6) { %>
+													<h4>${company.fridayFrom} - ${company.fridayTo}</h4>
+													<% } else if (d.getDay() === 7) { %>
+													<h4>${company.saturdayFrom} - ${company.saturdayTo}</h4>
+													<% } else { %>
+													<h4>8 AM - 5 PM</h4>
+													<% } %>
+												</div>
+												<h6>Address: <span>${company.location}</span></h6>
+											</div>
+										</div>
+									</div>
+									<div class="company_body">
+										<div class="about_section">
+											<h4>About</h4>
+											<p class="morea">${company.about.substring(0,100)}</p>
+										</div>
+									</div>
+								</div>
+								<div class="view_more">
+									<ul>
+										<li><a class="btn btn-gbz-success" href="#company${i}"
+												data-toggle="modal">Message</a></li>
+										<li><a class="btn btn-gbz-success"
+												href="/company-profile/${company._id}">View
+												More</a></li>
+									</ul>
+								</div>
+							</div>
+							` + comp_html;
+					});
+					$('#single').html(comp_html);
+
+			});
+	});
+
+	$('#button1').click(function() {
+		$('#servicesFilterOption').hide();
+		$('.modal-backdrop').hide();
+	});
+
+	</script>
+	
 	<script type="text/javascript">
 
 		$(document).ready(function () {
