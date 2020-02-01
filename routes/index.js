@@ -183,7 +183,9 @@ const {
   isMember,
   changePassword,
   isValidPassword,
-  isNotCompany
+  isNotCompany,
+  isEmailVerified,
+  isRegistered
 } = require('../middleware');
 
 /* GET home page. */
@@ -265,19 +267,19 @@ router.get('/company-sign-up', checkIfUserExists, getCompanySignUp);
 router.post('/company-sign-up', upload.single('profilePicture'), asyncErrorHandler(postCompanySignUp));
 
 /* GET company-sign-up2 */
-router.get('/company-sign-up2', isLoggedIn, getCompanySignUp2);
+router.get('/company-sign-up2', isLoggedIn, isRegistered, getCompanySignUp2);
 
 /* POST /company-sign-up2 */
-router.post('/company-sign-up2', isLoggedIn, upload.single('logo'), asyncErrorHandler(postCompanySignUp2));
+router.post('/company-sign-up2', isLoggedIn, isRegistered, upload.single('logo'), asyncErrorHandler(postCompanySignUp2));
 
 /* GET company-sign-up2 */
-router.get('/company-sign-up3', isLoggedIn, getCompanySignUp3);
+router.get('/company-sign-up3', isLoggedIn, isRegistered, getCompanySignUp3);
 
 /* GET company-sign-up4 */
-router.get('/company-sign-up4', isLoggedIn, goToAccountSecurity, getCompanySignUp4);
+router.get('/company-sign-up4', isLoggedIn, isRegistered, goToAccountSecurity, getCompanySignUp4);
 
 /* POST /company-sign-up4 */
-router.post('/company-sign-up4', isLoggedIn, asyncErrorHandler(postCompanySignUp4));
+router.post('/company-sign-up4', isLoggedIn, isRegistered, asyncErrorHandler(postCompanySignUp4));
 
 /* GET /verify */
 router.get('/verify/:token', isLoggedIn, asyncErrorHandler(getVerify));
@@ -286,13 +288,13 @@ router.get('/verify/:token', isLoggedIn, asyncErrorHandler(getVerify));
 router.get('/company-sign-up5', goToPayment, getCompanySignUp5);
 
 /* GET /dashboard */
-router.get('/member-profile/:id', isLoggedIn, isMember, getMemberProfile);
+router.get('/member-profile/:id', isLoggedIn, isMember, isEmailVerified, getMemberProfile);
 
 /* GET /dashboard */
-router.get('/company-dashboard', isLoggedIn, isCompany, getCompanyDashboard);
+router.get('/company-dashboard', isLoggedIn, isCompany, isEmailVerified, getCompanyDashboard);
 
 /* PUT /dashboard/:user_id */
-router.put('/dashboard', isLoggedIn, isCompany, upload.array('slider', 3), asyncErrorHandler(userUpdate));
+router.put('/dashboard', isLoggedIn, isCompany, isEmailVerified, upload.array('slider', 3), asyncErrorHandler(userUpdate));
 
 /* GET /login */
 router.get('/login', getLogin);
@@ -304,163 +306,164 @@ router.post('/login', postLogin);
 router.get('/logout', isLoggedIn, getLogout);
 
 /* GET /dashboard/about */
-router.get('/company-dashboard/about', isLoggedIn, isCompany, asyncErrorHandler(getAbout));
+router.get('/company-dashboard/about', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getAbout));
 
 /* POST /journey */
-router.post('/journey', isLoggedIn, isCompany, asyncErrorHandler(postJourney));
+router.post('/journey', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(postJourney));
 
 /* PUT /journey */
-router.put('/journey/:id', isLoggedIn, isCompany, asyncErrorHandler(putJourney));
+router.put('/journey/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(putJourney));
 
 /* DELETE /journey */
-router.delete('/journey/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteJourney));
+router.delete('/journey/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteJourney));
 
 /* POST /certificate */
-router.post('/certificate', isLoggedIn, isCompany, upload.single('image'), asyncErrorHandler(postCertificate));
+router.post('/certificate', isLoggedIn, isCompany, isEmailVerified, upload.single('image'), asyncErrorHandler(postCertificate));
 
 /* PUT /certificate */
-router.put('/certificate/:id', isLoggedIn, isCompany, upload.single('image'), asyncErrorHandler(putCertificate));
+router.put('/certificate/:id', isLoggedIn, isCompany, isEmailVerified, upload.single('image'), asyncErrorHandler(putCertificate));
 
 /* Delete /certificate */
-router.delete('/certificate/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteCertificate));
+router.delete('/certificate/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteCertificate));
 
 /* PUT /dashboard/about */
-router.put('/dashboard/about', isLoggedIn, isCompany, upload.single('video'), asyncErrorHandler(putAbout));
+router.put('/dashboard/about', isLoggedIn, isCompany, isEmailVerified, upload.single('video'), asyncErrorHandler(putAbout));
 
 /* PUT /logo */
-router.put('/logo', isLoggedIn, isCompany, upload.single('logo'), asyncErrorHandler(putLogo));
+router.put('/logo', isLoggedIn, isCompany, isEmailVerified, upload.single('logo'), asyncErrorHandler(putLogo));
 
 /* PUT /profile-picture */
-router.put('/profile-picture', isLoggedIn, upload.single('profilePicture'), asyncErrorHandler(putProfilePicture));
+router.put('/profile-picture', isLoggedIn, isEmailVerified, upload.single('profilePicture'), asyncErrorHandler(putProfilePicture));
 
 /* GET /dashboard/employees */
-router.get('/company-dashboard/employees', isLoggedIn, isCompany, getEmployees);
+router.get('/company-dashboard/employees', isLoggedIn, isCompany, isEmailVerified, getEmployees);
 
 /* POST /employee */
-router.post('/employee', isLoggedIn, isCompany, upload.single('image'), asyncErrorHandler(postEmployee));
+router.post('/employee', isLoggedIn, isCompany, isEmailVerified, upload.single('image'), asyncErrorHandler(postEmployee));
 
 /* PUT /employee */
-router.put('/employee/:id', isLoggedIn, isCompany, upload.single('image'), asyncErrorHandler(putEmployee));
+router.put('/employee/:id', isLoggedIn, isCompany, isEmailVerified, upload.single('image'), asyncErrorHandler(putEmployee));
 
 /* Delete /employee */
-router.delete('/employee/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteEmployee))
+router.delete('/employee/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteEmployee))
 
 
 /* GET /dashboard/faq */
-router.get('/company-dashboard/faq', isLoggedIn, isCompany, asyncErrorHandler(getFaq));
+router.get('/company-dashboard/faq', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getFaq));
 
 /* POST /faq */
-router.post('/faq', isLoggedIn, isCompany, asyncErrorHandler(postFaq));
+router.post('/faq', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(postFaq));
 
 /* PUT /portfolio */
-router.put('/faq/:id', isLoggedIn, isCompany, asyncErrorHandler(putFaq));
+router.put('/faq/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(putFaq));
 
 /* Delete /portfolio */
-router.delete('/faq/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteFaq));
+router.delete('/faq/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteFaq));
 
 /* GET /dashboard/media */
-router.get('/company-dashboard/media', isCompany, isLoggedIn, asyncErrorHandler(getMedia));
+router.get('/company-dashboard/media', isCompany, isEmailVerified, isLoggedIn, asyncErrorHandler(getMedia));
 
 /* POST /media-photo */
-router.post('/media-photo', isLoggedIn, isCompany, upload.single('image'), asyncErrorHandler(postMediaPhoto));
+router.post('/media-photo', isLoggedIn, isCompany, isEmailVerified, upload.single('image'), asyncErrorHandler(postMediaPhoto));
 
 /* PUT /media-photo */
-router.put('/media-photo/:id', isLoggedIn, isCompany, asyncErrorHandler(putMediaPhoto));
+router.put('/media-photo/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(putMediaPhoto));
 
 /* Delete /media-photo */
-router.delete('/media-photo/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteMediaPhoto));
+router.delete('/media-photo/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteMediaPhoto));
 
 /* POST /media-video */
-router.post('/media-video', isLoggedIn, isCompany, upload.single('video'), asyncErrorHandler(postMediaVideo));
+router.post('/media-video', isLoggedIn, isCompany, isEmailVerified, upload.single('video'), asyncErrorHandler(postMediaVideo));
 
 /* PUT /media-video */
-router.put('/media-video/:id', isLoggedIn, isCompany, asyncErrorHandler(putMediaVideo));
+router.put('/media-video/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(putMediaVideo));
 
 /* Delete /media-video */
-router.delete('/media-video/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteMediaVideo));
+router.delete('/media-video/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteMediaVideo));
 
 /* GET /dashboard/portfolio */
-router.get('/company-dashboard/portfolio', isLoggedIn, isCompany, asyncErrorHandler(getPortfolio));
+router.get('/company-dashboard/portfolio', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getPortfolio));
 
 /* POST /portfolio */
-router.post('/portfolio', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(postPortfolio));
+router.post('/portfolio', isLoggedIn, isCompany, isEmailVerified, upload.array('images'), asyncErrorHandler(postPortfolio));
 
 /* PUT /portfolio */
-router.put('/portfolio/:id', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(putPortfolio));
+router.put('/portfolio/:id', isLoggedIn, isCompany, isEmailVerified, upload.array('images'), asyncErrorHandler(putPortfolio));
 
 /* Delete /portfolio */
-router.delete('/portfolio/:id', isLoggedIn, isCompany, asyncErrorHandler(deletePortfolio));
+router.delete('/portfolio/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deletePortfolio));
 
 
 /* GET /dashboard/products */
-router.get('/company-dashboard/products', isLoggedIn, isCompany, asyncErrorHandler(getProducts));
+router.get('/company-dashboard/products', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getProducts));
 
 /* POST /products */
-router.post('/products', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(postProduct));
+router.post('/products', isLoggedIn, isCompany, isEmailVerified, upload.array('images'), asyncErrorHandler(postProduct));
 
 /* PUT /products */
-router.put('/products/:id', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(putProduct));
+router.put('/products/:id', isLoggedIn, isCompany, isEmailVerified, upload.array('images'), asyncErrorHandler(putProduct));
 
 /* Delete /products */
-router.delete('/products/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteProduct));
+router.delete('/products/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteProduct));
 
 /* GET /dashboard/reviews */
-router.get('/company-dashboard/reviews', isLoggedIn, isCompany, asyncErrorHandler(getReviews));
+router.get('/company-dashboard/reviews', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getReviews));
 
 /* PUT /review */
-router.put('/review/:id', isLoggedIn, isCompany, asyncErrorHandler(reviewReply));
+router.put('/review/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(reviewReply));
 
 /* GET /dashboard/services */
-router.get('/company-dashboard/services', isLoggedIn, isCompany, asyncErrorHandler(getServices));
+router.get('/company-dashboard/services', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getServices));
 
 /* POST /services */
-router.post('/services', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(postService));
+router.post('/services', isLoggedIn, isCompany, isEmailVerified, upload.array('images'), asyncErrorHandler(postService));
 
 /* PUT /services */
-router.put('/services/:id', isLoggedIn, isCompany, upload.array('images'), asyncErrorHandler(putService));
+router.put('/services/:id', isLoggedIn, isCompany, isEmailVerified, upload.array('images'), asyncErrorHandler(putService));
 
 /* Delete /services */
-router.delete('/services/:id', isLoggedIn, isCompany, asyncErrorHandler(deleteService));
+router.delete('/services/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(deleteService));
 
 // COMPANY SETTINGS
 
 /* GET /company-settings/account */
-router.get('/company-settings/account', isLoggedIn, asyncErrorHandler(getAccount));
+router.get('/company-settings/account', isLoggedIn, isEmailVerified, asyncErrorHandler(getAccount));
 
 /* PUT /company-settings/account */
-router.put('/company-settings/account', isLoggedIn, asyncErrorHandler(putAccount));
+router.put('/company-settings/account', isLoggedIn, isEmailVerified, asyncErrorHandler(putAccount));
 
 /* GET /company-settings/billing */
-router.get('/company-settings/billing', isLoggedIn, isCompany, asyncErrorHandler(getBilling));
+router.get('/company-settings/billing', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getBilling));
 
 // /* GET /company-settings/company-info */
 // router.get('/company-settings/company-info', isLoggedIn, isCompany, asyncErrorHandler(getCompanyInfo));
 
 /* GET /company-settings/notifications */
-router.get('/company-settings/notifications', isLoggedIn, asyncErrorHandler(getNotifications));
+router.get('/company-settings/notifications', isLoggedIn, isEmailVerified, asyncErrorHandler(getNotifications));
 
 /* GET /company-settings/payment */
-router.get('/company-settings/payment', isLoggedIn, isCompany, asyncErrorHandler(getPayment));
+router.get('/company-settings/payment', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getPayment));
 
 /* GET /company-settings/security */
-router.get('/company-settings/security', isLoggedIn, asyncErrorHandler(getSecurity));
+router.get('/company-settings/security', isLoggedIn, isEmailVerified, asyncErrorHandler(getSecurity));
 
 /* PUT /company-settings/security */
 router.put('/company-settings/security',
   isLoggedIn,
+  isEmailVerified,
   asyncErrorHandler(isValidPassword),
   asyncErrorHandler(changePassword),
   asyncErrorHandler(putSecurity)
 );
 
 /* GET /company-settings/trust-verification */
-router.get('/company-settings/trust-verification', isLoggedIn, asyncErrorHandler(getVerification));
+router.get('/company-settings/trust-verification', isLoggedIn, isEmailVerified, asyncErrorHandler(getVerification));
 
 /* GET /company-settings/profile */
-router.get('/company-settings/profile', isLoggedIn, asyncErrorHandler(getProfile));
+router.get('/company-settings/profile', isLoggedIn, isEmailVerified, asyncErrorHandler(getProfile));
 
 /* PUT /profile */
-router.put('/profile', isLoggedIn, isNotCompany, upload.single('profilePicture'), asyncErrorHandler(putProfile));
+router.put('/profile', isLoggedIn, isNotCompany, isEmailVerified, upload.single('profilePicture'), asyncErrorHandler(putProfile));
 
 
 //SHOW PAGES

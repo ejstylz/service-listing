@@ -18,7 +18,7 @@
 
     <body>
         <header class="main_header">
-                <% include ../partials/flash-messages %>
+                <!-- <% include ../partials/flash-messages %> -->
 
 				<% if(!currentUser) { %>
 					<nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
@@ -30,6 +30,9 @@
 							</form>
 							<div class="main_logo_for_mobile ml-auto">
 								<a href="/"><img src="images/gabazzo_logo_white.png" alt="" /></a>
+							</div>
+							<div style="margin-left: auto;">
+								<% include ../partials/flash-messages %>
 							</div>
 							<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
 								<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
@@ -83,6 +86,9 @@
 								<div class="main_logo_for_mobile ml-auto">
 									<a href="../members/index-members.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
 								</div>
+								<div style="margin-left: auto;">
+									<% include ../partials/flash-messages %>
+								</div>
 								<ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
 									<li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
 									<li class="nav-item my_account my_account_for_desktop mx-2">
@@ -134,6 +140,7 @@
 								</div>
 
 								<div class="collapse nav_item_wrap navbar-collapse" id="navb">
+									<% if (currentUser && currentUser.isEmailVerified) { %>
 									<ul class="navbar-nav ml-auto">
 										<!-- Messages -->
 										<li class="nav-item dropdown">
@@ -535,6 +542,7 @@
 
 										<li class="nav-item"><a href="saved-list.html" class="nav-link">Saved List</a></li>
 									</ul>
+								<% } %>
 								</div>
 							</nav>
 
@@ -1047,7 +1055,7 @@
     <script src="js/owl.carousel.min.js" type="text/javascript"></script>
 	<script src="js/custom.js" type="text/javascript"></script>
 	<script src="js/read_more.js" type="text/javascript"></script>
-    <script src="js/autocomplete.js" type="text/javascript"></script>
+	<script src="js/autocomplete.js" type="text/javascript"></script>
     <script type="text/javascript">
         var homeServices = $(".nearby_companies .owl-carousel");
         if (homeServices.length) {

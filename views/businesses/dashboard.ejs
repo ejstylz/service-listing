@@ -66,8 +66,19 @@
 							<h3>About</h3>
 							<div class="form">
 								<div class="form-group">
-									<textarea name="about" id="" cols="30" rows="10"
-										class="form-control"><%= currentUser.about %></textarea>
+									<% if (currentUser.about) { %>
+										<textarea name="about" id="myText" cols="30" rows="10"
+											class="form-control" maxlength="1200"><%= currentUser.about %></textarea>
+											<div class="form-text text-right">
+												<span id="wordCount"><%= currentUser.about.length %></span>/<span>1200</span>
+											</div>
+									<% } else { %>
+										<textarea name="about" id="myText" cols="30" rows="10"
+											class="form-control" maxlength="1200"><%= currentUser.about %></textarea>
+											<div class="form-text text-right">
+												<span id="wordCount">0</span>/<span>1200</span>
+											</div>
+									<% } %>
 								</div>
 							</div>
 						</div>
@@ -156,7 +167,7 @@
 										<div class="form-group col-md-6">
 											<label for="">Phone Number:</label>
 											<input type="tel" class="form-control"
-												value="<%= currentUser.phoneNumber %>" name="phoneNumber" />
+												value="<%= currentUser.phoneNumber %>" id="phone" name="phoneNumber" />
 										</div>
 									</div>
 									<div class="form-row">

@@ -241,7 +241,47 @@ function getURL() {
     alert("The URL of this page is: " + window.location.href);
 }
 
+const myText = document.getElementById("myText");
+const wordCount = document.getElementById("wordCount");
+const myText2 = document.getElementById("myText2");
+const wordCount2 = document.getElementById("wordCount2");
+const myText3 = document.getElementById("myText3");
+const wordCount3 = document.getElementById("wordCount3");
+const myText4 = document.getElementById("myText4");
+const wordCount4 = document.getElementById("wordCount4");
+const myText5 = document.getElementById("myText5");
+const wordCount5 = document.getElementById("wordCount5");
+const myText6 = document.getElementById("myText6");
+const wordCount6 = document.getElementById("wordCount6");
 
+myText.addEventListener("keyup", function () {
+    const characters = myText.value.split('');
+    wordCount.innerText = characters.length;
+});
+
+myText2.addEventListener("keyup", function () {
+    const characters = myText2.value.split('');
+    wordCount2.innerText = characters.length;
+});
+
+myText3.addEventListener("keyup", function () {
+    const characters = myText3.value.split('');
+    wordCount3.innerText = characters.length;
+});
+myText4.addEventListener("keyup", function () {
+    const characters = myText4.value.split('');
+    wordCount4.innerText = characters.length;
+});
+
+myText5.addEventListener("keyup", function () {
+    const characters = myText5.value.split('');
+    wordCount5.innerText = characters.length;
+});
+
+myText6.addEventListener("keyup", function () {
+    const characters = myText6.value.split('');
+    wordCount6.innerText = characters.length;
+});
 
 
 

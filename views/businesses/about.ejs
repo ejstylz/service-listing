@@ -28,9 +28,23 @@
 									<h3>About Your Company</h3>
 									<div class="inner_part">
 										<div class="form-group">
-											<textarea name="" placeholder="Write a Description About Your Company..."
-												id="" cols="30" rows="7" class="form-control"
-												name="about"><%= currentUser.about %></textarea>
+											<% if(currentUser.about){ %>
+											<textarea placeholder="Write a Description About Your Company..."
+												id="myText" cols="30" rows="7" class="form-control" name="about"
+												maxlength="1000"><%= currentUser.about %></textarea>
+											<div class="text-right">
+												<small><span
+														id="wordCount"><%= currentUser.about.length %></span>/1000</small>
+											</div>
+											<% } else { %>
+											<textarea placeholder="Write a Description About Your Company..."
+												id="myText" cols="30" rows="7" class="form-control" name="about"
+												maxlength="1000">0</textarea>
+											<div class="text-right">
+												<small><span id="wordCount">0</span>/1000</small>
+											</div>
+											<% } %>
+
 										</div>
 									</div>
 								</div>
@@ -38,9 +52,23 @@
 									<h3>Company Purpose</h3>
 									<div class="inner_part">
 										<div class="form-group mb-0">
+											<% if(currentUser.Purpose){ %>
 											<textarea placeholder="Write Your Company Purpose...." cols="30" rows="7"
-												class="form-control"
-												name="purpose"><%= currentUser.Purpose %></textarea>
+												class="form-control" name="purpose" id="myText2"
+												maxlength="600"><%= currentUser.Purpose %></textarea>
+											<div class="text-right">
+												<small><span
+														id="wordCount2"><%= currentUser.Purpose.length %></span>/600</small>
+											</div>
+											<% } else { %>
+											<textarea placeholder="Write Your Company Purpose...." cols="30" rows="7"
+												class="form-control" name="purpose" id="myText2"
+												maxlength="600"><%= currentUser.Purpose %></textarea>
+											<div class="text-right">
+												<small><span id="wordCount2">0</span>/600</small>
+											</div>
+											<% } %>
+
 										</div>
 									</div>
 								</div>
@@ -126,6 +154,7 @@
 													</li>
 												</ul>
 											</div>
+											<h2><%= journey[i].title %></h2>
 											<h2><%= journey[i].year %></h2>
 											<p class="time_more"><%= journey[i].Description %></p>
 										</div>
@@ -234,16 +263,21 @@
 				<form action="/journey/<%= journey[i].id %>?_method=PUT" method="POST">
 					<div class="form">
 						<div class="form-group">
+							<input type="text" value="<%= journey[i].title %>" placeholder="Edit Title"
+								class="form-control" name="title" />
+						</div>
+						<div class="form-group">
 							<input type="text" value="<%= journey[i].year %>" placeholder="Put The Year"
 								class="form-control" name="year" />
 						</div>
 						<div class="form-group">
-							<textarea name="Description" id="" cols="30" rows="3"
-								class="form-control"><%= journey[i].Description %></textarea>
+							<textarea name="Description" id="myText4" cols="30" rows="3" class="form-control"
+								maxlength="110"><%= journey[i].Description %></textarea>
 							<div class="form-text text-right">
-								<span>107/110</span>
+								<span id="wordCount4">0</span>/<span>110</span>
 							</div>
 						</div>
+
 						<div class="save_button text-right">
 							<button type="submit" class="btn btn-gbz-success">Update</button>
 						</div>
@@ -295,13 +329,16 @@
 				<form action="/journey" method="POST">
 					<div class="form">
 						<div class="form-group">
-							<input type="text" value="" placeholder="Put The Year" class="form-control" name="year" />
+							<input type="text" placeholder="Insert Title" class="form-control" name="title" />
 						</div>
 						<div class="form-group">
-							<textarea name="description" value="" placeholder="Write What Happening?" id="" cols="30"
-								rows="3" class="form-control"></textarea>
+							<input type="text" placeholder="Insert Year" class="form-control" name="year" />
+						</div>
+						<div class="form-group">
+							<textarea name="description" placeholder="What was happeneing during that year?"
+								id="myText3" cols="30" rows="3" class="form-control" maxlength="110"></textarea>
 							<div class="form-text text-right">
-								<span>0/110</span>
+								<span id="wordCount3">0</span>/<span>110</span>
 							</div>
 						</div>
 						<div class="save_button text-right">
@@ -355,10 +392,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<textarea name="description" value="" placeholder="Write a Short Description..." id="" cols="30"
-							rows="3" class="form-control"></textarea>
+						<textarea name="description" placeholder="Write a Short Description..." id="myText5" cols="30"
+							rows="3" class="form-control" maxlength="110"></textarea>
 						<div class="form-text text-right">
-							<span>0/110</span>
+							<span id="wordCount5">0</span><span>/110</span>
 						</div>
 					</div>
 					<div class="save_button text-right">
@@ -417,10 +454,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Short Description..." id="" cols="30"
-								rows="3" class="form-control"><%= certificate[i].description %></textarea>
+							<textarea name="description" placeholder="Write a Short Description..." id="myText6"
+								cols="30" rows="3" class="form-control"
+								maxlength="110"><%= certificate[i].description %></textarea>
 							<div class="form-text text-right">
-								<span>108/110</span>
+								<span id="wordCount6">0</span>/<span>110</span>
 							</div>
 						</div>
 						<div class="save_button text-right">

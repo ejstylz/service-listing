@@ -887,7 +887,7 @@
 
 
 						<div class="basic_filter pl-4">
-							<form action="">
+							<form action="/services/electrical-services" method="POST" id="filter-form">
 								<div class="form">
 									<div class="form-row">
 										<div class="form-group col-md-6">
@@ -895,19 +895,18 @@
 												<div class="deco_filter_option">
 													<div class="single_deco_filter">
 														<span>Sort By:</span>
-														<select name="" id="" placeholder="monir" class="form-control">
-															<option value="">A-Z</option>
-															<option value="">Z-A</option>
-															<option value="">Date Registed</option>
-															<option value="">Nearest</option>
-															<option value="">Highest Rated</option>
+														<select name="sort" id="" placeholder="monir" class="form-control">
+															<option value="dsc">A-Z</option>
+															<option value="asc">Z-A</option>
+															<option value="created">Date Registed</option>
+															<option value="rated">Highest Rated</option>
 														</select>
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="form-group zip_code_form col-md-6">
-											<input type="text" placeholder="Zip Code" class="form-control" />
+											<input type="text" name="zip" placeholder="Zip Code" class="form-control" />
 
 											<div class="action_buttons">
 												<div class="the_buttons text-center">
@@ -1100,7 +1099,6 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="/services/electrical-services" method="POST" id="filter-form">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1205,7 +1203,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+							<button class="btn btn-gbz-success py-2" id="button1" type="submit">Apply Filters</button>
 						</div>
 					</form>
 				</div>
@@ -1533,7 +1531,7 @@
 
 			let compa = $(this).serialize();
 
-			$.post('/services/roofing-services', compa, function (data) {
+			$.post('/services/electrical-services', compa, function (data) {
 				$('#num').html(data.length + ' Results Found');
 				comp_html='';
 					data.forEach(function(company, i){
@@ -1622,7 +1620,7 @@
 	});
 
 	</script>
-	
+
 	<script type="text/javascript">
 
 		$(document).ready(function () {

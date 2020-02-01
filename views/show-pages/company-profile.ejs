@@ -1078,11 +1078,11 @@
                                                 <span><%= company.location %>, <%= company.city %>,
                                                     <%= company.state %></span></li>
                                             <li><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>
-                                                <span><%= company.phoneNumber %></span></li>
+                                                <span><a href="tel:+<%= company.phoneNumber %>"><%= company.phoneNumber %></a></span></li>
                                             <li><i class="fa fa-globe" aria-hidden="true"></i> <b>Website:</b> <span><a
                                                         href="javascript:void(0)"><%= company.website %></a></span></li>
                                             <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <b>Email:</b>
-                                                <span><%= company.email %></span></li>
+                                                <span><a href="mailto:<%= company.email %>" target="_blank"><%= company.email %></a></span></li>
                                             <li><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Years in
                                                     Business:</b> <span><%= company.yearsInBusiness %> Years</span></li>
                                         </ul>
@@ -1450,12 +1450,12 @@
                                         <span><%= company.location %>, <%= company.city %>, <%= company.state %></span>
                                     </li>
                                     <li><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>
-                                        <span><%= company.phoneNumber %></span></li>
+                                        <span><a href="tel:+<%= company.phoneNumber %>"><%= company.phoneNumber %></a></span></li>
                                     <li><i class="fa fa-globe" aria-hidden="true"></i> <b>Website:</b> <span><a
                                                 href="<%= company.website %>"
                                                 data-target="_blank"><%= company.website %></a></span></li>
                                     <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <b>Email:</b>
-                                        <span><%= company.email %></span></li>
+                                        <span><a href="mailto:<%= company.email %>" target="_blank"><%= company.email %></a></span></li>
                                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Years in Business:</b>
                                         <span><%= company.yearsInBusiness %> Year(s)</span></li>
                                 </ul>

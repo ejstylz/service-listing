@@ -68,7 +68,7 @@
 	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3>ADD New Employee</h3>
+				<h3>ADD New Employee Information</h3>
 				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
 						aria-hidden="true"></i></button>
 			</div>
@@ -109,10 +109,10 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Short Bio..." id="" cols="30" rows="3"
-								class="form-control"></textarea>
+							<textarea name="description" placeholder="Write a Short Bio..." id="myText" cols="30"
+								rows="3" class="form-control" maxlength="180"></textarea>
 							<div class="form-text text-right">
-								<span>0/100</span>
+								<span id="wordCount">0</span>/<span>180</span>
 							</div>
 						</div>
 						<div class="save_button text-right">
@@ -134,7 +134,7 @@
 	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3>Edit Employee</h3>
+				<h3>Edit Employee Information</h3>
 				<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"
 						aria-hidden="true"></i></button>
 			</div>
@@ -176,10 +176,10 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Short Bio..." id="" cols="30" rows="3"
-								class="form-control"><%= employee[i].description %></textarea>
+							<textarea name="description" placeholder="Write a Short Bio..." id="myText2" cols="30"
+								rows="3" class="form-control" maxlength="180"><%= employee[i].description %></textarea>
 							<div class="form-text text-right">
-								<span>90/100</span>
+								<span id="wordCount2"><%= employee[i].description.length %></span>/<span>180</span>
 							</div>
 						</div>
 						<div class="save_button text-right">

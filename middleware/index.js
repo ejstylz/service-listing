@@ -101,4 +101,24 @@ module.exports = {
         }
     },
 
+    isEmailVerified: async (req, res, next) => {
+        let user = req.user;
+        if (user.isEmailVerified) return next();
+        if (user.isCompany) {
+            req.session.error = "You Need To Verify Your Email Before Proceeding";
+            return res.redirect('/company-sign-up4');
+        } else if (!user.isCompany) {
+            req.session.error = "You Need To Verify Your Email Before Proceeding: Check Mail for a verification link";
+            return res.redirect('/');
+        }
+    },
+
+    isRegistered: async (req, res, next) => {
+        let user = req.user;
+        if (!user.about) return next();
+        req.session.error = "Already Done with that page";
+        return res.redirect('/');
+
+    },
+
 };

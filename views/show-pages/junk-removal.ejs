@@ -886,7 +886,7 @@
 
 
 						<div class="basic_filter pl-4">
-							<form action="">
+							<form action="/services/junk-removal" method="POST" id="filter-form">
 								<div class="form">
 									<div class="form-row">
 										<div class="form-group col-md-6">
@@ -894,19 +894,18 @@
 												<div class="deco_filter_option">
 													<div class="single_deco_filter">
 														<span>Sort By:</span>
-														<select name="" id="" placeholder="monir" class="form-control">
-															<option value="">A-Z</option>
-															<option value="">Z-A</option>
-															<option value="">Date Registed</option>
-															<option value="">Nearest</option>
-															<option value="">Highest Rated</option>
+														<select name="sort" id="" placeholder="monir" class="form-control">
+															<option value="dsc">A-Z</option>
+															<option value="asc">Z-A</option>
+															<option value="created">Date Registed</option>
+															<option value="rated">Highest Rated</option>
 														</select>
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="form-group zip_code_form col-md-6">
-											<input type="text" placeholder="Zip Code" class="form-control" />
+											<input type="text" name="zip" placeholder="Zip Code" class="form-control" />
 
 											<div class="action_buttons">
 												<div class="the_buttons text-center">
@@ -943,7 +942,6 @@
 										</div>
 									</div>
 								</div>
-							</form>
 						</div>
 
 						<hr />
@@ -1097,7 +1095,6 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="/services/junk-removal" method="POST" id="filter-form">
 						<div class="filter_areas">
 							<div class="single_filter_area">
 								<div class="row">
@@ -1275,30 +1272,10 @@
 								</div>
 							</div>
 
-							<div class="single_filter_area">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="filter_topic">
-											<h4>Financing Available</h4>
-										</div>
-									</div>
-									<div class="col-sm-9">
-										<label class="radio">Yes
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-										<label class="radio">No
-											<input type="radio" name="financing_available">
-											<span class="checkround"></span>
-										</label>
-									</div>
-								</div>
-							</div>
-
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button class="btn btn-gbz-success py-2" type="submit">Apply Filters</button>
+							<button class="btn btn-gbz-success py-2" id="button1" type="submit">Apply Filters</button>
 						</div>
 					</form>
 				</div>
@@ -1626,7 +1603,7 @@
 
 			let compa = $(this).serialize();
 
-			$.post('/services/roofing-services', compa, function (data) {
+			$.post('/services/junk-removal', compa, function (data) {
 				$('#num').html(data.length + ' Results Found');
 				comp_html='';
 					data.forEach(function(company, i){

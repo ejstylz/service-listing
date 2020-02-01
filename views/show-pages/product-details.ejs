@@ -486,12 +486,33 @@
 					<div class="col-lg-5">
 						<div class="reviews_amount_part">
 							<div class="like_share_menu">
-								<ul>
-									<li><a href="javascript:void(0)">Like</a></li>
-									<li><a href="javascript:void(0)">Share</a></li>
-									<li><a href="javascript:void(0)">Save to List</a></li>
-									<li><a href="javascript:void(0)">Print Page</a></li>
-								</ul>
+                <ul>
+                  <% if(currentUser && currentUser.likes.includes(company._id)) { %>
+                    <li>
+                  <form class="" action="/unlike/<%= company._id %>" method="POST">
+                    <button type="submit" class="like">Unlike</button>
+                  </form></li>
+                  <% } else { %>
+                    <li>
+                  <form class="" action="/likes/<%= company._id %>" method="POST">
+                    <button type="submit" class="like">Like</button>
+                  </form></li>
+                  <% } %>
+
+                    <li><a href="javascript:void(0)" onclick="copyToClipboard()">Share</a></li>
+                    <input type="hidden" id="input-url" value="Copied!">
+
+                    <% if(currentUser && currentUser.list.includes(company._id)) { %>
+                    <li><form class="" action="/remove-from-list/<%= company._id %>" method="POST">
+                      <button type="submit" class="like">Remove From List</button>
+                    </form></li>
+                    <% } else { %>
+                    <li><form class="" action="/save-to-list/<%= company._id %>" method="POST">
+                      <button type="submit" class="like">Save To List</button>
+                    </form></li>
+                    <% } %>
+                    <li><a id="export" href="#" onclick="window.print()">Print Page</a></li>
+                </ul>
 							</div>
 						</div>
 					</div>
@@ -1122,5 +1143,17 @@
 			})
 
 		</script>
+    <script type="text/javascript">
+        function copyToClipboard() {
+            const el = document.createElement('textarea');
+            el.value = window.location.href;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("URL Copied!");
+        };
+    </script>
+
     </body>
 </html>
