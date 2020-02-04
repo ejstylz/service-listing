@@ -176,7 +176,8 @@ const {
   createList,
   deleteList,
   getOtherListItems,
-  removeCompanyFromList
+  removeCompanyFromList,
+  defaultList
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -715,6 +716,9 @@ router.post('/unlike/:id', isLoggedIn, asyncErrorHandler(unlike));
 
 /* POST /save-to-list/:id */
 router.post('/save-to-list/:companyId/:listId', isLoggedIn, asyncErrorHandler(saveToList));
+
+/* POST /save-to-list/:id */
+router.post('/default-list/:companyId', isLoggedIn, asyncErrorHandler(defaultList));
 
 /* POST /remove-from-list/:id */
 router.delete('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromList));

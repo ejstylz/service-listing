@@ -508,8 +508,8 @@
 									<input type="hidden" id="input-url" value="Copied!">
 									<li><div class="popup" onclick="myFunction()">
 										<div class="popuptext" id="myPopup">
-											<form style="margin-bottom: 3px;" action="/save-to-list/<%= company._id %>" method="POST">
-												<input type="hidden" name="company">
+											<form style="margin-bottom: 3px;" action="/default-list/<%= company._id %>" method="POST">
+												<input type="hidden" name="company" value="company">
 												<button style="margin: auto;" type="submit" class="like">Default List</button>
 											</form>
 											<% if (currentUser && lists.length) { %>

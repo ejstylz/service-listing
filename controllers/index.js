@@ -4215,17 +4215,6 @@ module.exports = {
         let whichList = await List.findById(req.params.listId);
         //check if it is saved to the default list
         console.log(req.params);
-
-        //else save to the selected list by id
-
-        if (req.body.company) {
-            if (!user.list.includes(company._id)) {
-                await user.list.push(company);
-                await user.save();
-            } else {
-                colsole.log("ALREADY SAVED");
-            }
-        } else {
             if (!whichList.companies.includes(company._id)) {
                 await whichList.companies.push(company);
                 whichList.save();
@@ -4233,7 +4222,28 @@ module.exports = {
             } else {
                 console.log("ALREADY SAVED");
             }
-        }
+        // save the updated user into the db
+        await user.save();
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        console.log("SAVED!!!");
+        req.session.success = "Profile successfully updated!";
+        // redirect to show page
+        res.redirect("back");
+    },
+
+    async defaultList(req, res, next) {
+        let company = await User.findById(req.params.companyId);
+        let user = req.user;
+        //check if it is saved to the default list
+        console.log(req.params);
+
+        //else save to the selected list by id
+            if (!user.list.includes(company._id)) {
+                await user.list.push(company);
+            } else {
+                colsole.log("ALREADY SAVED");
+            }
         // save the updated user into the db
         await user.save();
         const login = util.promisify(req.login.bind(req));
