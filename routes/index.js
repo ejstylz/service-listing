@@ -168,10 +168,15 @@ const {
   putProfile,
   activateAccount,
   deactivateAccount,
+  getSavedListItems,
   getSavedList,
   putSecurityQuestion,
   putBilling,
-  roofingServiesFilter
+  roofingServiesFilter,
+  createList,
+  deleteList,
+  getOtherListItems,
+  removeCompanyFromList
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -709,10 +714,10 @@ router.post('/likes/:id', isLoggedIn, asyncErrorHandler(likes));
 router.post('/unlike/:id', isLoggedIn, asyncErrorHandler(unlike));
 
 /* POST /save-to-list/:id */
-router.post('/save-to-list/:id', isLoggedIn, asyncErrorHandler(saveToList));
+router.post('/save-to-list/:companyId/:listId', isLoggedIn, asyncErrorHandler(saveToList));
 
 /* POST /remove-from-list/:id */
-router.post('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromList));
+router.delete('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromList));
 
 
 /* De-activate account */
@@ -721,8 +726,23 @@ router.put('/deactivate', isLoggedIn, asyncErrorHandler(deactivateAccount));
 /* GET Activate account */
 router.get('/activate/:token', asyncErrorHandler(activateAccount));
 
+/* POST /likes/:id */
+router.post('/create-list', isLoggedIn, asyncErrorHandler(createList));
+
+/* Delete /delete-list */
+router.delete('/delete-list/:id', isLoggedIn, asyncErrorHandler(deleteList));
+
+/* Delete /delete-list */
+router.delete('/remove-company/:companyId/:listId', isLoggedIn, asyncErrorHandler(removeCompanyFromList));
+
 /* GET /saved-list-item */
-router.get('/saved-list-item', isLoggedIn, asyncErrorHandler(getSavedList));
+router.get('/saved-list-item', isLoggedIn, asyncErrorHandler(getSavedListItems));
+
+/* GET /other-lists */
+router.get('/other-lists/:id', isLoggedIn, asyncErrorHandler(getOtherListItems));
+
+/* GET /saved-list*/
+router.get('/saved-list', isLoggedIn, asyncErrorHandler(getSavedList));
 
 /* Security Question */
 router.put('/security-question', isLoggedIn, asyncErrorHandler(putSecurityQuestion));

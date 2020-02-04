@@ -954,9 +954,14 @@
             <div class="save_item_header">
                 <div class="row">
                     <div class="col-md-7">
-                        <h3>Companies | Saved to List <span>(<%= company.length %> Companies)</span></h3>
-                        <p>Welcome to your default list. If you saved a Company without choosing a specific list, you
-                            can find it here.</p>
+                        <h3>Companies | Saved <%= list.title %> <span>(<%= company.length %> Companies)</span></h3>
+                        <p>Here are the companies you saved to <%= list.title %>.</p>
+                        <form action="/delete-list/<%= list._id %>?_method=DELETE" method="POST">
+                            <div class="save_button pb-3">
+                                <button type="submit" class="btn btn-danger">Delete List</button>
+                            </div>
+                        </form>
+
                     </div>
                     <div class="col-md-5 profile_rtl">
                         <div class="row">
@@ -1067,13 +1072,15 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <form action="/remove-from-list/<%= company._id %>?_method=DELETE" method="POST">
+                                    <form action="/remove-company/<%= company._id %>/<%= list._id %>?_method=DELETE"
+                                        method="POST">
                                         <div class="save_button pb-3">
                                             <button type="submit" class="btn btn-danger">Remove Company</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+
                             <% }) %>
 
 

@@ -9,6 +9,7 @@ const Review = require('../models/review');
 const Service = require('../models/service');
 const Product = require('../models/product');
 const Faq = require('../models/faq');
+const List = require('../models/list');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 const passport = require('passport');
@@ -1683,6 +1684,11 @@ module.exports = {
 
     async companyProfileShow(req, res, next) {
         let company = await User.findById(req.params.id);
+        let user = await req.user;
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         let service = await Service.find().where("owner.id").equals(company._id).exec();
         let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
@@ -1697,7 +1703,16 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/company-profile', { title: 'Company Profile', average, company, service, mediaPhoto, review });
+        res.render('show-pages/company-profile', {
+            title: 'Company Profile',
+            average,
+            company,
+            service,
+            mediaPhoto,
+            review,
+            lists,
+            user
+        });
     },
 
     async companyContact(req, res, next) {
@@ -4159,13 +4174,65 @@ module.exports = {
         res.redirect("back");
     },
 
+
+    // ROUTE for creating list
+    async createList(req, res, next) {
+        // find the user
+        const user = req.user;
+        const owner = {
+            id: req.user._id,
+            username: req.user.username
+        }
+
+        const newList = new List({
+            title: req.body.title,
+            owner: owner,
+        });
+
+        // save the updated journey into the db
+        let list = await List.create(newList);
+
+        const login = util.promisify(req.login.bind(req));
+        await login(user);
+        req.session.success = "List Created!";
+        console.log("List Created");
+        // redirect to show page
+        res.redirect("back");
+    },
+
+    //Route for deleting List
+    async deleteList(req, res, next) {
+        let list = await List.findById(req.params.id);
+        await list.remove();
+        req.session.error = "List Deleted!";
+        res.redirect("/saved-list");
+    },
+
     async saveToList(req, res, next) {
-        let company = await User.findById(req.params.id);
+        let company = await User.findById(req.params.companyId);
         let user = req.user;
-        if (!user.list.includes(company._id)) {
-            await user.list.push(company);
+        let lists = await List.find();
+        let whichList = await List.findById(req.params.listId);
+        //check if it is saved to the default list
+        console.log(req.params);
+
+        //else save to the selected list by id
+
+        if (req.body.company) {
+            if (!user.list.includes(company._id)) {
+                await user.list.push(company);
+                await user.save();
+            } else {
+                colsole.log("ALREADY SAVED");
+            }
         } else {
-            colsole.log("ALREADY SAVED")
+            if (!whichList.companies.includes(company._id)) {
+                await whichList.companies.push(company);
+                whichList.save();
+                console.log("saved");
+            } else {
+                console.log("ALREADY SAVED");
+            }
         }
         // save the updated user into the db
         await user.save();
@@ -4178,6 +4245,7 @@ module.exports = {
     },
 
     async removeFromList(req, res, next) {
+        // search through all the lists owned by the user and delete the company
         let company = await User.findById(req.params.id);
         let user = req.user;
         const index = user.list.indexOf(company);
@@ -4189,8 +4257,22 @@ module.exports = {
         console.log("REMOVED!!!");
         req.session.success = "Profile successfully updated!";
         // redirect to show page
-        res.redirect("back");
+        res.redirect("/saved-list");
     },
+
+    async removeCompanyFromList(req, res, next) {
+        let list = await List.findById(req.params.listId);
+        await List.update(
+            { _id: req.params.listId },
+            { "$pull": { "companies": req.params.companyId } },
+            { safe: true, multi: true }
+        );
+        console.log("REMOVED!!!");
+        req.session.success = "List successfully updated!";
+        // redirect to show page
+        res.redirect("/saved-list");
+    },
+
 
     async deactivateAccount(req, res, next) {
         const user = req.user;
@@ -4254,15 +4336,39 @@ module.exports = {
     },
 
     //GET saved to list
-    async getSavedList(req, res, next) {
+    async getSavedListItems(req, res, next) {
         let user = await User.findById(req.user).populate('users');
         let ids = [];
         await user.list.forEach(function (comp) {
             ids.push(comp);
         });
         let company = await User.find().where('_id').in(ids).exec();
-        console.log(company);
         res.render('businesses/saved-list-items', { title: 'Saved List', user, company });
+    },
+
+    //GET saved to list
+    async getOtherListItems(req, res, next) {
+        let user = await User.findById(req.user).populate('users');
+        let list = await List.findById(req.params.id);
+        let ids = [];
+        await list.companies.forEach(function (comp) {
+            ids.push(comp);
+        });
+        let company = await User.find().where('_id').in(ids).exec();
+        res.render('businesses/other-list-items', { title: 'Saved List', user, company, list });
+    },
+
+
+    //GET saved to list
+    async getSavedList(req, res, next) {
+        let user = await User.findById(req.user).populate('users');
+        let lists = await List.find().where("owner.id").equals(user._id).exec();
+        let ids = [];
+        await user.list.forEach(function (comp) {
+            ids.push(comp);
+        });
+        let company = await User.find().where('_id').in(ids).exec();
+        res.render('businesses/saved-list', { title: 'Saved List', user, company, lists });
     },
 
     //PUT Security Question
