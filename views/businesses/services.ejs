@@ -124,10 +124,10 @@
 						</div>
 
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Description..." id="" cols="30" rows="7"
-								class="form-control"></textarea>
+							<textarea name="description" placeholder="Write a Description..." id="myText" cols="30"
+								rows="7" class="form-control"></textarea>
 							<div class="form-text text-right">
-								<span>0/1200</span>
+								<span id="wordCount">0</span>/<span>1200</span>
 							</div>
 						</div>
 
@@ -145,15 +145,15 @@
 													<div class="form-group col-md-6">
 														<small>From:</small>
 														<div class="dollar_input">
-															<input type="number" name="priceTo" class="form-control" />
+															<input type="number" name="priceFrom"
+																class="form-control" />
 															<i class="fa fa-usd" aria-hidden="true"></i>
 														</div>
 													</div>
 													<div class="form-group col-md-6">
 														<small>To:</small>
 														<div class="dollar_input">
-															<input type="number" name="priceFrom"
-																class="form-control" />
+															<input type="number" name="priceTo" class="form-control" />
 															<i class="fa fa-usd" aria-hidden="true"></i>
 														</div>
 													</div>
@@ -299,10 +299,10 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Description..." id="" cols="30" rows="7"
-								class="form-control"><%= service[i].description %></textarea>
+							<textarea name="description" placeholder="Write a Description..." id="myText2" cols="30"
+								rows="7" class="form-control"><%= service[i].description %></textarea>
 							<div class="form-text text-right">
-								<span>0/1200</span>
+								<span id="wordCount2"><%= service[i].description.length %></span>/<span>1200</span>
 							</div>
 						</div>
 

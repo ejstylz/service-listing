@@ -479,13 +479,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="breadcrumb-wrap">
-						<ul class="breadcrumb mb-0 px-0 bg-white">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Gabazzo</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Category Name</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">View All</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Services Name</a></li>
-							<li class="breadcrumb-item active">Portfolio</li>
-						</ul>
+
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -537,11 +531,6 @@
 			<div class="portfolio">
 				<h1>Portfolio</h1>
 				<div class="top_search">
-					<div class="search_bar">
-						<input type="search" placeholder="Search...." />
-						<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-					</div>
-				</div>
 
 				<!-- Tabs -->
 				<section id="tabs">
@@ -691,8 +680,8 @@
 											</div>
 											<div class="box_body">
 												<ul>
-													<li><b>Start Date:</b> <span><%= portfolio.startTime %></span></li>
-													<li><b>End Date:</b> <span><%= portfolio.endTime %></span></li>
+													<li><b>Start Date:</b> <span><%= moment(portfolio.startTime).format("MM-DD-YYYY") %></span></li>
+													<li><b>End Date:</b> <span><%= moment(portfolio.endTime).format("MM-DD-YYYY") %></span></li>
 												</ul>
 											</div>
 										</div>

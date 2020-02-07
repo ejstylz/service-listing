@@ -142,6 +142,7 @@ const UserSchema = new Schema({
     activateToken: String,
     activateExpires: Date,
     securityQuestion: { question: String, answer: String },
+    liked: { type: Number, default: 0 },
     billing: {
         companyName: String,
         fullName: String,

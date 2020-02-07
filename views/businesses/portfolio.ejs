@@ -77,6 +77,10 @@
 			<div class="modal-body">
 				<form action="/portfolio" method="POST" enctype="multipart/form-data">
 					<div class="form">
+						<div class="form-group col-md-12">
+							<input type="text" name="title" placeholder="Enter a Portfolio Title"
+								class="form-control" />
+						</div>
 						<div class="single_upload">
 							<div class="upload_header">
 								<h5>Upload Portfolio Photos/Videos</h5>
@@ -97,25 +101,30 @@
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="form-group col-md-6">
-								<input type="text" name="title" placeholder="Enter a Portfolio Title"
-									class="form-control" />
-							</div>
-							<div class="form-group col-md-6">
-								<select name="category" id="" class="form-control">
-									<option>---Select Category---</option>
-									<option>Indoor Work</option>
-									<option>Indoor Work</option>
-									<option>Vehicle Services</option>
-									<option>Other Services</option>
-								</select>
+							<div class="col-md-12">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<select name="service" id="service" class="form-control">
+											<option>--Select Service--</option>
+											<option>Outdoor Work</option>
+											<option>Indoor Work</option>
+											<option>Vehicle Services</option>
+											<option>Other Services</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<select name="category" id="category" class="form-control">
+											<option value="">--Select Service Category--</option>
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Short Description..." id="" cols="30"
-								rows="3" class="form-control"></textarea>
+							<textarea name="description" placeholder="Write a Short Description..." id="myText"
+								cols="30" rows="3" class="form-control" maxlength="1200"></textarea>
 							<div class="form-text text-right">
-								<span>0/600</span>
+								<span id="wordCount">0</span>/<span>1200</span>
 							</div>
 						</div>
 
@@ -128,11 +137,11 @@
 										<h4>Time Period</h4>
 										<div class="box_inner">
 											<div class="form-group">
-												<label for="">Start Time:</label>
+												<label>Start Time:</label>
 												<input type="date" name="startTime" class="form-control" />
 											</div>
 											<div class="form-group mb-0">
-												<label for="">End Time:</label>
+												<label>End Time:</label>
 												<input type="date" name="endTime" class="form-control" />
 											</div>
 										</div>
@@ -216,6 +225,10 @@
 				<form action="/portfolio/<%= portfolio[i].id %>?_method=PUT" method="POST"
 					enctype="multipart/form-data">
 					<div class="form">
+						<div class="form-group col-md-12">
+							<input type="text" name="title" placeholder="Enter a Portfolio Title"
+								value="<%= portfolio[i].title %>" class="form-control" />
+						</div>
 						<div class="single_upload">
 							<div class="upload_header">
 								<h5>Upload Portfolio Photos</h5>
@@ -251,23 +264,26 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<input type="text" name="title" placeholder="Enter a Portfolio Title"
-									value="<%= portfolio[i].title %>" class="form-control" />
+								<select name="service" id="service2" class="form-control">
+									<option>--Select Service--</option>
+									<option>Outdoor Work</option>
+									<option>Indoor Work</option>
+									<option>Vehicle Services</option>
+									<option>Other Services</option>
+								</select>
 							</div>
 							<div class="form-group col-md-6">
-								<select name="category" id="" class="form-control">
-									<option value="">Outdoor Work</option>
-									<option value="">Indoor Work</option>
-									<option value="">Vehicle Services</option>
-									<option value="">Other Services</option>
+								<select name="category" id="category2" class="form-control">
+									<option value="">--Select Service Category--</option>
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" value="" placeholder="Write a Short Description..." id=""
-								cols="30" rows="3" class="form-control"><%= portfolio[i].description %></textarea>
+							<textarea name="description" value="" placeholder="Write a Short Description..."
+								id="myText2" cols="30" rows="3" class="form-control"
+								maxlength="1200"><%= portfolio[i].description %></textarea>
 							<div class="form-text text-right">
-								<span>0/600</span>
+								<span id="wordCount2"><%= portfolio[i].description.length %></span>/<span>1200</span>
 							</div>
 						</div>
 

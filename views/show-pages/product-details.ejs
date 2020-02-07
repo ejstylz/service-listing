@@ -473,14 +473,7 @@
 				<div class="row">
 					<div class="col-lg-7">
 						<div class="breadcrumb-wrap">
-							<ul class="breadcrumb mb-0 px-0 bg-white">
-								<li class="breadcrumb-item"><a href="javascript:void(0)">Gabazzo</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0)">Category Name</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0)">View All</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0)">Services Name</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0)">Services/Products</a></li>
-								<li class="breadcrumb-item active">Product Number 1</li>
-							</ul>
+
 						</div>
 					</div>
 					<div class="col-lg-5">
@@ -537,11 +530,11 @@
 								<div class="over_view">
 									<div class="slider_part">
 										<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                            <% product.images.forEach(function(image) { %>
+                    <% product.images.forEach(function(image) { %>
 											<li data-thumb="<%= image.url %>">
 												<img src="<%= image.url %>" />
-                                            </li>
-                                            <% }); %>
+                      </li>
+                    <% }); %>
 									</div>
 								</div>
 
@@ -555,6 +548,7 @@
 											<h5 class="title"><%= product.title %></h5>
 											<h6>By <a href="javascript:void(0)"><%= company.companyName %></a></h6>
 											<h6 class="category_name">Category: <span><a href="javascript:void(0)"><%= product.category %></a></span></h6>
+                      <h6 class="category_name">Sub-category: <span><a href="javascript:void(0)"><%= product.service %></a></span></h6>
 											<h5 class="price">Price: <span>$<%= product.price %></span></h5>
 											<div class="purchase_now_button text-center">
 												<a href="#findMessageSeller" data-toggle="modal" class="btn btn-gbz-success d-block">Message Seller</a>
@@ -642,8 +636,10 @@
 										<div class="body_part">
 											<h5 class="title"><%= product.title %></h5>
 											<h6>By <a href="javascript:void(0)"><%= company.companyName %></a></h6>
-											<h6 class="category_name">Category: <span><a href="javascript:void(0)"><%= product.category %></a></span></h6>
+											<h6 class="category_name">Category: <span><a href="javascript:void(0)"><%= product.service %></a></span></h6>
+                      						<h6 class="category_name">Sub-category: <span><a href="javascript:void(0)"><%= product.category %></a></span></h6>
 											<h5 class="price">Price: <span>$<%= product.price %></span></h5>
+											<h5 class="price">Delivery Time: <span><%= product.time %></span></h5>
 											<div class="purchase_now_button text-center">
 												<a href="#findMessageSeller" data-toggle="modal" class="btn btn-gbz-success d-block">Message Seller</a>
 											</div>
@@ -658,8 +654,8 @@
 										</div>
 										<div class="box_body">
 											<ul>
-												<li><i class="fa fa-undo" aria-hidden="true"></i> 3 Days Happy Return</li>
-												<li><i class="fa fa-truck" aria-hidden="true"></i> Delivery Charge $10</li>
+												<li><i class="fa fa-undo" aria-hidden="true"></i> <%= product.returnTime %> Days Happy Return</li>
+												<li><i class="fa fa-truck" aria-hidden="true"></i> Delivery Charge $<%= product.deliveryCharge %></li>
 											</ul>
 										</div>
 									</div>
@@ -669,11 +665,24 @@
 
 									<div class="single_box">
 										<div class="box_heading">
-											<h5>Time Period Delivery</h5>
+											<h5>More Info On Delivery</h5>
 										</div>
 										<div class="box_body">
 											<ul>
 												<li><%= product.deliveryInfo %></li>
+											</ul>
+										</div>
+									</div>
+
+									<hr />
+
+									<div class="single_box">
+										<div class="box_heading">
+											<h5>Tags</h5>
+										</div>
+										<div class="box_body">
+											<ul>
+												<li><%= product.tags %></li>
 											</ul>
 										</div>
 									</div>

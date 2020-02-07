@@ -1122,6 +1122,7 @@ module.exports = {
             title: req.body.title,
             owner: owner,
             category: req.body.category,
+            service: req.body.service,
             description: req.body.description,
             startTime: req.body.startTime,
             endTime: req.body.endTime,
@@ -1181,6 +1182,7 @@ module.exports = {
             category,
             description,
             startTime,
+            service,
             endTime,
             budget,
             teamMembers,
@@ -1197,6 +1199,7 @@ module.exports = {
         if (teamMembers) portfolio.teamMembers = req.body.teamMembers;
         if (products) portfolio.products = req.body.products;
         if (expertise) portfolio.expertise = req.body.expertise;
+        if (service) portfolio.service = req.body.service;
 
         await portfolio.save();
         req.session.success = "Portfolio successfully Updated!";
@@ -1290,6 +1293,10 @@ module.exports = {
             zipCode,
             country,
             phoneNumber,
+            about,
+            twitterUrl,
+            linkedinUrl,
+            instagramUrl
         } = req.body;
 
         if (firstName) user.firstName = firstName;
@@ -1299,7 +1306,11 @@ module.exports = {
         if (state) user.state = req.body.state;
         if (zipCode) user.zipCode = req.body.zipCode;
         if (country) user.country = req.body.country;
+        if (twitterUrl) user.twitterUrl = req.body.twitterUrl;
+        if (linkedinUrl) user.linkedinUrl = req.body.linkedinUrl;
+        if (instagramUrl) user.instagramUrl = req.body.instagramUrl;
         if (phoneNumber) user.phoneNumber = req.body.phoneNumber;
+        if (about) user.about = req.body.about;
 
         await user.save();
         const login = util.promisify(req.login.bind(req));
@@ -1424,6 +1435,7 @@ module.exports = {
             priceFrom: req.body.priceFrom,
             priceInfo: req.body.priceInfo,
             teamInfo: req.body.teamInfo,
+            tags: req.body.tags,
         });
 
         // save the updated journey into the db
@@ -1483,6 +1495,7 @@ module.exports = {
             priceFrom,
             priceInfo,
             teamInfo,
+            tags
         } = req.body;
 
         if (title) service.title = req.body.title;
@@ -1497,6 +1510,7 @@ module.exports = {
         if (teamInfo) service.teamInfo = req.body.teamInfo;
         if (priceInfo) service.priceInfo = req.body.priceInfo;
         if (time) service.time = req.body.time;
+        if (tags) service.tags = req.body.tags;
 
         await service.save();
         req.session.success = "Service successfully Updated!";
@@ -1537,6 +1551,7 @@ module.exports = {
             price: req.body.price,
             title: req.body.title,
             category: req.body.category,
+            service: req.body.service,
             description: req.body.description,
             images: req.body.images,
             owner: owner,
@@ -1544,7 +1559,9 @@ module.exports = {
             tags: req.body.tags,
             specificationTitle: req.body.specificationTitle,
             specificationDescription: req.body.specificationDescription,
-            deliveryInfo: req.body.deliveryInfo
+            deliveryInfo: req.body.deliveryInfo,
+            deliveryCharge: req.body.deliveryCharge,
+            returnTime: req.body.returnTime,
         });
 
         // save the updated journey into the db
@@ -1595,12 +1612,15 @@ module.exports = {
             price,
             title,
             category,
+            service,
             description,
             time,
             tags,
             specificationTitle,
             specificationDescription,
-            deliveryInfo
+            deliveryInfo,
+            deliveryCharge,
+            returnTime
         } = req.body;
 
         if (title) product.title = req.body.title;
@@ -1611,7 +1631,10 @@ module.exports = {
         if (specificationTitle) product.specificationTitle = req.body.specificationTitle;
         if (specificationDescription) product.specificationDescription = req.body.specificationDescription;
         if (deliveryInfo) product.deliveryInfo = req.body.deliveryInfo;
+        if (deliveryCharge) product.deliveryCharge = req.body.deliveryCharge;
+        if (returnTime) product.returnTime = req.body.returnTime;
         if (time) product.time = req.body.time;
+        if (service) product.service = req.body.service;
 
         await product.save();
         req.session.success = "Product successfully Updated!";
@@ -1738,10 +1761,15 @@ module.exports = {
 
     async companyProfileAbout(req, res, next) {
         let company = await User.findById(req.params.id);
+        let user = await req.user;
         let journey = await Journey.find().where("owner.id").equals(company._id).exec();
         let certificate = await Certificate.find().where("owner.id").equals(company._id).exec();
         let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1753,14 +1781,19 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/about', { title: 'Company Profile', average, company, journey, certificate, mediaPhoto, review });
+        res.render('show-pages/about', { title: 'Company Profile', lists, average, company, journey, certificate, mediaPhoto, review });
     },
 
     async companyProfileMedia(req, res, next) {
         let company = await User.findById(req.params.id);
+        let user = await req.user;
         let photo = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let video = await MediaVideo.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1772,13 +1805,18 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/media', { title: 'Company Profile', average, company, photo, video, review });
+        res.render('show-pages/media', { title: 'Company Profile', lists, average, company, photo, video, review });
     },
 
     async companyProfileEmployee(req, res, next) {
         let company = await User.findById(req.params.id);
+        let user = await req.user;
         let employee = await Employee.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1790,13 +1828,18 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/employees', { title: 'Company Profile', average, company, employee, review });
+        res.render('show-pages/employees', { title: 'Company Profile', lists, average, company, employee, review });
     },
 
     async companyProfilePortfolio(req, res, next) {
         let company = await User.findById(req.params.id);
+        let user = await req.user;
         let portfolio = await Portfolio.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1808,14 +1851,19 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/portfolio', { title: 'Company Profile', average, company, portfolio, review });
+        res.render('show-pages/portfolio', { title: 'Company Profile', lists, average, company, portfolio, review });
     },
 
     async companyProfileServices(req, res, next) {
         let company = await User.findById(req.params.id);
+        let user = await req.user;
         let product = await Product.find().where("owner.id").equals(company._id).exec();
         let service = await Service.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1827,7 +1875,7 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/services-products', { title: 'Company Profile', average, company, product, service, review });
+        res.render('show-pages/services-products', { title: 'Company Profile', lists, average, company, product, service, review });
     },
 
     async companyProfileReviews(req, res, next) {
@@ -1835,6 +1883,11 @@ module.exports = {
             path: 'reviews',
             options: { sort: { '_id': -1 } },
         });
+        let user = await req.user;
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         let review = await company.reviews
         let fiveReview = [];
         let fourReview = [];
@@ -1881,7 +1934,8 @@ module.exports = {
                 fourReview,
                 threeReview,
                 twoReview,
-                oneReview
+                oneReview,
+                lists
             });
     },
 
@@ -1931,11 +1985,16 @@ module.exports = {
 
     async serviceDetails(req, res, next) {
         let service = await Service.findById(req.params.id);
+        let user = await req.user;
         let company = await User.findById(service.owner.id).populate({
             path: 'reviews',
             options: { sort: { '_id': -1 } },
         }).exec();;
         let otherServices = await Service.find().where("owner.id").equals(company).exec();
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         let review = await Review.find().where("owner.id").equals(company._id).exec();
         function calculateAverage(reviews) {
             if (review.length === 0) {
@@ -1948,7 +2007,7 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/service-details', { title: 'Company Profile', average, service, company, otherServices, review });
+        res.render('show-pages/service-details', { title: 'Company Profile', lists, average, service, company, otherServices, review });
     },
 
     async productDetails(req, res, next) {
@@ -1956,9 +2015,14 @@ module.exports = {
         let company = await User.findById(product.owner.id).populate({
             path: 'reviews',
             options: { sort: { '_id': -1 } },
-        }).exec();;
+        }).exec();
+        let user = await req.user;
+        let lists;
         let otherProducts = await Product.find().where("owner.id").equals(company).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1970,16 +2034,21 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/product-details', { title: 'Company Profile', average, product, company, otherProducts, review });
+        res.render('show-pages/product-details', { title: 'Company Profile', lists, average, product, company, otherProducts, review });
     },
 
     async companyProfileFaq(req, res, next) {
         let company = await User.findById(req.params.id).populate({
             path: 'reviews',
             options: { sort: { '_id': -1 } },
-        }).exec();;
+        }).exec();
+        let user = await req.user;
         let faq = await Faq.find().where("owner.id").equals(company._id).exec();
         let review = await company.reviews;
+        let lists;
+        if (user) {
+            lists = await List.find().where("owner.id").equals(user._id).exec();
+        }
         function calculateAverage(reviews) {
             if (review.length === 0) {
                 return 0;
@@ -1991,7 +2060,7 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/faq', { title: 'Company Profile', average, company, faq, review });
+        res.render('show-pages/faq', { title: 'Company Profile', lists, average, company, faq, review });
     },
 
 
@@ -4145,6 +4214,8 @@ module.exports = {
         let user = req.user;
         if (!user.likes.includes(company._id)) {
             await user.likes.push(company);
+            // await company.liked++;
+            await User.findOneAndUpdate({ _id: req.params.id }, { $inc: { liked: 1 } }, { new: true }).exec();
         } else {
             colsole.log("ALREADY LIKED")
         }
@@ -4164,6 +4235,7 @@ module.exports = {
 
         const index = user.likes.indexOf(company);
         await user.likes.splice(index, 1);
+        await User.findOneAndUpdate({ _id: req.params.id }, { $inc: { liked: -1 } }, { new: true }).exec();
         // save the updated user into the db
         await user.save();
         const login = util.promisify(req.login.bind(req));
@@ -4215,13 +4287,13 @@ module.exports = {
         let whichList = await List.findById(req.params.listId);
         //check if it is saved to the default list
         console.log(req.params);
-            if (!whichList.companies.includes(company._id)) {
-                await whichList.companies.push(company);
-                whichList.save();
-                console.log("saved");
-            } else {
-                console.log("ALREADY SAVED");
-            }
+        if (!whichList.companies.includes(company._id)) {
+            await whichList.companies.push(company);
+            whichList.save();
+            console.log("saved");
+        } else {
+            console.log("ALREADY SAVED");
+        }
         // save the updated user into the db
         await user.save();
         const login = util.promisify(req.login.bind(req));
@@ -4239,11 +4311,11 @@ module.exports = {
         console.log(req.params);
 
         //else save to the selected list by id
-            if (!user.list.includes(company._id)) {
-                await user.list.push(company);
-            } else {
-                colsole.log("ALREADY SAVED");
-            }
+        if (!user.list.includes(company._id)) {
+            await user.list.push(company);
+        } else {
+            colsole.log("ALREADY SAVED");
+        }
         // save the updated user into the db
         await user.save();
         const login = util.promisify(req.login.bind(req));

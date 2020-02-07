@@ -825,19 +825,6 @@
 						<div class="top_short_info text-center mb-3">
 							<h3><%= member.firstName %> <%= member.lastName %> </h3>
 							<h6>@<%= member.username %> </h6>
-							<!--
-									<div class="">
-										<h5>Positive Feedback for 1 year: 100.00%</h5>
-										<div class="how_calculated">
-											<a href="javascript:void(0)">[How it's Calculated?]</a>
-										</div>
-									</div>
-									<div class="stars">
-										<h5>
-											<i class="fa fa-star" aria-hidden="true"></i><span class="star">5.0</span> <span class="amount">(24 Reviews)</span>
-										</h5>
-									</div>
-									-->
 						</div>
 
 						<div class="single_sidebar">
@@ -873,7 +860,7 @@
 									<li><i class="fa fa-at" aria-hidden="true"></i> <span> Username:</span>
 										<b>@<%= member.username %></b></li>
 									<li><i class="fa fa-location-arrow" aria-hidden="true"></i> <span>Location:</span>
-										<b><%= member.location %></b></li>
+										<b><%= member.city %>, <%= member.state %></b></li>
 									<li><i class="fa fa-user-o" aria-hidden="true"></i> <span>Member Since:</span>
 										<b><%= moment(member.createdAt).format("MMM YYYY") %></b></li>
 								</ul>
@@ -883,12 +870,25 @@
 						<div class="single_sidebar">
 							<div class="follow_me">
 								<h5>Social Media Connected</h5>
-								<ul>
-									<% if (member.isFacebookVerified) { %>
-									<li><a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i>
-											Facebook</a></li>
-									<% } %>
-								</ul>
+								<div class="social_area">
+									<ul class="list-group list-group-horizontal">
+										<% if (member.twitterUrl) { %>
+										<li class="list-group-item"><a href="javascript:void(0)"><i
+													class="fa fa-twitter" aria-hidden="true" target="_blank"></i>
+												<%= member.twitterUrl %></a></li>
+										<% } %>
+										<% if (member.instagramUrl) { %>
+										<li class="list-group-item"><a href="<%= member.intsagramUrl %>"><i
+													class="fa fa-instagram" aria-hidden="true" target="_blank"></i>
+											</a></li>
+										<% } %>
+										<% if (member.linkedinUrl) { %>
+										<li class="list-group-item"><a href="<%= member.linkedinUrl %>"><i
+													class="fa fa-linkedin" aria-hidden="true" target="_blank"></i>
+											</a></li>
+										<% } %>
+									</ul>
+								</div>
 							</div>
 						</div>
 
@@ -908,46 +908,6 @@
 							</div>
 						</div>
 
-						<div class="single_middle_part">
-							<div class="details_ratings_table">
-								<h3>Detailed Member Ratings</h3>
-								<div class="table-responsive">
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th>Criteria</th>
-												<th>Avg. Ratings</th>
-												<th>Number of Ratings</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Communication</td>
-												<td>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-												</td>
-												<td>18</td>
-											</tr>
-											<tr>
-												<td>Pays On Time</td>
-												<td>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-												</td>
-												<td>6</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
 
 						<div class="single_sidebar report_user_button_for_mobile_only report_user text-center">
 							<a class="text-danger" href="javascript:void(0)"><i class="fa fa-flag"

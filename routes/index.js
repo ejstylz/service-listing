@@ -294,7 +294,7 @@ router.get('/verify/:token', isLoggedIn, asyncErrorHandler(getVerify));
 router.get('/company-sign-up5', goToPayment, getCompanySignUp5);
 
 /* GET /dashboard */
-router.get('/member-profile/:id', isLoggedIn, isMember, isEmailVerified, getMemberProfile);
+router.get('/member-profile/:id', isLoggedIn, isMember, getMemberProfile);
 
 /* GET /dashboard */
 router.get('/company-dashboard', isLoggedIn, isCompany, isEmailVerified, getCompanyDashboard);
@@ -433,25 +433,25 @@ router.delete('/services/:id', isLoggedIn, isCompany, isEmailVerified, asyncErro
 // COMPANY SETTINGS
 
 /* GET /company-settings/account */
-router.get('/company-settings/account', isLoggedIn, isEmailVerified, asyncErrorHandler(getAccount));
+router.get('/company-settings/account', isLoggedIn, asyncErrorHandler(getAccount));
 
 /* PUT /company-settings/account */
-router.put('/company-settings/account', isLoggedIn, isEmailVerified, asyncErrorHandler(putAccount));
+router.put('/company-settings/account', isLoggedIn, asyncErrorHandler(putAccount));
 
 /* GET /company-settings/billing */
-router.get('/company-settings/billing', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getBilling));
+router.get('/company-settings/billing', isLoggedIn, isCompany, asyncErrorHandler(getBilling));
 
 // /* GET /company-settings/company-info */
 // router.get('/company-settings/company-info', isLoggedIn, isCompany, asyncErrorHandler(getCompanyInfo));
 
 /* GET /company-settings/notifications */
-router.get('/company-settings/notifications', isLoggedIn, isEmailVerified, asyncErrorHandler(getNotifications));
+router.get('/company-settings/notifications', isLoggedIn, asyncErrorHandler(getNotifications));
 
 /* GET /company-settings/payment */
-router.get('/company-settings/payment', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getPayment));
+router.get('/company-settings/payment', isLoggedIn, isCompany, asyncErrorHandler(getPayment));
 
 /* GET /company-settings/security */
-router.get('/company-settings/security', isLoggedIn, isEmailVerified, asyncErrorHandler(getSecurity));
+router.get('/company-settings/security', isLoggedIn, asyncErrorHandler(getSecurity));
 
 /* PUT /company-settings/security */
 router.put('/company-settings/security',
@@ -463,13 +463,13 @@ router.put('/company-settings/security',
 );
 
 /* GET /company-settings/trust-verification */
-router.get('/company-settings/trust-verification', isLoggedIn, isEmailVerified, asyncErrorHandler(getVerification));
+router.get('/company-settings/trust-verification', isLoggedIn, asyncErrorHandler(getVerification));
 
 /* GET /company-settings/profile */
-router.get('/company-settings/profile', isLoggedIn, isEmailVerified, asyncErrorHandler(getProfile));
+router.get('/company-settings/profile', isLoggedIn, asyncErrorHandler(getProfile));
 
 /* PUT /profile */
-router.put('/profile', isLoggedIn, isNotCompany, isEmailVerified, upload.single('profilePicture'), asyncErrorHandler(putProfile));
+router.put('/profile', isLoggedIn, isNotCompany, upload.single('profilePicture'), asyncErrorHandler(putProfile));
 
 
 //SHOW PAGES

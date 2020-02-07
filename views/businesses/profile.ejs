@@ -68,6 +68,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-5">
+                                    <div class="single_box" style=" min-height:100%;">
+                                        <div class="d-flex justify-content-center"
+                                            style=" padding:5px 0px; width: auto; margin-top: -20px;">
+                                            <h5 class="text-center">About Me</h5>
+                                        </div>
+                                        <div class="d-flex justify-content-center form-group" style="width: inherit;">
+                                            <textarea name="about" id="myText" cols="45" rows="8"
+                                                placeholder="Write a Short Description..."
+                                                maxlength="600"><%= currentUser.about %></textarea>
+                                        </div>
+                                        <% if (currentUser.about.length) { %>
+                                        <div class="form-text text-right">
+                                            <span id="wordCount"><%= currentUser.about.length %></span>/<span>600</span>
+                                        </div>
+                                        <% } else { %>
+                                        <div class="form-text text-right">
+                                            <span id="wordCount">0</span>/<span>600</span>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="single_notify">
@@ -125,44 +147,49 @@
                                             <option>Italy</option>
                                             <option>Others</option>
                                         </select>
-                                        <h6>In order to change your country, we require you to <a
-                                                href="javascript:void(0)">verify your identity</a>. This is so we can
+                                        <h6>In order to change your country, we require you to verify your identity.
+                                            This is so we can
                                             verify your address details. The country will be automatically updated once
                                             the process is complete.</h6>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Phone Number</label>
+                                        <label>Phone Number:</label>
                                         <input type="tel" name="phoneNumber" placeholder="Ex: +1 (222)444-5566"
-                                            value="<%= currentUser.phoneNumber %>" class="form-control" />
+                                            value="<%= currentUser.phoneNumber %>" class="form-control" id="phone" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="single_notify pb-0">
-                            <h4>Language Settings:</h4>
-                            <div class="form">
-                                <div class="form-row">
-                                    <div class="form-group col-lg-6">
-                                        <label for="">I want to browse the website in:</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">English</option>
-                                            <option value="">Spanish</option>
-                                            <option value="">Francis</option>
-                                            <option value="">Others</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-lg-6">
-                                        <label for="">I want to browse projects int the following languages:</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">Add Languages</option>
-                                            <option value="">English</option>
-                                            <option value="">Spanish</option>
-                                            <option value="">Francis</option>
-                                            <option value="">Others</option>
-                                        </select>
+                            <div class="col-md-6">
+                                <div class="social_add">
+                                    <h3>Add Social Media</h3>
+                                    <div class="social_inner">
+                                        <div class="form-group">
+                                            <div class="dollar_input">
+                                                <input type="url" placeholder="Enter Your Twitter URL"
+                                                    class="form-control" name="twitterUrl"
+                                                    value="<%= currentUser.twitterUrl %>" />
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="dollar_input">
+                                                <input type="url" placeholder="Enter Your Instagram URL"
+                                                    class="form-control" name="instagramUrl"
+                                                    value="<%= currentUser.instagramUrl %>" />
+                                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="dollar_input">
+                                                <input type="url" placeholder="Enter Your LinkedIn URL"
+                                                    class="form-control" name="linkedinUrl"
+                                                    value="<%= currentUser.linkedinUrl %>" />
+                                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

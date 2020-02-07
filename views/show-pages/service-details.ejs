@@ -19,7 +19,7 @@
 	<link href="/css/night-mode.css" rel="stylesheet" type="text/css" />
 	<link href="/css/responsive.css" rel="stylesheet" type="text/css" />
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -62,23 +62,23 @@
 			</div>
 
 			<div class="collapse nav_item_wrap navbar-collapse" id="navb">
-				<form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages" method="POST">
-				  <div class="search_bar autocomplete">
-				    <input id="myInput" name="service" type="text" placeholder="Search...." />
-				    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-				  </div>
+				<form class="form-inline mr-auto main_search_bar_desktop" autocomplete="off" action="/pages"
+					method="POST">
+					<div class="search_bar autocomplete">
+						<input id="myInput" name="service" type="text" placeholder="Search...." />
+						<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+					</div>
 				</form>
 
 				<ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
 					<li class="nav-item">
-							<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
+						<a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
 					</li>
 					<li class="nav-item">
-							<a class="nav-link" href="/login">Sign In</a>
+						<a class="nav-link" href="/login">Sign In</a>
 					</li>
 					<li class="nav-item">
-							<a class="nav-link btn btn-outline-gbz-success join_butotn"
-									href="/sign-up">Join</a>
+						<a class="nav-link btn btn-outline-gbz-success join_butotn" href="/sign-up">Join</a>
 				</ul>
 			</div>
 		</nav>
@@ -330,12 +330,12 @@
 	</header>
 
 	<section class="main_search_bar_mobile">
-	  <form autocomplete="off" action="/pages" method="POST">
-	    <div class="search_bar autocomplete">
-	      <input id="myInput2" name="service" type="text" placeholder="Search...." />
-	      <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-	    </div>
-	  </form>
+		<form autocomplete="off" action="/pages" method="POST">
+			<div class="search_bar autocomplete">
+				<input id="myInput2" name="service" type="text" placeholder="Search...." />
+				<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</div>
+		</form>
 	</section>
 
 	<!-- My Account SideMenu For Desktop -->
@@ -356,8 +356,7 @@
 					</li>
 					<li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer
 								Help Center</span></a></li>
-					<li><a href="/" target="_self"><i
-								class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+					<li><a href="/" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -382,8 +381,7 @@
 					</li>
 					<li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer
 								Help Center</span></a></li>
-					<li><a href="/" target="_self"><i
-								class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+					<li><a href="/" target="_self"><i class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -412,17 +410,17 @@
 									<h5><%= company.slogan %></h5>
 									<h4 class="reviews_ratings">
 
-											<div class="star-ratings-css">
-													<div class="star-ratings-css-top" style="width: <%= (average/5) * 100 %>%">
-															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-													</div>
-													<div class="star-ratings-css-bottom">
-															<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-													</div>
+										<div class="star-ratings-css">
+											<div class="star-ratings-css-top" style="width: <%= (average/5) * 100 %>%">
+												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 											</div>
+											<div class="star-ratings-css-bottom">
+												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+											</div>
+										</div>
 
-											<span class="star"><%= average %></span>
-											<span class="amount">(<%= company.reviews.length %> Reviews)</span>
+										<span class="star"><%= average %></span>
+										<span class="amount">(<%= company.reviews.length %> Reviews)</span>
 									</h4>
 									<div class="company_status">
 										<h3 class="company_online_status">Status: <span class="online_status"><i
@@ -451,7 +449,7 @@
 						<li><a href="/company-profile/<%= company._id %>/portfolio">Portfolio</a></li>
 						<li class="active"><a
 								href="/company-profile/<%= company._id %>/services-products">Services/Products</a></li>
-								<li><a href="/company-profile/<%= company._id %>/reviews">Reviews</a></li>
+						<li><a href="/company-profile/<%= company._id %>/reviews">Reviews</a></li>
 						<li><a href="/company-profile/<%= company._id %>/faq">FAQ's</a></li>
 					</ul>
 				</div>
@@ -470,7 +468,7 @@
 					<li><a href="/company-profile/<%= company._id %>/portfolio">Portfolio</a></li>
 					<li class="active"><a
 							href="/company-profile/<%= company._id %>/services-products">Services/Products</a></li>
-							<li><a href="/company-profile/<%= company._id %>/reviews">Reviews</a></li>
+					<li><a href="/company-profile/<%= company._id %>/reviews">Reviews</a></li>
 					<li><a href="/company-profile/<%= company._id %>/faq">FAQ's</a></li>
 				</ul>
 			</div>
@@ -486,14 +484,7 @@
 			<div class="row">
 				<div class="col-lg-7">
 					<div class="breadcrumb-wrap">
-						<ul class="breadcrumb mb-0 px-0 bg-white">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Gabazzo</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Category Name</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">View All</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Services Name</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Services/Products</a></li>
-							<li class="breadcrumb-item active">Service Number 1</li>
-						</ul>
+
 					</div>
 				</div>
 				<div class="col-lg-5">
@@ -501,36 +492,44 @@
 						<div class="like_share_menu">
 							<ul>
 								<% if(currentUser && currentUser.likes.includes(company._id)) { %>
-									<li>
-								<form class="" action="/unlike/<%= company._id %>" method="POST">
-									<button type="submit" class="like">Unlike</button>
-								</form></li>
+								<li>
+									<form class="" action="/unlike/<%= company._id %>" method="POST">
+										<button type="submit" class="like">Unlike</button>
+									</form>
+								</li>
 								<% } else { %>
-									<li>
-								<form class="" action="/likes/<%= company._id %>" method="POST">
-									<button type="submit" class="like">Like</button>
-								</form></li>
+								<li>
+									<form class="" action="/likes/<%= company._id %>" method="POST">
+										<button type="submit" class="like">Like</button>
+									</form>
+								</li>
 								<% } %>
 
-									<li><a href="javascript:void(0)" onclick="copyToClipboard()">Share</a></li>
-									<input type="hidden" id="input-url" value="Copied!">
-									<li><div class="popup" onclick="myFunction()">
+								<li><a href="javascript:void(0)" onclick="copyToClipboard()">Share</a></li>
+								<input type="hidden" id="input-url" value="Copied!">
+								<li>
+									<div class="popup" onclick="myFunction()">
 										<div class="popuptext" id="myPopup">
-											<form style="margin-bottom: 3px;" action="/default-list/<%= company._id %>" method="POST">
+											<form style="margin-bottom: 3px;" action="/default-list/<%= company._id %>"
+												method="POST">
 												<input type="hidden" name="company" value="company">
-												<button style="margin: auto;" type="submit" class="like">Default List</button>
+												<button style="margin: auto;" type="submit" class="like">Default
+													List</button>
 											</form>
 											<% if (currentUser && lists.length) { %>
-												<% lists.forEach(function(list){ %>
-													<form style="margin-bottom: 3px;" action="/save-to-list/<%= company._id %>/<%= list._id %>" method="POST">
-														<button style="margin: auto;" type="submit" class="like"><%= list.title %></button>
-													</form>
-												<% }); %>
+											<% lists.forEach(function(list){ %>
+											<form style="margin-bottom: 3px;"
+												action="/save-to-list/<%= company._id %>/<%= list._id %>" method="POST">
+												<button style="margin: auto;" type="submit"
+													class="like"><%= list.title %></button>
+											</form>
+											<% }); %>
 											<% } %>
 										</div>
 										<button type="" class="like">Save To List</button>
-									</div></li>
-									<li><a id="export" href="#" onclick="window.print()">Print Page</a></li>
+									</div>
+								</li>
+								<li><a id="export" href="#" onclick="window.print()">Print Page</a></li>
 							</ul>
 						</div>
 					</div>
@@ -631,6 +630,7 @@
 										<ul>
 											<li><b>Number of Team Members:</b> <span><%= service.teamMembers %></span>
 											</li>
+											<li><b>Team info: </b><%= service.teamInfo%></li>
 										</ul>
 									</div>
 								</div>
@@ -642,14 +642,29 @@
 										<h5>Products Used</h5>
 									</div>
 									<div class="box_body">
-										<h2><%= service.products %></h2>
-										<!-- <ul class="product_used">
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-											</ul> -->
+										<h4><%= service.products %></h4>
+									</div>
+								</div>
+
+								<hr />
+
+								<div class="single_box">
+									<div class="box_heading">
+										<h5>Tags</h5>
+									</div>
+									<div class="box_body">
+										<h4><%= service.tags %></h4>
+									</div>
+								</div>
+
+								<hr />
+
+								<div class="single_box">
+									<div class="box_heading">
+										<h5>More Info</h5>
+									</div>
+									<div class="box_body">
+										<p><%= service.priceInfo %></p>
 									</div>
 								</div>
 							</div>
@@ -658,12 +673,6 @@
 								<h3>Description</h3>
 								<div class="des_wrap">
 									<p><%= service.description %></p>
-									<!-- <ul>
-											<li>Lorem ipsum dolor sit amet</li>
-											<li>Lorem ipsum dolor sit amet</li>
-											<li>Lorem ipsum dolor sit amet</li>
-											<li>Lorem ipsum dolor sit amet</li>
-										</ul> -->
 								</div>
 								<div class="purchase_now_button text-center mb-4">
 									<a class="btn btn-gbz-success" href="#findMessageSeller" data-toggle="modal">Message
@@ -717,6 +726,7 @@
 										<ul>
 											<li><b>Number of Team Members:</b> <span><%= service.teamMembers%></span>
 											</li>
+											<li><b>Team info: </b><%= service.teamInfo%></li>
 										</ul>
 									</div>
 								</div>
@@ -728,14 +738,29 @@
 										<h5>Products Used</h5>
 									</div>
 									<div class="box_body">
-										<h2><%= service.products %></h2>
-										<!-- <ul class="product_used">
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-												<li>Lorem Ipsum</li>
-											</ul> -->
+										<h4><%= service.products %></h4>
+									</div>
+								</div>
+
+								<hr />
+
+								<div class="single_box">
+									<div class="box_heading">
+										<h5>Tags</h5>
+									</div>
+									<div class="box_body">
+										<h4><%= service.tags %></h4>
+									</div>
+								</div>
+
+								<hr />
+
+								<div class="single_box">
+									<div class="box_heading">
+										<h5>More Info</h5>
+									</div>
+									<div class="box_body">
+										<p><%= service.priceInfo %></p>
 									</div>
 								</div>
 							</div>
@@ -948,8 +973,7 @@
 					<div class="col-md-3">
 						<div class="single_part footer_logo_part">
 							<div class="footer_logo">
-								<a href="/"><img src="../images/gabazzo_logo_white.png" class="img-fluid"
-										alt="" /></a>
+								<a href="/"><img src="../images/gabazzo_logo_white.png" class="img-fluid" alt="" /></a>
 							</div>
 							<ul>
 								<li>Chicago, IL 60623-1325</li>
@@ -1161,15 +1185,15 @@
 
 	</script>
 	<script type="text/javascript">
-			function copyToClipboard() {
-					const el = document.createElement('textarea');
-					el.value = window.location.href;
-					document.body.appendChild(el);
-					el.select();
-					document.execCommand('copy');
-					document.body.removeChild(el);
-					alert("URL Copied!");
-			};
+		function copyToClipboard() {
+			const el = document.createElement('textarea');
+			el.value = window.location.href;
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand('copy');
+			document.body.removeChild(el);
+			alert("URL Copied!");
+		};
 	</script>
 
 	<script>

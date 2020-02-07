@@ -99,24 +99,25 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<input type="text" name="title" placeholder="Enter a Product Title"
-									class="form-control" />
-							</div>
-							<div class="form-group col-md-6">
-								<select name="category" id="" class="form-control">
-									<option>---Select Category---</option>
-									<option>Indoor Work</option>
+								<select name="service" id="service" class="form-control">
+									<option>--Select Service--</option>
 									<option>Outdoor Work</option>
+									<option>Indoor Work</option>
 									<option>Vehicle Services</option>
 									<option>Other Services</option>
 								</select>
 							</div>
+							<div class="form-group col-md-6">
+								<select name="category" id="category" class="form-control">
+									<option value="">--Select Service Category--</option>
+								</select>
+							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Description..." id="" cols="30" rows="7"
-								class="form-control"></textarea>
+							<textarea name="description" placeholder="Write a Description..." id="myText" cols="30"
+								rows="7" class="form-control" maxlength="1200"></textarea>
 							<div class="form-text text-right">
-								<span>0/1200</span>
+								<span id="wordCount">0</span>/<span>1200</span>
 							</div>
 						</div>
 
@@ -178,11 +179,15 @@
 								</div>
 								<div class="col-md-6">
 									<div class="single_box">
-										<h4>Estimated of Time Delivery</h4>
+										<h4>Others</h4>
 										<div class="box_inner">
 											<div class="form-group mb-0">
-												<label for="">More Info For Delivery:</label>
-												<input type="text" name="deliveryInfo" class="form-control" />
+												<label for="">Delivery Charge:</label>
+												<input type="number" name="deliveryCharge" class="form-control" />
+											</div>
+											<div class="form-group">
+												<label for="">Return:</label>
+												<input type="number" name="returnTime" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -199,6 +204,16 @@
 															class="form-control" />
 													</div>
 												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>More Info For Delivery</h4>
+										<div class="box_inner">
+											<div class="form-group mb-0">
+												<input type="text" name="deliveryInfo" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -273,23 +288,25 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<input type="text" name="title" placeholder="Enter a Product Title"
-									value="<%= product[i].title %>" class="form-control" />
+								<select name="service" id="service2" class="form-control">
+									<option>--Select Service--</option>
+									<option>Outdoor Work</option>
+									<option>Indoor Work</option>
+									<option>Vehicle Services</option>
+									<option>Other Services</option>
+								</select>
 							</div>
 							<div class="form-group col-md-6">
-								<select name="category" id="" class="form-control">
-									<option value="">Indoor Work</option>
-									<option value="">Outdoor Work</option>
-									<option value="">Vehicle Services</option>
-									<option value="">Other Services</option>
+								<select name="category" id="category2" class="form-control">
+									<option value="">--Select Service Category--</option>
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea name="description" placeholder="Write a Description..." id="" cols="30" rows="10"
-								class="form-control"><%= product[i].description %></textarea>
+							<textarea name="description" placeholder="Write a Description..." id="myText2" cols="30"
+								rows="10" class="form-control"><%= product[i].description %></textarea>
 							<div class="form-text text-right">
-								<span>0/1200</span>
+								<span id="wordCount2"><%= product[i].description.length %></span>/<span>1200</span>
 							</div>
 						</div>
 
@@ -354,12 +371,17 @@
 								</div>
 								<div class="col-md-6">
 									<div class="single_box">
-										<h4>Estimated of Time Delivery</h4>
+										<h4>Others</h4>
 										<div class="box_inner">
 											<div class="form-group mb-0">
-												<label for="">More Info For Delivery:</label>
-												<input type="text" name="deliveryInfo"
-													value="<%= product[i].deliveryInfo %>" class="form-control" />
+												<label for="">Delivery Charge:</label>
+												<input type="number" name="deliveryCharge" class="form-control"
+													value="<%= product[i].deliveryCharge %>" />
+											</div>
+											<div class="form-group">
+												<label for="">Return:</label>
+												<input type="number" name="returnTime" class="form-control"
+													value="<%= product[i].returnTime %>" />
 											</div>
 										</div>
 									</div>
@@ -376,6 +398,17 @@
 															value="<%= product[i].tags %>" class="form-control" />
 													</div>
 												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="single_box">
+										<h4>More Info For Delivery</h4>
+										<div class="box_inner">
+											<div class="form-group mb-0">
+												<input type="text" name="deliveryInfo"
+													value="<%= product[i].deliveryInfo %>" class="form-control" />
 											</div>
 										</div>
 									</div>
