@@ -13,6 +13,7 @@ const List = require('../models/list');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 const passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const crypto = require('crypto');
 const util = require('util');
 const sgMail = require('@sendgrid/mail');
@@ -680,6 +681,19 @@ module.exports = {
             });
         }
 
+    },
+
+    googleLogin() {
+        passport.authenticate('google', { scope: ['profile'] });
+    },
+
+
+    googleCallback() {
+        passport.authenticate('google', { failureRedirect: '/login' }),
+            function (req, res) {
+                // Successful authentication, redirect home.
+                res.redirect('/');
+            }
     },
 
     //GET /logout

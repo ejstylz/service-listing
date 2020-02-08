@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const passport = require('passport');
 const imageFilter = function (req, file, cb) {
   // accept image files only
   if (!file.originalname.match(/\.(jpg|jpeg|png|gif|mp4|oog)$/i)) {
@@ -307,6 +308,29 @@ router.get('/login', getLogin);
 
 /* POST /login */
 router.post('/login', postLogin);
+
+router.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  }
+  ));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
+);
+
+router.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
+);
 
 /* GET /logout */
 router.get('/logout', isLoggedIn, getLogout);

@@ -5,6 +5,18 @@ const Review = require('./review');
 
 
 const UserSchema = new Schema({
+    google: {
+        id: String,
+        token: String,
+        name: String,
+        email: String
+    },
+    facebook: {
+        id: String,
+        token: String,
+        name: String,
+        email: String
+    },
     firstName: String,
     lastName: String,
     username: String,

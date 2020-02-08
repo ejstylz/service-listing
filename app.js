@@ -1,5 +1,7 @@
 // require('dotenv').config();
 
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 const createError = require('http-errors');
 const express = require('express');
 const engine = require('ejs-mate');
@@ -57,9 +59,93 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//GOOGLE STRATEGY
+passport.use(new GoogleStrategy({
+
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.GOOGLE_CALLBACK,
+  passReqToCallback: true
+
+},
+  (request, token, refreshToken, profile, done) => {
+    process.nextTick(() => {
+      // console.log(profile);
+      User.findOne({ 'google.id': profile.id }, (err, user) => {
+        if (err)
+          return done(err);
+
+        if (user) {
+          return done(null, user);
+        } else {
+          var newUser = new User();
+
+          newUser.google.id = profile.id;
+          newUser.google.token = token;
+          newUser.google.name = profile.displayName;
+          newUser.email = profile.emails[0].value;
+          newUser.username = profile.name.givenName;
+          newUser.google.email = profile.emails[0].value; // pull the first email
+
+          newUser.save((err) => {
+            if (err) throw err;
+            return done(null, newUser);
+          });
+        }
+      });
+    });
+  }));
+
+//FACEBOOK STRATEGY
+passport.use(new FacebookStrategy({
+
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: process.env.FACEBOOK_CALLBACK,
+  profileFields: ["email", "name"],
+  passReqToCallback: true
+
+},
+  (request, token, refreshToken, profile, done) => {
+    process.nextTick(() => {
+      // console.log(profile);
+      User.findOne({ 'facebook.id': profile.id }, (err, user) => {
+        if (err)
+          return done(err);
+
+        if (user) {
+          return done(null, user);
+        } else {
+          var newUser = new User();
+
+          newUser.facebook.id = profile.id;
+          newUser.facebook.token = token;
+          newUser.facebook.name = profile.displayName;
+          // newUser.email = profile.emails[0].value;
+          newUser.username = profile.name.givenName;
+          // newUser.facebook.email = profile.emails[0].value; // pull the first email
+
+          newUser.save((err) => {
+            if (err) throw err;
+            return done(null, newUser);
+          });
+        }
+      });
+    });
+  }));
+
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+passport.serializeUser(function (account, done) {
+  done(null, account.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, account) {
+    done(err, account);
+  });
+});
+
 
 // set local variables middleware
 app.use(function (req, res, next) {
