@@ -273,8 +273,9 @@ module.exports = {
 
 
     //GET /sign-up
-    getSignup(req, res, next) {
-        res.render('visitors/sign-up', { title: 'Sign Up' });
+    async getSignup(req, res, next) {
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
+        res.render('visitors/sign-up', { title: 'Sign Up', total });
     },
 
     //POST /sign-up
@@ -659,8 +660,9 @@ module.exports = {
     },
 
     //GET /login
-    getLogin(req, res, next) {
-        res.render('visitors/login', { title: 'Login' });
+    async getLogin(req, res, next) {
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
+        res.render('visitors/login', { title: 'Login', total });
     },
 
     //POST /login
