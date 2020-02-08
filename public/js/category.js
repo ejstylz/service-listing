@@ -3,8 +3,8 @@ const category = document.getElementById("category");
 const service2 = document.getElementById("service2");
 const category2 = document.getElementById("category2");
 const filters = document.getElementsByClassName("filters");
-const myText = document.getElementById("myText");
-const wordCount = document.getElementById("wordCount");
+// const myText = document.getElementById("myText");
+// const wordCount = document.getElementById("wordCount");
 const create = document.getElementById("create");
 
 service.onchange = function () {
@@ -181,10 +181,6 @@ category.onchange = function () {
     }
 }
 
-myText.addEventListener("keyup", function () {
-    const characters = myText.value.split('');
-    wordCount.innerText = characters.length;
-});
 
 function addRow() {
     const div = document.createElement('div');

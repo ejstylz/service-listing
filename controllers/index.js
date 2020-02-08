@@ -44,7 +44,7 @@ module.exports = {
     //GET /
     async getHomePage(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find().where("isCompany" && "isEmailVerified").equals(true).exec();
+        let company = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let compa = []
         company.forEach(function (comp) {
             if (company.indexOf(comp) < 5) {
@@ -333,41 +333,50 @@ module.exports = {
     },
 
     async postCompanySignUp(req, res, next) {
-        let image = await cloudinary.v2.uploader.upload(req.file.path);
-        let response = await geocodingClient
-            .forwardGeocode({
-                query: req.body.location + req.body.city + req.body.state,
-                limit: 1
-            })
-            .send();
+        let emailExists = await User.findOne({ 'email': req.body.email });
 
-        req.body.coordinates = response.body.features[0].geometry.coordinates;
-        const newUser = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            username: req.body.username,
-            email: req.body.email,
-            location: req.body.location,
-            address2: req.body.address2,
-            city: req.body.city,
-            state: req.body.state,
-            zipCode: req.body.zipCode,
-            country: req.body.country,
-            phoneNumber: req.body.phoneNumber,
-            profilePicture: image.secure_url,
-            profilePictureId: image.public_id,
-            isCompany: true,
-            coordinates: req.body.coordinates
-        });
+        if (emailExists) {
+            req.session.error = "Email already exists";
+            console.log('Email already exists');
+            return res.redirect('back');
+        } else {
+
+            let image = await cloudinary.v2.uploader.upload(req.file.path);
+            let response = await geocodingClient
+                .forwardGeocode({
+                    query: req.body.location + req.body.city + req.body.state,
+                    limit: 1
+                })
+                .send();
+
+            req.body.coordinates = response.body.features[0].geometry.coordinates;
+            const newUser = new User({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                username: req.body.username,
+                email: req.body.email,
+                location: req.body.location,
+                address2: req.body.address2,
+                city: req.body.city,
+                state: req.body.state,
+                zipCode: req.body.zipCode,
+                country: req.body.country,
+                phoneNumber: req.body.phoneNumber,
+                profilePicture: image.secure_url,
+                profilePictureId: image.public_id,
+                isCompany: true,
+                coordinates: req.body.coordinates
+            });
 
 
-        let user = await User.register(newUser, req.body.password);
-        req.login(user, function (err) {
-            if (err) return next(err);
-            // req.session.success = "Company Registered";
-            // console.log(user);
-            res.redirect('/company-sign-up2');
-        });
+            let user = await User.register(newUser, req.body.password);
+            req.login(user, function (err) {
+                if (err) return next(err);
+                // req.session.success = "Company Registered";
+                // console.log(user);
+                res.redirect('/company-sign-up2');
+            });
+        }
     },
 
     //GET /company-sign-up2

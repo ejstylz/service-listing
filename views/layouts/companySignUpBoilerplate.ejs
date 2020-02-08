@@ -58,6 +58,21 @@
     <script src="js/read_more.js" type="text/javascript"></script>
     <script src="js/custom.js" type="text/javascript"></script>
     <script src="js/category.js" type="text/javascript"></script>
+
+    <script>
+        // $('#text').on("keyup", function () {
+        //     const characters = $('#text').value.split('');
+        //     $('#word').innerText = characters.length;
+        // });
+
+        $('#text').keyup(updateCount);
+        $('#text').keydown(updateCount);
+
+        function updateCount() {
+            var cs = $(this).val().length;
+            $('#word').text(cs);
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();

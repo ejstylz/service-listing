@@ -271,7 +271,7 @@ router.get('/company-sign-up-home', asyncErrorHandler(getCompanySignUpHome));
 router.get('/company-sign-up', checkIfUserExists, getCompanySignUp);
 
 /* POST /company-sign-up */
-router.post('/company-sign-up', upload.single('profilePicture'), asyncErrorHandler(postCompanySignUp));
+router.post('/company-sign-up', checkIfUserExists, upload.single('profilePicture'), asyncErrorHandler(postCompanySignUp));
 
 /* GET company-sign-up2 */
 router.get('/company-sign-up2', isLoggedIn, isRegistered, getCompanySignUp2);
@@ -280,19 +280,19 @@ router.get('/company-sign-up2', isLoggedIn, isRegistered, getCompanySignUp2);
 router.post('/company-sign-up2', isLoggedIn, isRegistered, upload.single('logo'), asyncErrorHandler(postCompanySignUp2));
 
 /* GET company-sign-up2 */
-router.get('/company-sign-up3', isLoggedIn, isRegistered, getCompanySignUp3);
+router.get('/company-sign-up3', isLoggedIn, getCompanySignUp3);
 
 /* GET company-sign-up4 */
-router.get('/company-sign-up4', isLoggedIn, isRegistered, goToAccountSecurity, getCompanySignUp4);
+router.get('/company-sign-up4', isLoggedIn, goToAccountSecurity, getCompanySignUp4);
 
 /* POST /company-sign-up4 */
-router.post('/company-sign-up4', isLoggedIn, isRegistered, asyncErrorHandler(postCompanySignUp4));
+router.post('/company-sign-up4', isLoggedIn, asyncErrorHandler(postCompanySignUp4));
 
 /* GET /verify */
 router.get('/verify/:token', isLoggedIn, asyncErrorHandler(getVerify));
 
 /* GET company-sign-up5 */
-router.get('/company-sign-up5', goToPayment, getCompanySignUp5);
+router.get('/company-sign-up5', isEmailVerified, goToPayment, getCompanySignUp5);
 
 /* GET /dashboard */
 router.get('/member-profile/:id', isLoggedIn, isMember, getMemberProfile);

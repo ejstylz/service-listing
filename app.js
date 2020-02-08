@@ -71,7 +71,7 @@ passport.use(new GoogleStrategy({
   (request, token, refreshToken, profile, done) => {
     process.nextTick(() => {
       // console.log(profile);
-      User.findOne({ 'google.id': profile.id }, (err, user) => {
+      User.findOne({ 'email': profile.emails[0].value }, (err, user) => {
         if (err)
           return done(err);
 
@@ -84,6 +84,8 @@ passport.use(new GoogleStrategy({
           newUser.google.token = token;
           newUser.google.name = profile.displayName;
           newUser.email = profile.emails[0].value;
+          newUser.isEmailVerified = true;
+          newUser.about = "";
           newUser.username = profile.name.givenName;
           newUser.google.email = profile.emails[0].value; // pull the first email
 
@@ -123,6 +125,8 @@ passport.use(new FacebookStrategy({
           newUser.facebook.name = profile.displayName;
           // newUser.email = profile.emails[0].value;
           newUser.username = profile.name.givenName;
+          newUser.isFacebookVerified = true;
+          newUser.about = "";
           // newUser.facebook.email = profile.emails[0].value; // pull the first email
 
           newUser.save((err) => {
