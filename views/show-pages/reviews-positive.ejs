@@ -634,7 +634,7 @@
                                 <form action="/company-profile/<%= company._id %>/reviews" method="POST">
                                     <select name="filter" id="" class="form-control" onchange="this.form.submit()">
                                         <option value="recent">Most Recent</option>
-                                        <option value="positive">Positive Reviews</option>
+                                        <option value="positive" selected>Positive Reviews</option>
                                         <option value="neutral">Neutral Reviews</option>
                                         <option value="negative">Negative Reviews</option>
                                     </select>
@@ -655,7 +655,6 @@
                                     <span class="review_time"><%= moment(review[i].createdAt).fromNow() %></span>
                                     <% if (review[i].reply) { %>
                                     <p><strong>Reply From <%= company.companyName %>:</strong></p>
-
                                     <p><img src="<%= company.logo%>" alt="Company Logo"
                                             style="width: 30px; border-radius: 50%;"><%= review[i].reply %></p>
                                     <% } %>

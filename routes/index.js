@@ -415,6 +415,9 @@ router.delete('/products/:id', isLoggedIn, isCompany, isEmailVerified, asyncErro
 /* GET /dashboard/reviews */
 router.get('/company-dashboard/reviews', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getReviews));
 
+/* GET /dashboard/reviews */
+router.post('/company-dashboard/reviews', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(getReviews));
+
 /* PUT /review */
 router.put('/review/:id', isLoggedIn, isCompany, isEmailVerified, asyncErrorHandler(reviewReply));
 
@@ -494,6 +497,7 @@ router.get('/company-profile/:id/portfolio', asyncErrorHandler(companyProfilePor
 
 /* GET company-profile/reviews */
 router.get('/company-profile/:id/reviews', asyncErrorHandler(companyProfileReviews));
+router.post('/company-profile/:id/reviews', asyncErrorHandler(companyProfileReviews));
 
 /* POST /reviews */
 router.post('/create-review/:id', isLoggedIn, upload.array('images'), asyncErrorHandler(createReview));

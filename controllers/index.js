@@ -1364,21 +1364,142 @@ module.exports = {
     //GET /company-dashboard/reviews
     async getReviews(req, res, next) {
         let user = req.user;
-        let review = await Review.find().where("owner.id").equals(user._id).exec();
-        function calculateAverage(reviews) {
-            if (review.length === 0) {
-                return 0;
-            }
-            var sum = 0;
-            review.forEach(function (element) {
-                sum += element.rating;
-            });
-            return sum / review.length;
-        }
-        let average = await calculateAverage(review);
+        let review;
 
-        res.render('businesses/reviews', { title: 'Dashboard | Reviews', review, average });
+        if (req.body.filter === 'recent') {
+
+            review = await Review.find().where("owner.id").equals(user._id).sort({ 'createdAt': -1 }).exec();
+            function calculateAverage(reviews) {
+                if (review.length === 0) {
+                    return 0;
+                }
+                var sum = 0;
+                review.forEach(function (element) {
+                    sum += element.rating;
+                });
+                return sum / review.length;
+            }
+            let average = await calculateAverage(review).toFixed(1);
+            res.render('businesses/reviews', { title: 'Dashboard | Reviews', review, average });
+
+        } else if (req.body.filter === 'positive') {
+
+            review = await Review.find({ rating: { $gte: 4 } }).where("owner.id").equals(user._id).exec();
+            function calculateAverage(reviews) {
+                if (review.length === 0) {
+                    return 0;
+                }
+                var sum = 0;
+                review.forEach(function (element) {
+                    sum += element.rating;
+                });
+                return sum / review.length;
+            }
+            let average = await calculateAverage(review).toFixed(1);
+            res.render('businesses/reviews-positive', { title: 'Dashboard | Reviews', review, average });
+
+        } else if (req.body.filter === 'negative') {
+
+            review = await Review.find({ rating: { $gte: 0, $lte: 3.9 } }).where("owner.id").equals(user._id).exec();
+            function calculateAverage(reviews) {
+                if (review.length === 0) {
+                    return 0;
+                }
+                var sum = 0;
+                review.forEach(function (element) {
+                    sum += element.rating;
+                });
+                return sum / review.length;
+            }
+            let average = await calculateAverage(review).toFixed(1);
+            res.render('businesses/reviews-negative', { title: 'Dashboard | Reviews', review, average });
+
+        } else if (req.body.filter === 'neutral') {
+
+            review = await Review.find({ rating: { $in: 3 } }).where("owner.id").equals(user._id).exec();
+            function calculateAverage(reviews) {
+                if (review.length === 0) {
+                    return 0;
+                }
+                var sum = 0;
+                review.forEach(function (element) {
+                    sum += element.rating;
+                });
+                return sum / review.length;
+            }
+            let average = await calculateAverage(review).toFixed(1);
+            res.render('businesses/reviews-neutral', { title: 'Dashboard | Reviews', review, average });
+
+        } else {
+            review = await Review.find().where("owner.id").equals(user._id).sort({ 'createdAt': -1 }).exec();
+            function calculateAverage(reviews) {
+                if (review.length === 0) {
+                    return 0;
+                }
+                var sum = 0;
+                review.forEach(function (element) {
+                    sum += element.rating;
+                });
+                return sum / review.length;
+            }
+            let average = await calculateAverage(review).toFixed(1);
+            res.render('businesses/reviews', { title: 'Dashboard | Reviews', review, average });
+
+        }
     },
+
+
+    async garageServices(req, res, next) {
+        let user = await User.findById(req.user);
+        let company;
+        let filter = req.body.filter;
+        let zip = req.body.zip;
+        let sorting = {}
+        if (req.body.sort === 'asc') {
+            sorting = await { 'companyName': -1 }
+        } else if (req.body.sort === 'desc') {
+            sorting = await { 'companyName': 1 }
+        } else if (req.body.sort === 'created') {
+            sorting = await { 'createdAt': -1 }
+        } else if (req.body.sort === 'rated') {
+            sorting = await { 'averageReview': 1 }
+        } else {
+            sorting = await { 'id': -1 }
+        }
+
+        if (filter) {
+            if (zip && filter) {
+                company = await User.find({ isEmailVerified: true, zipCode: zip, filters: { $in: filter } }).where("serviceCategory").equals("Garage services").populate({
+                    path: 'reviews',
+                    options: { sort: { '_id': -1 } },
+                }).sort(sorting).exec();
+            } else {
+                company = await User.find({ isEmailVerified: true, filters: { $in: filter } }).where("serviceCategory").equals("Garage services").populate({
+                    path: 'reviews',
+                    options: { sort: { '_id': -1 } },
+                }).sort(sorting).exec();
+            }
+        } else if (zip) {
+            company = await User.find({ isEmailVerified: true, zipCode: zip, }).where("serviceCategory").equals("Garage services").populate({
+                path: 'reviews',
+                options: { sort: { '_id': -1 } },
+            }).sort(sorting).exec();
+        } else {
+            company = await User.find({ isEmailVerified: true }).where("serviceCategory").equals("Garage services").populate({
+                path: 'reviews',
+                options: { sort: { '_id': -1 } },
+            }).sort(sorting).exec();
+        }
+        let review = await Review.find().where("owner.id").equals(company._id).exec();
+        if (req.xhr) {
+            res.json(company);
+        } else {
+            res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review });
+        }
+    },
+
+
+
 
     //Reply Review
     async reviewReply(req, res, next) {
@@ -1725,7 +1846,8 @@ module.exports = {
             });
             return sum / review.length;
         }
-        let average = calculateAverage(review).toFixed(1);
+        let average = calculateAverage(review).toFixed(1)
+            ;
         res.render('show-pages/company-profile', {
             title: 'Company Profile',
             average,
@@ -1879,64 +2001,92 @@ module.exports = {
     },
 
     async companyProfileReviews(req, res, next) {
-        let company = await User.findById(req.params.id).populate({
-            path: 'reviews',
-            options: { sort: { '_id': -1 } },
-        });
+        let company = await User.findById(req.params.id);
         let user = await req.user;
         let lists;
         if (user) {
             lists = await List.find().where("owner.id").equals(user._id).exec();
         }
-        let review = await company.reviews
+        let review;
         let fiveReview = [];
         let fourReview = [];
         let threeReview = [];
         let twoReview = [];
         let oneReview = [];
-        await review.forEach(function (review) {
-            if (review.rating === 5) {
-                fiveReview.push(review)
-            }
-            if (review.rating === 4) {
-                fourReview.push(review)
-            }
-            if (review.rating === 3) {
-                threeReview.push(review)
-            }
-            if (review.rating === 2) {
-                twoReview.push(review)
-            }
-            if (review.rating === 1) {
-                oneReview.push(review)
-            }
-        });
-        function calculateAverage(reviews) {
-            if (review.length === 0) {
-                return 0;
-            }
-            var sum = 0;
-            review.forEach(function (element) {
-                sum += element.rating;
+        let average;
+
+        async function others(page) {
+            await review.forEach(function (review) {
+                if (review.rating === 5) {
+                    fiveReview.push(review)
+                }
+                if (review.rating === 4) {
+                    fourReview.push(review)
+                }
+                if (review.rating === 3) {
+                    threeReview.push(review)
+                }
+                if (review.rating === 2) {
+                    twoReview.push(review)
+                }
+                if (review.rating === 1) {
+                    oneReview.push(review)
+                }
             });
-            return sum / review.length;
+            function calculateAverage(reviews) {
+                if (review.length === 0) {
+                    return 0;
+                }
+                var sum = 0;
+                review.forEach(function (element) {
+                    sum += element.rating;
+                });
+                return sum / review.length;
+            }
+            average = calculateAverage(review).toFixed(1);
+            company.averageReview = average.toString();
+            await company.save();
+            res.render(page,
+                {
+                    title: 'Company Profile',
+                    review,
+                    company,
+                    average,
+                    fiveReview,
+                    fourReview,
+                    threeReview,
+                    twoReview,
+                    oneReview,
+                    lists
+                });
         }
-        let average = calculateAverage(review).toFixed(1);
-        company.averageReview = average.toString();
-        await company.save();
-        res.render('show-pages/reviews',
-            {
-                title: 'Company Profile',
-                review,
-                company,
-                average,
-                fiveReview,
-                fourReview,
-                threeReview,
-                twoReview,
-                oneReview,
-                lists
-            });
+
+        if (req.body.filter === 'recent') {
+
+            review = await Review.find().where("owner.id").equals(company._id).sort({ 'createdAt': -1 }).exec();
+            others('show-pages/reviews');
+
+        } else if (req.body.filter === 'positive') {
+
+            review = await Review.find({ rating: { $gte: 4 } }).where("owner.id").equals(company._id).exec();
+            others('show-pages/reviews-positive');
+
+        } else if (req.body.filter === 'neutral') {
+
+            review = await Review.find({ rating: { $in: 3 } }).where("owner.id").equals(company._id).exec();
+            others('show-pages/reviews-neutral');
+
+        } else if (req.body.filter === 'negative') {
+
+            review = await Review.find({ rating: { $gte: 0, $lte: 3.9 } }).where("owner.id").equals(company._id).exec();
+            others('show-pages/reviews-negative');
+
+        } else {
+
+            review = await Review.find().where("owner.id").equals(company._id).sort({ 'createdAt': -1 }).exec();
+            others('show-pages/reviews');
+
+        }
     },
 
     //Create Review

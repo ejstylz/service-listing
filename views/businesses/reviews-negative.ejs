@@ -547,7 +547,7 @@
 										<option value="recent">Most Recent</option>
 										<option value="positive">Positive Reviews</option>
 										<option value="neutral">Neutral Reviews</option>
-										<option value="negative">Negative Reviews</option>
+										<option value="negative" selected>Negative Reviews</option>
 									</select>
 								</form>
 							</div>
@@ -597,43 +597,39 @@
 
 								<div class="col-md-3">
 									<div class="review_related_image_slider">
-										<div id="reviewsSlider1<%= [i] %>" class="carousel slider_part_inner slide"
+										<div id="reviewsSlider1" class="carousel slider_part_inner slide"
 											data-ride="carousel">
 											<!-- Indicators -->
-											<!-- <ul class="carousel-indicators">
+											<ul class="carousel-indicators">
 												<li data-target="#reviewsSlider1" data-slide-to="0" class="active"></li>
 												<li data-target="#reviewsSlider1" data-slide-to="1"></li>
 												<li data-target="#reviewsSlider1" data-slide-to="2"></li>
-											</ul> -->
+											</ul>
 
 											<!-- The slideshow -->
 											<div class="carousel-inner">
 												<div class="carousel-item text-center active">
 													<a class="lightcase" href="<%= review[i].images[0].url %>"
-														data-rel="reviewsSlider1<%= [i] %>_img:carousel">
+														data-rel="reviewsSlider1_img:carousel">
 														<img src="<%= review[i].images[0].url %>" class="img-fluid"
 															alt="" />
 													</a>
 												</div>
-												<% if(review[i].images.length) { %>
 												<% review[i].images.forEach(function(image) { %>
 												<div class="carousel-item text-center">
 													<a class="lightcase" href="<%= image.url %>"
-														data-rel="reviewsSlider1<%= [i] %>_img:carousel">
+														data-rel="reviewsSlider1_img:carousel">
 														<img src="<%= image.url %>" class="img-fluid" alt="" />
 													</a>
 												</div>
 												<% }); %>
-												<% } %>
 											</div>
 
 											<!-- Left and right controls -->
-											<a class="carousel-control-prev" href="#reviewsSlider1<%= [i] %>"
-												data-slide="prev">
+											<a class="carousel-control-prev" href="#reviewsSlider1" data-slide="prev">
 												<span class="carousel-control-prev-icon"></span>
 											</a>
-											<a class="carousel-control-next" href="#reviewsSlider1<%= [i] %>"
-												data-slide="next">
+											<a class="carousel-control-next" href="#reviewsSlider1" data-slide="next">
 												<span class="carousel-control-next-icon"></span>
 											</a>
 										</div>
@@ -693,21 +689,21 @@
 
 									<div class="col-md-3">
 										<div class="review_related_image_slider">
-											<div id="reviewsSlider1<%= [i] %>" class="carousel slider_part_inner slide"
+											<div id="reviewsSlider1" class="carousel slider_part_inner slide"
 												data-ride="carousel">
 												<!-- Indicators -->
-												<!-- <ul class="carousel-indicators">
+												<ul class="carousel-indicators">
 													<li data-target="#reviewsSlider1" data-slide-to="0" class="active">
 													</li>
 													<li data-target="#reviewsSlider1" data-slide-to="1"></li>
 													<li data-target="#reviewsSlider1" data-slide-to="2"></li>
-												</ul> -->
+												</ul>
 
 												<!-- The slideshow -->
 												<div class="carousel-inner">
 													<div class="carousel-item text-center active">
 														<a class="lightcase" href="<%= review[i].images[0].url %>"
-															data-rel="reviewsSlider1<%= [i] %>_img:carousel">
+															data-rel="reviewsSlider1_img:carousel">
 															<img src="<%= review[i].images[0].url %>" class="img-fluid"
 																alt="" />
 														</a>
@@ -715,7 +711,7 @@
 													<% review[i].images.forEach(function(image) { %>
 													<div class="carousel-item text-center">
 														<a class="lightcase" href="<%= image.url %>"
-															data-rel="reviewsSlider1<%= [i] %>_img:carousel">
+															data-rel="reviewsSlider1_img:carousel">
 															<img src="<%= image.url %>" class="img-fluid" alt="" />
 														</a>
 													</div>
@@ -723,11 +719,11 @@
 												</div>
 
 												<!-- Left and right controls -->
-												<a class="carousel-control-prev" href="#reviewsSlider1<%= [i] %>"
+												<a class="carousel-control-prev" href="#reviewsSlider1"
 													data-slide="prev">
 													<span class="carousel-control-prev-icon"></span>
 												</a>
-												<a class="carousel-control-next" href="#reviewsSlider1<%= [i] %>"
+												<a class="carousel-control-next" href="#reviewsSlider1"
 													data-slide="next">
 													<span class="carousel-control-next-icon"></span>
 												</a>

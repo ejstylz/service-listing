@@ -636,7 +636,7 @@
                                         <option value="recent">Most Recent</option>
                                         <option value="positive">Positive Reviews</option>
                                         <option value="neutral">Neutral Reviews</option>
-                                        <option value="negative">Negative Reviews</option>
+                                        <option value="negative" selected>Negative Reviews</option>
                                     </select>
                                 </form>
                             </div>
@@ -655,7 +655,6 @@
                                     <span class="review_time"><%= moment(review[i].createdAt).fromNow() %></span>
                                     <% if (review[i].reply) { %>
                                     <p><strong>Reply From <%= company.companyName %>:</strong></p>
-
                                     <p><img src="<%= company.logo%>" alt="Company Logo"
                                             style="width: 30px; border-radius: 50%;"><%= review[i].reply %></p>
                                     <% } %>
