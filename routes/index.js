@@ -315,8 +315,8 @@ router.get('/auth/google',
   }
   ));
 
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
+router.get('/auth/google/callback',
+  passport.authenticate('google', {
     successRedirect: '/',
     failureRedirect: '/login'
   })
