@@ -153,6 +153,7 @@ passport.deserializeUser(function (id, done) {
 
 // set local variables middleware
 app.use(function (req, res, next) {
+  res.locals.total = User.find().where("isCompany").equals(true).exec();
   res.locals.currentUser = req.user;
   res.locals.hostName = req.headers.host;
   // set default page title

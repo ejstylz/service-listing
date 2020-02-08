@@ -1517,7 +1517,7 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
@@ -1852,6 +1852,7 @@ module.exports = {
     async companyProfileShow(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let lists;
         if (user) {
             lists = await List.find().where("owner.id").equals(user._id).exec();
@@ -1907,6 +1908,7 @@ module.exports = {
     async companyProfileAbout(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let journey = await Journey.find().where("owner.id").equals(company._id).exec();
         let certificate = await Certificate.find().where("owner.id").equals(company._id).exec();
         let mediaPhoto = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
@@ -1926,12 +1928,13 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/about', { title: 'Company Profile', lists, average, company, journey, certificate, mediaPhoto, review });
+        res.render('show-pages/about', { title: 'Company Profile', lists, average, total, company, journey, certificate, mediaPhoto, review });
     },
 
     async companyProfileMedia(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let photo = await MediaPhoto.find().where("owner.id").equals(company._id).exec();
         let video = await MediaVideo.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
@@ -1950,12 +1953,13 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/media', { title: 'Company Profile', lists, average, company, photo, video, review });
+        res.render('show-pages/media', { title: 'Company Profile', lists, average, total, company, photo, video, review });
     },
 
     async companyProfileEmployee(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let employee = await Employee.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
         let lists;
@@ -1973,12 +1977,13 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/employees', { title: 'Company Profile', lists, average, company, employee, review });
+        res.render('show-pages/employees', { title: 'Company Profile', lists, average, total, company, employee, review });
     },
 
     async companyProfilePortfolio(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let portfolio = await Portfolio.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
         let lists;
@@ -1996,12 +2001,13 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/portfolio', { title: 'Company Profile', lists, average, company, portfolio, review });
+        res.render('show-pages/portfolio', { title: 'Company Profile', lists, average, total, company, portfolio, review });
     },
 
     async companyProfileServices(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let product = await Product.find().where("owner.id").equals(company._id).exec();
         let service = await Service.find().where("owner.id").equals(company._id).exec();
         let review = await Review.find().where("owner.id").equals(company._id).exec();
@@ -2020,12 +2026,13 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/services-products', { title: 'Company Profile', lists, average, company, product, service, review });
+        res.render('show-pages/services-products', { title: 'Company Profile', lists, average, total, company, product, service, review });
     },
 
     async companyProfileReviews(req, res, next) {
         let company = await User.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let lists;
         if (user) {
             lists = await List.find().where("owner.id").equals(user._id).exec();
@@ -2080,7 +2087,8 @@ module.exports = {
                     threeReview,
                     twoReview,
                     oneReview,
-                    lists
+                    lists,
+                    total
                 });
         }
 
@@ -2159,6 +2167,7 @@ module.exports = {
     async serviceDetails(req, res, next) {
         let service = await Service.findById(req.params.id);
         let user = await req.user;
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company = await User.findById(service.owner.id).populate({
             path: 'reviews',
             options: { sort: { '_id': -1 } },
@@ -2180,11 +2189,12 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/service-details', { title: 'Company Profile', lists, average, service, company, otherServices, review });
+        res.render('show-pages/service-details', { title: 'Company Profile', lists, average, total, service, company, otherServices, review });
     },
 
     async productDetails(req, res, next) {
         let product = await Product.findById(req.params.id);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company = await User.findById(product.owner.id).populate({
             path: 'reviews',
             options: { sort: { '_id': -1 } },
@@ -2207,7 +2217,7 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/product-details', { title: 'Company Profile', lists, average, product, company, otherProducts, review });
+        res.render('show-pages/product-details', { title: 'Company Profile', lists, average, total, product, company, otherProducts, review });
     },
 
     async companyProfileFaq(req, res, next) {
@@ -2215,6 +2225,7 @@ module.exports = {
             path: 'reviews',
             options: { sort: { '_id': -1 } },
         }).exec();
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let user = await req.user;
         let faq = await Faq.find().where("owner.id").equals(company._id).exec();
         let review = await company.reviews;
@@ -2233,13 +2244,14 @@ module.exports = {
             return sum / review.length;
         }
         let average = calculateAverage(review).toFixed(1);
-        res.render('show-pages/faq', { title: 'Company Profile', lists, average, company, faq, review });
+        res.render('show-pages/faq', { title: 'Company Profile', lists, average, total, company, faq, review });
     },
 
 
     //Services Pages Controllers
     async garageServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2283,12 +2295,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/garage-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async roofingServies(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2332,12 +2345,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/roofing-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/roofing-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async landscapingServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2381,12 +2395,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/landscaping-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/landscaping-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async pavingServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2430,12 +2445,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/paving-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/paving-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async fencingServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2479,12 +2495,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/fencing-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/fencing-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async junkRemoval(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2528,12 +2545,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/junk-removal', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/junk-removal', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async generalSiding(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2577,12 +2595,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/general-siding', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/general-siding', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async exteriorPainting(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2626,12 +2645,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/exterior-painting', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/exterior-painting', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async poolsSpas(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2675,12 +2695,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/pools-hot-tubes-spas', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/pools-hot-tubes-spas', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async masonryServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2724,12 +2745,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/masonry-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/masonry-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async plumbingServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2773,12 +2795,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/plumbing-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/plumbing-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async hvacServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2822,12 +2845,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/hvac-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/hvac-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async dryWallAndInsulation(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2871,12 +2895,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/drywall-and-insulation', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async pestControl(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2920,12 +2945,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/pest-control', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/pest-control', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async generalCleaning(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -2969,12 +2995,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/general-cleaning', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async interiorPainting(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3018,12 +3045,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/interior-painting', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/interior-painting', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async windowDoorServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3067,12 +3095,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/window-and-door-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async flooringServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3116,12 +3145,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/flooring-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/flooring-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async generalRemodeling(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3165,12 +3195,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/general-remodeling', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/general-remodeling', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async carpentersServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3214,12 +3245,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/carpenters-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/carpenters-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async towingServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3263,12 +3295,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/towing-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/towing-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async oilAndFluidExchange(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3312,12 +3345,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/oil-and-fluid-exchange', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/oil-and-fluid-exchange', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async bodyShop(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3361,12 +3395,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/body-shop', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/body-shop', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async mufflersAndExhaust(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3410,12 +3445,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/mufflers-and-exhaust', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/mufflers-and-exhaust', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async suspensionServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3459,12 +3495,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/suspension-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/suspension-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async brakeChange(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3508,12 +3545,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/brake-change', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/brake-change', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async alarmInstallation(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3557,12 +3595,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/alarm-installation', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/alarm-installation', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async engineDiagnostic(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3606,12 +3645,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/engine-diagnostic', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/engine-diagnostic', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async heatingAndCooling(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3655,12 +3695,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/heating-and-cooling', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/heating-and-cooling', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async wheelAndTire(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3704,12 +3745,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/wheel-and-tire', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/wheel-and-tire', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async checkEngineLight(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3753,12 +3795,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/check-engine-light', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/check-engine-light', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async batteryServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3802,12 +3845,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/battery-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/battery-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async windowTinting(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3851,12 +3895,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/window-tinting', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/window-tinting', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async generalHandyman(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3900,12 +3945,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/general-handyman', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/general-handyman', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async generalContractor(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3949,12 +3995,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/general-contractor', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/general-contractor', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async electricalServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -3998,12 +4045,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/electrical-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/electrical-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async movingServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -4047,12 +4095,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/moving-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/moving-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async buildingSecurity(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -4096,12 +4145,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/building-security', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/building-security', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async demolitionServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -4145,12 +4195,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/demolition-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/demolition-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async applianceRepairs(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -4194,12 +4245,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/appliance-repairs', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/appliance-repairs', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async locksmithServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -4243,12 +4295,13 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/locksmith-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/locksmith-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
     async fleetServices(req, res, next) {
         let user = await User.findById(req.user);
+        let total = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
         let company;
         let filter = req.body.filter;
         let zip = req.body.zip;
@@ -4292,7 +4345,7 @@ module.exports = {
         if (req.xhr) {
             res.json(company);
         } else {
-            res.render('show-pages/fleet-services', { title: 'Company Profile', user, company, review });
+            res.render('show-pages/fleet-services', { title: 'Company Profile', user, company, review, total });
         }
     },
 
