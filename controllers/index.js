@@ -1322,7 +1322,8 @@ module.exports = {
             about,
             twitterUrl,
             linkedinUrl,
-            instagramUrl
+            instagramUrl,
+            facebookUrl
         } = req.body;
 
         if (firstName) user.firstName = firstName;
@@ -1335,6 +1336,7 @@ module.exports = {
         if (twitterUrl) user.twitterUrl = req.body.twitterUrl;
         if (linkedinUrl) user.linkedinUrl = req.body.linkedinUrl;
         if (instagramUrl) user.instagramUrl = req.body.instagramUrl;
+        if (facebookUrl) user.facebookUrl = req.body.facebookUrl;
         if (phoneNumber) user.phoneNumber = req.body.phoneNumber;
         if (about) user.about = req.body.about;
 

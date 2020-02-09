@@ -877,6 +877,11 @@
 													class="fa fa-twitter" aria-hidden="true" target="_blank"></i>
 												<%= member.twitterUrl %></a></li>
 										<% } %>
+										<% if (member.facebookUrl) { %>
+										<li class="list-group-item"><a href="javascript:void(0)"><i
+													class="fa fa-facebook" aria-hidden="true" target="_blank"></i>
+												<%= member.facebookUrl %></a></li>
+										<% } %>
 										<% if (member.instagramUrl) { %>
 										<li class="list-group-item"><a href="<%= member.intsagramUrl %>"><i
 													class="fa fa-instagram" aria-hidden="true" target="_blank"></i>
