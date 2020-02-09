@@ -44,7 +44,7 @@ module.exports = {
     //GET /
     async getHomePage(req, res, next) {
         let user = await User.findById(req.user);
-        let company = await User.find({ isEmailVerified: true }).where("isCompany").equals(true).exec();
+        let company = await User.find({ isEmailVerified: true, isCompany: true }).exec();
         let compa = []
         company.forEach(function (comp) {
             if (company.indexOf(comp) < 5) {
@@ -1374,12 +1374,12 @@ module.exports = {
         const user = req.user;
         let score = 0;
         let grade = "Poor"
-        if (user.isEmailVerified || user.isFacebookVerified) {
-            score = 5;
-            grade = "Good"
-        } else if (user.isEmailVerified && user.isFacebookVerified) {
+        if (user.email && user.isFacebookVerified) {
             score = 10;
             grade = "Excellent"
+        } else if (user.email || user.isFacebookVerified) {
+            score = 5;
+            grade = "Good"
         } else {
             score = 0;
             grade = "Poor"
@@ -4589,34 +4589,39 @@ module.exports = {
 
     async deactivateAccount(req, res, next) {
         const user = req.user;
-        if (user.isActive) user.isActive = false;
-        await user.save();
+        if (user.email) {
+            if (user.isActive) user.isActive = false;
+            await user.save();
 
-        const token = await crypto.randomBytes(20).toString('hex');
-        user.activateToken = token;
-        user.activateExpires = Date.now() + 86400000000000;
+            const token = await crypto.randomBytes(20).toString('hex');
+            user.activateToken = token;
+            user.activateExpires = Date.now() + 86400000000000;
 
-        await user.save();
+            await user.save();
 
-        console.log("Account Deactivated");
+            console.log("Account Deactivated");
 
-        const msg = {
-            to: user.email,
-            from: 'GABAZZO <no-reply@gabazzo.com>',
-            subject: 'GABAZZO - Account Deactivation',
-            text: `We are sad to see you go ${user.username}.
-				To re-activate your account at anytime, click on the following link, or copy and paste it into your browser to complete the process:
-				http://${req.headers.host}/activate/${token}`.replace(/				/g, ''),
-        };
+            const msg = {
+                to: user.email,
+                from: 'GABAZZO <no-reply@gabazzo.com>',
+                subject: 'GABAZZO - Account Deactivation',
+                text: `We are sad to see you go ${user.username}.
+                    To re-activate your account at anytime, click on the following link, or copy and paste it into your browser to complete the process:
+                    http://${req.headers.host}/activate/${token}`.replace(/				/g, ''),
+            };
 
-        await sgMail.send(msg);
+            await sgMail.send(msg);
 
-        req.session.success = `An e-mail has been sent to ${user.email}.`;
+            req.session.success = `An e-mail has been sent to ${user.email}.`;
 
-        console.log("Account Deactivated");
-        req.session.success = "Account Deactivated";
-        // redirect to show page
-        res.redirect("/logout");
+            console.log("Account Deactivated");
+            req.session.success = "Account Deactivated";
+            // redirect to show page
+            res.redirect("/logout");
+        } else {
+            req.session.error = `Please Insrt email and make a username to fully deactivate account, you will also use the same email to re-activate your account in the future`;
+            res.redirect('back')
+        }
     },
 
 
