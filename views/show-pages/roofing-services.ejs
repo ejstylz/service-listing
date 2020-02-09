@@ -1599,6 +1599,35 @@ $('.filter-form').submit(function (e) {
 						rate = "0"
 					}
 
+				let d = new Date();
+				if (d.getDay() === 0) {
+					$('.business_hours').html(
+						`
+						<h4>${company.sundayFrom} - ${company.sundayTo}</h4>
+						<% } else if(d.getDay() === 1) { %>
+						<h4>${company.mondayFrom} - ${company.mondayTo}</h4>
+						<% } else if (d.getDay() === 2) { %>
+						<h4>${company.tuesdayFrom} - ${company.tuesdayTo}</h4>
+						<% } else if (d.getDay() === 3) { %>
+						<h4>${company.wednesdayFrom} - ${company.wednesdayTo}</h4>
+						<% } else if (d.getDay() === 4) { %>
+						<h4>${company.thursdayFrom} - ${company.thursdayTo}</h4>
+						<% } else if (d.getDay() === 5) { %>
+						<h4>${company.fridayFrom} - ${company.fridayTo}</h4>
+						<% } else if (d.getDay() === 6) { %>
+						<h4>${company.fridayFrom} - ${company.fridayTo}</h4>
+						<% } else if (d.getDay() === 7) { %>
+						<h4>${company.saturdayFrom} - ${company.saturdayTo}</h4>
+						`
+					);
+				} else {
+					$('.business_hours').html(
+						`
+						<h4>8 AM - 5 PM</h4>
+						`
+					)
+				}
+
 					comp_html =
 						`
 						<div class="single_company">
@@ -1628,26 +1657,7 @@ $('.filter-form').submit(function (e) {
 												<span class="online">- Online</span>
 											</div>
 											<div class="business_hours">
-												<%   let d = new Date(); %>
-												<% if (d.getDay() === 0) { %>
-												<h4>${company.sundayFrom} - ${company.sundayTo}</h4>
-												<% } else if(d.getDay() === 1) { %>
-												<h4>${company.mondayFrom} - ${company.mondayTo}</h4>
-												<% } else if (d.getDay() === 2) { %>
-												<h4>${company.tuesdayFrom} - ${company.tuesdayTo}</h4>
-												<% } else if (d.getDay() === 3) { %>
-												<h4>${company.wednesdayFrom} - ${company.wednesdayTo}</h4>
-												<% } else if (d.getDay() === 4) { %>
-												<h4>${company.thursdayFrom} - ${company.thursdayTo}</h4>
-												<% } else if (d.getDay() === 5) { %>
-												<h4>${company.fridayFrom} - ${company.fridayTo}</h4>
-												<% } else if (d.getDay() === 6) { %>
-												<h4>${company.fridayFrom} - ${company.fridayTo}</h4>
-												<% } else if (d.getDay() === 7) { %>
-												<h4>${company.saturdayFrom} - ${company.saturdayTo}</h4>
-												<% } else { %>
-												<h4>8 AM - 5 PM</h4>
-												<% } %>
+
 											</div>
 											<h6>Address: <span>${company.location}</span></h6>
 										</div>
