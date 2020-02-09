@@ -288,7 +288,8 @@ module.exports = {
             username: req.body.username,
             email: req.body.email,
             verifyToken: token,
-            verifyTokenExpires: Date.now() + 3600000 // 1 hour
+            verifyTokenExpires: Date.now() + 3600000, // 1 hour
+            about: ""
         });
 
 
