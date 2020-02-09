@@ -873,14 +873,14 @@
 								<div class="social_area">
 									<ul class="list-group list-group-horizontal">
 										<% if (member.twitterUrl) { %>
-										<li class="list-group-item"><a href="javascript:void(0)"><i
+										<li class="list-group-item"><a href="<%= member.twitterUrl %>"><i
 													class="fa fa-twitter" aria-hidden="true" target="_blank"></i>
-												<%= member.twitterUrl %></a></li>
+											</a></li>
 										<% } %>
 										<% if (member.facebookUrl) { %>
-										<li class="list-group-item"><a href="javascript:void(0)"><i
+										<li class="list-group-item"><a href="<%= member.facebookUrl %>"><i
 													class="fa fa-facebook" aria-hidden="true" target="_blank"></i>
-												<%= member.facebookUrl %></a></li>
+											</a></li>
 										<% } %>
 										<% if (member.instagramUrl) { %>
 										<li class="list-group-item"><a href="<%= member.intsagramUrl %>"><i
