@@ -2774,7 +2774,7 @@ module.exports = {
         }
 
         if (filter) {
-            if (zip.length && filter) {
+            if (zip && filter) {
                 company = await User.find({ isEmailVerified: true, zipCode: zip, filters: { $in: filter } }).where("serviceCategory").equals("Plumbing Services").populate({
                     path: 'reviews',
                     options: { sort: { '_id': -1 } },
@@ -2785,7 +2785,7 @@ module.exports = {
                     options: { sort: { '_id': -1 } },
                 }).sort(sorting).exec();
             }
-        } else if (zip.length) {
+        } else if (zip) {
             company = await User.find({ isEmailVerified: true, zipCode: zip, }).where("serviceCategory").equals("Plumbing Services").populate({
                 path: 'reviews',
                 options: { sort: { '_id': -1 } },
