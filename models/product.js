@@ -21,6 +21,8 @@ const ProductSchema = new Schema({
     tags: String,
     specificationTitle: String,
     specificationDescription: String,
+    specificationTitle2: String,
+    specificationDescription2: String,
     deliveryInfo: String,
     deliveryCharge: String,
     returnTime: String

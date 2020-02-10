@@ -1708,6 +1708,8 @@ module.exports = {
             tags: req.body.tags,
             specificationTitle: req.body.specificationTitle,
             specificationDescription: req.body.specificationDescription,
+            specificationTitle2: req.body.specificationTitle2,
+            specificationDescription2: req.body.specificationDescription2,
             deliveryInfo: req.body.deliveryInfo,
             deliveryCharge: req.body.deliveryCharge,
             returnTime: req.body.returnTime,
@@ -1767,6 +1769,8 @@ module.exports = {
             tags,
             specificationTitle,
             specificationDescription,
+            specificationTitle2,
+            specificationDescription2,
             deliveryInfo,
             deliveryCharge,
             returnTime
@@ -1779,6 +1783,8 @@ module.exports = {
         if (tags) product.tags = req.body.tags;
         if (specificationTitle) product.specificationTitle = req.body.specificationTitle;
         if (specificationDescription) product.specificationDescription = req.body.specificationDescription;
+        if (specificationTitle2) product.specificationTitle2 = req.body.specificationTitle2;
+        if (specificationDescription2) product.specificationDescription2 = req.body.specificationDescription2;
         if (deliveryInfo) product.deliveryInfo = req.body.deliveryInfo;
         if (deliveryCharge) product.deliveryCharge = req.body.deliveryCharge;
         if (returnTime) product.returnTime = req.body.returnTime;

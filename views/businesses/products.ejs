@@ -78,6 +78,11 @@
 			<div class="modal-body">
 				<form action="/products" method="POST" enctype="multipart/form-data">
 					<div class="form">
+						<div class="">
+							<div class="form-group">
+								<input type="text" name="title" placeholder="Title" class="form-control" />
+							</div>
+						</div>
 						<div class="single_upload">
 							<div class="upload_header">
 								<h5>Upload Product Related Photos <small>(Max: 10 Items)</small></h5>
@@ -127,14 +132,32 @@
 									<div class="col-9">
 										<h4>Set The Product Specifications:</h4>
 									</div>
+									<div class="col-3 text-right">
+										<a class="btn btn-gbz-success add_new_speci_button"
+											href="javascript:void(0)">Add New</a>
+									</div>
 								</div>
 							</div>
-							<div class="">
-								<div class="form-group">
-									<input type="text" name="specificationTitle" placeholder="Spcification Title"
-										class="form-control mb-1" />
-									<textarea name="specificationDescription" placeholder="Specification Description"
-										id="" cols="30" rows="2" class="form-control"></textarea>
+							<div class="product_speci_inner">
+								<div class="add_new_speci">
+									<div class="dsh_single_speci">
+										<div class="form-group">
+											<input type="text" name="specificationTitle2"
+												placeholder="Specification Title" class="form-control mb-1" />
+											<textarea name="specificationDescription2"
+												placeholder="Specification Description" id="" cols="30" rows="2"
+												class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="dsh_single_speci">
+									<div class="form-group">
+										<input type="text" name="specificationTitle" placeholder="Specification Title"
+											class="form-control mb-1" />
+										<textarea name="specificationDescription"
+											placeholder="Specification Description" id="" cols="30" rows="2"
+											class="form-control"></textarea>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -316,12 +339,30 @@
 									<div class="col-9">
 										<h4>Set The Product Specifications:</h4>
 									</div>
+									<div class="col-3 text-right">
+										<a class="btn btn-gbz-success add_new_speci_button"
+											href="javascript:void(0)">Add New</a>
+									</div>
 								</div>
 							</div>
-							<div class="product_speci_inner">
-								<div class="form-group">
+
+							<div class="add_new_speci">
+								<div class="dsh_single_speci">
+									<div class="form-group">
+										<input type="text" name="specificationTitle2"
+											value="<%= product[i].specificationTitle2 %>"
+											placeholder="Specification Title" class="form-control mb-1" />
+										<textarea name="specificationDescription2"
+											placeholder="Specification Description" id="" cols="30" rows="2"
+											class="form-control"><%= product[i].specificationDescription2 %></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="dsh_single_speci">
+								<div class="form-group mb-0">
 									<input type="text" name="specificationTitle"
-										value="<%= product[i].specificationTitle %>" placeholder="Spcification Title"
+										value="<%= product[i].specificationTitle %>" placeholder="Specification Title"
 										class="form-control mb-1" />
 									<textarea name="specificationDescription" placeholder="Specification Description"
 										id="" cols="30" rows="2"
