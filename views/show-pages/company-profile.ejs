@@ -1080,7 +1080,7 @@
                                             <li><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>
                                                 <span><a href="tel:+<%= company.phoneNumber %>"><%= company.phoneNumber %></a></span></li>
                                             <li><i class="fa fa-globe" aria-hidden="true"></i> <b>Website:</b> <span><a
-                                                        href="javascript:void(0)"><%= company.website %></a></span></li>
+                                                        href="<%= company.website %>" target="_blank"><%= company.website %></a></span></li>
                                             <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <b>Email:</b>
                                                 <span><a href="mailto:<%= company.email %>" target="_blank"><%= company.email %></a></span></li>
                                             <li><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Years in Business:</b>
@@ -1603,11 +1603,13 @@
                         <div class="single_product_used">
                             <div class="areas_of_expertise">
                                 <h5>Areas of Expertise</h5>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Roofing</a></li>
-                                    <li><a href="javascript:void(0)">Gutters</a></li>
-                                    <li><a href="javascript:void(0)">Siding</a></li>
-                                </ul>
+                                <% if(company.areasOfExpertise.length) { %>
+                                  <ul>
+                                    <% company.areasOfExpertise.forEach(function(area){ %>
+                                      <li><a href="javascript:void(0)"><%= area %></a></li>
+                                    <% }); %>
+                                  </ul>
+                                <% } %>
                             </div>
                         </div>
                     </div>
