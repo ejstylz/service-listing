@@ -516,9 +516,8 @@ module.exports = {
             website,
             products,
             yearsInBusiness,
-            areasOfExpertise,
-            serviceAreas,
-            productsUsed,
+            areas,
+            services,
             paymentMethod,
             stateLicenseTrade,
             licenseNumber,
@@ -563,8 +562,7 @@ module.exports = {
         if (website) user.website = req.body.website;
         if (tags) user.tags = req.body.tags;
         if (yearsInBusiness) user.yearsInBusiness = req.body.yearsInBusiness;
-        if (serviceAreas) user.serviceAreas = req.body.serviceAreas;
-        if (productsUsed) user.productsUsed = req.body.productsUsed;
+        if (services) user.serviceAreas = req.body.services;
         if (paymentMethod) user.paymentMethod = req.body.paymentMethod;
         if (stateLicenseTrade) user.stateLicenseTrade = req.body.stateLicenseTrade;
         if (licenseNumber) user.licenseNumber = req.body.licenseNumber;
@@ -589,7 +587,7 @@ module.exports = {
         if (req.body.images) user.sliderPhotos = req.body.images;
         if (req.body.languages) user.language = req.body.languages;
         if (req.body.products) user.productsUsed = req.body.products;
-        if (areasOfExpertise) user.areasOfExpertise = req.body.areasOfExpertise;
+        if (areas) user.areasOfExpertise = req.body.areas;
         if (req.body.tags) user.tags = req.body.tags;
 
 

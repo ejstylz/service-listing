@@ -86,7 +86,7 @@
 				</select>
 			</form>
 			<div class="main_logo_for_mobile ml-auto">
-				<a href="../members/index-members.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+				<a href="/"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
 			</div>
 			<div style="margin-left: auto;">
 				<% include ../partials/flash-messages %>
@@ -105,7 +105,7 @@
 			</ul>
 		</nav>
 		<nav class="navbar navbar-expand-lg navbar-light middlebar">
-			<a class="navbar-brand main_logo_for_desktop text-dark" href="../members/index-members.html" target="_self">
+			<a class="navbar-brand main_logo_for_desktop text-dark" href="/" target="_self">
 				<img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
 				<img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
 			</a>
@@ -593,8 +593,13 @@
 				</div>
 				<div class="bottom_part">
 					<ul>
+						<% if (currentUser.isCompany) { %>
+						<li><a href="/company-dashboard" target="_self"><i class="fa fa-fw fa-user"></i><span>View
+									Dashboard</span></a></li>
+						<% } else { %>
 						<li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i
 									class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+						<% } %>
 						<li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a>
 						</li>
 						<li><a href="../footer-pages/help-center-buyer.html"><i
@@ -622,8 +627,13 @@
 				</div>
 				<div class="bottom_part">
 					<ul>
+						<% if (currentUser.isCompany) { %>
+						<li><a href="/company-dashboard" target="_self"><i class="fa fa-fw fa-user"></i><span>View
+									Dashboard</span></a></li>
+						<% } else { %>
 						<li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i
 									class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+						<% } %>
 						<li><a href="/company-settings/account"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a>
 						</li>
 						<li><a href="../footer-pages/help-center-buyer.html"><i
