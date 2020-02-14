@@ -301,7 +301,7 @@ router.get('/member-profile/:id', isLoggedIn, isMember, getMemberProfile);
 router.get('/company-dashboard', isLoggedIn, isCompany, isEmailVerified, getCompanyDashboard);
 
 /* PUT /dashboard/:user_id */
-router.put('/dashboard', isLoggedIn, isCompany, isEmailVerified, upload.array('slider', 3), asyncErrorHandler(userUpdate));
+router.put('/dashboard', isLoggedIn, isCompany, isEmailVerified, upload.array('slider', 4), asyncErrorHandler(userUpdate));
 
 /* GET /login */
 router.get('/login', getLogin);
@@ -493,7 +493,7 @@ router.put('/company-settings/security',
 router.get('/company-settings/trust-verification', isLoggedIn, asyncErrorHandler(getVerification));
 
 /* GET /company-settings/profile */
-router.get('/company-settings/profile', isLoggedIn, asyncErrorHandler(getProfile));
+router.get('/company-settings/profile', isLoggedIn, isNotCompany, asyncErrorHandler(getProfile));
 
 /* PUT /profile */
 router.put('/profile', isLoggedIn, isNotCompany, upload.single('profilePicture'), asyncErrorHandler(putProfile));

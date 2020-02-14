@@ -39,9 +39,10 @@
 									<div class="form-group">
 										<textarea
 											placeholder="Add an answer: e.g., After getting all the required information from you."
-											name="answer" id="" cols="30" rows="3" class="form-control"></textarea>
+											name="answer" id="myText" cols="30" rows="3" class="form-control"
+											maxlength="300"></textarea>
 										<div class="text text-right">
-											<small class="form-text">0/300 Characters</small>
+											<small><span id="wordCount">0</span>/<span>300</span></small>
 										</div>
 									</div>
 									<div class="action_button">
@@ -69,10 +70,13 @@
 												class="form-control" />
 										</div>
 										<div class="form-group">
-											<textarea name="answer" id="" cols="30" rows="3"
-												class="form-control"><%= faq[i].answer %></textarea>
+											<textarea name="answer" id="myText2" cols="30" rows="3" class="form-control"
+												maxlength="300"><%= faq[i].answer %></textarea>
 											<div class="text text-right">
-												<small class="form-text">0/300 Characters</small>
+												<small>
+													<span
+														id="wordCount2"><%= faq[i].answer.length %></span>/<span>300</span>
+												</small>
 											</div>
 										</div>
 										<div class="action_button">
