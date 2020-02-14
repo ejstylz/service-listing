@@ -987,22 +987,30 @@
 
                               <li><a href="javascript:void(0)" onclick="copyToClipboard()">Share</a></li>
                               <input type="hidden" id="input-url" value="Copied!">
-                              <li><div class="popup" onclick="myFunction()">
-                                <div class="popuptext" id="myPopup">
-                                  <form style="margin-bottom: 3px;" action="/default-list/<%= company._id %>" method="POST">
-                                    <input type="hidden" name="company" value="company">
-                                    <button style="margin: auto;" type="submit" class="like">Default List</button>
-                                  </form>
-                                  <% if (currentUser && lists.length) { %>
-                                    <% lists.forEach(function(list){ %>
-                                      <form style="margin-bottom: 3px;" action="/save-to-list/<%= company._id %>/<%= list._id %>" method="POST">
-                                        <button style="margin: auto;" type="submit" class="like"><%= list.title %></button>
-                                      </form>
-                                    <% }); %>
-                                  <% } %>
-                                </div>
-                                <button type="" class="like">Save To List</button>
-                              </div></li>
+                              <% if (currentUser && !currentUser.isCompany) { %>
+              									<li>
+              										<div class="popup" onclick="myFunction()">
+              											<div class="popuptext" id="myPopup">
+              												<form style="margin-bottom: 3px;" action="/default-list/<%= company._id %>"
+              													method="POST">
+              													<input type="hidden" name="company" value="company">
+              													<button style="margin: auto;" type="submit" class="like">Default
+              														List</button>
+              												</form>
+              												<% if (currentUser && lists.length) { %>
+              												<% lists.forEach(function(list){ %>
+              												<form style="margin-bottom: 3px;"
+              													action="/save-to-list/<%= company._id %>/<%= list._id %>" method="POST">
+              													<button style="margin: auto;" type="submit"
+              														class="like"><%= list.title %></button>
+              												</form>
+              												<% }); %>
+              												<% } %>
+              											</div>
+              											<button type="" class="like">Save To List</button>
+              										</div>
+              									</li>
+              								<% } %>
                               <li><a id="export" href="#" onclick="window.print()">Print Page</a></li>
                           </ul>
                         </div>

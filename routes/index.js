@@ -743,13 +743,13 @@ router.post('/likes/:id', isLoggedIn, asyncErrorHandler(likes));
 router.post('/unlike/:id', isLoggedIn, asyncErrorHandler(unlike));
 
 /* POST /save-to-list/:id */
-router.post('/save-to-list/:companyId/:listId', isLoggedIn, asyncErrorHandler(saveToList));
+router.post('/save-to-list/:companyId/:listId', isLoggedIn, isNotCompany, asyncErrorHandler(saveToList));
 
 /* POST /save-to-list/:id */
-router.post('/default-list/:companyId', isLoggedIn, asyncErrorHandler(defaultList));
+router.post('/default-list/:companyId', isLoggedIn, isNotCompany, asyncErrorHandler(defaultList));
 
 /* POST /remove-from-list/:id */
-router.delete('/remove-from-list/:id', isLoggedIn, asyncErrorHandler(removeFromList));
+router.delete('/remove-from-list/:id', isLoggedIn, isNotCompany, asyncErrorHandler(removeFromList));
 
 
 /* De-activate account */
@@ -768,13 +768,13 @@ router.delete('/delete-list/:id', isLoggedIn, asyncErrorHandler(deleteList));
 router.delete('/remove-company/:companyId/:listId', isLoggedIn, asyncErrorHandler(removeCompanyFromList));
 
 /* GET /saved-list-item */
-router.get('/saved-list-item', isLoggedIn, asyncErrorHandler(getSavedListItems));
+router.get('/saved-list-item', isLoggedIn, isNotCompany, asyncErrorHandler(getSavedListItems));
 
 /* GET /other-lists */
-router.get('/other-lists/:id', isLoggedIn, asyncErrorHandler(getOtherListItems));
+router.get('/other-lists/:id', isLoggedIn, isNotCompany, asyncErrorHandler(getOtherListItems));
 
 /* GET /saved-list*/
-router.get('/saved-list', isLoggedIn, asyncErrorHandler(getSavedList));
+router.get('/saved-list', isLoggedIn, isNotCompany, asyncErrorHandler(getSavedList));
 
 /* Security Question */
 router.put('/security-question', isLoggedIn, asyncErrorHandler(putSecurityQuestion));
