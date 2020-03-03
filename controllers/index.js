@@ -4758,12 +4758,17 @@ module.exports = {
         let senderId = sender._id;
         let chat = await Chat.find({ participants: { $in: [userId, senderId] } }).sort({ _id: 1 });
         let otherUser;
+        let conversations;
+        if (chat.length) {
+            conversations = await Chat.find({ _id: { $in: user.conversations } }).sort({ _id: 1 });
+            console.log(conversations[0].messages.text);
+        }
         if (chat.length) {
             otherUser = await User.findById(chat[0].messages.sender.id);
         }
         let usaTime = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
         usaTime = new Date(usaTime);
-        res.render('businesses/inbox', { title: 'Saved List', user, sender, chat, review, usaTime, otherUser });
+        res.render('businesses/inbox', { title: 'Saved List', user, sender, chat, review, usaTime, otherUser, conversations });
     },
 
 

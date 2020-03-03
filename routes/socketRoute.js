@@ -82,7 +82,7 @@ module.exports = function (io) {
                     ]
                 });
 
-                Chat.create(newChat, function () {
+                Chat.create(newChat, async function () {
                     const data = {
                         name: user.username,
                         message: message
@@ -90,10 +90,16 @@ module.exports = function (io) {
                     io.emit('output', [data]);
 
                     // Send status object
-                    sendStatus({
-                        message: 'Message sent',
-                        clear: true
-                    });
+                    // sendStatus({
+                    //     message: 'Message sent',
+                    //     clear: true
+                    // });
+                    if (!chat.length) {
+                        await user.conversations.push(newChat);
+                        user.save();
+                        await other.conversations.push(newChat);
+                        other.save();
+                    }
                 });
 
             }

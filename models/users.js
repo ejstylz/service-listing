@@ -166,7 +166,13 @@ const UserSchema = new Schema({
         zipCode: String,
         sendEmail: { type: Boolean, default: true },
 
-    }
+    },
+    conversations: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Chat'
+        }
+    ],
 
 }, { timestamps: true });
 

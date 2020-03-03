@@ -19,6 +19,8 @@
 <body>
     <div class="members_inbox_page_body">
         <header class="main_header">
+
+            <% if(!currentUser) { %>
             <nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
                 <form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
                     <select class="form-control form-control-sm">
@@ -27,21 +29,83 @@
                     </select>
                 </form>
                 <div class="main_logo_for_mobile ml-auto">
-                    <a href="../members/index-members.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+                    <a href="/"><img src="images/gabazzo_logo_white.png" alt="" /></a>
+                </div>
+                <div style="margin-left: auto;">
+                    <% include ../partials/flash-messages %>
+                </div>
+                <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
+                    <li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
+                </ul>
+            </nav>
+            <nav class="navbar navbar-expand-lg navbar-light middlebar">
+                <a class="navbar-brand main_logo_for_desktop" href="/">
+                    <img src="images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
+                    <img src="images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
+                </a>
+
+                <div class="services_menu_bar">
+                    <button class="navbar-toggler services_responsive_bar border-0" type="button" data-toggle="collapse"
+                        data-target="#responsive-bar">
+                        <div class="animated-icon1"><span></span><span></span><span></span> <b class="">Services</b>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="members_menu_bar">
+                    <ul class="navbar-nav mr-sm-0 align-items-center text-center flex-row">
+                        <li>
+                            <button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
+                                <div class="animated-icon2"><span></span><span></span><span></span></div>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse nav_item_wrap navbar-collapse" id="navb">
+                    <ul class="navbar-nav member_menu_portion_for_desktop ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/become-a-seller-overview">Become a Seller</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-gbz-success join_butotn" href="/sign-up">Join</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <% } else { %>
+
+            <nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
+                <form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
+                    <select class="form-control form-control-sm">
+                        <option>English</option>
+                        <option>Spanish</option>
+                    </select>
+                </form>
+                <div class="main_logo_for_mobile ml-auto">
+                    <a href="/"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+                </div>
+                <div style="margin-left: auto;">
+                    <% include ../partials/flash-messages %>
                 </div>
                 <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
                     <li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
                     <li class="nav-item my_account my_account_for_desktop mx-2">
                         <a class="nav-link" id="myAcActionLink" href="javascript:void(0)">
-                            <img src="../images/man.png" alt="" class="img-fluid mr-1" />
-                            My Account
+                            <% if (currentUser.isCompany === true) { %>
+                            <img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+                            <% } else if (currentUser.isCompany === false) { %>
+                            <img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+                            <% } %> My Account
                         </a>
                     </li>
                 </ul>
             </nav>
             <nav class="navbar navbar-expand-lg navbar-light middlebar">
-                <a class="navbar-brand main_logo_for_desktop text-dark" href="../members/index-members.html"
-                    target="_self">
+                <a class="navbar-brand main_logo_for_desktop text-dark" href="/" target="_self">
                     <img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
                     <img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
                 </a>
@@ -58,7 +122,19 @@
                     <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
                         <li class="nav-item my_account_for_mobile">
                             <a class="nav-link" id="myAcActionLinkMB" href="javascript:void(0)">
-                                <img src="../images/man.png" style="width:30px;" alt="" class="img-fluid mr-1" />
+                                <% if (currentUser.isCompany === true) { %>
+                                <img src="<%= currentUser.logo %>" style="width:30px;" class="profile-photo" alt="">
+                                <% } else if (currentUser.isCompany === false) { %>
+                                <% if(currentUser.profilePicture){ %>
+                                <img src="<%= currentUser.profilePicture %>" style="width:30px;" class="profile-photo"
+                                    alt="" class="img-fluid mr-1">
+
+                                <% } else { %>
+                                <img src="../images/man.png" style="width:30px;" class="profile-photo" alt=""
+                                    class="img-fluid mr-1">
+
+                                <% } %>
+                                <% } %>
                             </a>
                         </li>
                         <li>
@@ -70,6 +146,7 @@
                 </div>
 
                 <div class="collapse nav_item_wrap navbar-collapse" id="navb">
+                    <% if (currentUser && currentUser.isEmailVerified) { %>
                     <ul class="navbar-nav ml-auto">
                         <!-- Messages -->
                         <li class="nav-item dropdown">
@@ -146,7 +223,8 @@
                                                 </div>
                                                 <div class="col-10 not_title related_photo">
                                                     <h5>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
-                                                        amet.</h5>
+                                                        amet.
+                                                    </h5>
                                                     <div class="time">
                                                         <h6 class="hit">2h</h6>
                                                     </div>
@@ -164,10 +242,84 @@
                         </li>
                         <!-- Notifications -->
 
-                        <li class="nav-item"><a href="saved-list.html" class="nav-link">Saved List</a></li>
+                        <li class="nav-item"><a href="/saved-list" class="nav-link">Saved List</a></li>
                     </ul>
+                    <% } %>
                 </div>
             </nav>
+
+            <!-- My Account SideMenu For Desktop -->
+            <div class="" id="myAcContents">
+                <div id="dismissMyAcActionLink">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+                <div class="my_account_menu">
+                    <div class="top_part">
+                        <% if (currentUser.isCompany === true) { %>
+                        <img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+                        <% } else if (currentUser.isCompany === false) { %>
+                        <img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+                        <% } %>
+                        <div class="profile_name">Hi <%= currentUser.username %></div>
+                    </div>
+                    <div class="bottom_part">
+                        <ul>
+                            <% if (currentUser.isCompany) { %>
+                            <li><a href="/company-dashboard" target="_self"><i class="fa fa-fw fa-user"></i><span>View
+                                        Dashboard</span></a></li>
+                            <% } else { %>
+                            <li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i
+                                        class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+                            <% } %>
+                            <li><a href="/company-settings/account"><i
+                                        class="fa fa-fw fa-cog"></i><span>Settings</span></a>
+                            </li>
+                            <li><a href="../footer-pages/help-center-buyer.html"><i
+                                        class="fa fa-fw fa-comments"></i><span>Buyer Help Center</span></a></li>
+                            <li><a href="/logout" target="_self"><i
+                                        class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- My Account SideMenu For Desktop -->
+
+            <!-- My Account SideMenu For Mobile -->
+            <div class="" id="myAcContentsMB">
+                <div id="dismissMyAcActionLinkMB">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+                <div class="my_account_menu">
+                    <div class="top_part">
+                        <% if (currentUser.isCompany === true) { %>
+                        <img src="<%= currentUser.logo %>" class="profile-photo" alt="">
+                        <% } else if (currentUser.isCompany === false) { %>
+                        <img src="<%= currentUser.profilePicture %>" class="profile-photo" alt="">
+                        <% } %> <div class="profile_name">Hi <%= currentUser.username %></div>
+                    </div>
+                    <div class="bottom_part">
+                        <ul>
+                            <% if (currentUser.isCompany) { %>
+                            <li><a href="/company-dashboard" target="_self"><i class="fa fa-fw fa-user"></i><span>View
+                                        Dashboard</span></a></li>
+                            <% } else { %>
+                            <li><a href="/member-profile/<%= currentUser._id %>" target="_self"><i
+                                        class="fa fa-fw fa-user"></i><span>View Profile</span></a></li>
+                            <% } %>
+                            <li><a href="/company-settings/account"><i
+                                        class="fa fa-fw fa-cog"></i><span>Settings</span></a>
+                            </li>
+                            <li><a href="../footer-pages/help-center-buyer.html"><i
+                                        class="fa fa-fw fa-comments"></i><span>Buyer Help Center</span></a></li>
+                            <li><a href="/logout" target="_self"><i
+                                        class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- My Account SideMenu For Mobile -->
+
+            <% } %>
         </header>
 
 
@@ -206,6 +358,8 @@
                                 <div class="contact_list">
 
                                     <ul class="contact_list_normal">
+                                        <% if(conversations !==undefined && conversations.length) { %>
+                                        <% conversations.forEach(function(conv) { %>
                                         <li class="active">
                                             <a href="javascript:void(0)">
                                                 <div class="row">
@@ -213,9 +367,9 @@
                                                         <img src="../images/man.png" class="img-fluid" alt="" />
                                                     </div>
                                                     <div class="col-9 pl-0">
-                                                        <h6>Username</h6>
-                                                        <small class="last_message">Me: Lorem Ipsum Dolor Sit
-                                                            Amet.</small>
+                                                        <h6><%= conv.messages.sender.username %></h6>
+                                                        <small class="last_message">Me:
+                                                            <%= conv.messages.text %></small>
                                                         <div class="time">
                                                             <h6 class="hit">2h</h6>
                                                         </div>
@@ -225,7 +379,11 @@
                                             <a class="starred" href="javascript:void(0)"><i class="fa fa-star-o"
                                                     aria-hidden="true"></i></a>
                                         </li>
-                                        <li class="">
+                                        <% }); %>
+                                        <% } %>
+
+
+                                        <!-- <li class="">
                                             <a href="javascript:void(0)">
                                                 <div class="row">
                                                     <div class="col-3 pr-0 user_pic">
@@ -243,7 +401,7 @@
                                             </a>
                                             <a class="starred" href="javascript:void(0)"><i class="fa fa-star-o"
                                                     aria-hidden="true"></i></a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
