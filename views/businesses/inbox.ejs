@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatble" content="ie=edge" />
+    <title>Gabazzo | Inbox</title>
+    <link href="../images/favicon.png" rel="icon" />
+    <link href="../images/favicon.ico" rel="shortcut icon" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../fonts/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/night-mode.css" rel="stylesheet" type="text/css" />
+    <link href="../css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="members_inbox_page_body">
+        <header class="main_header">
+            <nav class="navbar navbar-expand-sm navbar-dark topbar align-items-center">
+                <form class="form-inline mx-auto mr-sm-3 mb-2 mb-sm-0 ml-sm-0">
+                    <select class="form-control form-control-sm">
+                        <option>English</option>
+                        <option>Spanish</option>
+                    </select>
+                </form>
+                <div class="main_logo_for_mobile ml-auto">
+                    <a href="../members/index-members.html"><img src="../images/gabazzo_logo_white.png" alt="" /></a>
+                </div>
+                <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
+                    <li class="night_mode_image"><a href="javascript:void(0)" class="night_mode_icon"></a></li>
+                    <li class="nav-item my_account my_account_for_desktop mx-2">
+                        <a class="nav-link" id="myAcActionLink" href="javascript:void(0)">
+                            <img src="../images/man.png" alt="" class="img-fluid mr-1" />
+                            My Account
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="navbar navbar-expand-lg navbar-light middlebar">
+                <a class="navbar-brand main_logo_for_desktop text-dark" href="../members/index-members.html"
+                    target="_self">
+                    <img src="../images/gabazzo_logo_black.png" class="img-fluid gabazzo_logo black_logo" alt="" />
+                    <img src="../images/gabazzo_logo_white.png" class="img-fluid gabazzo_logo white_logo" alt="" />
+                </a>
+
+                <div class="services_menu_bar">
+                    <button class="navbar-toggler services_responsive_bar border-0" type="button" data-toggle="collapse"
+                        data-target="#responsive-bar">
+                        <div class="animated-icon1"><span></span><span></span><span></span> <b class="">Services</b>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="members_menu_bar">
+                    <ul class="navbar-nav mx-auto mr-sm-0 align-items-center text-center flex-row">
+                        <li class="nav-item my_account_for_mobile">
+                            <a class="nav-link" id="myAcActionLinkMB" href="javascript:void(0)">
+                                <img src="../images/man.png" style="width:30px;" alt="" class="img-fluid mr-1" />
+                            </a>
+                        </li>
+                        <li>
+                            <button class="navbar-togglerr" type="button" data-toggle="collapse" data-target="#navb">
+                                <div class="animated-icon2"><span></span><span></span><span></span></div>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse nav_item_wrap navbar-collapse" id="navb">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Messages -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0)">Messages</a>
+                            <div class="dropdown-menu messages_dropdown">
+                                <div class="header">
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i> Inbox
+                                </div>
+
+                                <ul class="scrolling_item">
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <div class="row">
+                                                <div class="col-2 user_pic">
+                                                    <img src="../images/man.png" class="img-fluid" alt="" />
+                                                </div>
+                                                <div class="col-10 title">
+                                                    <h5>Username</h5>
+                                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                                                        blanditiis</p>
+                                                    <div class="time">
+                                                        <h6 class="">53m</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tabsss_footer">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul class="icon">
+                                                <li><a href="javascript:void(0)"><i class="fa fa-volume-up"
+                                                            aria-hidden="true"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i class="fa fa-cog"
+                                                            aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 see_all">
+                                            <a href="members-inbox.html" target="_self">See All In Inbox</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Messages -->
+
+                        <!-- Notifications -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0)">Notifications</a>
+                            <div class="dropdown-menu notification_down messages_dropdown">
+                                <div class="header">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <h5>Notifications</h5>
+                                        </div>
+                                        <div class="col-7">
+                                            <ul>
+                                                <li><a href="javascript:void(0)">Mark All as Read</a></li>
+                                                <li><a href="javascript:void(0)">Setting</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="scrolling_item">
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <div class="row">
+                                                <div class="col-2 user_pic">
+                                                    <img src="../images/man.png" class="img-fluid" alt="" />
+                                                </div>
+                                                <div class="col-10 not_title related_photo">
+                                                    <h5>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
+                                                        amet.</h5>
+                                                    <div class="time">
+                                                        <h6 class="hit">2h</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="notification_down_footer">
+                                    <div class="text-cen see_all">
+                                        <a href="notifications.html" target="_self">See All Notifications</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Notifications -->
+
+                        <li class="nav-item"><a href="saved-list.html" class="nav-link">Saved List</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+
+        <section class="member_inbox">
+            <div class="container_inbox">
+                <div class="row">
+                    <div class="col-md-3 pr-0 padding_right_15">
+                        <div class="inbox_left">
+                            <div class="contacts">
+                                <div class="header">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <a href="javascript:void(0)">All Conversations</a>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <a class="contact_search_icon" href="javascript:void(0)"><i
+                                                    class="fa fa-search" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="search_form">
+                                        <form action="">
+                                            <div class="form-row">
+                                                <div class="form-group col-9">
+                                                    <input type="search" placeholder="Search for a username"
+                                                        class="form-control" />
+                                                </div>
+                                                <div class="form-group col-3">
+                                                    <a class="btn btn-warning search_layout_cancel"
+                                                        href="javascript:void(0)">Close</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="contact_list">
+
+                                    <ul class="contact_list_normal">
+                                        <li class="active">
+                                            <a href="javascript:void(0)">
+                                                <div class="row">
+                                                    <div class="col-3 pr-0 user_pic">
+                                                        <img src="../images/man.png" class="img-fluid" alt="" />
+                                                    </div>
+                                                    <div class="col-9 pl-0">
+                                                        <h6>Username</h6>
+                                                        <small class="last_message">Me: Lorem Ipsum Dolor Sit
+                                                            Amet.</small>
+                                                        <div class="time">
+                                                            <h6 class="hit">2h</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="starred" href="javascript:void(0)"><i class="fa fa-star-o"
+                                                    aria-hidden="true"></i></a>
+                                        </li>
+                                        <li class="">
+                                            <a href="javascript:void(0)">
+                                                <div class="row">
+                                                    <div class="col-3 pr-0 user_pic">
+                                                        <img src="../images/man.png" class="img-fluid" alt="" />
+                                                    </div>
+                                                    <div class="col-9 pl-0">
+                                                        <h6>Username</h6>
+                                                        <small class="last_message">Me: Lorem Ipsum Dolor Sit
+                                                            Amet.</small>
+                                                        <div class="time">
+                                                            <h6 class="hit">2h</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="starred" href="javascript:void(0)"><i class="fa fa-star-o"
+                                                    aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 pl-0 padding_left_15">
+                        <div class="inbox_right">
+                            <div class="inbox_right_header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <div class="back_for_mobile">
+                                            <a class="mobile_chat_layout_cancel" href="javascript:void(0)"><i
+                                                    class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div class="username">
+                                            <% if(currentUser.isCompany) { %>
+                                            <h5 class="online">
+                                                <% if (otherUser.status) { %>
+                                                <i class="fa fa-circle" aria-hidden="true"></i> <% } %>
+                                                <%= otherUser.username %>
+                                            </h5>
+                                            <% } else { %>
+                                            <h5 class="online">
+                                                <% if (sender.status) { %>
+                                                <i class="fa fa-circle" aria-hidden="true"></i> <% } %>
+                                                <%= sender.username %>
+                                            </h5>
+                                            <% } %>
+                                        </div>
+                                        <div class="user_status">
+                                            <ul>
+                                                <% if(currentUser.isCompany) { %>
+                                                <% if (otherUser.status) { %>
+                                                <li>Online</li>
+                                                <% } else { %>
+                                                <li>Last Seen: <%= moment(otherUser.loggedOut).fromNow() %>
+                                                </li>
+                                                <% } %>
+                                                <% } else { %>
+                                                <% if (sender.status) { %>
+                                                <li>Online</li>
+                                                <% } else { %>
+                                                <li>Last Seen: <%= moment(sender.loggedOut).fromNow() %>
+                                                </li>
+                                                <% } %>
+                                                <% } %>
+                                                <li>|</li>
+                                                <li>Local Time:
+                                                    <%= usaTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "numeric"}) %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="status"></div>
+                                    <div class="col-1 text-right">
+                                        <a class="mt-3 d-inline-block" href="javascript:void(0)"><i
+                                                class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 pr-0">
+                                    <div class="message_body">
+                                        <div class="message_visual_part" id="messages">
+                                            <div class="chat-message">
+                                                <% chat.forEach(function(chat){ %>
+                                                <p><%= chat.messages.sender.username %>: <%= chat.messages.text %></p>
+                                                <% }); %>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="message_action_part">
+                                            <textarea name="" id="textarea" cols="30" rows="2"
+                                                class="form-control"></textarea>
+                                            <div class="action_button">
+                                                <ul>
+                                                    <li><a href="javascript:void(0)"><i class="fa fa-paperclip"
+                                                                aria-hidden="true"></i></a></li>
+                                                    <li><a class="btn btn-info" href="javascript:void(0)">Send</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% if (!currentUser.isCompany) { %>
+                                <div class="col-md-4 pl-0">
+                                    <div class="info">
+                                        <div class="about">
+                                            <h3>About</h3>
+                                        </div>
+                                        <div class="profile">
+                                            <a href="company-profile/<%= sender._id %>"><img src="<%= sender.logo %>"
+                                                    class="img-fluid" alt="" /></a>
+                                            <a href="company-profile/<%= sender._id %>">
+                                                <h6><%= sender.companyName %></h6>
+                                            </a>
+                                        </div>
+                                        <hr />
+                                        <div class="bottom_text">
+                                            <h5>Reviews: <span><i class="fa fa-star text-warning mr-1"
+                                                        aria-hidden="true"></i><b
+                                                        class="text-warning"><%= sender.averageReview %></b>
+                                                    (<%= review.length %>)</span></h5>
+                                            <h5>Avg. Response Time: <span>1 Hr</span></h5>
+                                            <h5>Address: <span><%= sender.location %></span></h5>
+                                        </div>
+                                        <hr />
+                                        <div class="single_info language_flag_info pb-3">
+                                            <h4>Languages</h4>
+                                            <ul>
+                                                <% sender.language.forEach(function(lang){ %>
+                                                <li><%= lang %></li>
+                                                <% }); %>
+                                            </ul>
+                                        </div>
+                                        <hr />
+                                        <div class="single_info">
+                                            <h4>Social Media</h4>
+                                            <ul>
+                                                <% if(sender.facebookUrl) { %>
+                                                <li><a href="javascript:void(0)" data-target="_blank"><i
+                                                            class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                                                </li>
+                                                <% } %>
+
+                                                <% if(sender.twitterUrl) { %>
+                                                <li><a href="javascript:void(0)" data-target="_blank"><i
+                                                            class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                                                </li>
+                                                <% } %>
+
+                                                <% if(sender.linkedinUrl) { %>
+                                                <li><a href="javascript:void(0)" data-target="_blank"><i
+                                                            class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                                                </li>
+                                                <% } %>
+
+                                                <% if(sender.instagramUrl) { %>
+                                                <li><a href="javascript:void(0)" data-target="_blank"><i
+                                                            class="fa fa-instagram-s" aria-hidden="true"></i></a></li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                        <hr />
+                                        <div class="single_info pb-3">
+                                            <h4>Payment Accepted</h4>
+                                            <ul>
+                                                <li><a href="javascript:void(0)"><i data-toggle="tooltip"
+                                                            title="American Express" class="fa fa-cc-amex"
+                                                            aria-hidden="true"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i data-toggle="tooltip"
+                                                            title="Discover" class="fa fa-cc-discover"
+                                                            aria-hidden="true"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i data-toggle="tooltip"
+                                                            title="Master Card" class="fa fa-cc-mastercard"
+                                                            aria-hidden="true"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i data-toggle="tooltip" title="Paypal"
+                                                            class="fa fa-cc-paypal" aria-hidden="true"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i data-toggle="tooltip" title="Visa"
+                                                            class="fa fa-cc-visa" aria-hidden="true"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i data-toggle="tooltip" title="Cash"
+                                                            class="fa fa-money" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                <div class="col-md-4 pl-0">
+                                    <div class="info">
+                                        <div class="about">
+                                            <h3>About</h3>
+                                        </div>
+                                        <div class="profile">
+                                            <a href="company-profile/<%= sender._id %>"><img
+                                                    src="<%= otherUser.profilePicture %>" class="img-fluid"
+                                                    alt="" /></a>
+                                            <a href="company-profile/<%= sender._id %>">
+                                                <h6><%= otherUser.username %></h6>
+                                            </a>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+
+    <!-- My Account SideMenu For Desktop -->
+    <div class="" id="myAcContents">
+        <div id="dismissMyAcActionLink">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="my_account_menu">
+            <div class="top_part">
+                <img src="../images/man.png" class="profile-photo" alt="">
+                <div class="profile_name">Member's Profile</div>
+            </div>
+            <div class="bottom_part">
+                <ul>
+                    <li><a href="view-profile.html" target="_self"><i class="fa fa-fw fa-user"></i><span>View
+                                Profile</span></a></li>
+                    <li><a href="ps-account.html"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
+                    <li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer
+                                Help Center</span></a></li>
+                    <li><a href="../index.html" target="_self"><i
+                                class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- My Account SideMenu For Desktop -->
+
+    <!-- My Account SideMenu For Mobile -->
+    <div class="" id="myAcContentsMB">
+        <div id="dismissMyAcActionLinkMB">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="my_account_menu">
+            <div class="top_part">
+                <img src="../images/man.png" class="profile-photo" alt="">
+                <div class="profile_name">Member's Profile</div>
+            </div>
+            <div class="bottom_part">
+                <ul>
+                    <li><a href="view-profile.html" target="_self"><i class="fa fa-fw fa-user"></i><span>View
+                                Profile</span></a></li>
+                    <li><a href="ps-account.html"><i class="fa fa-fw fa-cog"></i><span>Settings</span></a></li>
+                    <li><a href="../footer-pages/help-center-buyer.html"><i class="fa fa-fw fa-comments"></i><span>Buyer
+                                Help Center</span></a></li>
+                    <li><a href="../index.html" target="_self"><i
+                                class="fa fa-fw fa-power-off"></i><span>Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- My Account SideMenu For Mobile -->
+
+
+    <script src="../js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../js/classie.js" type="text/javascript"></script>
+    <script src="../js/lightcase.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.contact_list > ul > li > a').click(function () {
+                $('.member_inbox').addClass('mobile_chat_layout');
+            });
+
+            $('.mobile_chat_layout_cancel').click(function () {
+                $('.member_inbox').removeClass('mobile_chat_layout');
+            });
+        });
+
+        $(document).ready(function () {
+            $('.contact_search_icon').click(function () {
+                $('.member_inbox').addClass('search_layout');
+            });
+
+            $('.search_layout_cancel').click(function () {
+                $('.member_inbox').removeClass('search_layout');
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('#action_menu_btn').click(function () {
+                $('.action_menu').toggle();
+            });
+        });
+
+    </script>
+
+    <script>
+        var element = function (id) {
+            return document.getElementById(id);
+        }
+
+        var messages = element('messages');
+
+        function scrollToBottom() {
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        window.onload = scrollToBottom();
+
+    </script>
+
+    <script>
+        (function () {
+            var element = function (id) {
+                return document.getElementById(id);
+            }
+
+            // Get Elements
+            var status = element('status');
+            var messages = element('messages');
+            var textarea = element('textarea');
+
+            // Set default status
+            var statusDefault = status.textContent;
+
+            var setStatus = function (s) {
+                // Set status
+                status.textContent = s;
+
+                if (s !== statusDefault) {
+                    var delay = setTimeout(function () {
+                        setStatus(statusDefault);
+                    }, 4000);
+                }
+            }
+
+            // Connect to socket.io
+            var socket = io.connect('http://localhost:3000');
+
+            // Check for connection
+            if (socket !== undefined) {
+                console.log('Connected to socket...');
+
+                // Handle Output
+                socket.on('output', function (data) {
+                    //console.log(data);
+                    if (data.length) {
+                        for (var x = 0; x < data.length; x++) {
+                            // Build out message div
+                            if (data[x].message != undefined) {
+                                var message = document.createElement('div');
+                                message.setAttribute('class', 'chat-message');
+                                message.textContent = data[x].name + ": " + data[x].message;
+                                messages.appendChild(message);
+                                // messages.insertAfter(message, messages.lastChild);
+                                function scrollToBottom() {
+                                    messages.scrollTop = messages.scrollHeight;
+                                }
+                                scrollToBottom();
+                            }
+
+                        }
+                    }
+
+                });
+
+                // Get Status From Server
+                socket.on('status', function (data) {
+                    // get message status
+                    setStatus((typeof data === 'object') ? data.message : data);
+
+                    // If status is clear, clear text
+                    if (data.clear) {
+                        textarea.value = '';
+                    }
+                });
+
+                // Handle Input
+                textarea.addEventListener('keydown', async function (event) {
+                    if (event.which === 13 && event.shiftKey == false) {
+                        // Emit to server input
+                        await socket.emit('input', {
+                            // name: username.value,
+                            message: textarea.value
+                        });
+
+                        textarea.value = '';
+
+                        event.preventDefault();
+                    }
+                })
+            }
+
+        })();
+    </script>
+
+
+
+</body>
+
+</html>

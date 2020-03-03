@@ -8,6 +8,7 @@ const Portfolio = require('../models/portfolio');
 const Review = require('../models/review');
 const Service = require('../models/service');
 const Product = require('../models/product');
+const Chat = require('../models/chat');
 const Faq = require('../models/faq');
 const List = require('../models/list');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
@@ -51,6 +52,10 @@ module.exports = {
                 compa.push(comp);
             }
         });
+        if (req.user) {
+            user.status = true;
+            await user.save();
+        }
         res.render('index', { title: 'GABAZZO', user, company, compa });
     },
 
@@ -674,10 +679,12 @@ module.exports = {
             res.redirect('/');
 
         } else {
-            req.login(user, function (err) {
+            req.login(user, async function (err) {
                 if (err) return next(err);
+                user.status = true;
+                await user.save();
                 req.session.success = "Welcome back!";
-                console.log("Logged In");
+                console.log(user.username + " Logged In");
                 console.log("Welcome back!");
                 const redirectUrl1 = req.session.redirectTo || '/';
                 const redirectUrl2 = req.session.redirectTo || '/company-dashboard';
@@ -693,21 +700,28 @@ module.exports = {
 
     },
 
-    googleLogin() {
-        passport.authenticate('google', { scope: ['profile'] });
-    },
+    // googleLogin() {
+    //     passport.authenticate('google', { scope: ['profile'] });
+    // },
 
 
-    googleCallback() {
-        passport.authenticate('google', { failureRedirect: '/login' }),
-            function (req, res) {
-                // Successful authentication, redirect home.
-                res.redirect('/');
-            }
-    },
+    // googleCallback() {
+    //     passport.authenticate('google', { failureRedirect: '/login' }),
+    //         async function (req, res) {
+    //             req.user.status = true;
+    //             await user.save();
+    //             // Successful authentication, redirect home.
+    //             res.redirect('/');
+    //         }
+    // },
 
     //GET /logout
-    getLogout(req, res, next) {
+    async getLogout(req, res, next) {
+        req.user.status = false;
+        let d = Date()
+        req.user.loggedOut = d;
+        console.log(req.user.username + " logged Out");
+        await req.user.save();
         req.logout();
         res.redirect('/');
     },
@@ -4733,6 +4747,23 @@ module.exports = {
         req.session.success = "Billing Info successfully Updated!";
         // redirect to show page
         res.redirect("back");
+    },
+
+    //GET saved to list
+    async getInbox(req, res, next) {
+        let user = req.user;
+        let sender = await User.findById(req.params.id);
+        let review = await Review.find().where("owner.id").equals(sender._id).exec();
+        let userId = user._id;
+        let senderId = sender._id;
+        let chat = await Chat.find({ participants: { $in: [userId, senderId] } }).sort({ _id: 1 });
+        let otherUser;
+        if (chat.length) {
+            otherUser = await User.findById(chat[0].messages.sender.id);
+        }
+        let usaTime = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+        usaTime = new Date(usaTime);
+        res.render('businesses/inbox', { title: 'Saved List', user, sender, chat, review, usaTime, otherUser });
     },
 
 

@@ -178,7 +178,8 @@ const {
   deleteList,
   getOtherListItems,
   removeCompanyFromList,
-  defaultList
+  defaultList,
+  getInbox
 } = require('../controllers');
 const {
   asyncErrorHandler,
@@ -781,5 +782,8 @@ router.put('/security-question', isLoggedIn, asyncErrorHandler(putSecurityQuesti
 
 /* Billing info*/
 router.put('/billing-info', isLoggedIn, asyncErrorHandler(putBilling));
+
+/* GET Inbox */
+router.get('/inbox/:id', isLoggedIn, asyncErrorHandler(getInbox));
 
 module.exports = router;

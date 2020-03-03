@@ -420,6 +420,7 @@
 	}	
 	.members_inbox_page_body .message_visual_part {
 		height: calc(100vh - 320px);
+		overflow-y: auto;
 	}	
 	.member_inbox .inbox_right{
 		display:none;
@@ -947,6 +948,8 @@
 	}	
 	.members_inbox_page_body .message_visual_part {
 		height: calc(100vh - 320px);
+		overflow-y: auto;
+
 	}	
 	.member_inbox .inbox_right{
 		display:none;

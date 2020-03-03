@@ -150,6 +150,8 @@ const UserSchema = new Schema({
         }
     ],
     isActive: { type: Boolean, default: true },
+    status: { type: Boolean, default: false },
+    loggedOut: Date,
 
     activateToken: String,
     activateExpires: Date,

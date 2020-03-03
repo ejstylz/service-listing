@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -10,18 +10,30 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const session = require('express-session');
+const expressSession = require('express-session')
+const sessionMiddleware = expressSession({
+  key: 'express.sid',       // the name of the cookie where express/connect stores its session_id
+  secret: 'wow cool dude!',
+  resave: true,
+  saveUninitialized: true,
+  store: new (require("connect-mongo")(expressSession))({
+    url: "mongodb://localhost:27017/gabazzo"
+  })
+});
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+var passportSocketIo = require('passport.socketio');
+var sharedsession = require("express-socket.io-session");
 
 const index = require('./routes/index');
 const User = require('./models/users');
 
 const app = express();
+const socket_io = require("socket.io");
 
 //connect to the database
-// mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/gabazzo", { useNewUrlParser: true });
+// mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
@@ -29,6 +41,17 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log("WE'RE CONNECTED!");
 });
+
+//Sockets
+const io = socket_io();
+app.io = io;
+const socketRoute = require('./routes/socketRoute')(io);
+
+// socket.io events
+io.on("connection", function (socket) {
+  console.log("A user connected");
+});
+
 
 // use ejs-locals for all ejs templates:
 app.engine('ejs', engine);
@@ -48,16 +71,27 @@ app.use(methodOverride('_method'));
 app.locals.moment = require('moment');
 
 // Configure passport and sessions
-app.use(
-  session({
-    secret: 'wow cool dude!',
-    resave: false,
-    saveUninitialized: true
-  })
-);
+app.use(sessionMiddleware);
+
+// io.use(sharedsession(session));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// io.use(function (socket, next) {
+//   // Wrap the express middleware
+//   sessionMiddleware(socket.request, {}, next);
+// })
+
+//With Socket.io >= 1.0
+io.use(passportSocketIo.authorize({
+  cookieParser: cookieParser,       // the same middleware you registrer in express
+  key: 'express.sid',       // the name of the cookie where express/connect stores its session_id
+  secret: 'wow cool dude!',    // the session_secret to parse the cookie
+  resave: true,
+  saveUninitialized: true,
+  store: new (require("connect-mongo")(expressSession))({ url: "mongodb://localhost:27017/gabazzo" }),
+}));
 
 //GOOGLE STRATEGY
 passport.use(new GoogleStrategy({
